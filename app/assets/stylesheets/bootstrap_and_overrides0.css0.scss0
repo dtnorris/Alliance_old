@@ -1,0 +1,22 @@
+$iconSpritePath: url('glyphicons-halflings.png');
+$iconWhiteSpritePath: url('glyphicons-halflings-white.png');
+
+$baseFontSize: 12px;
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.italic {
+  font-style: italic;
+}
+
+ul.nav-tabs {
+  font-size: 14px;
+}
