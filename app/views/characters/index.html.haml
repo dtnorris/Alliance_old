@@ -8,6 +8,7 @@
     %th
     %th
     %th Name: 
+    %th Race:
     %th Build Points:  
 
   - @characters.each do |character|
@@ -15,5 +16,6 @@
       %td= link_to 'Show', character, class: "btn"
       %td= link_to 'Edit', edit_character_path(character), class: "btn"
       %td= character.name
+      %td= character.race
       %td= character.build_points
 %br
