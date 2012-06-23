@@ -1,5 +1,6 @@
 Alliance::Application.routes.draw do
   
+
   resources :characters
 
   root :to => 'pages#home'
