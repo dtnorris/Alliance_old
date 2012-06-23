@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20120623175617) do
     t.integer  "experience_points"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.string   "race"
+    t.integer  "race_id"
   end
 
   create_table "races", :force => true do |t|

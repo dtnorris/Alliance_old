@@ -4,7 +4,7 @@ describe "characters/show" do
   before(:each) do
     @character = assign(:character, stub_model(Character,
       :name => "Name",
-      :race => "Human",
+      :race_id => 11,
       :build_points => 1,
       :experience_points => 2
     ))

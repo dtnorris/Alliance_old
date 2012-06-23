@@ -1,6 +1,6 @@
 %ul.nav.nav-tabs
-  %li= link_to 'Back', characters_path
-  %li= link_to 'Edit', edit_character_path(@character)
+  %li= link_to 'Back', characters_path, class: "btn"
+  %li= link_to 'Edit', edit_character_path(@character), class: "btn"
 .span4
   %table.table.user-table
     %tbody
@@ -9,7 +9,7 @@
         %td= @character.name
       %tr
         %td.ln Race:
-        %td= @character.race
+        %td= Race.find_by_id(@character.race_id).name if Race.find_by_id(@character.race_id)
       %tr
         %td.ln Build Points:
         %td= @character.build_points
