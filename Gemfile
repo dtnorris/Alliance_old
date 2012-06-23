@@ -8,15 +8,15 @@ gem 'pg', '0.12.2'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'simple_form'
+#gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
 gem 'decent_exposure'
 
 group :assets do
   gem 'execjs'
   gem 'therubyracer', :platforms => :ruby
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  #gem 'twitter-bootstrap-rails'
-  gem 'bootstrap-sass'
+  #gem 'sass-rails',   '~> 3.2.3'
+  #gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
 

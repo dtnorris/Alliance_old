@@ -97,9 +97,7 @@ SimpleForm.setup do |config|
   # Default class for buttons
   config.button_class = 'btn'
 
-  # Method used to tidy up errors. Specify any Rails Array method.
-  # :first lists the first message for each field.
-  # Use :to_sentence to list all errors for each field.
+  # Method used to tidy up errors.
   # config.error_method = :first
 
   # Default tag used for error notification helper.
@@ -139,6 +137,7 @@ SimpleForm.setup do |config|
 
   # You can define the class to use on all forms. Default is simple_form.
   # config.form_class = :simple_form
+  config.form_class = 'simple_form form-horizontal'
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
