@@ -1,0 +1,89 @@
+class CreateCharacterSkills < ActiveRecord::Migration
+  def change
+    create_table :character_skills do |t|
+      t.boolean :alchemy
+      t.integer :blacksmith
+      t.integer :create_potion
+      t.integer :create_scroll
+      t.integer :create_trap
+      t.boolean :herbal_lore
+      t.boolean :legerdemain
+      t.boolean :merchant
+      t.integer :teacher
+      t.integer :wear_extra_armor
+      t.integer :break_command
+      t.boolean :claws
+      t.integer :gypsy_curse
+      t.boolean :racial_assassinate
+      t.boolean :racial_dodge
+      t.boolean :racial_proficiency
+      t.boolean :racial_slay
+      t.integer :resist_binding
+      t.integer :resist_command
+      t.integer :resist_element
+      t.integer :resist_fear
+      t.boolean :resist_magic
+      t.integer :resist_necromancy
+      t.integer :resist_poison
+      t.boolean :archery
+      t.boolean :florentine
+      t.boolean :one_handed_blunt
+      t.boolean :one_handed_edged
+      t.boolean :one_handed_master
+      t.boolean :polearm
+      t.boolean :small_weapon
+      t.boolean :staff
+      t.boolean :style_master
+      t.boolean :thrown_weapon
+      t.boolean :two_handed_blunt
+      t.boolean :two_handed_sword
+      t.boolean :two_handed_master
+      t.boolean :two_weapons
+      t.boolean :weapon_master
+      t.integer :assassinate
+      t.integer :back_attack
+      t.integer :backstab
+      t.integer :critical_attack
+      t.integer :disarm
+      t.integer :dodge
+      t.integer :evade
+      t.integer :eviscerate
+      t.integer :parry
+      t.integer :riposte
+      t.integer :shatter
+      t.boolean :shield
+      t.integer :slay
+      t.integer :stun_limb
+      t.integer :terminate
+      t.boolean :waylay
+      t.integer :weapon_proficiency
+      t.boolean :read_and_write
+      t.boolean :read_magic
+      t.boolean :first_aid
+      t.boolean :healing_arts
+      t.integer :celestial_level_1
+      t.integer :celestial_level_2
+      t.integer :celestial_level_3
+      t.integer :celestial_level_4
+      t.integer :celestial_level_5
+      t.integer :celestial_level_6
+      t.integer :celestial_level_7
+      t.integer :celestial_level_8
+      t.integer :celestial_level_9
+      t.integer :formal_celestial
+      t.integer :earth_level_1
+      t.integer :earth_level_2
+      t.integer :earth_level_3
+      t.integer :earth_level_4
+      t.integer :earth_level_5
+      t.integer :earth_level_6
+      t.integer :earth_level_7
+      t.integer :earth_level_8
+      t.integer :earth_level_9
+      t.integer :formal_earth
+
+      t.timestamps
+    end
+    add_column :characters, :character_skill_id, :integer
+  end
+end

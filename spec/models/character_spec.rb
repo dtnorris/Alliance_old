@@ -1,5 +1,9 @@
 require 'spec_helper'
 
-# describe Character do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
+describe Character do
+  it "should create a character_skill object when created" do
+    CharacterSkill.all.count.should == 0
+    Character.create
+    CharacterSkill.all.count.should == 1
+  end
+end
