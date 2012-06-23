@@ -1,5 +1,11 @@
 Alliance::Application.routes.draw do
   
+  get "character/[create"
+
+  get "character/destroy"
+
+  get "character/update]"
+
   root :to => 'pages#home'
 
   # The priority is based upon order of creation:
