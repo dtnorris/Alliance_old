@@ -1,0 +1,10 @@
+= simple_form_for(@character) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :build_points
+    = f.input :experience_points
+
+  .form-actions
+    = f.button :submit

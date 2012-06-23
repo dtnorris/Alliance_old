@@ -1,5 +1,7 @@
 Alliance::Application.routes.draw do
   
+  resources :characters
+
   root :to => 'pages#home'
 
   # The priority is based upon order of creation:
