@@ -1,10 +1,5 @@
 Alliance::Application.routes.draw do
   
-  get "character/create"
-
-  get "character/destroy"
-
-  get "character/update"
 
   root :to => 'pages#home'
 
