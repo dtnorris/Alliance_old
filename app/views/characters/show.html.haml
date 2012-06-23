@@ -1,15 +1,16 @@
-%p#notice= notice
+%ul.nav.nav-tabs
+  %li= link_to 'Back', characters_path
+  %li= link_to 'Edit', edit_character_path(@character)
+.span4
+  %table.table.user-table
+    %tbody
+      %tr
+        %td.ln Name:
+        %td= @character.name
+      %tr
+        %td.ln Build Points:
+        %td= @character.build_points
+      %tr
+        %td.ln Experence Points:
+        %td= @character.experience_points
 
-%p
-  %b Name:
-  = @character.name
-%p
-  %b Build points:
-  = @character.build_points
-%p
-  %b Experience points:
-  = @character.experience_points
-
-= link_to 'Edit', edit_character_path(@character)
-\|
-= link_to 'Back', characters_path

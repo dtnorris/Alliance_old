@@ -7,10 +7,10 @@ require 'spec_helper'
           current_path.should == '/'
         end
       end
-      describe "GET /about" do
-        it "is on the About page" do
-          visit '/about'
-          current_path.should == '/about'
-        end
-      end
+      # describe "GET /about" do
+      #   it "is on the About page" do
+      #     visit '/about'
+      #     current_path.should == '/about'
+      #   end
+      # end
     end

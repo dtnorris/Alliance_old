@@ -1,23 +1,19 @@
 %h1 Listing characters
 
-%table
+= link_to 'New Character', new_character_path, class: "btn"
+%p
+
+%table.table.users-table
   %tr
-    %th Name
-    %th Build points
-    %th Experience points
     %th
     %th
-    %th
+    %th Name: 
+    %th Build Points:  
 
   - @characters.each do |character|
     %tr
+      %td= link_to 'Show', character, class: "btn"
+      %td= link_to 'Edit', edit_character_path(character), class: "btn"
       %td= character.name
       %td= character.build_points
-      %td= character.experience_points
-      %td= link_to 'Show', character
-      %td= link_to 'Edit', edit_character_path(character)
-      %td= link_to 'Destroy', character, :confirm => 'Are you sure?', :method => :delete
-
 %br
-
-= link_to 'New Character', new_character_path

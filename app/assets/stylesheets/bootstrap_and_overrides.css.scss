@@ -8,9 +8,9 @@ $baseFontSize: 12px;
 
 h1 {
   font-size: 2em;
-  text-align: center;
-  margin-top: 15px;
-  margin-bottom: 30px;
+  text-align: left;
+  margin-top: 0px;
+  margin-bottom: 10px;
 }
 
 .italic {
@@ -19,4 +19,24 @@ h1 {
 
 ul.nav-tabs {
   font-size: 14px;
+}
+
+
+
+.user-table {
+  margin-left: -2em;
+  text-align: right;
+  width: auto;
+  margin-bottom: 0px;
+  td.ln {
+    font-weight: bold;
+  }
+}
+
+.users-table {
+  text-align: right;
+  width: auto;
+  td.ln {
+    text-align: right;
+  } 
 }
