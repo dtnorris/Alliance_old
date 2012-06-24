@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20120624190918) do
 
-  create_table "character_classes", :force => true do |t|
+  create_table "char_classes", :force => true do |t|
     t.string   "name"
     t.integer  "build_per_body"
     t.integer  "armor_limit"
@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(:version => 20120624190918) do
     t.string   "name"
     t.integer  "build_points"
     t.integer  "experience_points"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "race_id"
     t.string   "new_skill"
-    t.integer  "character_class_id"
+    t.integer  "char_class_id"
   end
 
   create_table "races", :force => true do |t|

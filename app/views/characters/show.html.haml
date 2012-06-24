@@ -13,7 +13,7 @@
         %td= Race.find_by_id(@character.race_id).name if Race.find_by_id(@character.race_id)
       %tr
         %td.ln Class:
-        %td= CharacterClass.find_by_id(@character.race_id).name if CharacterClass.find_by_id(@character.race_id)
+        %td= CharClass.find_by_id(@character.race_id).name if CharClass.find_by_id(@character.race_id)
       %tr
         %td.ln Build Points:
         %td= @character.build_points

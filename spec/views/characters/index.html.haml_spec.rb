@@ -8,14 +8,14 @@ describe "characters/index" do
         :build_points => 1,
         :experience_points => 2,
         :race_id => 11,
-        :character_class_id => 1
+        :char_class_id => 1
       ),
       stub_model(Character,
         :name => "Name",
         :build_points => 1,
         :experience_points => 2,
         :race_id => 11,
-        :character_class_id => 1
+        :char_class_id => 1
       )
     ])
   end
