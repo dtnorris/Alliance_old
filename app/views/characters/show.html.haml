@@ -2,8 +2,8 @@
 %ul.nav.nav-tabs
   %li= link_to 'Back', characters_path, class: "btn"
   %li= link_to 'Edit', edit_character_path(@character), class: "btn"
-.span12
-  %table.table.user-table
+.span4
+  %table.table.user-summary-table
     %tbody
       %tr
         %td.ln Name:
@@ -15,15 +15,10 @@
         %td.ln Build Points:
         %td= @character.build_points
       %tr
-        %td.ln Experence Points:
+        %td.ln XP Points:
         %td= @character.experience_points
   %p
-  %h2 Character Skills
-  %table.table.user-table
-    %tbody
-      - CharacterSkill.find_by_id(@character.character_skill_id).attributes.each do |attr_name, attr_val|
-        - if CharacterSkill.display_val(attr_name) && attr_val
-          %tr
-            %td.ln #{attr_name.capitalize}:
-            %td= attr_val
+.span4
+  = render 'character_skills/skills'
+
 

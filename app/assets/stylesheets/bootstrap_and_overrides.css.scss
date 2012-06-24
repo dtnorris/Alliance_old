@@ -26,8 +26,17 @@ ul.nav-tabs {
 }
 
 
-
 .user-table {
+  text-align: right;
+  width: auto;
+  margin-bottom: 0px;
+  td.ln {
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.user-summary-table {
   margin-left: -2em;
   text-align: right;
   width: auto;

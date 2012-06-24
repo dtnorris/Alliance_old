@@ -10,6 +10,7 @@
     %th Name: 
     %th Race:
     %th Build Points:  
+    -#%th
 
   - @characters.each do |character|
     %tr
@@ -18,4 +19,5 @@
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
       %td= character.build_points
+      -#%td= link_to 'Delete', character, :confirm => 'Are you sure?', :method => :delete, class: "btn"
 %br
