@@ -4,6 +4,7 @@
   .form-inputs
     = f.input :name, :label => 'Character Name'
     = f.input :race_id, :collection => Race.all
+    = f.input :character_class_id, :collection => CharacterClass.all
     = f.input :build_points
     = f.input :experience_points
     = f.input :new_skill, :collection => Skill.all, :label => 'Add New Character Skill'

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120623205957) do
+ActiveRecord::Schema.define(:version => 20120624190918) do
+
+  create_table "character_classes", :force => true do |t|
+    t.string   "name"
+    t.integer  "build_per_body"
+    t.integer  "armor_limit"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "character_skills", :force => true do |t|
     t.datetime "created_at",   :null => false
@@ -26,10 +34,11 @@ ActiveRecord::Schema.define(:version => 20120623205957) do
     t.string   "name"
     t.integer  "build_points"
     t.integer  "experience_points"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "race_id"
     t.string   "new_skill"
+    t.integer  "character_class_id"
   end
 
   create_table "races", :force => true do |t|
