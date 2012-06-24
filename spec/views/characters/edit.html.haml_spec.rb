@@ -8,6 +8,7 @@ describe "characters/edit" do
       :build_points => 1,
       :experience_points => 1
     ))
+    @character.save
   end
 
   it "renders the edit character form" do

@@ -123,7 +123,7 @@ describe CharactersController do
       it "redirects to the character" do
         character = Character.create! valid_attributes
         put :update, {:id => character.to_param, :character => valid_attributes}, valid_session
-        response.should redirect_to(character)
+        response.should redirect_to(edit_character_path)
       end
     end
 
