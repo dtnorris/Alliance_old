@@ -1,8 +1,10 @@
 -#%h2 Character Skills
 %table.table.user-table
   %tbody
-    - CharacterSkill.find_by_id(@character.character_skill_id).attributes.each do |attr_name, attr_val|
-      - if CharacterSkill.display_val(attr_name) && attr_val
-        %tr
-          %td.ln #{attr_name.capitalize}:
-          %td= attr_val
+    - CharacterSkill.find_all_by_character_id(@character.id).each do |skill|
+      %tr
+        %td.ln #{Skill.find(skill.skill_id).name}:
+        - if skill.bought
+          %td= skill.bought
+        - if skill.amount
+          %td= skill.amount

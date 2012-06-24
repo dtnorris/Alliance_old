@@ -40,7 +40,7 @@ class CharactersController < ApplicationController
   # POST /characters
   # POST /characters.json
   def create
-    params[:character].delete(:character_skill)
+    #params[:character].delete(:character_skill)
     @character = Character.new(params[:character])
 
     respond_to do |format|
@@ -58,13 +58,9 @@ class CharactersController < ApplicationController
   # PUT /characters/1.json
   def update
     @character = Character.find(params[:id])
-    if params[:character][:character_skill]
-      cs = CharacterSkill.find(@character.character_skill_id)
-      skill_name = Skill.find(params[:character][:character_skill]).name.downcase.gsub(' ','_')
-      cs[skill_name] = cs.add_skill(skill_name)
-      cs.save
+    if params[:character][:new_skill] != ""
+      CharacterSkill.add_or_update_skill(@character.id, params[:character][:new_skill].to_i)
     end
-    params[:character].delete(:character_skill) if params[:character][:character_skill]
     respond_to do |format|
       if @character.update_attributes(params[:character])
         format.html { redirect_to edit_character_path(@character), notice: 'Character was successfully updated.' }

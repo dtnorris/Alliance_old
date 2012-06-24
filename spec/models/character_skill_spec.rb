@@ -1,12 +1,16 @@
 require 'spec_helper'
 
 describe CharacterSkill do
-
-  it "can filter database columns not to display" do
-    char = CharacterSkill.create
-    arr = [true]
-    char.attributes.each {|atn, atv| arr << CharacterSkill.display_val(atn)}
-    arr.map {|e| e if !e}.compact.count.should == 3
+  it "can add_or_update_skill" do
+    char = Character.create
+    skill_alch = Skill.find(1)
+    skill_herb = Skill.find(6)
+    CharacterSkill.all.count == 0
+    CharacterSkill.add_or_update_skill(char.id, skill_alch.id)
+    CharacterSkill.all.count == 1
+    CharacterSkill.add_or_update_skill(char.id, skill_alch.id)
+    CharacterSkill.all.count == 1
+    CharacterSkill.add_or_update_skill(char.id, skill_herb.id)
+    CharacterSkill.all.count == 2
   end
-
 end
