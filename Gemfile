@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-gem 'sqlite3'
-
-gem 'sqlite3'
-gem 'pg', '0.12.2'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'simple_form'
@@ -46,9 +42,15 @@ group :test, :development do
   gem 'launchy' # provides save_and_open_page
 
   gem 'rantly'
+  gem 'heroku'
 end
 
 group :test do
   gem "cucumber-rails"
   gem 'database_cleaner'
+end
+
+group :production do
+  gem 'thin'
+  gem 'pg'
 end
