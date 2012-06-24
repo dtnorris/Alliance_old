@@ -5,7 +5,9 @@
     = f.input :name, :label => 'Character Name'
     = f.input :race_id, :collection => Race.all
     = f.input :char_class_id, :collection => CharClass.all
-    =# f.input :build_points
+    = f.label :name, :label => 'Build Points:'
+    %td= @character.build_points
+    %p
     = f.input :experience_points
     = f.input :new_skill, :collection => Skill.all, :label => 'Add New Character Skill'
 
