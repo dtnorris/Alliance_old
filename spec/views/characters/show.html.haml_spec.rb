@@ -8,6 +8,7 @@ describe "characters/show" do
       :build_points => 1,
       :experience_points => 2
     ))
+    @character.save
   end
 
   it "renders attributes in <p>" do
