@@ -22,9 +22,12 @@
         %td= @character.experience_points
       %tr
         %td.ln Unspent Build:
-        %td= @character.build_points
+        %td= (@character.build_points - @character.spent_build)
       %tr
         %td.ln Spent Build:
+        %td= @character.spent_build
+      %tr
+        %td.ln Total Build:
         %td= @character.build_points
   %p
 .span4

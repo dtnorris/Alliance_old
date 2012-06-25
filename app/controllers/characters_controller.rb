@@ -73,6 +73,7 @@ class CharactersController < ApplicationController
     #params[:character].delete(:character_skill)
     @character = Character.new(params[:character])
     @character.build_points = 15
+    @character.spent_build = 0
     @character.experience_points = 0
     @character.save
 
