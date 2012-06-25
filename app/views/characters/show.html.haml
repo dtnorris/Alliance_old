@@ -13,13 +13,19 @@
         %td= Race.find_by_id(@character.race_id).name if Race.find_by_id(@character.race_id)
       %tr
         %td.ln Class:
-        %td= CharClass.find_by_id(@character.race_id).name if CharClass.find_by_id(@character.race_id)
+        %td= CharClass.find_by_id(@character.char_class_id).name if CharClass.find_by_id(@character.char_class_id)
       %tr
-        %td.ln Build Points:
-        %td= @character.build_points
+        %td.ln Level:
+        %td= ((@character.build_points - 5) / 10)
       %tr
         %td.ln XP Points:
         %td= @character.experience_points
+      %tr
+        %td.ln Unspent Build:
+        %td= @character.build_points
+      %tr
+        %td.ln Spent Build:
+        %td= @character.build_points
   %p
 .span4
   = render 'character_skills/skills'

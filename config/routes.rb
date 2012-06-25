@@ -1,7 +1,14 @@
 Alliance::Application.routes.draw do
   
 
-  resources :characters
+  resources :characters do
+    member do 
+      put 'xp_one_day'
+      put 'xp_weekend'
+      put 'xp_long_weekend'
+    end
+  end
+  resources :chapters
 
   root :to => 'pages#home'
 

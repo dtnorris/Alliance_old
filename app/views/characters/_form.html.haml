@@ -2,14 +2,16 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name, :label => 'Character Name'
-    = f.input :race_id, :collection => Race.all
-    = f.input :char_class_id, :collection => CharClass.all
+    = f.input :name, :label => 'Character Name:'
+    = f.input :race_id, :label => 'Race:', :collection => Race.all
+    = f.input :char_class_id, :label => 'Character Class:', :collection => CharClass.all
     = f.label :name, :label => 'Build Points:'
     %td= @character.build_points
     %p
-    = f.input :experience_points
-    = f.input :new_skill, :collection => Skill.all, :label => 'Add New Character Skill'
+    = f.label :name, :label => 'Experience Points:'
+    %td= @character.experience_points
+    %p
+    = f.input :new_skill, :collection => Skill.all, :label => 'Add New Character Skill:'
 
   .form-actions
     = f.button :submit

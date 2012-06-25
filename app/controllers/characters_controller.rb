@@ -37,11 +37,44 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
   end
 
+  def xp_one_day
+    @character = Character.find(params[:id])
+    @character.add_xp(1)
+
+    respond_to do |format|
+      format.html { redirect_to chapters_path }
+      format.json { render json: @characters }
+    end
+  end
+
+  def xp_weekend
+    @character = Character.find(params[:id])
+    @character.add_xp(2)
+
+    respond_to do |format|
+      format.html { redirect_to chapters_path }
+      format.json { render json: @characters }
+    end
+  end
+
+  def xp_long_weekend
+    @character = Character.find(params[:id])
+    @character.add_xp(3)
+
+    respond_to do |format|
+      format.html { redirect_to chapters_path }
+      format.json { render json: @characters }
+    end
+  end
+
   # POST /characters
   # POST /characters.json
   def create
     #params[:character].delete(:character_skill)
     @character = Character.new(params[:character])
+    @character.build_points = 15
+    @character.experience_points = 0
+    @character.save
 
     respond_to do |format|
       if @character.save

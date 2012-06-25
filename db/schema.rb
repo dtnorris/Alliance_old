@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120624190918) do
     t.integer  "race_id"
     t.string   "new_skill"
     t.integer  "char_class_id"
+    t.integer  "spent_build"
   end
 
   create_table "races", :force => true do |t|

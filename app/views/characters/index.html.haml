@@ -2,24 +2,4 @@
 
 = link_to 'New Character', new_character_path, class: "btn"
 %p
-
-%table.table.users-table
-  %tr
-    %th
-    %th
-    %th Name: 
-    %th Race:
-    %th Class:
-    %th Build Points:  
-    -#%th
-
-  - @characters.each do |character|
-    %tr
-      %td= link_to 'Edit', edit_character_path(character), class: "btn"
-      %td= link_to 'View', character, class: "btn"
-      %td= character.name
-      %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
-      %td= CharClass.find_by_id(character.char_class_id).name if Race.find_by_id(character.race_id)
-      %td= character.build_points
-      -#%td= link_to 'Delete', character, :confirm => 'Are you sure?', :method => :delete, class: "btn"
-%br
+= render 'character_table'
