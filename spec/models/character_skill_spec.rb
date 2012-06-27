@@ -12,5 +12,7 @@ describe CharacterSkill do
     CharacterSkill.all.count == 1
     CharacterSkill.add_or_update_skill(char.id, skill_herb.id)
     CharacterSkill.all.count == 2
+    CharacterSkill.add_or_update_skill(char.id, skill_herb.id)
+    CharacterSkill.all.count == 2
   end
 end

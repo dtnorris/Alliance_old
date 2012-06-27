@@ -5,21 +5,21 @@ class Character < ActiveRecord::Base
   has_many :character_skill
 
   before_save :update_xp
-  before_save :update_all_spent_build
+  before_save :calculate_spent_build
 
   def add_xp(multiplier)
     self.experience_points += build_points * multiplier
     self.save
   end
 
-  def update_all_spent_build
+  def calculate_spent_build
     if experience_points
       skills_array = CharacterSkill.find_all_by_character_id(self.id)
       if skills_array
         tmp_spent_build = 0
         skills_array.each do |skill|
           sk = Skill.find(skill.skill_id)
-          class_name = self.char_class.name.downcase << "_cost"
+          class_name = self.char_class.name.downcase
           if sk.skill_type == 'int'
             tmp_spent_build += sk[class_name] * skill.amount
           else

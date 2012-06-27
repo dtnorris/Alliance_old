@@ -50,15 +50,15 @@ ActiveRecord::Schema.define(:version => 20120624190918) do
 
   create_table "skills", :force => true do |t|
     t.string   "name"
-    t.integer  "fighter_cost"
-    t.integer  "scout_cost"
-    t.integer  "rogue_cost"
-    t.integer  "adept_cost"
-    t.integer  "scholar_cost"
-    t.integer  "templar_cost"
-    t.integer  "artisan_cost"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "fighter"
+    t.integer  "scout"
+    t.integer  "rogue"
+    t.integer  "adept"
+    t.integer  "scholar"
+    t.integer  "templar"
+    t.integer  "artisan"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "skill_type"
   end
 

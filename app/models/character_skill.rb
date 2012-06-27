@@ -15,19 +15,20 @@ class CharacterSkill < ActiveRecord::Base
     elsif skill && skill.bought
       return
     end
-    if Skill.find(skill_id).skill_type == 'int'
-      CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :amount => 1
-    elsif Skill.find(skill_id).skill_type == 'bol'
-      CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :bought => true
+    if skill_id != 0
+      char_skill = Skill.find(skill_id).skill_type
+      if char_skill == 'int'
+        CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :amount => 1
+      elsif char_skill == 'bol'
+        CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :bought => true
+      end
     end
   end
 
   def update_spent_build
     char = Character.find(character_id)
-    if char.char_class
-      skill = Skill.find(skill_id)
-      class_name = char.char_class.name.downcase << "_cost"
-      char.spent_build += skill[class_name]
+    if char
+      char.calculate_spent_build
       char.save
     end
   end

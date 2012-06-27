@@ -1,0 +1,8 @@
+= simple_form_for(@character) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :new_skill, :collection => Skill.all, :label => 'Add New Character Skill:'
+
+  .form-actions
+    = f.button :submit, :id => 'add_skills'

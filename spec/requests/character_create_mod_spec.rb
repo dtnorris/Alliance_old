@@ -8,6 +8,7 @@ describe "character creation and modification" do
     select("Human", :from => "Race:")
     select("Fighter", :from => "Character Class:")
     click_button "Create Character"
+    #save_and_open_page
   end
 
   it "should be able to create a new character" do
@@ -42,11 +43,29 @@ describe "character creation and modification" do
   it "should be able to add new skill" do
     click_link "Edit"
     select("Read And Write", :from => "Add New Character Skill:")
-    click_button "Update Character"
+    click_button "add_skills"
     page.should have_content("Read And Write:")
     select("Read And Write", :from => "Add New Character Skill:")
-    click_button "Update Character"
+    click_button "add_skills"
     page.should have_content("Read And Write:")
+  end
+
+  it "should properly re-calculate spent build" do
+    click_link "Edit"
+    select("Read And Write", :from => "Add New Character Skill:")
+    click_button "add_skills"
+    click_link "View"
+    page.should have_content("Unspent Build: 9")
+    page.should have_content("Spent Build: 6")
+    page.should have_content("Total Build: 15")
+  end
+
+  it "should be able to add xp on the chapter page" do
+    visit "/chapters"
+    click_link "One Day"
+    click_link "Weekend"
+    click_link "Long Weekend"
+    page.should have_content("Bob Human Fighter 38 139")
   end
 
 end
