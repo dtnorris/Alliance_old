@@ -171,6 +171,8 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.10.0)
+    rspec-steps (0.0.8)
+      rspec (>= 2.6)
     rubyzip (0.9.9)
     sass (3.1.19)
     sass-rails (3.2.5)
@@ -236,6 +238,7 @@ DEPENDENCIES
   rantly
   rspec-instafail
   rspec-rails
+  rspec-steps
   sass-rails (~> 3.2.3)
   selenium-webdriver
   simple_form

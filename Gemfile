@@ -23,14 +23,15 @@ group :test, :development do
   #gem 'ruby-debug19' #, :require => 'ruby-debug'
 
   gem 'debugger'
-  gem "rails_best_practices"
+  gem 'rails_best_practices'
   gem 'factory_girl_rails', '~> 2.0'
   gem 'sqlite3'
   gem 'simplecov', require: false
   gem 'database_cleaner'
 
-  gem "rspec-rails"
+  gem 'rspec-rails'
   gem 'rspec-instafail'
+  gem 'rspec-steps'
 
   gem 'factory_girl_rails', '~> 2.0'
  
