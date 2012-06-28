@@ -10,12 +10,12 @@ describe Character do
   end
 
   it "can calculate adding xp" do
-    new_character.add_xp(2)
+    new_character.add_xp(2, "Test Weekend")
     new_character.experience_points.should == 30
   end
 
   it "should calculate updated build based on xp before save" do
-    new_character.add_xp(2)
+    new_character.add_xp(2, "Test Weekend")
     new_character.save 
     new_character.build_points.should == 25
   end

@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "character creation and modification" do
   before :each do
-    visit "/characters"
+    visit "/chapters"
     click_link "New Character"
     fill_in "Character Name:", with: "Bob"
     select("Human", :from => "Race:")
@@ -60,12 +60,31 @@ describe "character creation and modification" do
     page.should have_content("Total Build: 15")
   end
 
-  it "should be able to add xp on the chapter page" do
+  it "should be able to add xp on the xp tracking page" do
     visit "/chapters"
+    click_link "Edit"
+    click_link "XP Track"
     click_link "One Day"
     click_link "Weekend"
     click_link "Long Weekend"
+    click_link "Chapters"
     page.should have_content("Bob Human Fighter 38 139")
+  end
+
+  it "allows a user to view character XP tracking" do
+    visit "/chapters"
+    click_link "Edit"
+    click_link "XP Track"
+    click_link "One Day"
+    click_link "Mod Day"
+    click_link "Weekend"
+    click_link "Long Weekend"
+
+    visit "/characters"
+    click_link "View"
+    click_link "XP Track"
+    page.should have_content("Experience Point Tracking for: Bob")
+    page.should have_content("id: Start XP: End XP: Reason Added:")
   end
 
 end

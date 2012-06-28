@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120624190918) do
+ActiveRecord::Schema.define(:version => 20120628002407) do
 
   create_table "char_classes", :force => true do |t|
     t.string   "name"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(:version => 20120624190918) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "skill_type"
+  end
+
+  create_table "xp_tracks", :force => true do |t|
+    t.integer  "character_id"
+    t.integer  "start_xp"
+    t.integer  "end_xp"
+    t.string   "reason"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

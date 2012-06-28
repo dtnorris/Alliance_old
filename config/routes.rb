@@ -3,9 +3,11 @@ Alliance::Application.routes.draw do
 
   resources :characters do
     member do 
+      put 'xp_mod_day'
       put 'xp_one_day'
       put 'xp_weekend'
       put 'xp_long_weekend'
+      get 'xp_track'
     end
   end
   resources :chapters

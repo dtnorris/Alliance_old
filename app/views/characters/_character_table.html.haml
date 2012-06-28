@@ -1,6 +1,6 @@
 %table.table.users-table
   %tr
-    %th
+    -#%th
     %th
     %th Name: 
     %th Race:
@@ -10,7 +10,7 @@
 
   - @characters.each do |character|
     %tr
-      %td= link_to 'Edit', edit_character_path(character), class: "btn"
+      -#%td= link_to 'Edit', edit_character_path(character), class: "btn"
       %td= link_to 'View', character, class: "btn"
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)

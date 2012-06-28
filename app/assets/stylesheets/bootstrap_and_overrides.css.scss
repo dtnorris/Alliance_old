@@ -36,6 +36,14 @@ ul.nav-tabs {
   }
 }
 
+.users-table {
+  text-align: right;
+  width: auto;
+  td.ln {
+    text-align: right;
+  } 
+}
+
 .user-summary-table {
   margin-left: -2em;
   text-align: right;
@@ -47,10 +55,9 @@ ul.nav-tabs {
   }
 }
 
-.users-table {
-  text-align: right;
+.xp-table {
   width: auto;
-  td.ln {
-    text-align: right;
+    td.ln {
+    text-align: center;
   } 
 }

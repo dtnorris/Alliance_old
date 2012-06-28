@@ -3,12 +3,20 @@ class Character < ActiveRecord::Base
   belongs_to :race
   belongs_to :char_class
   has_many :character_skill
+  has_many :xp_track
 
   before_save :update_xp
   before_save :calculate_spent_build
 
-  def add_xp(multiplier)
+  def add_xp(multiplier, reason)
+    xp_track = XpTrack.create
+    xp_track.character_id = id
+    xp_track.start_xp = experience_points
+    xp_track.reason = reason
+
     self.experience_points += build_points * multiplier
+    xp_track.end_xp = experience_points
+    xp_track.save
     self.save
   end
 
