@@ -1,13 +1,7 @@
 require 'spec_helper'
 
 describe XpTrack do
-  let(:new_character) do
-    new_character = Character.create 
-    new_character.build_points = 15
-    new_character.experience_points = 0
-    new_character.char_class_id = 1
-    new_character
-  end
+  let(:new_character) { Character.create(race_id: 11, char_class_id: 1, experience_points: 0, build_points: 15) }
 
   it "should add rows when character adds xp" do
     XpTrack.all.count.should == 0

@@ -37,10 +37,12 @@ class CharacterSkill < ActiveRecord::Base
   end
 
   def update_spent_build
-    char = Character.find(character_id)
-    if char
-      char.calculate_spent_build
-      char.save
+    if character_id
+      char = Character.find(character_id)
+      if char
+        char.calculate_spent_build
+        char.save
+      end
     end
   end
 

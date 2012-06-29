@@ -5,12 +5,14 @@
     = f.input :name, :label => 'Character Name:'
     = f.input :race_id, :label => 'Race:', :collection => Race.all
     = f.input :char_class_id, :label => 'Character Class:', :collection => CharClass.all
+    = f.label :name, :label => 'Body Points'
+    %td= @character.body_points
+    %p
     = f.label :name, :label => 'Unspent Build:'
     %td= (@character.build_points - @character.spent_build) if @character.spent_build
     %p
     = f.label :name, :label => 'Spent Build:'
     %td= @character.spent_build
-    %p
     / = f.label :name, :label => 'Experience Points:'
     / %td= @character.experience_points
     %p

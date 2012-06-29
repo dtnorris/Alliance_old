@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120628002407) do
     t.integer  "spent_build"
     t.integer  "new_skill"
     t.integer  "buy_skill"
+    t.integer  "body_points"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end

@@ -40,6 +40,7 @@ Skill.create(name: 'Legerdemain', fighter: 10, scout: 8, rogue: 4, adept: 8, sch
 Skill.create(name: 'Merchant', fighter: 3, scout: 2, rogue: 1, adept: 2, scholar: 3, templar: 3, artisan: 1, skill_type: 'bol', group: 'other')
 Skill.create(name: 'Teacher', fighter: 1, scout: 1, rogue: 1, adept: 1, scholar: 1, templar: 1, artisan: 1, skill_type: 'int', group: 'other')
 Skill.create(name: 'Wear Extra Armor', fighter: 1, scout: 1, rogue: 1, adept: 1, scholar: 1, templar: 1, artisan: 1, skill_type: 'int', group: 'other')
+Skill.create(name: 'Craftsman', fighter: 2, scout: 2, rogue: 2, adept: 2, scholar: 2, templar: 2, artisan: 2, skill_type: 'int', group: 'other')
 
 Skill.create(name: 'Break Command', fighter: 2, scout: 2, rogue: 2, adept: 2, scholar: 2, templar: 2, artisan: 2, skill_type: 'int', group: 'race')
 Skill.create(name: 'Claws', fighter: 8, scout: 8, rogue: 8, adept: 8, scholar: 8, templar: 8, artisan: 8, skill_type: 'bol', group: 'race')

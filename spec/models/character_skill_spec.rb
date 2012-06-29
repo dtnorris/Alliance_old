@@ -1,20 +1,20 @@
 require 'spec_helper'
 
 describe CharacterSkill do
-  let!(:char) { Character.create }
+  let(:char) { Character.create(race_id: 11, char_class_id: 1, experience_points: 0, build_points: 15) }
   let!(:skill_alch) { Skill.find(1) }
   let!(:skill_herb) { Skill.find(6) }
 
   it "can add_skill" do
-    CharacterSkill.all.count == 0
+    CharacterSkill.all.count.should == 0
     CharacterSkill.add_skill(char.id, skill_alch.id)
-    CharacterSkill.all.count == 1
+    CharacterSkill.all.count.should == 1
     CharacterSkill.add_skill(char.id, skill_alch.id)
-    CharacterSkill.all.count == 1
+    CharacterSkill.all.count.should == 1
     CharacterSkill.add_skill(char.id, skill_herb.id)
-    CharacterSkill.all.count == 2
+    CharacterSkill.all.count.should == 2
     CharacterSkill.add_skill(char.id, skill_herb.id)
-    CharacterSkill.all.count == 2
+    CharacterSkill.all.count.should == 2
   end
 
   it "can purchase_skill" do
@@ -36,7 +36,7 @@ describe CharacterSkill do
     CharacterSkill.add_skill(char.id, 8) #3
     CharacterSkill.add_skill(char.id, 8) ##
     CharacterSkill.add_skill(char.id, 7) #10
-    CharacterSkill.all_bought_skills(char) == 4
+    CharacterSkill.all_bought_skills(char).count.should == 4
   end
 
 end

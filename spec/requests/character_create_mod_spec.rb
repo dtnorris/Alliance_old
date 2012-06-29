@@ -11,6 +11,10 @@ describe "character creation and modification" do
     #save_and_open_page
   end
 
+  it "should have calculated body points on creation" do
+    page.should have_content("Body Points: 6")
+  end
+
   it "should be able to create a new character" do
     page.should have_content("Name: Bob")
     page.should have_content("Race: Human")

@@ -1,12 +1,17 @@
 class Character < ActiveRecord::Base
-  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill
+  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points
   belongs_to :race
   belongs_to :char_class
   has_many :character_skill
   has_many :xp_track
 
-  before_save :update_xp
   before_save :calculate_spent_build
+  before_save :update_body
+  before_save :update_xp
+
+  validates_presence_of :name, :on => :create
+  validates_presence_of :race_id, :on => :create
+  validates_presence_of :char_class_id, :on => :create
 
   def add_xp(multiplier, reason)
     xp_track = XpTrack.create
@@ -40,6 +45,13 @@ class Character < ActiveRecord::Base
       end
     end
   end
+
+  def update_body
+    self.body_points = 0
+    self.body_points += 6 + Race.find(self.race_id).body_mod
+    self.body_points += (self.build_points - 15) / CharClass.find(self.char_class_id).build_per_body
+  end
+
 
   def update_xp
     xp_per_bp = 3

@@ -1,12 +1,10 @@
 require 'spec_helper'
 
 describe "character" do
-  let(:new_character) do
-    new_character = Character.create 
-    new_character.build_points = 15
-    new_character.experience_points = 0
-    new_character.char_class_id = 1
-    new_character
+  let(:new_character) { Character.create(id: 1, name: 'Bob', race_id: 11, char_class_id: 1, experience_points: 0, build_points: 15) }
+
+  it "updates body points on save" do
+    new_character.body_points == 6
   end
 
   it "can calculate adding xp" do
