@@ -2,7 +2,7 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :new_skill, :collection => Skill.all, :label => 'Add New Character Skill:'
+    = f.input :new_skill, :collection => Skill.all(:order => 'name'), :label => 'Add Skill:', :include_blank => true, :selected => ''
+    = f.input :buy_skill, :collection => CharacterSkill.all_bought_skills(@character), :label => 'Purchase Skill:', :include_blank => true, :selected => ''
 
-  .form-actions
     = f.button :submit, :id => 'add_skills'

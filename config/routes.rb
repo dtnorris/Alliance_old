@@ -10,6 +10,7 @@ Alliance::Application.routes.draw do
       get 'xp_track'
     end
   end
+  resources :character_skills
   resources :chapters
 
   root :to => 'pages#home'

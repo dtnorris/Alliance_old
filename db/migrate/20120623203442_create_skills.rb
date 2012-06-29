@@ -9,6 +9,7 @@ class CreateSkills < ActiveRecord::Migration
       t.integer :scholar
       t.integer :templar
       t.integer :artisan
+      t.string :group
 
       t.timestamps
     end

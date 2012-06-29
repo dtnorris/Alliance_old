@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Character do
+describe "character" do
   let(:new_character) do
     new_character = Character.create 
     new_character.build_points = 15
@@ -21,12 +21,20 @@ describe Character do
   end
 
   it "should calculate spent build off asociated skills" do
-    CharacterSkill.add_or_update_skill(new_character.id, 1) #6
-    CharacterSkill.add_or_update_skill(new_character.id, 1) #6
-    CharacterSkill.add_or_update_skill(new_character.id, 2) #3
-    CharacterSkill.add_or_update_skill(new_character.id, 8) #3
-    CharacterSkill.add_or_update_skill(new_character.id, 8) ##
-    CharacterSkill.add_or_update_skill(new_character.id, 7) #10
+    CharacterSkill.add_skill(new_character.id, 1) #6
+    CharacterSkill.add_skill(new_character.id, 1) #6
+    CharacterSkill.add_skill(new_character.id, 2) #3
+    CharacterSkill.add_skill(new_character.id, 8) #3
+    CharacterSkill.add_skill(new_character.id, 8) ##
+    CharacterSkill.add_skill(new_character.id, 7) #10
+    new_character.calculate_spent_build.should == 0
+
+    CharacterSkill.purchase_skill(new_character.id, 1) #6
+    CharacterSkill.purchase_skill(new_character.id, 1) #6
+    CharacterSkill.purchase_skill(new_character.id, 2) #3
+    CharacterSkill.purchase_skill(new_character.id, 8) #3
+    CharacterSkill.purchase_skill(new_character.id, 8) ##
+    CharacterSkill.purchase_skill(new_character.id, 7) #10
     new_character.calculate_spent_build.should == 28
   end
 

@@ -42,17 +42,30 @@ describe "character creation and modification" do
 
   it "should be able to add new skill" do
     click_link "Edit"
-    select("Read And Write", :from => "Add New Character Skill:")
+    select("Read And Write", :from => "Add Skill:")
     click_button "add_skills"
     page.should have_content("Read And Write:")
-    select("Read And Write", :from => "Add New Character Skill:")
+    select("Read And Write", :from => "Add Skill:")
     click_button "add_skills"
     page.should have_content("Read And Write:")
   end
 
+  it "should be able to delete a skill" do
+    click_link "Edit"
+    select("Read And Write", :from => "Add Skill:")
+    click_button "add_skills"
+    page.should have_content("Read And Write:")
+    click_link "X"
+    #save_and_open_page
+    #click_button "OK"
+    page.should_not have_content("Read And Write:")
+  end
+
   it "should properly re-calculate spent build" do
     click_link "Edit"
-    select("Read And Write", :from => "Add New Character Skill:")
+    select("Read And Write", :from => "Add Skill:")
+    click_button "add_skills"
+    select("Read And Write", :from => "Purchase Skill:")
     click_button "add_skills"
     click_link "View"
     page.should have_content("Unspent Build: 9")

@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build
+  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill
   belongs_to :race
   belongs_to :char_class
   has_many :character_skill
@@ -26,12 +26,14 @@ class Character < ActiveRecord::Base
       if skills_array
         tmp_spent_build = 0
         skills_array.each do |skill|
-          sk = Skill.find(skill.skill_id)
-          class_name = self.char_class.name.downcase
-          if sk.skill_type == 'int'
-            tmp_spent_build += sk[class_name] * skill.amount
-          else
-            tmp_spent_build += sk[class_name]
+          if skill.amount != 0 && skill.bought != false
+            sk = Skill.find(skill.skill_id)
+            class_name = self.char_class.name.downcase
+            if sk.skill_type == 'int'
+              tmp_spent_build += sk[class_name] * skill.amount
+            else
+              tmp_spent_build += sk[class_name]
+            end
           end
         end
         self.spent_build = tmp_spent_build

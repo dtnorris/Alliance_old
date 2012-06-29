@@ -110,9 +110,13 @@ class CharactersController < ApplicationController
   # PUT /characters/1
   # PUT /characters/1.json
   def update
+    #debugger
     @character = Character.find(params[:id])
     if params[:character][:new_skill] != ""
-      CharacterSkill.add_or_update_skill(@character.id, params[:character][:new_skill].to_i)
+      CharacterSkill.add_skill(@character.id, params[:character][:new_skill].to_i)
+    end
+    if params[:character][:buy_skill] && params[:character][:buy_skill] != ""
+      CharacterSkill.purchase_skill(@character.id, Skill.find_by_name(params[:character][:buy_skill]).id)
     end
     respond_to do |format|
       if @character.update_attributes(params[:character])

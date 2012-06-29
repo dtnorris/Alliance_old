@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120628002407) do
     t.string   "name"
     t.integer  "build_points"
     t.integer  "experience_points"
+    t.string   "buy_skill"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.integer  "race_id"
@@ -57,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120628002407) do
     t.integer  "scholar"
     t.integer  "templar"
     t.integer  "artisan"
+    t.string   "group"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "skill_type"
