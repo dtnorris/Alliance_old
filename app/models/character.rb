@@ -5,9 +5,9 @@ class Character < ActiveRecord::Base
   has_many :character_skill
   has_many :xp_track
 
+  before_save :update_xp
   before_save :calculate_spent_build
   before_save :update_body
-  before_save :update_xp
 
   validates_presence_of :name, :on => :create
   validates_presence_of :race_id, :on => :create
