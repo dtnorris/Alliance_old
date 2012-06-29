@@ -7,7 +7,5 @@ class CreateCharClasses < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_column :characters, :char_class_id, :integer
-    add_column :characters, :spent_build, :integer
   end
 end

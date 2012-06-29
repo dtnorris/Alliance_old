@@ -32,25 +32,28 @@ ActiveRecord::Schema.define(:version => 20120628002407) do
 
   create_table "characters", :force => true do |t|
     t.string   "name"
-    t.integer  "build_points"
+    t.integer  "race_id"
+    t.integer  "char_class_id"
     t.integer  "experience_points"
-    t.string   "buy_skill"
+    t.integer  "build_points"
+    t.integer  "spent_build"
+    t.integer  "new_skill"
+    t.integer  "buy_skill"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.integer  "race_id"
-    t.string   "new_skill"
-    t.integer  "char_class_id"
-    t.integer  "spent_build"
   end
 
   create_table "races", :force => true do |t|
     t.string   "name"
+    t.integer  "body_mod"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "skills", :force => true do |t|
     t.string   "name"
+    t.string   "skill_type"
+    t.string   "group"
     t.integer  "fighter"
     t.integer  "scout"
     t.integer  "rogue"
@@ -58,10 +61,8 @@ ActiveRecord::Schema.define(:version => 20120628002407) do
     t.integer  "scholar"
     t.integer  "templar"
     t.integer  "artisan"
-    t.string   "group"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "skill_type"
   end
 
   create_table "xp_tracks", :force => true do |t|

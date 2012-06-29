@@ -2,6 +2,8 @@ class CreateSkills < ActiveRecord::Migration
   def change
     create_table :skills do |t|
       t.string :name
+      t.string :skill_type
+      t.string :group
       t.integer :fighter
       t.integer :scout
       t.integer :rogue
@@ -9,7 +11,6 @@ class CreateSkills < ActiveRecord::Migration
       t.integer :scholar
       t.integer :templar
       t.integer :artisan
-      t.string :group
 
       t.timestamps
     end

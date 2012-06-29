@@ -7,8 +7,5 @@ class CreateCharacterSkills < ActiveRecord::Migration
       t.boolean :bought
       t.integer :amount
     end
-    remove_column :characters, :character_skill_id, :integer
-    add_column :characters, :new_skill, :string
-    add_column :skills, :skill_type, :string
   end
 end
