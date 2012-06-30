@@ -78,7 +78,7 @@ Skill.create(name: 'Waylay', fighter: 12, scout: 8, rogue: 6, adept: 8, scholar:
 Skill.create(name: 'Assassinate', fighter: 8, scout: 3, rogue: 3, adept: 4, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Back Attack', fighter: 6, scout: 3, rogue: 3, adept: 3, scholar: 8, templar: 6, artisan: 6, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Backstab', fighter: 30, scout: 18, rogue: 15, adept: 18, scholar: 40, templar: 30, artisan: 30, skill_type: 'int', group: 'specialty')
-Skill.create(name: 'Critical Attack', fighter: 3, scout: 3, rogue: 5, adept: 6, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
+Skill.create(name: 'Critical Attack', fighter: 3, scout: 3, rogue: 5, adept: 6, scholar: 8, templar: 3, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Disarm', fighter: 2, scout: 2, rogue: 2, adept: 3, scholar: 8, templar: 3, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Dodge', fighter: 8, scout: 6, rogue: 5, adept: 6, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Evade', fighter: 8, scout: 3, rogue: 3, adept: 4, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
