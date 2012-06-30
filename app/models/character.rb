@@ -5,13 +5,15 @@ class Character < ActiveRecord::Base
   has_many :character_skill
   has_many :xp_track
 
+  after_create :purchase_racial_skills
+
   before_save :update_xp
   before_save :calculate_spent_build
   before_save :update_body
 
-  validates_presence_of :name, :on => :create
-  validates_presence_of :race_id, :on => :create
-  validates_presence_of :char_class_id, :on => :create
+  validates_presence_of :name
+  validates_presence_of :race_id
+  validates_presence_of :char_class_id
 
   def add_xp(multiplier, reason)
     xp_track = XpTrack.create
@@ -23,6 +25,12 @@ class Character < ActiveRecord::Base
     xp_track.end_xp = experience_points
     xp_track.save
     self.save
+  end
+
+  def update_body
+    self.body_points = 0
+    self.body_points += 6 + Race.find(self.race_id).body_mod
+    self.body_points += (self.build_points - 15) / CharClass.find(self.char_class_id).build_per_body
   end
 
   def calculate_spent_build
@@ -44,12 +52,6 @@ class Character < ActiveRecord::Base
         self.spent_build = tmp_spent_build
       end
     end
-  end
-
-  def update_body
-    self.body_points = 0
-    self.body_points += 6 + Race.find(self.race_id).body_mod
-    self.body_points += (self.build_points - 15) / CharClass.find(self.char_class_id).build_per_body
   end
 
 
@@ -74,4 +76,47 @@ class Character < ActiveRecord::Base
     end
     self.build_points = tmp_bp
   end
+
+  def purchase_racial_skills
+    race = Race.find(self.race_id).name
+    if race == "Barbarian"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Element').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Fear').id)
+    elsif race == "Biata"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Break Command').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Command').id)
+    elsif race == "Dark Elf"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Command').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Magic').id)
+    elsif race == "Dryad"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Binding').id)
+    elsif race == "Dwarf"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Element').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Poison').id)
+    elsif race == "Elf"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Command').id)
+    elsif race == "Gypsy"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Gypsy Curse').id)
+    elsif race == "High Ogre"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Racial Proficiency').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Necromancy').id)
+    elsif race == "High Orc"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Racial Proficiency').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Racial Slay').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Fear').id)
+    elsif race == "Hobling"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Racial Dodge').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Poison').id)
+    elsif race == "Mystic Wood Elf"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Break Command').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Command').id)
+    elsif race == "Sarr"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Racial Assassinate').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Poison').id)
+    elsif race == "Stone Elf"
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Break Command').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Command').id)
+    end
+  end
+  
 end
