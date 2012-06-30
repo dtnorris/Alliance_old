@@ -77,9 +77,10 @@ Skill.create(name: 'Waylay', fighter: 12, scout: 8, rogue: 6, adept: 8, scholar:
 
 Skill.create(name: 'Assassinate', fighter: 8, scout: 3, rogue: 3, adept: 4, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Back Attack', fighter: 6, scout: 3, rogue: 3, adept: 3, scholar: 8, templar: 6, artisan: 6, skill_type: 'int', group: 'specialty')
-Skill.create(name: 'Backstab', fighter: 6, scout: 6, rogue: 3, adept: 6, scholar: 8, templar: 6, artisan: 6, skill_type: 'int', group: 'specialty')
+Skill.create(name: 'Backstab', fighter: 30, scout: 18, rogue: 15, adept: 18, scholar: 40, templar: 30, artisan: 30, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Critical Attack', fighter: 3, scout: 3, rogue: 5, adept: 6, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Disarm', fighter: 2, scout: 2, rogue: 2, adept: 3, scholar: 8, templar: 3, artisan: 8, skill_type: 'int', group: 'specialty')
+Skill.create(name: 'Dodge', fighter: 8, scout: 6, rogue: 5, adept: 6, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Evade', fighter: 8, scout: 3, rogue: 3, adept: 4, scholar: 8, templar: 8, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Eviscerate', fighter: 5, scout: 7, rogue: 14, adept: 14, scholar: 14, templar: 7, artisan: 14, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Parry', fighter: 4, scout: 4, rogue: 8, adept: 8, scholar: 8, templar: 5, artisan: 8, skill_type: 'int', group: 'specialty')
@@ -88,7 +89,7 @@ Skill.create(name: 'Shatter', fighter: 3, scout: 3, rogue: 3, adept: 4, scholar:
 Skill.create(name: 'Slay', fighter: 4, scout: 4, rogue: 8, adept: 8, scholar: 8, templar: 5, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Stun Limb', fighter: 3, scout: 3, rogue: 3, adept: 4, scholar: 8, templar: 4, artisan: 8, skill_type: 'int', group: 'specialty')
 Skill.create(name: 'Terminate', fighter: 12, scout: 6, rogue: 4, adept: 6, scholar: 12, templar: 12, artisan: 12, skill_type: 'int', group: 'specialty')
-Skill.create(name: 'Weapon Proficiency', fighter: 3, scout: 6, rogue: 6, adept: 6, scholar: 8, templar: 6, artisan: 6, skill_type: 'int', group: 'specialty')
+Skill.create(name: 'Weapon Proficiency', fighter: 15, scout: 18, rogue: 26, adept: 30, scholar: 40, templar: 18, artisan: 30, skill_type: 'int', group: 'specialty')
 
 Skill.create(name: 'Read And Write', fighter: 6, scout: 6, rogue: 6, adept: 3, scholar: 3, templar: 3, artisan: 3, skill_type: 'bol', group: 'spells')
 Skill.create(name: 'Read Magic', fighter: 8, scout: 8, rogue: 6, adept: 4, scholar: 4, templar: 4, artisan: 6, skill_type: 'bol', group: 'spells')

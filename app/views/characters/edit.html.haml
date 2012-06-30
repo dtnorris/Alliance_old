@@ -1,6 +1,13 @@
 %h1 Editing Character
-  
+
 = render 'character_nav_tabs'
+
+- if @character.errors.any?
+  #error_explanation
+    %ul 
+      - @talent.errors.full_messages.each do |msg|
+        %li= msg
+        
 .span4
   = render 'form'
 .span4
