@@ -116,11 +116,15 @@ class CharactersController < ApplicationController
       CharacterSkill.add_skill(@character.id, params[:character][:new_skill].to_i)
     end
     if params[:character][:buy_skill] && params[:character][:buy_skill] != ""
-      CharacterSkill.purchase_skill(@character.id, Skill.find_by_name(params[:character][:buy_skill]).id)
+      purchase_ret = CharacterSkill.purchase_skill(@character.id, Skill.find_by_name(params[:character][:buy_skill]).id)
+      if purchase_ret
+        params[:purchase_error] = purchase_ret
+        #debugger
+      end
     end
     respond_to do |format|
       if @character.update_attributes(params[:character])
-        format.html { redirect_to edit_character_path(@character), notice: 'Character was successfully updated.' }
+        format.html { redirect_to edit_character_path(@character, purchase_ret), notice: 'Character was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
