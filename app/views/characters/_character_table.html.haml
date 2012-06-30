@@ -16,5 +16,4 @@
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
       %td= CharClass.find_by_id(character.char_class_id).name if Race.find_by_id(character.race_id)
       %td= ((character.build_points - 5) / 10)
-      -#%td= link_to 'Delete', character, :confirm => 'Are you sure?', :method => :delete, class: "btn"
 %br

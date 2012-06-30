@@ -10,4 +10,4 @@
           %td 0
         - if skill.amount
           %td= skill.amount
-        %td= link_to 'X', skill, :confirm => 'Are you sure?', :method => :delete, class: "btn", :id => 'delete_skill'
+        %td= link_to 'X', skill, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn", :id => 'delete_skill'

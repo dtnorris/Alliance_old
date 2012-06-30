@@ -49,21 +49,21 @@ describe "character" do
   end
 
   it "should calculate spent build off asociated skills" do
-    CharacterSkill.add_skill(new_character.id, 1) #6
-    CharacterSkill.add_skill(new_character.id, 1) #6
     CharacterSkill.add_skill(new_character.id, 2) #3
+    CharacterSkill.add_skill(new_character.id, 2) #3
+    CharacterSkill.add_skill(new_character.id, 29) #5
+    CharacterSkill.add_skill(new_character.id, 29) ##
     CharacterSkill.add_skill(new_character.id, 8) #3
-    CharacterSkill.add_skill(new_character.id, 8) ##
     CharacterSkill.add_skill(new_character.id, 7) #10
     new_character.calculate_spent_build.should == 0
 
-    CharacterSkill.purchase_skill(new_character.id, 1) #6
-    CharacterSkill.purchase_skill(new_character.id, 1) #6
     CharacterSkill.purchase_skill(new_character.id, 2) #3
+    CharacterSkill.purchase_skill(new_character.id, 2) #3
+    CharacterSkill.purchase_skill(new_character.id, 29) #5
+    CharacterSkill.purchase_skill(new_character.id, 29) ##
     CharacterSkill.purchase_skill(new_character.id, 8) #3
-    CharacterSkill.purchase_skill(new_character.id, 8) ##
     CharacterSkill.purchase_skill(new_character.id, 7) #10
-    new_character.calculate_spent_build.should == 28
+    new_character.calculate_spent_build.should == 24
   end
 
 end
