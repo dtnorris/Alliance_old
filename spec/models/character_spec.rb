@@ -1,10 +1,57 @@
 require 'spec_helper'
 
 describe "character" do
-  let(:new_character) { Character.create(id: 1, name: 'Bob', race_id: 11, char_class_id: 1, experience_points: 0, build_points: 15) }
+  let(:char) { FactoryGirl.create(:character) }
+
+  it "it adds xp tracking when calling update_xp_and_build" do
+    XpTrack.all.count.should == 0
+    char.add_xp(1, "Test One Day")
+    xp = XpTrack.all.first
+    
+    XpTrack.all.count.should == 1
+    xp.character_id.should == 1
+    xp.start_xp.should == 0
+    xp.end_xp.should == 15
+    xp.start_build.should == 15
+    xp.end_build.should == 20
+    xp.reason.should == "Test One Day"
+  end
+
+  it "updates body points on save" do
+    char.body_points == 6
+  end
+
+  it "can calculate adding xp" do
+    char.add_xp(2, "Test Weekend")
+    char.experience_points.should == 30
+  end
+
+  it "should calculate updated build based on xp before save" do
+    char.add_xp(2, "Test Weekend")
+    char.save 
+    char.build_points.should == 25
+  end
+
+  it "should calculate spent build off asociated skills" do
+    CharacterSkill.add_skill(char.id, 2) #3
+    CharacterSkill.add_skill(char.id, 2) #3
+    CharacterSkill.add_skill(char.id, 29) #5
+    CharacterSkill.add_skill(char.id, 29) ##
+    CharacterSkill.add_skill(char.id, 8) #3
+    CharacterSkill.add_skill(char.id, 7) #10
+    char.calculate_spent_build.should == 0
+
+    CharacterSkill.purchase_skill(char.id, 2) #3
+    CharacterSkill.purchase_skill(char.id, 2) #3
+    CharacterSkill.purchase_skill(char.id, 29) #5
+    CharacterSkill.purchase_skill(char.id, 29) ##
+    CharacterSkill.purchase_skill(char.id, 8) #3
+    CharacterSkill.purchase_skill(char.id, 7) #10
+    char.calculate_spent_build.should == 24
+  end
 
   it "purchases racial skills on create" do
-    CharacterSkill.find_all_by_character_id(new_character.id).count.should == 0
+    CharacterSkill.find_all_by_character_id(char.id).count.should == 0
     nc1 = Character.create(id: 1, name: 'Bob', race_id: 1, char_class_id: 1, experience_points: 0, build_points: 15)
     CharacterSkill.find_all_by_character_id(nc1.id).count.should == 2
     nc2 = Character.create(id: 2, name: 'Bob', race_id: 2, char_class_id: 1, experience_points: 0, build_points: 15)
@@ -31,39 +78,6 @@ describe "character" do
     CharacterSkill.find_all_by_character_id(nc13.id).count.should == 2
     nc14 = Character.create(id: 14, name: 'Bob', race_id: 14, char_class_id: 1, experience_points: 0, build_points: 15)
     CharacterSkill.find_all_by_character_id(nc14.id).count.should == 2
-  end
-
-  it "updates body points on save" do
-    new_character.body_points == 6
-  end
-
-  it "can calculate adding xp" do
-    new_character.add_xp(2, "Test Weekend")
-    new_character.experience_points.should == 30
-  end
-
-  it "should calculate updated build based on xp before save" do
-    new_character.add_xp(2, "Test Weekend")
-    new_character.save 
-    new_character.build_points.should == 25
-  end
-
-  it "should calculate spent build off asociated skills" do
-    CharacterSkill.add_skill(new_character.id, 2) #3
-    CharacterSkill.add_skill(new_character.id, 2) #3
-    CharacterSkill.add_skill(new_character.id, 29) #5
-    CharacterSkill.add_skill(new_character.id, 29) ##
-    CharacterSkill.add_skill(new_character.id, 8) #3
-    CharacterSkill.add_skill(new_character.id, 7) #10
-    new_character.calculate_spent_build.should == 0
-
-    CharacterSkill.purchase_skill(new_character.id, 2) #3
-    CharacterSkill.purchase_skill(new_character.id, 2) #3
-    CharacterSkill.purchase_skill(new_character.id, 29) #5
-    CharacterSkill.purchase_skill(new_character.id, 29) ##
-    CharacterSkill.purchase_skill(new_character.id, 8) #3
-    CharacterSkill.purchase_skill(new_character.id, 7) #10
-    new_character.calculate_spent_build.should == 24
   end
 
 end

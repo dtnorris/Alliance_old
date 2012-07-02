@@ -7,7 +7,7 @@ class Character < ActiveRecord::Base
 
   after_create :purchase_racial_skills
 
-  before_save :update_xp
+  before_save :update_xp_and_build
   before_save :calculate_spent_build
   before_save :update_body
 
@@ -19,12 +19,15 @@ class Character < ActiveRecord::Base
     xp_track = XpTrack.create
     xp_track.character_id = id
     xp_track.start_xp = experience_points
+    xp_track.start_build = build_points
     xp_track.reason = reason
 
     self.experience_points += build_points * multiplier
     xp_track.end_xp = experience_points
-    xp_track.save
     self.save
+    
+    xp_track.end_build = build_points
+    xp_track.save
   end
 
   def update_body
@@ -55,7 +58,7 @@ class Character < ActiveRecord::Base
   end
 
 
-  def update_xp
+  def update_xp_and_build
     xp_per_bp = 3
     tmp_bp = 15
     tmp_xp = experience_points

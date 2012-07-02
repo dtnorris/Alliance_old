@@ -101,7 +101,7 @@ describe "character creation and modification" do
     click_link "View"
     click_link "XP Track"
     page.should have_content("Experience Point Tracking for: Bob")
-    page.should have_content("id: Start XP: End XP: Reason Added:")
+    page.should have_content("id: Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:")
   end
 
 end

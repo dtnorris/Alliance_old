@@ -12,13 +12,19 @@
 %table.table.xp-table
   %tr
     %th id:
+    %th Start Build:
+    %th Final Build:
+    %th Build Gained:
     %th Start XP:
-    %th End XP:
+    %th Final XP:
     %th Reason Added:
   - all_xp = XpTrack.find_all_by_character_id(@character.id)
   - all_xp.reverse.each do |xp|
     %tr
       %td= xp.id
+      %td.ln= xp.start_build
+      %td.ln= xp.end_build
+      %td.ln= xp.end_build - xp.start_build
       %td.ln= xp.start_xp
       %td.ln= xp.end_xp
       %td= xp.reason

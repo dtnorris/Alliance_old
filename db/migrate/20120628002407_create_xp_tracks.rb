@@ -4,6 +4,8 @@ class CreateXpTracks < ActiveRecord::Migration
       t.integer :character_id
       t.integer :start_xp
       t.integer :end_xp
+      t.integer :start_build
+      t.integer :end_build
       t.string :reason
 
       t.timestamps
