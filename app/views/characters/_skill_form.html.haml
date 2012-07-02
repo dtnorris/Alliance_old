@@ -1,7 +1,7 @@
 = simple_form_for(@character) do |f|
   = f.error_notification
 
-  - if params[:format]
+  - if params[:format] == "Pre-requisites are not met to purchase this skill"
     %p.error1= params[:format]
       
   .form-inputs
