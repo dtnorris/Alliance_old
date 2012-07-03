@@ -110,15 +110,18 @@ class CharactersController < ApplicationController
   # PUT /characters/1
   # PUT /characters/1.json
   def update
-    #debugger
     @character = Character.find(params[:id])
     if params[:character][:new_skill] != ""
       CharacterSkill.add_skill(@character.id, params[:character][:new_skill].to_i)
     end
     if params[:character][:buy_skill] && params[:character][:buy_skill] != ""
       purchase_ret = CharacterSkill.purchase_skill(@character.id, Skill.find_by_name(params[:character][:buy_skill]).id)
+      #debugger
       if purchase_ret == "Pre-requisites are not met to purchase this skill"
         params[:purchase_error] = purchase_ret
+      elsif purchase_ret && purchase_ret.legal_spent_build == "You do not have the necessary build for this update"
+        params[:purchase_error] = purchase_ret.legal_spent_build
+        purchase_ret = purchase_ret.legal_spent_build
       end
     end
     respond_to do |format|

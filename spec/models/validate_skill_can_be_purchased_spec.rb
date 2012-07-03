@@ -2,8 +2,13 @@ require "spec_helper"
 
 describe "skill validation" do
   #let!(:char) { Character.create(id: 1, race_id: 11, char_class_id: 1, experience_points: 10000, build_points: 150) }
-  let!(:char) { FactoryGirl.create(:character) }
-
+  let!(:char) do 
+    hb = FactoryGirl.create(:character)
+    hb.experience_points = 100000
+    hb.build_points = 150
+    hb.save
+    hb
+  end
 
   it "can validate non-dependant skill purchse" do
     skill = Skill.find_by_name('Blacksmith')

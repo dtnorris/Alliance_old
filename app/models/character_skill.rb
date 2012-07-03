@@ -4,7 +4,35 @@ class CharacterSkill < ActiveRecord::Base
   belongs_to :character
   belongs_to :skill
 
-  before_save :update_spent_build
+  after_save :update_spent_build
+
+  validate :legal_spent_build, :on => :update
+
+  def legal_spent_build
+    #debugger
+    if character_id
+      bought_flag = self.bought || (self.amount > 0)
+      char = Character.find(character_id)
+      new_sk = 0
+      new_sk = Skill.find(self.skill_id)[CharClass.find(char.char_class_id).name.downcase] if !bought_flag
+      if char.build_points >= (char.calculate_spent_build + new_sk)
+        return true
+      else
+        errors.add(:char_class_id, "You do not have the necessary build for this update")
+        "You do not have the necessary build for this update"
+      end
+    end
+  end
+
+  def update_spent_build
+    if character_id
+      char = Character.find(character_id)
+      tmp_build = char.calculate_spent_build
+      if char
+        char.update_column(:spent_build, tmp_build)
+      end
+    end
+  end
 
   def self.all_bought_skills(character)
     all_skills = CharacterSkill.find_all_by_character_id(character.id)
@@ -36,16 +64,6 @@ class CharacterSkill < ActiveRecord::Base
         CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :amount => 0
       elsif char_skill == 'bol'
         CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :bought => false
-      end
-    end
-  end
-
-  def update_spent_build
-    if character_id
-      char = Character.find(character_id)
-      if char
-        char.calculate_spent_build
-        char.save
       end
     end
   end

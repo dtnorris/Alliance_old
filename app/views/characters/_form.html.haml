@@ -5,6 +5,8 @@
     = f.input :name, :label => 'Character Name:'
     = f.input :race_id, :label => 'Race:', :collection => Race.all
     = f.input :char_class_id, :label => 'Character Class:', :collection => CharClass.all
+    = f.button :submit
+    %p
     = f.label :name, :label => 'Body Points'
     %td= @character.body_points
     %p
@@ -15,5 +17,3 @@
     %td= @character.spent_build
     / = f.label :name, :label => 'Experience Points:'
     / %td= @character.experience_points
-    %p
-    = f.button :submit

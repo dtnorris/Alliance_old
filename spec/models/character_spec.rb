@@ -2,6 +2,13 @@ require 'spec_helper'
 
 describe "character" do
   let(:char) { FactoryGirl.create(:character) }
+  let(:hb_char) do 
+    hb = FactoryGirl.create(:character)
+    hb.experience_points = 100000
+    hb.build_points = 150
+    hb.save
+    hb
+  end
 
   it "it adds xp tracking when calling update_xp_and_build" do
     XpTrack.all.count.should == 0
@@ -33,21 +40,21 @@ describe "character" do
   end
 
   it "should calculate spent build off asociated skills" do
-    CharacterSkill.add_skill(char.id, 2) #3
-    CharacterSkill.add_skill(char.id, 2) #3
-    CharacterSkill.add_skill(char.id, 29) #5
-    CharacterSkill.add_skill(char.id, 29) ##
-    CharacterSkill.add_skill(char.id, 8) #3
-    CharacterSkill.add_skill(char.id, 7) #10
-    char.calculate_spent_build.should == 0
+    CharacterSkill.add_skill(hb_char.id, 2) #3
+    CharacterSkill.add_skill(hb_char.id, 2) #3
+    CharacterSkill.add_skill(hb_char.id, 29) #5
+    CharacterSkill.add_skill(hb_char.id, 29) ##
+    CharacterSkill.add_skill(hb_char.id, 8) #3
+    CharacterSkill.add_skill(hb_char.id, 7) #10
+    hb_char.calculate_spent_build.should == 0
 
-    CharacterSkill.purchase_skill(char.id, 2) #3
-    CharacterSkill.purchase_skill(char.id, 2) #3
-    CharacterSkill.purchase_skill(char.id, 29) #5
-    CharacterSkill.purchase_skill(char.id, 29) ##
-    CharacterSkill.purchase_skill(char.id, 8) #3
-    CharacterSkill.purchase_skill(char.id, 7) #10
-    char.calculate_spent_build.should == 24
+    CharacterSkill.purchase_skill(hb_char.id, 2) #3
+    CharacterSkill.purchase_skill(hb_char.id, 2) #3
+    CharacterSkill.purchase_skill(hb_char.id, 29) #5
+    CharacterSkill.purchase_skill(hb_char.id, 29) ##
+    CharacterSkill.purchase_skill(hb_char.id, 8) #3
+    CharacterSkill.purchase_skill(hb_char.id, 7) #10
+    hb_char.calculate_spent_build.should == 24
   end
 
   it "purchases racial skills on create" do

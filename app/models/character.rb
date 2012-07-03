@@ -8,12 +8,13 @@ class Character < ActiveRecord::Base
   after_create :purchase_racial_skills
 
   before_save :update_xp_and_build
-  before_save :calculate_spent_build
   before_save :update_body
+  after_save :update_spent_build
 
   validates_presence_of :name
   validates_presence_of :race_id
   validates_presence_of :char_class_id
+  validate :legal_spent_build
 
   def add_xp(multiplier, reason)
     xp_track = XpTrack.create
@@ -36,11 +37,24 @@ class Character < ActiveRecord::Base
     self.body_points += (self.build_points - 15) / CharClass.find(self.char_class_id).build_per_body
   end
 
+  def legal_spent_build
+    if build_points >= self.calculate_spent_build
+      return true
+    else
+      errors.add(:char_class_id, "You do not have the necessary build for this update")
+    end
+  end
+
+  def update_spent_build
+    tmp_build = self.calculate_spent_build
+    self.update_column(:spent_build, tmp_build)
+  end
+
   def calculate_spent_build
     if experience_points
       skills_array = CharacterSkill.find_all_by_character_id(self.id)
+      tmp_spent_build = 0
       if skills_array
-        tmp_spent_build = 0
         skills_array.each do |skill|
           if skill.amount != 0 && skill.bought != false
             sk = Skill.find(skill.skill_id)
@@ -52,11 +66,10 @@ class Character < ActiveRecord::Base
             end
           end
         end
-        self.spent_build = tmp_spent_build
       end
+      tmp_spent_build
     end
   end
-
 
   def update_xp_and_build
     xp_per_bp = 3

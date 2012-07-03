@@ -77,6 +77,27 @@ describe "character creation and modification" do
     page.should have_content("Total Build: 15")
   end
 
+  it "should calculate build exactly" do
+    click_link "Edit"
+    select("Read And Write", :from => "Add Skill:")
+    click_button "add_skills"
+    select("Herbal Lore", :from => "Add Skill:")
+    click_button "add_skills"
+    select("Blacksmith", :from => "Add Skill:")
+    click_button "add_skills"
+    select("Read And Write", :from => "Purchase Skill:")
+    click_button "add_skills"
+    select("Herbal Lore", :from => "Purchase Skill:")
+    click_button "add_skills"
+    select("Blacksmith", :from => "Purchase Skill:")
+    click_button "add_skills"
+    page.should_not have_content("Please review the problems below:")
+
+    select("Blacksmith", :from => "Purchase Skill:")
+    click_button "add_skills"
+    page.should have_content("You do not have the necessary build for this update")
+  end
+
   it "should be able to add xp on the xp tracking page" do
     visit "/chapters"
     click_link "Edit"
