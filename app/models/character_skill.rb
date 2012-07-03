@@ -9,12 +9,13 @@ class CharacterSkill < ActiveRecord::Base
   validate :legal_spent_build, :on => :update
 
   def legal_spent_build
-    #debugger
     if character_id
-      bought_flag = self.bought || (self.amount > 0)
       char = Character.find(character_id)
       new_sk = 0
-      new_sk = Skill.find(self.skill_id)[CharClass.find(char.char_class_id).name.downcase] if !bought_flag
+      self_saved = CharacterSkill.find_by_character_id_and_skill_id(self.character_id, self.skill_id)
+      if (self_saved.bought != self.bought) || (self_saved.amount != self.amount)
+        new_sk = new_sk = Skill.find(self.skill_id)[CharClass.find(char.char_class_id).name.downcase]
+      end
       if char.build_points >= (char.calculate_spent_build + new_sk)
         return true
       else
