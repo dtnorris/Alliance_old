@@ -69,44 +69,57 @@ class CharacterSkill < ActiveRecord::Base
     end
   end
 
+  def check_one_pre_req(pre_req, amount=1)
+    skills_arr = CharacterSkill.find_all_by_character_id(self.character_id)
+    sk_buying_n = Skill.find(self.skill_id).name
+    skills_arr.each do |sk_check|
+      if (Skill.find(sk_check.skill_id).name == pre_req && sk_check.amount && sk_check.amount >= amount) || (Skill.find(sk_check.skill_id).name == pre_req && sk_check.bought)
+        return true
+      end
+    end
+    return false
+  end
+
   def validate_skill_can_be_purchased
     skills_arr = CharacterSkill.find_all_by_character_id(self.character_id)
-    if Skill.find(self.skill_id).name == 'Alchemy'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Herbal Lore' && sk_check.bought
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Create Potion' 
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Earth Level 1' && sk_check.amount > 0
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Create Scroll'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Celestial Level 1' && sk_check.amount > 0
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Create Trap'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Legerdemain' && sk_check.bought
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Herbal Lore' || Skill.find(self.skill_id).name == 'Read Magic'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Read And Write' && sk_check.bought
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Healing Arts'
+    sk_buying_n = Skill.find(self.skill_id).name
+    return check_one_pre_req('Herbal Lore') if sk_buying_n == 'Alchemy'
+    return check_one_pre_req('Earth Level 1') if sk_buying_n == 'Create Potion'
+    return check_one_pre_req('Celestial Level 1') if sk_buying_n == 'Create Scroll'
+    return check_one_pre_req('Legerdemain') if sk_buying_n == 'Create Trap'
+    return check_one_pre_req('Read And Write') if sk_buying_n == 'Herbal Lore'
+    return check_one_pre_req('Read And Write') if sk_buying_n == 'Read Magic'
+    return check_one_pre_req('Florentine') if sk_buying_n == 'Two Weapons'
+    return check_one_pre_req('Backstab', 2) if sk_buying_n == 'Assassinate'
+    return check_one_pre_req('Backstab', 2) if sk_buying_n == 'Dodge'
+    return check_one_pre_req('Backstab', 1) if sk_buying_n == 'Disarm'
+    return check_one_pre_req('Backstab', 1) if sk_buying_n == 'Evade'
+    return check_one_pre_req('Weapon Proficiency', 4) if sk_buying_n == 'Eviscerate'
+    return check_one_pre_req('Weapon Proficiency', 2) if sk_buying_n == 'Parry'
+    return check_one_pre_req('Weapon Proficiency', 2) if sk_buying_n == 'Slay'
+    return check_one_pre_req('Backstab', 2) if sk_buying_n == 'Assassinate'
+    return check_one_pre_req('Backstab', 4) if sk_buying_n == 'Terminate'
+    return check_one_pre_req('Read Magic') if sk_buying_n == 'Celestial Level 1'
+    return check_one_pre_req('Celestial Level 1') if sk_buying_n == 'Celestial Level 2'
+    return check_one_pre_req('Celestial Level 2') if sk_buying_n == 'Celestial Level 3'
+    return check_one_pre_req('Celestial Level 3') if sk_buying_n == 'Celestial Level 4'
+    return check_one_pre_req('Celestial Level 4') if sk_buying_n == 'Celestial Level 5'
+    return check_one_pre_req('Celestial Level 5') if sk_buying_n == 'Celestial Level 6'
+    return check_one_pre_req('Celestial Level 6') if sk_buying_n == 'Celestial Level 7'
+    return check_one_pre_req('Celestial Level 7') if sk_buying_n == 'Celestial Level 8'
+    return check_one_pre_req('Celestial Level 8') if sk_buying_n == 'Celestial Level 9'
+    return check_one_pre_req('Celestial Level 9') if sk_buying_n == 'Formal Celestial'
+    return check_one_pre_req('Healing Arts') if sk_buying_n == 'Earth Level 1'
+    return check_one_pre_req('Earth Level 1') if sk_buying_n == 'Earth Level 2'
+    return check_one_pre_req('Earth Level 2') if sk_buying_n == 'Earth Level 3'
+    return check_one_pre_req('Earth Level 3') if sk_buying_n == 'Earth Level 4'
+    return check_one_pre_req('Earth Level 4') if sk_buying_n == 'Earth Level 5'
+    return check_one_pre_req('Earth Level 5') if sk_buying_n == 'Earth Level 6'
+    return check_one_pre_req('Earth Level 6') if sk_buying_n == 'Earth Level 7'
+    return check_one_pre_req('Earth Level 7') if sk_buying_n == 'Earth Level 8'
+    return check_one_pre_req('Earth Level 8') if sk_buying_n == 'Earth Level 9'
+    return check_one_pre_req('Earth Level 9') if sk_buying_n == 'Formal Earth'
+    if sk_buying_n == 'Healing Arts'
       skills_arr.each do |sk_check|
         if Skill.find(sk_check.skill_id).name == 'First Aid' && sk_check.bought
           skills_arr.each do |sk_check_2|
@@ -117,7 +130,7 @@ class CharacterSkill < ActiveRecord::Base
         end
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Style Master' || Skill.find(self.skill_id).name == 'Back Attack' || Skill.find(self.skill_id).name == 'Critical Attack'
+    elsif sk_buying_n == 'Style Master' || sk_buying_n == 'Back Attack' || sk_buying_n == 'Critical Attack'
       skills_arr.each do |sk_check|
         if (Skill.find(sk_check.skill_id).name == 'Archery' && sk_check.bought) || 
           (Skill.find(sk_check.skill_id).name == 'One Handed Blunt' && sk_check.bought) || 
@@ -135,70 +148,21 @@ class CharacterSkill < ActiveRecord::Base
         end
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Two Weapons'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Florentine' && sk_check.bought
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Assassinate' || Skill.find(self.skill_id).name == 'Dodge'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Backstab' && (sk_check.amount - (self.amount * 2)) >= 2
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Disarm'
-      skills_arr.each do |sk_check|
-        if (Skill.find(sk_check.skill_id).name == 'Backstab' && (sk_check.amount - (self.amount * 1)) >= 1) || (Skill.find(sk_check.skill_id).name == 'Weapon Proficiency' && (sk_check.amount - (self.amount * 1)) >= 1)
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Evade'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Backstab' && (sk_check.amount - (self.amount * 1)) >= 1
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Eviscerate'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Weapon Proficiency' && (sk_check.amount - (self.amount * 4)) >= 4
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Parry' || Skill.find(self.skill_id).name == 'Slay'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Weapon Proficiency' && (sk_check.amount - (self.amount * 2)) >= 2
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Riposte'
+    elsif sk_buying_n == 'Riposte'
       skills_arr.each do |sk_check|
         if (Skill.find(sk_check.skill_id).name == 'Backstab' && (sk_check.amount - (self.amount * 4)) >= 4) || (Skill.find(sk_check.skill_id).name == 'Weapon Proficiency' && (sk_check.amount - (self.amount * 4)) >= 4)
           return true
         end
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Shatter' || Skill.find(self.skill_id).name == 'Stun Limb'
+    elsif sk_buying_n == 'Shatter' || sk_buying_n == 'Stun Limb'
       skills_arr.each do |sk_check|
         if (Skill.find(sk_check.skill_id).name == 'Backstab' && (sk_check.amount - (self.amount * 3)) >= 3) || (Skill.find(sk_check.skill_id).name == 'Weapon Proficiency' && (sk_check.amount - (self.amount * 3)) >= 3)
           return true
         end
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Terminate'
-      skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Backstab' && (sk_check.amount - (self.amount * 4)) >= 4
-          return true
-        end
-      end
-      return false
-    elsif Skill.find(self.skill_id).name == 'Backstab'
+    elsif sk_buying_n == 'Backstab'
       skills_arr.each do |sk_check|
         if Skill.find(sk_check.skill_id).name == 'Back Attack' && sk_check.amount == 4
           sk_check.amount = 0
@@ -207,7 +171,7 @@ class CharacterSkill < ActiveRecord::Base
         end
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Weapon Proficiency'
+    elsif sk_buying_n == 'Weapon Proficiency'
       skills_arr.each do |sk_check|
         if Skill.find(sk_check.skill_id).name == 'Critical Attack' && sk_check.amount == 4
           sk_check.amount = 0
@@ -216,72 +180,72 @@ class CharacterSkill < ActiveRecord::Base
         end
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Break Command'
+    elsif sk_buying_n == 'Break Command'
       if Race.find(Character.find(self.character_id).race_id).name == 'Biata' || Race.find(Character.find(self.character_id).race_id).name == 'Mystic Wood Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Stone Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Claws'
+    elsif sk_buying_n == 'Claws'
       if Race.find(Character.find(self.character_id).race_id).name == 'Sarr' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Gypsy Curse'
+    elsif sk_buying_n == 'Gypsy Curse'
       if Race.find(Character.find(self.character_id).race_id).name == 'Gypsy' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Racial Assassinate'
+    elsif sk_buying_n == 'Racial Assassinate'
       if Race.find(Character.find(self.character_id).race_id).name == 'Sarr' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Racial Dodge'
+    elsif sk_buying_n == 'Racial Dodge'
       if Race.find(Character.find(self.character_id).race_id).name == 'Hobling' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Racial Proficiency'
+    elsif sk_buying_n == 'Racial Proficiency'
       if Race.find(Character.find(self.character_id).race_id).name == 'High Ogre' || Race.find(Character.find(self.character_id).race_id).name == 'High Orc' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Racial Slay'
+    elsif sk_buying_n == 'Racial Slay'
       if Race.find(Character.find(self.character_id).race_id).name == 'High Orc' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Resist Binding'
+    elsif sk_buying_n == 'Resist Binding'
       if Race.find(Character.find(self.character_id).race_id).name == 'Dryad' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Resist Command'
+    elsif sk_buying_n == 'Resist Command'
       if Race.find(Character.find(self.character_id).race_id).name == 'Biata' || Race.find(Character.find(self.character_id).race_id).name == 'Dark Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Mystic Wood Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Stone Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Resist Element'
+    elsif sk_buying_n == 'Resist Element'
       if Race.find(Character.find(self.character_id).race_id).name == 'Barbarian' || Race.find(Character.find(self.character_id).race_id).name == 'Dwarf' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Resist Fear'
+    elsif sk_buying_n == 'Resist Fear'
       if Race.find(Character.find(self.character_id).race_id).name == 'Barbarian' || Race.find(Character.find(self.character_id).race_id).name == 'High Orc' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Resist Magic'
+    elsif sk_buying_n == 'Resist Magic'
       if Race.find(Character.find(self.character_id).race_id).name == 'Dark Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Resist Necromancy'
+    elsif sk_buying_n == 'Resist Necromancy'
       if Race.find(Character.find(self.character_id).race_id).name == 'High Ogre' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
       return false
-    elsif Skill.find(self.skill_id).name == 'Resist Poison'
+    elsif sk_buying_n == 'Resist Poison'
       if Race.find(Character.find(self.character_id).race_id).name == 'Dwarf' || Race.find(Character.find(self.character_id).race_id).name == 'Hobling' || Race.find(Character.find(self.character_id).race_id).name == 'Sarr' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true
       end
