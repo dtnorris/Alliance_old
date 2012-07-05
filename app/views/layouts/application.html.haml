@@ -17,7 +17,7 @@
     
     = yield(:head)
   %body{ :id => yield(:body_id) }
-    = render 'layouts/navbar'
+    = render 'layouts/navbar' if current_user
     #content
       .container-fluid
         = #render 'layouts/flash', flash: flash
