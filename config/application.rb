@@ -55,9 +55,10 @@ module Alliance
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    #config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.secret_token = 'ede6a2db229087085d087327105428220076aa23bff82157d72d382b98e2922bc31d8b63fe4abf2480d3207bf0f10a523d006940a5b394bf99f5f52723e7e354'
   end
 end

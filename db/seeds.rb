@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create(email: 'dreamingfurther@test.com', password: 'txt@1234')
+
 Race.create(name: 'Barbarian', body_mod: 2)
 Race.create(name: 'Biata', body_mod: 0)
 Race.create(name: 'Dark Elf', body_mod: -1)
