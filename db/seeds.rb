@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: 'dreamingfurther@test.com', password: 'txt@1234')
-
 Race.create(name: 'Barbarian', body_mod: 2)
 Race.create(name: 'Biata', body_mod: 0)
 Race.create(name: 'Dark Elf', body_mod: -1)
@@ -117,3 +115,15 @@ Skill.create(name: 'Earth Level 7', fighter: 12, scout: 12, rogue: 8, adept: 5, 
 Skill.create(name: 'Earth Level 8', fighter: 12, scout: 12, rogue: 8, adept: 5, scholar: 4, templar: 5, artisan: 6, skill_type: 'int', group: 'spells')
 Skill.create(name: 'Earth Level 9', fighter: 15, scout: 15, rogue: 10, adept: 6, scholar: 5, templar: 6, artisan: 6, skill_type: 'int', group: 'spells')
 Skill.create(name: 'Formal Earth', fighter: 12, scout: 12, rogue: 8, adept: 4, scholar: 3, templar: 4, artisan: 4, skill_type: 'int', group: 'spells')
+
+# Seed some basic users and characters for development
+if Rails.env != 'test'
+  User.create(email: 'dreamingfurther@test.com', first_name: 'Dreaming', last_name: 'Further', password: 'txt@1234')
+  User.create(email: 'alliance_admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234')
+  User.create(email: 'chapter_admin@test.com', first_name: 'Chapter', last_name: 'Admin', password: 'txt@1234')
+  User.create(email: 'alliance_player@test.com', first_name: 'Alliance', last_name: 'Player', password: 'txt@1234')
+
+  Character.create(name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0)
+  Character.create(name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0)
+  Character.create(name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0)
+end

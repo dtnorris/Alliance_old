@@ -3,7 +3,7 @@ Alliance::Application.routes.draw do
 
   devise_for :users, :path_prefix => 'd'
   resources :users
-  
+
   resources :characters do
     member do 
       put 'xp_mod_day'
@@ -11,6 +11,8 @@ Alliance::Application.routes.draw do
       put 'xp_weekend'
       put 'xp_long_weekend'
       get 'xp_track'
+      get 'new_for_user'
+      post 'create_for_user'
     end
   end
   resources :character_skills

@@ -1,0 +1,8 @@
+%h1 New character
+%ul.nav.nav-tabs
+  %li= link_to 'Back', :back, class: "btn"
+
+- #@character.user_id = params[:id]
+
+= render 'form'
+

@@ -1,5 +1,6 @@
 Factory.define :character do |f|
   f.id 1
+  f.user_id 1
   f.name 'Bob'
   f.race_id 11
   f.char_class_id 1

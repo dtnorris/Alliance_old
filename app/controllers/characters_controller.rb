@@ -32,12 +32,23 @@ class CharactersController < ApplicationController
 
   # GET /characters/new
   # GET /characters/new.json
-  def new
+  # def new
+  #   @character = Character.new
+
+  #   respond_to do |format|
+  #     format.html # new.html.erb
+  #     format.json { render json: @character }
+  #   end
+  # end
+
+  # GET /characters/1/new_for_user
+  def new_for_user
     @character = Character.new
+    session[:user_id_for_new_character] = params[:id]
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @character }
+      format.html
+      format.json {render json: @character}
     end
   end
 
@@ -90,7 +101,9 @@ class CharactersController < ApplicationController
   # POST /characters.json
   def create
     #params[:character].delete(:character_skill)
+    #debugger
     @character = Character.new(params[:character])
+    @character.user_id = session[:user_id_for_new_character].to_i
     @character.build_points = 15
     @character.spent_build = 0
     @character.experience_points = 0
@@ -101,11 +114,32 @@ class CharactersController < ApplicationController
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render json: @character, status: :created, location: @character }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new_for_user" }
         format.json { render json: @character.errors, status: :unprocessable_entity }
       end
     end
   end
+
+  # POST /characters
+  # def create_for_user
+  #   #debugger
+  #   @character = Character.new(params[:character])
+  #   @character.user_id = params[:user_id]
+  #   @character.build_points = 15
+  #   @character.spent_build = 0
+  #   @character.experience_points = 0
+  #   @character.save
+
+  #   respond_to do |format|
+  #     if @character.save
+  #       format.html { redirect_to @character, notice: 'Character was successfully created.' }
+  #       format.json { render json: @character, status: :created, location: @character }
+  #     else
+  #       format.html { render action: "new" }
+  #       format.json { render json: @character.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # PUT /characters/1
   # PUT /characters/1.json

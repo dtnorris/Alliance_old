@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points
+  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id
   belongs_to :race
   belongs_to :char_class
   has_many :character_skill
@@ -11,6 +11,7 @@ class Character < ActiveRecord::Base
   before_save :update_body
   after_save :update_spent_build
 
+  validates_presence_of :user_id
   validates_presence_of :name
   validates_presence_of :race_id
   validates_presence_of :char_class_id

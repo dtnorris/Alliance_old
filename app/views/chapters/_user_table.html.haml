@@ -1,0 +1,17 @@
+%table.table.users-table
+  %tr
+    %th Email
+    %th Name
+    %th
+    %th Characters
+    %th New Character
+
+  - @users.each do |user|
+    - name = user.first_name + ' ' + user.last_name
+    - characters = Character.find_all_by_user_id(user.id)
+    %tr
+      %td= user.email
+      %td= name
+      %td= link_to 'Edit', edit_user_path(user), class: "btn"
+      %td= collection_select(:get, :character_id, characters, :id, :name)
+      %td= link_to 'New Character', new_for_user_character_path(user), class: "btn"
