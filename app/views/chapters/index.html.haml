@@ -1,6 +1,19 @@
-%h1 Listing Characters
+%h1 Chapter Functions
 
-= link_to 'New Character', new_character_path, class: "btn"
+%p= link_to 'New Member', new_user_path, class: "btn"
+%P
+
+%table.table.users-table
+  %tr
+    %th
+    %th Email
+
+  - @users.each do |user|
+    %tr
+      %td= link_to 'Edit', edit_user_path(user), class: "btn"
+      %td= user.email
+
+%p= link_to 'New Character', new_character_path, class: "btn"
 
 %p
 %table.table.users-table
@@ -19,7 +32,7 @@
   - @characters.each do |character|
     %tr
       / %td= link_to 'Delete', :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
-      %td= link_to 'Edit', edit_character_path(character), class: "btn"
+      %td= link_to 'Edit', edit_character_path(character), class: "btn", :id => 'character_edit'
       / %td= link_to 'View', character, class: "btn"
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)

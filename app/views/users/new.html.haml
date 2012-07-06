@@ -1,0 +1,14 @@
+%h2 Add Member Page
+
+%ul.nav.nav-tabs
+  %li= link_to 'Back', :back, class: "btn"
+
+= simple_form_for(@user) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :email, :required => true, :autofocus => true
+    = f.input :password, :required => true
+    = f.input :password_confirmation, :required => true
+    
+    = f.button :submit, 'Add Member'

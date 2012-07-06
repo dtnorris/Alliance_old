@@ -1,8 +1,9 @@
 Alliance::Application.routes.draw do
   
 
-  devise_for :users
-
+  devise_for :users, :path_prefix => 'd'
+  resources :users
+  
   resources :characters do
     member do 
       put 'xp_mod_day'

@@ -106,7 +106,7 @@ describe "character creation and modification" do
 
   it "should be able to add xp on the xp tracking page" do
     visit "/chapters"
-    click_link "Edit"
+    click_link "character_edit"
     click_link "XP Track"
     click_link "One Day"
     click_link "Weekend"
@@ -117,7 +117,7 @@ describe "character creation and modification" do
 
   it "allows a user to view character XP tracking" do
     visit "/chapters"
-    click_link "Edit"
+    click_link "character_edit"
     click_link "XP Track"
     click_link "One Day"
     click_link "Mod Day"
