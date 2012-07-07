@@ -17,6 +17,7 @@
     
     = yield(:head)
   %body{ :id => yield(:body_id) }
+    %h2 Alliance Character and Player Management Tool
     = render 'layouts/navbar' if current_user
     #content
       .container-fluid

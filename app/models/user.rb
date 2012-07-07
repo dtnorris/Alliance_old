@@ -7,10 +7,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :dragon_stamps
 
   has_many :character
+  has_many :member
 
   validates_presence_of :first_name
   validates_presence_of :last_name
+
+  def self.find_all_memberships
+    Member.find_all_by_user_id(id)
+  end
 end

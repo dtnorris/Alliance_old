@@ -1,8 +1,19 @@
 Alliance::Application.routes.draw do
   
 
+  resources :members do
+    collection do
+      get :alliance_player
+    end
+  end
+
   devise_for :users, :path_prefix => 'd'
-  resources :users
+  resources :users do
+    member do
+      get :edit_password_form
+      # post :change_password
+    end
+  end
 
   resources :characters do
     member do 

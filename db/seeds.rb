@@ -118,12 +118,19 @@ Skill.create(name: 'Formal Earth', fighter: 12, scout: 12, rogue: 8, adept: 4, s
 
 # Seed some basic users and characters for development
 if Rails.env != 'test'
-  User.create(email: 'dreamingfurther@test.com', first_name: 'Dreaming', last_name: 'Further', password: 'txt@1234')
-  User.create(email: 'alliance_admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234')
-  User.create(email: 'chapter_admin@test.com', first_name: 'Chapter', last_name: 'Admin', password: 'txt@1234')
-  User.create(email: 'alliance_player@test.com', first_name: 'Alliance', last_name: 'Player', password: 'txt@1234')
+  Chapter.create(name: 'Caldaria', owner: 'Jessie Hennessey', email: 'gm@caldaria.com', location: "CT")
+  Chapter.create(name: 'Gaden', owner: 'Dave Glaiser', email: 'djglaeser@gmail.com', location: "SoMN")
 
-  Character.create(name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0)
-  Character.create(name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0)
-  Character.create(name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0)
+  User.create(email: 'dreamingfurther@test.com', first_name: 'Dreaming', last_name: 'Further', password: 'txt@1234', dragon_stamps: 0)
+  User.create(email: 'alliance_admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
+  User.create(email: 'chapter_admin@test.com', first_name: 'Chapter', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
+  User.create(email: 'alliance_player@test.com', first_name: 'Alliance', last_name: 'Player', password: 'txt@1234', dragon_stamps: 0)
+
+  Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
+  Member.create(user_id: 1, chapter_id:2, goblin_stamps: 0)
+  Member.create(user_id: 4, chapter_id:1, goblin_stamps: 0)
+
+  Character.create(name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
+  Character.create(name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 2)
+  Character.create(name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
 end

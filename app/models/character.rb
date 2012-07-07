@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id
+  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id, :home_chapter
   belongs_to :race
   belongs_to :char_class
   has_many :character_skill
@@ -16,6 +16,15 @@ class Character < ActiveRecord::Base
   validates_presence_of :race_id
   validates_presence_of :char_class_id
   validate :legal_spent_build
+
+  def self.memberships_of_user(id)
+    memberships = Member.find_all_by_user_id(id)
+    chapters = []
+    memberships.each do |ch|
+      chapters << Chapter.find(ch.chapter_id)
+    end
+    chapters
+  end    
 
   def add_xp(multiplier, reason)
     xp_track = XpTrack.create

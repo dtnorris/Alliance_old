@@ -1,0 +1,11 @@
+= simple_form_for(@member) do |f|
+  = f.error_notification
+
+  .form-inputs
+
+    = f.input :chapter_id, :collection => Chapter.all
+    = f.button :submit
+    /, :text => 'Add Membership'
+    /= f.input :user_id
+    /= f.input :goblin_stamps
+

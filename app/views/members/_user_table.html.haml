@@ -1,5 +1,7 @@
 %table.table.users-table
   %tr
+    %th
+    %th
     %th Email
     %th Name
     %th Characters
@@ -9,6 +11,8 @@
     - name = user.first_name + ' ' + user.last_name
     - characters = Character.find_all_by_user_id(user.id)
     %tr
+      %td= link_to 'Edit', edit_user_path(user), class: "btn"
+      %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete, class: "btn"
       %td= user.email
       %td= name
       %td= collection_select(:get, :character_id, characters, :id, :name)

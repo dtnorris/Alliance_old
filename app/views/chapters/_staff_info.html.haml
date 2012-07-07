@@ -1,0 +1,11 @@
+
+%h3 List of Members
+
+%p= link_to 'New Member', new_user_path, class: "btn"
+%P
+
+= render 'user_table'
+
+%h3 List of Characters
+
+= render 'characters/character_table'

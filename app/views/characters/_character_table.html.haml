@@ -7,11 +7,11 @@
     %th Class:
     %th Level:  
     -#%th
-
+  /-debugger
   - @characters.each do |character|
     %tr
       -#%td= link_to 'Edit', edit_character_path(character), class: "btn"
-      %td= link_to 'View', character, class: "btn"
+      %td= link_to 'View', character_path(character), class: "btn"
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
       %td= CharClass.find_by_id(character.char_class_id).name if Race.find_by_id(character.race_id)

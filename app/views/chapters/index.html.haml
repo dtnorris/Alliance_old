@@ -1,11 +1,27 @@
-%h1 Chapter Functions
+%h1 Alliance Chapters
 
-%p= link_to 'New Member', new_user_path, class: "btn"
-%P
+= link_to 'New Chapter', new_chapter_path, class: "btn"
+%p
 
-= render 'user_table'
+%table.table.users-table
+  %tr
+    %th
+    %th Name
+    %th Location
+    %th Owner
+    %th Email
+    %th
+    %th
 
-/ %p= link_to 'New Character', new_character_path, class: "btn"
-/ %p
+  - @chapters.each do |chapter|
+    %tr
+      %td= link_to 'Home', chapter, class: "btn"
+      %td= chapter.name
+      %td= chapter.location
+      %td= chapter.owner
+      %td= chapter.email
+      %td= link_to 'Edit', edit_chapter_path(chapter), class: "btn"
+      %td= link_to 'Delete', chapter, :confirm => 'Are you sure?', :method => :delete, class: "btn"
 
-/ = render 'chapter_character_table'
+%br
+

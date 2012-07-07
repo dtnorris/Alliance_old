@@ -1,0 +1,24 @@
+%h1 Basic Info
+
+/%ul.nav.nav-tabs
+/  %li= link_to 'Back', :back, class: "btn"
+
+%p
+
+%p
+  %b Name:
+  = @chapter.name
+%p
+  %b Location:
+  = @chapter.location
+%p
+  %b Owner:
+  = @chapter.owner
+%p
+  %b Email:
+  = @chapter.email
+
+= render 'staff_info'
+
+/= link_to 'Edit', edit_chapter_path(@chapter)
+/\|

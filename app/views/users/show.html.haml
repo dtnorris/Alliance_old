@@ -1,1 +1,16 @@
-%h2 Show User Page
+%h2 User Home Page
+= render 'user_navbar'
+
+%h2 Characters
+
+= render 'characters/user_character_table'
+
+%h2 National
+
+%p
+  Dragon stamps:
+  = @user.dragon_stamps
+
+%h2 Memberships
+
+= render 'current_memberships'

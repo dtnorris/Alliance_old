@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706012811) do
+ActiveRecord::Schema.define(:version => 20120706183711) do
+
+  create_table "chapters", :force => true do |t|
+    t.string   "owner"
+    t.string   "email"
+    t.string   "name"
+    t.string   "location"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "char_classes", :force => true do |t|
     t.string   "name"
@@ -33,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20120706012811) do
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.integer  "home_chapter"
     t.integer  "race_id"
     t.integer  "char_class_id"
     t.integer  "experience_points"
@@ -43,6 +53,14 @@ ActiveRecord::Schema.define(:version => 20120706012811) do
     t.integer  "body_points"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "members", :force => true do |t|
+    t.integer  "chapter_id"
+    t.integer  "user_id"
+    t.integer  "goblin_stamps"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "races", :force => true do |t|
@@ -80,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20120706012811) do
     t.string   "last_sign_in_ip"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "dragon_stamps"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

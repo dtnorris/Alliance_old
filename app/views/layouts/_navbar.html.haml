@@ -1,12 +1,13 @@
 %ul.nav.nav-tabs
-  %li= link_to 'Home', root_path, class: "btn"
-  %li= link_to 'Events', root_path, class: "btn"
+  %li= link_to current_user.email, user_path(current_user.id), class: "btn"
   %li= link_to 'Chapters', chapters_path, class: "btn"
+  %li= link_to 'Players', alliance_player_members_path, class: "btn", method: :get
   %li= link_to 'Characters', characters_path, class: "btn"
+  %li= link_to 'Events', root_path, class: "btn"
+  %li= link_to 'Home', root_path, class: "btn"
 
   - if user_signed_in?
-    %li= link_to current_user.email, edit_user_path(current_user.id), class: "btn"
-    %li= link_to 'Log Out', destroy_user_session_path, class: "btn", :method => :delete
-  - else
-    %li= link_to 'Sign Up', new_user_registration_path, class: "btn"
-    %li= link_to 'Log In', new_user_session_path, class: "btn"
+    %li= link_to 'Log Out', destroy_user_session_path, class: "btn", method: :delete
+  /- else
+  /  %li= link_to 'Sign Up', new_user_registration_path, class: "btn"
+  /  %li= link_to 'Log In', new_user_session_path, class: "btn"

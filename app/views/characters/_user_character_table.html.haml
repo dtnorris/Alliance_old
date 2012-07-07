@@ -1,0 +1,26 @@
+%table.table.users-table
+  %tr
+    %th
+    %th
+    %th Name: 
+    %th Race:
+    %th Class:
+    %th Level:  
+    %th Home Chapter:
+    / %th
+    / %th
+    / %th
+  - @characters = Character.find_all_by_user_id(params[:id]) unless @characters
+  - @characters.each do |character|
+    %tr
+      -#%td= link_to 'Edit', edit_character_path(character), class: "btn"
+      %td= link_to 'Delete', character, :confirm => 'Are you sure?', method: :delete, class: "btn"
+      %td= link_to 'View', character_path(character), class: "btn"
+      %td= character.name
+      %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
+      %td= CharClass.find_by_id(character.char_class_id).name if Race.find_by_id(character.race_id)
+      %td= ((character.build_points - 5) / 10)
+      %td= Chapter.find(character.home_chapter).name
+      / %td= link_to 'One Day', xp_one_day_character_path(character), class: "btn", method: :put
+      / %td= link_to 'Weekend', xp_weekend_character_path(character), class: "btn", method: :put
+      / %td= link_to 'Long Weekend', xp_long_weekend_character_path(character), class: "btn", method: :put

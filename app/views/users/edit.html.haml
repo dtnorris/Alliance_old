@@ -1,5 +1,20 @@
-%h1 Editing a Member
-%ul.nav.nav-tabs
-  %li= link_to 'Back', :back, class: "btn"
+%h2 Edit my Account
+= render 'user_navbar'
 
-= render 'chapters/chapter_character_table'
+.span3
+  %h3 Account Details
+  %p
+  = render 'form'
+
+  %p
+  = link_to 'Change Password', edit_password_form_user_path(@user.id), class: "btn"
+
+.span3
+  %h3 Memberships
+  %p
+  = render 'current_memberships'
+
+.span3
+  %h3 Add Membership
+  %p
+  = render 'members/form'

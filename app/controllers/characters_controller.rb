@@ -108,6 +108,7 @@ class CharactersController < ApplicationController
     @character.spent_build = 0
     @character.experience_points = 0
     @character.save
+    session.delete :user_id_for_new_character
 
     respond_to do |format|
       if @character.save
