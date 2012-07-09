@@ -6,7 +6,7 @@ class CreateStampTracks < ActiveRecord::Migration
       t.integer :start_stamps
       t.integer :end_stamps
       t.string :reason
-      t.boolean :dragon
+      t.boolean :dragon_stamps
 
       t.timestamps
     end
