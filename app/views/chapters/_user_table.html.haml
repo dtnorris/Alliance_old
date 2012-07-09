@@ -6,7 +6,7 @@
     %th New Character
     %th.ln Goblin
     %th Stamps
-    /-debugger
+    
   - @users.each do |user|
     - name = user.first_name + ' ' + user.last_name
     - characters = Character.find_all_by_user_id(user.id)

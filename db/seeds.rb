@@ -116,17 +116,19 @@ Skill.create(name: 'Earth Level 8', fighter: 12, scout: 12, rogue: 8, adept: 5, 
 Skill.create(name: 'Earth Level 9', fighter: 15, scout: 15, rogue: 10, adept: 6, scholar: 5, templar: 6, artisan: 6, skill_type: 'int', group: 'spells')
 Skill.create(name: 'Formal Earth', fighter: 12, scout: 12, rogue: 8, adept: 4, scholar: 3, templar: 4, artisan: 4, skill_type: 'int', group: 'spells')
 
+Chapter.create(name: 'Caldaria', owner: 'Jessie Hennessey', email: 'gm@caldaria.com', location: "CT")
+User.create(email: 'dreamingfurther@test.com', first_name: 'Dreaming', last_name: 'Further', password: 'txt@1234', dragon_stamps: 0)
+Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
+
+
 # Seed some basic users and characters for development
 if Rails.env != 'test'
-  Chapter.create(name: 'Caldaria', owner: 'Jessie Hennessey', email: 'gm@caldaria.com', location: "CT")
   Chapter.create(name: 'Gaden', owner: 'Dave Glaiser', email: 'djglaeser@gmail.com', location: "SoMN")
 
-  User.create(email: 'dreamingfurther@test.com', first_name: 'Dreaming', last_name: 'Further', password: 'txt@1234', dragon_stamps: 0)
   User.create(email: 'alliance_admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
   User.create(email: 'chapter_admin@test.com', first_name: 'Chapter', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
   User.create(email: 'alliance_player@test.com', first_name: 'Alliance', last_name: 'Player', password: 'txt@1234', dragon_stamps: 0)
 
-  Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
   Member.create(user_id: 1, chapter_id:2, goblin_stamps: 0)
   Member.create(user_id: 4, chapter_id:1, goblin_stamps: 0)
 

@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe User do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  
+  # it "can call find_all_memberships" do
+  #   user = User.find_by_email('dreamingfurther@test.com')
+  #   debugger
+  #   user.find_all_memberships.count.should == 1
+  # end
+
 end

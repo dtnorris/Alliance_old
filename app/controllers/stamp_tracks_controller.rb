@@ -20,13 +20,6 @@ class StampTracksController < ApplicationController
       format.html { redirect_to view_goblins_user_path(@user.id) }
       format.json { render json: @user }
     end
-    # if @stamp_track.save
-    #   format.html { redirect_to view_goblins_user_path(@user.id), notice: 'Stamp Track was successfully created.' }
-    #   format.json { render json: @user }
-    # else
-    #     format.html { redirect_to view_goblins_user_path(@user.id) }
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    # end
   end
 
 end

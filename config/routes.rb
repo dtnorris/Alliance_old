@@ -1,6 +1,5 @@
 Alliance::Application.routes.draw do
   
-
   resources :members do
     collection do
       get :alliance_player
@@ -12,7 +11,6 @@ Alliance::Application.routes.draw do
     member do
       get :view_goblins
       get :edit_password_form
-      # post :change_password
     end
   end
 

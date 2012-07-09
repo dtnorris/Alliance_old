@@ -21,7 +21,7 @@
       %td= chapter.owner
       %td= chapter.email
       %td= link_to 'Edit', edit_chapter_path(chapter), class: "btn"
-      %td= link_to 'Delete', chapter, :confirm => 'Are you sure?', :method => :delete, class: "btn"
+      %td= link_to 'Delete', chapter, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
 
 %br
 

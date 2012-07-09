@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
 
-  def self.find_all_memberships
-    Member.find_all_by_user_id(id)
-  end
+  # def self.find_all_memberships
+  #   Member.find_all_by_user_id(id)
+  # end
 end

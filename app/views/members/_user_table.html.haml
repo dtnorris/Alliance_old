@@ -6,16 +6,14 @@
     %th Name
     %th Characters
     %th Dragon Stamps
-    /%th New Character
 
   - @users.each do |user|
     - name = user.first_name + ' ' + user.last_name
     - characters = Character.find_all_by_user_id(user.id)
     %tr
       %td= link_to 'Edit', edit_user_path(user), class: "btn"
-      %td= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete, class: "btn"
+      %td= link_to 'Delete', user, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
       %td= user.email
       %td= name
       %td= collection_select(:get, :character_id, characters, :id, :name)
       %td.ln= user.dragon_stamps
-      /%td= link_to 'New Character', new_for_user_character_path(user), class: "btn"
