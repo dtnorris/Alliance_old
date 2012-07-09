@@ -21,6 +21,19 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/1/view_goblins
+  def view_goblins
+    @user = User.find(params[:id])
+    @chapter_id = session[:chapter_id_for_new_user]
+    @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter_id)
+    session[:user_id_for_new_stamps] = @user.id
+    @stamp_track = StampTrack.new
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
 
   # GET /users/1/edit
   def edit
@@ -52,15 +65,6 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  # def new_for_chapter
-  #   @user = User.new
-  #   #@user.chapter_id = session[:chapter_id_for_new_user]
-
-  #   respond_to do |format|
-  #     format.html
-  #     format.json {render json: @character}
-  #   end
-  # end
 
   # POST /users
   # POST /users.json
@@ -74,7 +78,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to chapters_path, notice: 'User was successfully created.' }
+        format.html { redirect_to chapter_path(@member.chapter_id), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

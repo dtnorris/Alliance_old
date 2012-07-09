@@ -30,17 +30,6 @@ class CharactersController < ApplicationController
     end
   end
 
-  # GET /characters/new
-  # GET /characters/new.json
-  # def new
-  #   @character = Character.new
-
-  #   respond_to do |format|
-  #     format.html # new.html.erb
-  #     format.json { render json: @character }
-  #   end
-  # end
-
   # GET /characters/1/new_for_user
   def new_for_user
     @character = Character.new

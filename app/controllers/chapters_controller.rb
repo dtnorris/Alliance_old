@@ -20,15 +20,6 @@ class ChaptersController < ApplicationController
       @users << User.find(memb.user_id)
     end
     @characters = Character.find_all_by_home_chapter(@chapter.id)
-    #debugger
-    # @users.each do |use|
-    #   chars = Character.find_all_by_user_id(use.id)
-    #   chars.each do |cr|
-    #     if cr.home_chapter == @chapter.id
-    #       @characters << cr
-    #     end
-    #   end
-    # end
     session[:chapter_id_for_new_user] = params[:id]
 
     respond_to do |format|

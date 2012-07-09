@@ -1,0 +1,20 @@
+%h1 Goblin Stamp Tracking
+- chapter = Chapter.find(session[:chapter_id_for_new_user])
+%ul.nav.nav-tabs
+  %li= link_to 'Back', chapter, class: "btn"
+
+= render 'stamp_form'
+
+%table.table.users-table
+  %tr
+    %th Start Goblins
+    %th End Goblins
+    %th Amount Changed
+    %th Reason
+
+  - @all_goblins.each do |goblin|
+    %tr
+      %td= goblin.start_stamps
+      %td= goblin.end_stamps
+      %td= goblin.end_stamps - goblin.start_stamps
+      %td= goblin.reason

@@ -1,4 +1,4 @@
-%table.table.users-table
+%table.table.users-table.xp-table
   %tr
     -#%th
     %th
@@ -15,5 +15,5 @@
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
       %td= CharClass.find_by_id(character.char_class_id).name if Race.find_by_id(character.race_id)
-      %td= ((character.build_points - 5) / 10)
+      %td.ln= ((character.build_points - 5) / 10)
 %br

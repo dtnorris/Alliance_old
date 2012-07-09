@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706183711) do
+ActiveRecord::Schema.define(:version => 20120707120653) do
 
   create_table "chapters", :force => true do |t|
     t.string   "owner"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20120706183711) do
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "home_chapter"
     t.integer  "race_id"
     t.integer  "char_class_id"
     t.integer  "experience_points"
@@ -85,6 +84,17 @@ ActiveRecord::Schema.define(:version => 20120706183711) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "stamp_tracks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "chapter_id"
+    t.integer  "start_stamps"
+    t.integer  "end_stamps"
+    t.string   "reason"
+    t.boolean  "dragon"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -98,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20120706183711) do
     t.string   "last_sign_in_ip"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "dragon_stamps"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

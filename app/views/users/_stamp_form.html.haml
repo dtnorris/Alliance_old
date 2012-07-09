@@ -1,0 +1,7 @@
+= simple_form_for(@stamp_track) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :amount_to_change
+    = f.input :reason
+    = f.button :submit

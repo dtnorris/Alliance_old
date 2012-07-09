@@ -10,20 +10,27 @@ Alliance::Application.routes.draw do
   devise_for :users, :path_prefix => 'd'
   resources :users do
     member do
+      get :view_goblins
       get :edit_password_form
       # post :change_password
     end
   end
 
+  resources :stamp_tracks do
+    member do
+      post :stamp_track
+    end
+  end
+
   resources :characters do
     member do 
-      put 'xp_mod_day'
-      put 'xp_one_day'
-      put 'xp_weekend'
-      put 'xp_long_weekend'
-      get 'xp_track'
-      get 'new_for_user'
-      post 'create_for_user'
+      put :xp_mod_day
+      put :xp_one_day
+      put :xp_weekend
+      put :xp_long_weekend
+      get :xp_track
+      get :new_for_user
+      post :create_for_user
     end
   end
   resources :character_skills

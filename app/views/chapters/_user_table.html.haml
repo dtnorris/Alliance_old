@@ -1,10 +1,12 @@
-%table.table.users-table
+%table.table.users-table.xp-table
   %tr
     %th Email
     %th Name
     %th Characters
     %th New Character
-
+    %th.ln Goblin
+    %th Stamps
+    /-debugger
   - @users.each do |user|
     - name = user.first_name + ' ' + user.last_name
     - characters = Character.find_all_by_user_id(user.id)
@@ -13,3 +15,5 @@
       %td= name
       %td= collection_select(:get, :character_id, characters, :id, :name)
       %td= link_to 'New Character', new_for_user_character_path(user), class: "btn"
+      %td.ln= Member.find_by_user_id_and_chapter_id(user.id, session[:chapter_id_for_new_user]).goblin_stamps
+      %td= link_to 'Add/Remove', view_goblins_user_path(user), class: "btn"

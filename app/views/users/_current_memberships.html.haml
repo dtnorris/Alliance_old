@@ -1,4 +1,4 @@
-%table.table.user-table
+%table.table.users-table.xp-table
   %tr
     %th Chapter
     /%th User
@@ -11,7 +11,7 @@
     %tr
       %td= Chapter.find(member.chapter_id).name
       /%td= member.user_id
-      %td= member.goblin_stamps
+      %td.ln= member.goblin_stamps
       /%td= link_to 'Show', member
       /%td= link_to 'Edit', edit_member_path(member)
       /%td= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete

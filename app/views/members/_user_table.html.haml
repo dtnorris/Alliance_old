@@ -1,11 +1,12 @@
-%table.table.users-table
+%table.table.users-table.xp-table
   %tr
     %th
     %th
     %th Email
     %th Name
     %th Characters
-    %th New Character
+    %th Dragon Stamps
+    /%th New Character
 
   - @users.each do |user|
     - name = user.first_name + ' ' + user.last_name
@@ -16,4 +17,5 @@
       %td= user.email
       %td= name
       %td= collection_select(:get, :character_id, characters, :id, :name)
-      %td= link_to 'New Character', new_for_user_character_path(user), class: "btn"
+      %td.ln= user.dragon_stamps
+      /%td= link_to 'New Character', new_for_user_character_path(user), class: "btn"
