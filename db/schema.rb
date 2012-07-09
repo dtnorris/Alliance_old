@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20120707120653) do
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.integer  "home_chapter"
     t.integer  "race_id"
     t.integer  "char_class_id"
     t.integer  "experience_points"
@@ -90,9 +91,9 @@ ActiveRecord::Schema.define(:version => 20120707120653) do
     t.integer  "start_stamps"
     t.integer  "end_stamps"
     t.string   "reason"
-    t.boolean  "dragon"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.boolean  "dragon_stamps"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -106,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20120707120653) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "dragon_stamps"
     t.string   "first_name"
     t.string   "last_name"
   end

@@ -36,6 +36,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       # Uncomment below if timestamps were not included in your original model.
       # t.timestamps
+
+      t.integer :dragon_stamps
     end
 
     add_index :users, :email,                :unique => true
