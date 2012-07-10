@@ -59,7 +59,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       if !another_like_me
         if @member.save 
-          format.html { redirect_to edit_user_path(current_user.id), notice: 'Member was successfully created.' }
+          format.html { redirect_to edit_user_path(@member.user_id), notice: 'Member was successfully created.' }
           format.json { render json: @member, status: :created, location: @member }
         end
       else

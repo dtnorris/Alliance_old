@@ -8,11 +8,11 @@ describe "basic navigation" do
     click_button "Sign in"
   end
 
-  it "allows a user to view home tab" do
-    visit "/"
-    page.should have_content("Alliance Character and Player Management Tool")
-    page.should have_content("Welcome")
-  end
+  # it "allows a user to view home tab" do
+  #   visit "/"
+  #   page.should have_content("Alliance Character and Player Management Tool")
+  #   page.should have_content("Welcome")
+  # end
 
   it "allows a user to view Character tab" do
     visit "/characters"
@@ -32,7 +32,7 @@ describe "basic navigation" do
 
   it "allows a user to view User page" do
     visit "/users/1"
-    page.should have_content("User Home Page")
+    page.should have_content("Home For: Dreaming Further")
   end
 
 

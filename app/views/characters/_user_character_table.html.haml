@@ -10,7 +10,7 @@
     / %th
     / %th
     / %th
-  - @characters = Character.find_all_by_user_id(params[:id]) unless @characters
+  - @characters = Character.find_all_by_user_id(@user.id) unless @characters
   - @characters.each do |character|
     %tr
       -#%td= link_to 'Edit', edit_character_path(character), class: "btn"

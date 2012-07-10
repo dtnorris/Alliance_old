@@ -32,9 +32,13 @@ Alliance::Application.routes.draw do
     end
   end
   resources :character_skills
+
+  resources :events
+
   resources :chapters
 
-  root :to => 'pages#home'
+  # root :to => 'pages#home'
+   root :to => 'users#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

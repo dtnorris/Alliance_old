@@ -1,4 +1,5 @@
-%h2 Edit my Account
+- user_head = 'Edit: ' + @user.first_name + ' ' + @user.last_name
+%h2= user_head
 = render 'user_navbar'
 
 .span3

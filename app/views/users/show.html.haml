@@ -1,4 +1,5 @@
-%h2 User Home Page
+- user_head = 'Home For: ' + @user.first_name + ' ' + @user.last_name
+%h2= user_head
 = render 'user_navbar'
 
 %h2 Characters

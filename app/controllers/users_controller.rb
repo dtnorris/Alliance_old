@@ -12,7 +12,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) if params[:id]
+    @user = User.find(current_user.id) unless @user
+    
     @members = Member.find_all_by_user_id(@user.id)
 
     respond_to do |format|
