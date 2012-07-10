@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id]) if params[:id]
     @user = User.find(current_user.id) unless @user
-    
+
     @members = Member.find_all_by_user_id(@user.id)
 
     respond_to do |format|
@@ -80,6 +80,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        #flash[:alert] = "New user created successfully!"
         format.html { redirect_to chapter_path(@member.chapter_id), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
