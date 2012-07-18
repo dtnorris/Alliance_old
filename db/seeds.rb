@@ -132,7 +132,7 @@ if Rails.env != 'test'
   Member.create(user_id: 1, chapter_id:2, goblin_stamps: 0)
   Member.create(user_id: 4, chapter_id:1, goblin_stamps: 0)
 
-  Character.create(name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
-  Character.create(name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 2)
-  Character.create(name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
+  Character.create(home_chapter: 'Caldaria', name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
+  Character.create(home_chapter: 'Caldaria', name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 2)
+  Character.create(home_chapter: 'Caldaria', name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
 end

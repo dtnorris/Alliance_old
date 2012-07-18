@@ -15,6 +15,7 @@ class Character < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :race_id
   validates_presence_of :char_class_id
+  validates_presence_of :home_chapter
   validate :legal_spent_build
 
   def self.memberships_of_user(id)

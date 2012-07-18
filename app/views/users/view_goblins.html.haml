@@ -7,14 +7,14 @@
 
 %table.table.users-table
   %tr
+    %th Amount Changed
     %th Start Goblins
     %th End Goblins
-    %th Amount Changed
     %th Reason
 
-  - @all_goblins.each do |goblin|
+  - @all_goblins.reverse.each do |goblin|
     %tr
+      %td= goblin.end_stamps - goblin.start_stamps
       %td= goblin.start_stamps
       %td= goblin.end_stamps
-      %td= goblin.end_stamps - goblin.start_stamps
       %td= goblin.reason
