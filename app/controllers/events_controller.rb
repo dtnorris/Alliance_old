@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     if session[:chapter_id_for_new_user]
-      session.data.delete :chapter_id_for_new_user
+      session.delete :chapter_id_for_new_user
     end
 
     respond_to do |format|
