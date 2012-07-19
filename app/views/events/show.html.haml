@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Chapter:
+  = @event.chapter_id
+%p
+  %b Xp value:
+  = @event.xp_value
+%p
+  %b Date:
+  = @event.date
+%p
+  %b Name:
+  = @event.name
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path
