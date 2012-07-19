@@ -1,5 +1,7 @@
 Alliance::Application.routes.draw do
   
+  resources :patron_xps
+
   resources :members do
     collection do
       get :alliance_player

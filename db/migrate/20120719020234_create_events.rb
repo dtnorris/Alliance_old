@@ -5,6 +5,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer :xp_value
       t.date :date
       t.string :name
+      t.boolean :applied
 
       t.timestamps
     end
