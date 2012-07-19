@@ -14,6 +14,7 @@ class ChaptersController < ApplicationController
   # GET /chapters/1.json
   def show
     @chapter = Chapter.find(params[:id])
+    @events = Event.find_all_by_chapter_id(@chapter.id)
     @members = Member.find_all_by_chapter_id(@chapter.id)
     @users = []
     @members.each do |memb|

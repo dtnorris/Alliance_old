@@ -1,25 +1,5 @@
-%h1 Listing events
+%h1 All Alliance Members
+%p#notice= notice
 
-%table
-  %tr
-    %th Chapter
-    %th Xp value
-    %th Date
-    %th Name
-    %th
-    %th
-    %th
+= render 'event_table'
 
-  - @events.each do |event|
-    %tr
-      %td= event.chapter_id
-      %td= event.xp_value
-      %td= event.date
-      %td= event.name
-      %td= link_to 'Show', event
-      %td= link_to 'Edit', edit_event_path(event)
-      %td= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Event', new_event_path

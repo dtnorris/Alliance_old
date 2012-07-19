@@ -1,0 +1,27 @@
+%table.table.xp-table
+  %tr
+    %th Chapter
+    %th Name
+    %th Xp value
+    %th Date
+    %th Applied?
+    %th
+    %th
+    /%th
+    %th
+
+  - @events.reverse.each do |event|
+    %tr
+      %td= Chapter.find(event.chapter_id).name
+      %td= event.name
+      %td.ln= event.xp_value
+      %td= event.date
+      - if event.applied == true
+        %td.ln Yes
+      - else
+        %td.ln No
+      %td= link_to 'Apply Event', apply_event_path(event), class: "btn", method: :put
+      %td= link_to 'Show', event, class: "btn"
+      /%td= link_to 'Edit', edit_event_path(event), class: "btn"
+      %td= link_to 'Destroy', event, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
+

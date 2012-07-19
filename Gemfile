@@ -37,7 +37,7 @@ group :test, :development do
 
   gem 'factory_girl_rails', '~> 2.0'
  
-  gem "cucumber-rails", require: false
+  #gem "cucumber-rails", require: false
 
   gem "capybara"
   #gem 'capybara-webkit', '0.11.0'
@@ -49,7 +49,7 @@ group :test, :development do
 end
 
 group :test do
-  gem "cucumber-rails"
+  gem 'cucumber-rails'
   gem 'database_cleaner'
 end
 

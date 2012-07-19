@@ -2,10 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :chapter_id
-    = f.input :xp_value
-    = f.input :date
     = f.input :name
+    = f.input :date
+    = f.input :xp_value
+    = f.input :chapter_id, :input_html => { :value => session[:chapter_id_for_new_user]}
 
   .form-actions
     = f.button :submit

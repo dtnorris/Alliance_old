@@ -3,6 +3,9 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    if session[:chapter_id_for_new_user]
+      session.data.delete :chapter_id_for_new_user
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +17,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @chapter = Chapter.find(@event.chapter_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +29,7 @@ class EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
+    @chapter = Chapter.find(session[:chapter_id_for_new_user])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,13 +46,37 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
+    @chapter = Chapter.find(session[:chapter_id_for_new_user])
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @chapter, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to new_event_path, notice: 'Error creating Event, missing required fields.' }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /events/1/apply
+  def apply
+    @event = Event.find(params[:id])
+    @event.applied = true
+    @event.save
+    if session[:chapter_id_for_new_user]
+      @chapter = Chapter.find(session[:chapter_id_for_new_user])
+    end
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+        if @chapter
+          format.html { redirect_to @chapter, notice: 'Event was successfully updated.' }
+        else
+          format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
+        end
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end

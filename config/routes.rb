@@ -35,7 +35,11 @@ Alliance::Application.routes.draw do
   end
   resources :character_skills
 
-  resources :events
+  resources :events do
+    member do
+      put :apply
+    end
+  end
 
   resources :chapters
 

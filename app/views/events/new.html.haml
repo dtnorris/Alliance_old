@@ -1,5 +1,6 @@
 %h1 New event
+.error1= notice
+%ul.nav.nav-tabs
+  %li= link_to 'Back', @chapter, class: "btn"
 
 = render 'form'
-
-= link_to 'Back', events_path
