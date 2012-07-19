@@ -4,6 +4,7 @@ class Character < ActiveRecord::Base
   belongs_to :char_class
   has_many :character_skill
   has_many :xp_track
+  has_many :patron_xp
 
   after_create :purchase_racial_skills
 

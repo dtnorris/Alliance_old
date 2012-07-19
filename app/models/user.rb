@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_many :character
   has_many :member
+  has_many :patron_xp
 
   validates_presence_of :first_name
   validates_presence_of :last_name
