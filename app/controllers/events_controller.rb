@@ -75,9 +75,8 @@ class EventsController < ApplicationController
   # PUT /events/1/apply
   def apply
     @event = Event.find(params[:id])
-    #TODO refactor into model
-    @event.applied = true
-    @event.save
+    @event.apply_blanket
+    
     if session[:chapter_id_for_new_user]
       @chapter = Chapter.find(session[:chapter_id_for_new_user])
     end

@@ -15,10 +15,6 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
 
-  # def self.find_all_memberships
-  #   Member.find_all_by_user_id(id)
-  # end
-
   def all_patrons_xps
     characters = Character.find_all_by_user_id(id)
     patron_xps = []
