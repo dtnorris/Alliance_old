@@ -3,8 +3,8 @@ class CreatePatronXps < ActiveRecord::Migration
     create_table :patron_xps do |t|
       t.integer :character_id
       t.integer :event_id
-      t.integer :user_id
       t.boolean :applied
+      t.boolean :pc
 
       t.timestamps
     end

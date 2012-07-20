@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(:version => 20120719023700) do
   create_table "patron_xps", :force => true do |t|
     t.integer  "character_id"
     t.integer  "event_id"
-    t.integer  "user_id"
     t.boolean  "applied"
+    t.boolean  "pc"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

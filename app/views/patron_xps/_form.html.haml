@@ -2,10 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :character_id
-    = f.input :event_id
-    = f.input :user_id
+    = f.button :submit, "Attend Event"
+    %p
+    = f.input :character_id, :label => 'Select Character:', :collection => @characters, :include_blank => false
+    = f.input :event_id, input_html: { value: @event.id }
+
     = f.input :applied
 
-  .form-actions
-    = f.button :submit

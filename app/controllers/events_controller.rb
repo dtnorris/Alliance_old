@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @in_national_show = true
     if session[:chapter_id_for_new_user]
       session.delete :chapter_id_for_new_user
     end
@@ -22,6 +23,18 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
+    end
+  end
+
+  # GET /events_for_chapter/1
+  def events_for_chapter
+    @chapter = Chapter.find(params[:id])
+    @events = Event.find_all_by_chapter_id(@chapter.id)
+    @user = User.find(session[:user_id_for_membership])
+    @in_user_show = true
+
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -62,6 +75,7 @@ class EventsController < ApplicationController
   # PUT /events/1/apply
   def apply
     @event = Event.find(params[:id])
+    #TODO refactor into model
     @event.applied = true
     @event.save
     if session[:chapter_id_for_new_user]

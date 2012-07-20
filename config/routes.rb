@@ -1,6 +1,11 @@
 Alliance::Application.routes.draw do
   
-  resources :patron_xps
+  resources :patron_xps do
+    member do
+      get :new_for_chapter
+      get :for_user
+    end
+  end
 
   resources :members do
     collection do
@@ -38,6 +43,7 @@ Alliance::Application.routes.draw do
   resources :events do
     member do
       put :apply
+      get :events_for_chapter
     end
   end
 

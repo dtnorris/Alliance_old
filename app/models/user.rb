@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
 
   has_many :character
   has_many :member
-  has_many :patron_xp
 
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -19,4 +18,14 @@ class User < ActiveRecord::Base
   # def self.find_all_memberships
   #   Member.find_all_by_user_id(id)
   # end
+
+  def all_patrons_xps
+    characters = Character.find_all_by_user_id(id)
+    patron_xps = []
+    characters.each do |c|
+      patron_xps += PatronXp.find_all_by_character_id(c)
+    end
+    patron_xps
+  end
+
 end

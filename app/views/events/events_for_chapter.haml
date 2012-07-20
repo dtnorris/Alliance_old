@@ -1,0 +1,7 @@
+%h1= 'Events for ' + @chapter.name
+
+%ul.nav.nav-tabs
+  %li= link_to 'Back', @user, class: "btn"
+
+= render 'event_table'
+

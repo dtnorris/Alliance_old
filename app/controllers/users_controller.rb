@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id]) if params[:id]
     @user = User.find(current_user.id) unless @user
+    session[:user_id_for_membership] = @user.id
+    if session[:chapter_id_for_new_user]
+      session.delete :chapter_id_for_new_user
+    end
 
     @members = Member.find_all_by_user_id(@user.id)
 
@@ -16,8 +20,13 @@ class UsersController < ApplicationController
 
   # GET /users/1/view_goblins
   def view_goblins
-    @user = User.find(params[:id])
-    @chapter_id = session[:chapter_id_for_new_user]
+    if session[:chapter_id_for_new_user]
+      @user = User.find(params[:id])
+      @chapter_id = session[:chapter_id_for_new_user]
+    elsif session[:user_id_for_membership]
+      @user = User.find(session[:user_id_for_membership])
+      @chapter_id = Chapter.find(params[:id]).id
+    end
     @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter_id)
     session[:user_id_for_new_stamps] = @user.id
     @stamp_track = StampTrack.new

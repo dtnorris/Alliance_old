@@ -1,17 +1,21 @@
 %table.table.users-table.xp-table
   %tr
+    %th Goblins
+    %th
     %th Chapter
     /%th User
-    %th Goblin stamps
-    /%th
+    %th
     /%th
     /%th
 
   - @members.each do |member|
+    - chapter = Chapter.find(member.chapter_id)
     %tr
-      %td= Chapter.find(member.chapter_id).name
-      /%td= member.user_id
       %td.ln= member.goblin_stamps
+      %td= link_to 'View Stamp Log', view_goblins_user_path(chapter.id), class: "btn"
+      %td= chapter.name
+      /%td= member.user_id
+      %td= link_to 'View Events', events_for_chapter_event_path(chapter.id), class: "btn"
       /%td= link_to 'Show', member
       /%td= link_to 'Edit', edit_member_path(member)
       /%td= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete

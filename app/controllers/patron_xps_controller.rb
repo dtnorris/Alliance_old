@@ -32,6 +32,31 @@ class PatronXpsController < ApplicationController
     end
   end
 
+  # GET /patron_xps/1/new_for_chapter
+  def new_for_chapter
+    @patron_xp = PatronXp.new
+    @user = User.find(session[:user_id_for_membership])
+    @characters = Character.find_all_by_user_id(@user.id)
+    @event = Event.find(params[:id])
+    @chapter = Chapter.find(@event.chapter_id)
+    session[:chapter_id_for_new_patron_xp] = @chapter.id
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @patron_xp }
+    end
+  end
+
+  def for_user
+    @user = User.find(params[:id])
+    @patron_xps = @user.all_patrons_xps
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @patron_xp }
+    end
+  end
+
   # GET /patron_xps/1/edit
   def edit
     @patron_xp = PatronXp.find(params[:id])
@@ -41,13 +66,15 @@ class PatronXpsController < ApplicationController
   # POST /patron_xps.json
   def create
     @patron_xp = PatronXp.new(params[:patron_xp])
+    @event = Event.find(@patron_xp.event_id)
+    @user = User.find(Character.find(@patron_xp.character_id).user_id)
 
     respond_to do |format|
       if @patron_xp.save
-        format.html { redirect_to @patron_xp, notice: 'Patron xp was successfully created.' }
+        format.html { redirect_to for_user_patron_xp_path(@user.id), notice: 'Patron xp was successfully created.' }
         format.json { render json: @patron_xp, status: :created, location: @patron_xp }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to new_for_chapter_patron_xp_path(@event.id), notice: 'Patron xp not successfully created.' }
         format.json { render json: @patron_xp.errors, status: :unprocessable_entity }
       end
     end

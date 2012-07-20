@@ -3,8 +3,7 @@
 %table
   %tr
     %th Character
-    %th Event
-    %th User
+    %th Event 
     %th Applied
     %th
     %th
@@ -14,7 +13,6 @@
     %tr
       %td= patron_xp.character_id
       %td= patron_xp.event_id
-      %td= patron_xp.user_id
       %td= patron_xp.applied
       %td= link_to 'Show', patron_xp
       %td= link_to 'Edit', edit_patron_xp_path(patron_xp)
