@@ -16,6 +16,6 @@ describe "basic navigation" do
     fill_in "Reason", with: "test goblin stamp add"
     click_button "Add/Remove Goblin Stamps"
     click_link "dreamingfurther@test.com"
-    page.should have_content("Caldaria 1000")
+    page.should have_content("1000 View Stamp Log Caldaria")
   end
 end

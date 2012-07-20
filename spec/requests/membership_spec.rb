@@ -20,7 +20,7 @@ describe "basic navigation" do
     click_link "Edit"
     select("Gaden", :from => "Chapter")
     click_button "Add Membership"
-    page.should have_content("Gaden 0")
+    page.should have_content("Gaden")
 
     select("Gaden", :from => "Chapter")
     click_button "Add Membership"

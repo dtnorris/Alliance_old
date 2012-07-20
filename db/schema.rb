@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(:version => 20120719023700) do
 
   create_table "xp_tracks", :force => true do |t|
     t.integer  "character_id"
-    t.integer  "patron_xp_id"
     t.integer  "start_xp"
     t.integer  "end_xp"
     t.integer  "start_build"
