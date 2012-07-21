@@ -3,8 +3,8 @@
 FactoryGirl.define do
   factory :chapter do
     owner "MyString"
-    email "MyString"
-    name "MyString"
-    location "MyString"
+    email "MyString@test.com"
+    name "MyStringPlace"
+    location "MS"
   end
 end

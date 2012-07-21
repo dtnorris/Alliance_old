@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :patron_xp do
-    character_id 1
-    event_id 1
-    user_id 1
+    character_id 2
+    event_id 2
     applied false
   end
 end

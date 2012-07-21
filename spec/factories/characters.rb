@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :character do
     home_chapter 'Caldaria'
     #id 1
-    user_id 1
+    user_id 2
     name 'Bob'
     race_id 11
     char_class_id 1

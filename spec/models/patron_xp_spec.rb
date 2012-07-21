@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe PatronXp do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:char) { FactoryGirl.create(:character) }
+  let!(:patron) { FactoryGirl.create(:patron_xp) }
+
+  it "should be able to call user_id" do
+    patron.user_id.should == 2
+  end
 end

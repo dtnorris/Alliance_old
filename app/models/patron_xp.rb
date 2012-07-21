@@ -10,7 +10,7 @@ class PatronXp < ActiveRecord::Base
   validates_presence_of :event_id
 
   def user_id
-    User.find(Character.find(self.character_id).user_id).user_id if self.character_id
+    User.find(Character.find(self.character_id).user_id).id if self.character_id
   end
 
   def apply_event

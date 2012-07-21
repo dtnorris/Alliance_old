@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :member do
-    chapter_id 1
-    user_id 1
+    chapter_id 2
+    user_id 2
     goblin_stamps 1
   end
 end

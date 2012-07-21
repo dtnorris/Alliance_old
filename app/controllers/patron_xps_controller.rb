@@ -40,7 +40,7 @@ class PatronXpsController < ApplicationController
 
   def for_user
     @user = User.find(params[:id])
-    @patron_xps = @user.all_patrons_xps
+    @patron_xps = @user.all_patron_xps
 
     respond_to do |format|
       format.html # new.html.erb

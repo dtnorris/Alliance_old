@@ -11,7 +11,7 @@ class XpTrack < ActiveRecord::Base
   end
 
   def character_id
-    Character.find(PatronXp.find(self.patron_xp_id).character_id).character_id
+    Character.find(PatronXp.find(self.patron_xp_id).character_id).id
   end
 
 end

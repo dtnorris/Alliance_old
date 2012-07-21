@@ -16,13 +16,7 @@ class Event < ActiveRecord::Base
     if applied != true
       self.applied = true
       PatronXp.find_all_by_event_id(self.id).each do |px|
-        event_type = EventType.find(event_type_id)
-        reason = self.event_reason(event_type)
-        xp = Character.find(px.character_id).add_xp(event_type.value, reason) unless px.applied == true
-        xp.patron_xp_id = px.id
-        xp.save
-        px.applied = true
-        px.save
+        px.apply_event
       end
       self.save
     end

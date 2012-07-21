@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :character
   has_many :member
 
+  validates_presence_of :email
   validates_presence_of :first_name
   validates_presence_of :last_name
 
@@ -31,7 +32,7 @@ class User < ActiveRecord::Base
     self.first_name + ' ' + self.last_name
   end
 
-  def all_patrons_xps
+  def all_patron_xps
     characters = Character.find_all_by_user_id(id)
     patron_xps = []
     characters.each do |c|
