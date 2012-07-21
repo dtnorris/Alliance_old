@@ -3,10 +3,9 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    
     @in_national_show = true
-    if session[:chapter_id_for_new_user]
-      session.delete :chapter_id_for_new_user
-    end
+    session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -76,10 +75,8 @@ class EventsController < ApplicationController
   def apply
     @event = Event.find(params[:id])
     @event.apply_blanket
-    
-    if session[:chapter_id_for_new_user]
-      @chapter = Chapter.find(session[:chapter_id_for_new_user])
-    end
+    @chapter = Chapter.find(session[:chapter_id_for_new_user]) if session[:chapter_id_for_new_user]
+
     respond_to do |format|
       if @event.update_attributes(params[:event])
         if @chapter

@@ -6,9 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) if params[:id]
     @user = User.find(current_user.id) unless @user
     session[:user_id_for_membership] = @user.id
-    if session[:chapter_id_for_new_user]
-      session.delete :chapter_id_for_new_user
-    end
+    session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
 
     @members = Member.find_all_by_user_id(@user.id)
 
