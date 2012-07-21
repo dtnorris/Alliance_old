@@ -18,7 +18,9 @@ class Event < ActiveRecord::Base
       PatronXp.find_all_by_event_id(self.id).each do |px|
         event_type = EventType.find(event_type_id)
         reason = self.event_reason(event_type)
-        Character.find(px.character_id).add_xp(event_type.value, reason) unless px.applied == true
+        xp = Character.find(px.character_id).add_xp(event_type.value, reason) unless px.applied == true
+        xp.patron_xp_id = px.id
+        xp.save
         px.applied = true
         px.save
       end
