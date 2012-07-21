@@ -23,6 +23,7 @@ class CharactersController < ApplicationController
 
   def xp_track
     @character = Character.find(params[:id])
+    @xp_tracks = XpTrack.find_all_by_character_id(@character.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,45 +47,53 @@ class CharactersController < ApplicationController
     @character = Character.find(params[:id])
   end
 
-  def xp_mod_day
-    @character = Character.find(params[:id])
-    @character.add_xp(0.5, 'Mod Day')
+  # def xp_mod_day
+  #   @character = Character.find(params[:id])
+  #   xp = @character.add_xp(0.5, 'Mod Day')
+  #   xp.patron_xp_id = 1
+  #   xp.save
 
-    respond_to do |format|
-      format.html { redirect_to xp_track_character_path(@character) }
-      format.json { render json: @characters }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to xp_track_character_path(@character) }
+  #     format.json { render json: @characters }
+  #   end
+  # end
 
-  def xp_one_day
-    @character = Character.find(params[:id])
-    @character.add_xp(1, 'One Day')
+  # def xp_one_day
+  #   @character = Character.find(params[:id])
+  #   xp = @character.add_xp(1, 'One Day')
+  #   xp.patron_xp_id = 1
+  #   xp.save
 
-    respond_to do |format|
-      format.html { redirect_to xp_track_character_path(@character) }
-      format.json { render json: @characters }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to xp_track_character_path(@character) }
+  #     format.json { render json: @characters }
+  #   end
+  # end
 
-  def xp_weekend
-    @character = Character.find(params[:id])
-    @character.add_xp(2, 'Weekend')
+  # def xp_weekend
+  #   @character = Character.find(params[:id])
+  #   xp = @character.add_xp(2, 'Weekend')
+  #   xp.patron_xp_id = 1
+  #   xp.save
 
-    respond_to do |format|
-      format.html { redirect_to xp_track_character_path(@character) }
-      format.json { render json: @characters }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to xp_track_character_path(@character) }
+  #     format.json { render json: @characters }
+  #   end
+  # end
 
-  def xp_long_weekend
-    @character = Character.find(params[:id])
-    @character.add_xp(3, 'Long Weekend')
+  # def xp_long_weekend
+  #   @character = Character.find(params[:id])
+  #   xp = @character.add_xp(3, 'Long Weekend')
+  #   xp.patron_xp_id = 1
+  #   xp.save
 
-    respond_to do |format|
-      format.html { redirect_to xp_track_character_path(@character) }
-      format.json { render json: @characters }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to xp_track_character_path(@character) }
+  #     format.json { render json: @characters }
+  #   end
+  # end
 
   # POST /characters
   # POST /characters.json

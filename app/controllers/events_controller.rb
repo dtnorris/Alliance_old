@@ -86,6 +86,7 @@ class EventsController < ApplicationController
     @patron_xp = PatronXp.find_by_event_id_and_character_id(@event.id, @character.id)
     
     respond_to do |format|
+      #debugger
       if @patron_xp.apply_event
         format.html { redirect_to @event, notice: 'Single Blanket successfully applied.' }
       else

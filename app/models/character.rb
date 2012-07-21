@@ -3,10 +3,7 @@ class Character < ActiveRecord::Base
   belongs_to :race
   belongs_to :char_class
   has_many :character_skill
-  has_many :xp_track
   has_many :patron_xp
-
-  #has_one :user_id
 
   after_create :purchase_racial_skills
 
@@ -30,13 +27,8 @@ class Character < ActiveRecord::Base
     chapters
   end
 
-  # def all_character_for_user
-  #   Character.find_all_by_user_id(self.user_id)
-  # end
-
   def add_xp(multiplier, reason)
     xp_track = XpTrack.create
-    xp_track.character_id = id
     xp_track.start_xp = experience_points
     xp_track.start_build = build_points
     xp_track.reason = reason
@@ -47,6 +39,7 @@ class Character < ActiveRecord::Base
     
     xp_track.end_build = build_points
     xp_track.save
+    xp_track
   end
 
   def update_body

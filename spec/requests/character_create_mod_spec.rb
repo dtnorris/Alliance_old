@@ -103,18 +103,18 @@ describe "character creation and modification" do
     page.should have_content("You do not have the necessary build for this update")
   end
 
-  it "should be able to add xp on the xp tracking page" do
-    visit "/characters"
-    click_link "View"
-    click_link "XP Track"
-    click_link "Mod Day"
-    click_link "One Day"
-    click_link "Weekend"
-    click_link "Long Weekend"
-    #save_and_open_page
-    page.should have_content("Experience Point Tracking for: Bob")
-    page.should have_content("Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:")
-    page.should have_content("30 40 10 70 160 Long Weekend")
-  end
+  # it "should be able to add xp on the xp tracking page" do
+  #   visit "/characters"
+  #   click_link "View"
+  #   click_link "XP Track"
+  #   click_link "Mod Day"
+  #   click_link "One Day"
+  #   click_link "Weekend"
+  #   click_link "Long Weekend"
+  #   #save_and_open_page
+  #   page.should have_content("Experience Point Tracking for: Bob")
+  #   page.should have_content("Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:")
+  #   page.should have_content("30 40 10 70 160 Long Weekend")
+  # end
 
 end

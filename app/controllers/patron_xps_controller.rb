@@ -56,14 +56,13 @@ class PatronXpsController < ApplicationController
   # POST /patron_xps
   # POST /patron_xps.json
   def create
-    @user = User.find(params[:patron_xp][:user_id])
+    @user = User.find(params[:patron_xp][:user_id]) unless session[:user_id_for_membership]
+    @user = User.find(session[:user_id_for_membership])
     params[:patron_xp].delete("user_id")
-    #debugger
+    params[:patron_xp][:event_id] = session[:event_id_for_new_patron_xp] if session[:event_id_for_new_patron_xp]
+    params[:patron_xp][:event_id] = session[:event_id_for_single_blanket] unless params[:patron_xp][:event_id]
     @patron_xp = PatronXp.new(params[:patron_xp])
-    @patron_xp.event_id = session[:event_id_for_new_patron_xp] if session[:event_id_for_new_patron_xp]
-    @patron_xp.event_id = session[:event_id_for_single_blanket] unless @patron_xp.event_id
     @event = Event.find(@patron_xp.event_id)
-    #@user = User.find(Character.find(@patron_xp.character_id).user_id)
 
     respond_to do |format|
       if @patron_xp.save
@@ -74,8 +73,12 @@ class PatronXpsController < ApplicationController
           format.json { render json: @patron_xp, status: :created, location: @patron_xp }
         end
       else
-        format.html { redirect_to new_for_chapter_patron_xp_path(@event.id), notice: 'Patron xp not successfully created.' }
-        format.json { render json: @patron_xp.errors, status: :unprocessable_entity }
+        if session[:event_id_for_single_blanket]
+          format.html { redirect_to @event, notice: 'Patron not successfuly added' }
+        else
+          format.html { redirect_to new_for_chapter_patron_xp_path(@event.id), notice: 'Patron xp not successfully added' }
+          format.json { render json: @patron_xp.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

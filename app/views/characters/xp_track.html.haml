@@ -2,12 +2,12 @@
 
 = render 'character_nav_tabs'
 
-%table.table.xp-table
-  %tr
-    %td= link_to 'Mod Day', xp_mod_day_character_path(@character), class: "btn", method: :put
-    %td= link_to 'One Day', xp_one_day_character_path(@character), class: "btn", method: :put
-    %td= link_to 'Weekend', xp_weekend_character_path(@character), class: "btn", method: :put
-    %td= link_to 'Long Weekend', xp_long_weekend_character_path(@character), class: "btn", method: :put
+/%table.table.xp-table
+/  %tr
+/    %td= link_to 'Mod Day', xp_mod_day_character_path(@character), class: "btn", method: :put
+/    %td= link_to 'One Day', xp_one_day_character_path(@character), class: "btn", method: :put
+/    %td= link_to 'Weekend', xp_weekend_character_path(@character), class: "btn", method: :put
+/    %td= link_to 'Long Weekend', xp_long_weekend_character_path(@character), class: "btn", method: :put
 
 %table.table.xp-table
   %tr
@@ -18,7 +18,7 @@
     %th Start XP:
     %th Final XP:
     %th Reason Added:
-  - all_xp = XpTrack.find_all_by_character_id(@character.id)
+  - all_xp = @xp_tracks
   - all_xp.reverse.each do |xp|
     %tr
       /%td= xp.id

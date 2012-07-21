@@ -1,4 +1,3 @@
-
 FactoryGirl.define do
   factory :character do
     home_chapter 'Caldaria'

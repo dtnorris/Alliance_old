@@ -6,15 +6,15 @@ describe CharacterSkill do
   let!(:skill_shield) { Skill.find(32) }
 
   it "can add_skill" do
-    CharacterSkill.all.count.should == 0
+    CharacterSkill.find_all_by_character_id(char.id).count.should == 0
     CharacterSkill.add_skill(char.id, skill_smith.id)
-    CharacterSkill.all.count.should == 1
+    CharacterSkill.find_all_by_character_id(char.id).count.should == 1
     CharacterSkill.add_skill(char.id, skill_smith.id)
-    CharacterSkill.all.count.should == 1
+    CharacterSkill.find_all_by_character_id(char.id).count.should == 1
     CharacterSkill.add_skill(char.id, skill_shield.id)
-    CharacterSkill.all.count.should == 2
+    CharacterSkill.find_all_by_character_id(char.id).count.should == 2
     CharacterSkill.add_skill(char.id, skill_shield.id)
-    CharacterSkill.all.count.should == 2
+    CharacterSkill.find_all_by_character_id(char.id).count.should == 2
   end
 
   it "can purchase_skill" do

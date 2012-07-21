@@ -9,7 +9,6 @@ class Event < ActiveRecord::Base
   validates_presence_of :event_type_id
 
   def event_reason(event_type)
-    #debugger
     event_type.name + ' for ' + Chapter.find(self.chapter_id).name + ' on ' + self.date.to_s
   end
 

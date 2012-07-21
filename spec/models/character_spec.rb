@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "character" do
-  let(:char) { FactoryGirl.create(:character) }
+  let!(:char) { FactoryGirl.create(:character) }
   let(:hb_char) do 
     hb = FactoryGirl.create(:character)
     hb.experience_points = 100000
@@ -10,19 +10,19 @@ describe "character" do
     hb
   end
 
-  it "it adds xp tracking when calling update_xp_and_build" do
-    XpTrack.all.count.should == 0
-    char.add_xp(1, "Test One Day")
-    xp = XpTrack.all.first
+  # it "it adds xp tracking when calling update_xp_and_build" do
+  #   XpTrack.all.count.should == 0
+  #   char.add_xp(1, "Test One Day")
+  #   xp = XpTrack.all.first
     
-    XpTrack.all.count.should == 1
-    xp.character_id.should == 1
-    xp.start_xp.should == 0
-    xp.end_xp.should == 15
-    xp.start_build.should == 15
-    xp.end_build.should == 20
-    xp.reason.should == "Test One Day"
-  end
+  #   XpTrack.all.count.should == 1
+  #   xp.character_id.should == 1
+  #   xp.start_xp.should == 0
+  #   xp.end_xp.should == 15
+  #   xp.start_build.should == 15
+  #   xp.end_build.should == 20
+  #   xp.reason.should == "Test One Day"
+  # end
 
   it "updates body points on save" do
     char.body_points == 6
@@ -33,11 +33,11 @@ describe "character" do
     char.experience_points.should == 30
   end
 
-  it "should calculate updated build based on xp before save" do
-    char.add_xp(2, "Test Weekend")
-    char.save 
-    char.build_points.should == 25
-  end
+  # it "should calculate updated build based on xp before save" do
+  #   char.add_xp(2, "Test Weekend")
+  #   char.save 
+  #   char.build_points.should == 25
+  # end
 
   it "should calculate spent build off asociated skills" do
     CharacterSkill.add_skill(hb_char.id, 2) #3

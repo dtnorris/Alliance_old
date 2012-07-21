@@ -142,7 +142,6 @@ ActiveRecord::Schema.define(:version => 20120721042911) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "xp_tracks", :force => true do |t|
-    t.integer  "character_id"
     t.integer  "patron_xp_id"
     t.integer  "start_xp"
     t.integer  "end_xp"
