@@ -8,17 +8,29 @@
 %ul.nav.nav-tabs
   %li= link_to 'Back', path, class: "btn"
 
-%p
-  %b Chapter:
-  = @event.chapter_id
-%p
-  %b Xp value:
-  = @event.xp_value
-%p
-  %b Date:
-  = @event.date
-%p
-  %b Name:
-  = @event.name
+.span3
+  %table.table
+    %tr
+      %th Name:
+      %td= @event.name
+    %tr
+      %th Date:
+      %td= @event.date
+    %tr
+      %th Chapter:
+      %td= Chapter.find(@event.chapter_id).name
+    %tr
+      %th Event Type:
+      %td= EventType.find(@event.event_type_id).name
+    %tr
+      %th Applied?
+      - if @event.applied != true
+        %td false
+      - else
+        %td= @event.applied
 
-= link_to 'Edit', edit_event_path(@event)
+.span3
+  = render 'patron_xps/new_patron_from_chapter'
+
+.span7
+  = render 'patron_xps/event_patrons'

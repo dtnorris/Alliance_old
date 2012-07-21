@@ -1,0 +1,33 @@
+%h3 Listing Patrons for Event
+%p
+
+%table.table.xp-table
+  %tr
+    %th Player Name
+    %th PC/NPC
+    %th Character
+    %th Level
+    %th Applied
+    %th
+    /%th
+    /%th
+
+  - @patron_xps.each do |patron_xp|
+    - character = Character.find(patron_xp.character_id)
+    - user = User.find(character.user_id)
+    %tr
+      %td= user.first_name + ' ' + user.last_name
+      - if patron_xp.pc == true
+        %td PC
+      - else
+        %td NPC
+      %td= character.name
+      %td= (character.build_points - 5) / 10
+      %td= patron_xp.applied
+      - if patron_xp.applied != true
+        %td= link_to 'Apply Event', apply_to_single_character_event_path(character.id), class: "btn", :method => :put
+      - else
+        %td= button_to 'Apply Event', patron_xp, class: "btn", :disabled => true
+      /%td= link_to 'Show', patron_xp
+      /%td= link_to 'Edit', edit_patron_xp_path(patron_xp)
+      /%td= link_to 'Destroy', patron_xp, :confirm => 'Are you sure?', :method => :delete

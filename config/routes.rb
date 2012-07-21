@@ -44,6 +44,7 @@ Alliance::Application.routes.draw do
     member do
       put :apply
       get :events_for_chapter
+      put :apply_to_single_character
     end
   end
 

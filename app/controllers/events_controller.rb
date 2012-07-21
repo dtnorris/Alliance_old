@@ -18,6 +18,12 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @chapter = Chapter.find(@event.chapter_id)
+    @members = Member.find_all_by_chapter_id(@chapter.id)
+    @users = User.all_for_given_members(@members)
+    @patron_xp = PatronXp.new
+    @patron_xps = PatronXp.find_all_by_event_id(@event.id)
+    session[:event_id_for_single_blanket] = @event.id
+    session.delete :event_id_for_new_patron_xp if session[:event_id_for_new_patron_xp]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,8 +63,10 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
     @chapter = Chapter.find(session[:chapter_id_for_new_user])
+
+    @event = Event.new(params[:event])
+    @event.chapter_id = @chapter.id
 
     respond_to do |format|
       if @event.save
@@ -67,6 +75,21 @@ class EventsController < ApplicationController
       else
         format.html { redirect_to new_event_path, notice: 'Error creating Event, missing required fields.' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /events/1/apply_to_single_character
+  def apply_to_single_character
+    @event = Event.find(session[:event_id_for_single_blanket])
+    @character = Character.find(params[:id])
+    @patron_xp = PatronXp.find_by_event_id_and_character_id(@event.id, @character.id)
+    
+    respond_to do |format|
+      if @patron_xp.apply_event
+        format.html { redirect_to @event, notice: 'Single Blanket successfully applied.' }
+      else
+        format.html { redirect_to @event, notice: 'Error applying event blanket' }
       end
     end
   end

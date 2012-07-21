@@ -1,11 +1,16 @@
+
+/= collection_select(:get, :user_id, @users, :id, :full_name)
+/%p
+
 = simple_form_for(@patron_xp) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.button :submit, "Attend Event"
-    %p
-    = f.input :character_id, :label => 'Select Character:', :collection => @characters, :include_blank => false
+    = f.input :character_id, :label => 'Select Character:', :collection => Character.all, :include_blank => false
     = f.input :pc, :label => 'PC or NPC', :collection => {"NPC" => 0, "PC" => 1}, :include_blank => false
+
+    %p
+    = f.button :submit, "Attend Event"
     /= f.input :event_id, input_html: { value: @event.id }
 
     /= f.input :applied

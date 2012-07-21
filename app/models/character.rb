@@ -26,7 +26,7 @@ class Character < ActiveRecord::Base
       chapters << Chapter.find(ch.chapter_id)
     end
     chapters
-  end    
+  end
 
   def add_xp(multiplier, reason)
     xp_track = XpTrack.create

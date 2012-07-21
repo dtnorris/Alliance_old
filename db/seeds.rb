@@ -6,6 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+EventType.create(name: 'Module Day', value: 0.5)
+EventType.create(name: 'Faire Day', value: 1)
+EventType.create(name: 'Goblin Blanket', value: 1)
+EventType.create(name: 'Dragon Blanket', value: 1)
+EventType.create(name: 'Weekend Event', value: 2)
+EventType.create(name: 'Long Weekend Event', value: 3)
+
 Race.create(name: 'Barbarian', body_mod: 2)
 Race.create(name: 'Biata', body_mod: 0)
 Race.create(name: 'Dark Elf', body_mod: -1)

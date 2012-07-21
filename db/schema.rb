@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719023700) do
+ActiveRecord::Schema.define(:version => 20120721042911) do
 
   create_table "chapters", :force => true do |t|
     t.string   "owner"
@@ -55,14 +55,21 @@ ActiveRecord::Schema.define(:version => 20120719023700) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "event_types", :force => true do |t|
+    t.string   "name"
+    t.float    "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.integer  "chapter_id"
-    t.integer  "xp_value"
+    t.integer  "event_type_id"
     t.date     "date"
     t.string   "name"
     t.boolean  "applied"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "members", :force => true do |t|
@@ -76,10 +83,10 @@ ActiveRecord::Schema.define(:version => 20120719023700) do
   create_table "patron_xps", :force => true do |t|
     t.integer  "character_id"
     t.integer  "event_id"
-    t.boolean  "applied"
+    t.boolean  "applied",      :default => false
     t.boolean  "pc"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "races", :force => true do |t|
@@ -136,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20120719023700) do
 
   create_table "xp_tracks", :force => true do |t|
     t.integer  "character_id"
+    t.integer  "patron_xp_id"
     t.integer  "start_xp"
     t.integer  "end_xp"
     t.integer  "start_build"

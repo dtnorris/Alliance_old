@@ -16,10 +16,7 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @events = Event.find_all_by_chapter_id(@chapter.id)
     @members = Member.find_all_by_chapter_id(@chapter.id)
-    @users = []
-    @members.each do |memb|
-      @users << User.find(memb.user_id)
-    end
+    @users = User.all_for_given_members(@members)
     @characters = Character.find_all_by_home_chapter(@chapter.id)
     session[:chapter_id_for_new_user] = params[:id]
     @in_chapter_show = true

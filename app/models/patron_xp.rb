@@ -8,4 +8,13 @@ class PatronXp < ActiveRecord::Base
 
   validates_presence_of :character_id
   validates_presence_of :event_id
+
+  def apply_event
+    event = Event.find(self.event_id)
+    event_type = EventType.find(event.event_type_id)
+    reason = event.event_reason(event_type)
+    Character.find(self.character_id).add_xp(event_type.value, reason)
+    self.applied = true
+    self.save
+  end
 end

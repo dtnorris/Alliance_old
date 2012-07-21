@@ -2,7 +2,7 @@
   %tr
     %th Chapter
     %th Name
-    %th Xp value
+    %th Event Type
     %th Date
     %th Applied?
     - if @in_chapter_show
@@ -17,16 +17,20 @@
     %tr
       %td= chapter.name
       %td= event.name
-      %td.ln= event.xp_value
+      %td= EventType.find(event.event_type_id).name
       %td= event.date
       - if event.applied == true
         %td.ln Yes
       - else
         %td.ln No
+      - if @in_chapter_show
+        - if event.applied == true
+          %td= button_to 'Apply Event', @chapter, class: "btn", :disabled => true
+          /%td= link_to 'Apply Event', @chapter, class: "btn", method: :put, :disabled => true
+        - else
+          %td= link_to 'Apply Event', apply_event_path(event), class: "btn", method: :put
       - if @in_chapter_show or @in_national_show
         %td= link_to 'View', event, class: "btn"
-      - if @in_chapter_show
-        %td= link_to 'Apply Event', apply_event_path(event), class: "btn", method: :put
         /%td= link_to 'Edit', edit_event_path(event), class: "btn"
         %td= link_to 'Destroy', event, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
       - if @in_user_show

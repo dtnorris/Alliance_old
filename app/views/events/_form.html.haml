@@ -4,8 +4,7 @@
   .form-inputs
     = f.input :name
     = f.input :date
-    = f.input :xp_value
-    = f.input :chapter_id, :input_html => { :value => session[:chapter_id_for_new_user]}
+    = f.input :event_type_id, :label => 'Event Type', :collection => EventType.all, :include_blank => false
+    /= f.input :chapter_id, :input_html => { :value => session[:chapter_id_for_new_user]}
 
-  .form-actions
     = f.button :submit

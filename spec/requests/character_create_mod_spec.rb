@@ -111,8 +111,9 @@ describe "character creation and modification" do
     click_link "One Day"
     click_link "Weekend"
     click_link "Long Weekend"
+    #save_and_open_page
     page.should have_content("Experience Point Tracking for: Bob")
-    page.should have_content("id: Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:")
+    page.should have_content("Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:")
     page.should have_content("30 40 10 70 160 Long Weekend")
   end
 
