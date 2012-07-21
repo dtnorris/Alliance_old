@@ -4,6 +4,7 @@ describe "character" do
   let!(:char) { FactoryGirl.create(:character) }
   let(:hb_char) do 
     hb = FactoryGirl.create(:character)
+    #debugger
     hb.experience_points = 100000
     hb.build_points = 150
     hb.save
@@ -25,6 +26,7 @@ describe "character" do
   # end
 
   it "updates body points on save" do
+    #debugger
     char.body_points == 6
   end
 

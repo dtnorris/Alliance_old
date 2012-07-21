@@ -14,7 +14,7 @@
   - @characters.each do |character|
     %tr
       -#%td= link_to 'Edit', edit_character_path(character), class: "btn"
-      %td= link_to 'Delete', character, :confirm => 'Are you sure?', method: :delete, class: "btn"
+      %td= link_to 'Delete', character, :data => { :confirm => 'Are you sure?' }, method: :delete, class: "btn"
       %td= link_to 'View', character_path(character), class: "btn"
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)

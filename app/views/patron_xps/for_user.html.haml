@@ -25,4 +25,4 @@
       %td= patron_xp.applied
       /%td= link_to 'Show', patron_xp, class: "btn"
       /%td= link_to 'Edit', edit_patron_xp_path(patron_xp), class: "btn"
-      %td= link_to 'Destroy', patron_xp, :confirm => 'Are you sure?', :method => :delete, class: "btn"
+      %td= link_to 'Destroy', patron_xp, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
