@@ -56,11 +56,14 @@ class PatronXpsController < ApplicationController
   # POST /patron_xps
   # POST /patron_xps.json
   def create
+    @user = User.find(params[:patron_xp][:user_id])
+    params[:patron_xp].delete("user_id")
+    #debugger
     @patron_xp = PatronXp.new(params[:patron_xp])
     @patron_xp.event_id = session[:event_id_for_new_patron_xp] if session[:event_id_for_new_patron_xp]
     @patron_xp.event_id = session[:event_id_for_single_blanket] unless @patron_xp.event_id
     @event = Event.find(@patron_xp.event_id)
-    @user = User.find(Character.find(@patron_xp.character_id).user_id)
+    #@user = User.find(Character.find(@patron_xp.character_id).user_id)
 
     respond_to do |format|
       if @patron_xp.save

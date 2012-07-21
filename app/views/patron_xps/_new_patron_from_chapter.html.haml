@@ -6,7 +6,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :character_id, :label => 'Select Character:', :collection => Character.all, :include_blank => false
+    = f.input :user_id, :label => 'Select a Member:', :collection => @users
+    = f.input :character_id, :collection => @users, :as => :grouped_select, :group_method => :all_characters_for_user, :include_blank => true
+    /= f.input :character_id, :label => 'Select Character:', :collection => Character.all
     = f.input :pc, :label => 'PC or NPC', :collection => {"NPC" => 0, "PC" => 1}, :include_blank => false
 
     %p

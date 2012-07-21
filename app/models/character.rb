@@ -6,6 +6,8 @@ class Character < ActiveRecord::Base
   has_many :xp_track
   has_many :patron_xp
 
+  #has_one :user_id
+
   after_create :purchase_racial_skills
 
   before_save :update_xp_and_build
@@ -27,6 +29,10 @@ class Character < ActiveRecord::Base
     end
     chapters
   end
+
+  # def all_character_for_user
+  #   Character.find_all_by_user_id(self.user_id)
+  # end
 
   def add_xp(multiplier, reason)
     xp_track = XpTrack.create

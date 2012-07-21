@@ -23,7 +23,11 @@ class User < ActiveRecord::Base
     users
   end
 
-  def full_name
+  def all_characters_for_user
+    Character.find_all_by_user_id(self.id)
+  end
+
+  def name
     self.first_name + ' ' + self.last_name
   end
 
