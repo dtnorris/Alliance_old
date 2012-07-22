@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
     c = Chapter.find_by_location(chapter_location)
     count = 0
     email_count = 0
+    imported_count = 0
     data.each do |row|
       hash = {}
       goblins = row[:Goblin] 
@@ -36,21 +37,23 @@ class User < ActiveRecord::Base
         puts "record: #{count} not imported, missing last name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}"
         import = false
       elsif hash['email'].blank?
-        hash['email'] = hash['first_name'] + '_' + hash['last_name'] + '@test.com'
+        hash['email'] = hash['first_name'] + '_' + hash['last_name'] + '@' + c.name + '.com'
         email_count += 1
         import = true
       else
         import = true
       end
-      #debugger
       if import
-        us = User.create hash
+        us = User.find_by_first_name_and_last_name(hash['first_name'], hash['last_name'])
+        us = User.create hash unless us
         Member.data_import c.id, us.id, goblins.to_i
         StampTrack.data_import c.id, us.id, goblins.to_i
+        imported_count += 1
       end
       count += 1
     end
-    puts "#{email_count}: records missing emails, defaults created <first_name>_<last_name>@test.com"
+    puts "#{email_count}: records missing emails, defaults created <first_name>_<last_name>@#{c.name}.com"
+    puts "#{count}: total records, #{imported_count}: records imported"
   end
 
   def self.all_for_given_members(members)

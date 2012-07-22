@@ -143,9 +143,9 @@ PatronXp.create(character_id: 1, event_id: 1, pc: false)
 if Rails.env != 'test'
   Chapter.create(name: 'T_Chapter_2', owner: 'Owner Two', email: 'gm@test.com', location: "TS2")
 
-  User.create(email: 'national@test.com', first_name: 'Mike', last_name: 'Ventrela', password: 'txt@1234', dragon_stamps: 0, role_id: 4)
-  User.create(email: 'chapter@test.com', first_name: 'Paige', last_name: 'Hubble', password: 'txt@1234', dragon_stamps: 0, role_id: 2)
-  User.create(email: 'player@test.com', first_name: 'Ryan', last_name: 'Burke', password: 'txt@1234', dragon_stamps: 0, role_id: 1)
+  User.create(email: 'national@test.com', first_name: 'National', last_name: 'User', password: 'txt@1234', dragon_stamps: 0, role_id: 4)
+  User.create(email: 'chapter@test.com', first_name: 'Chapter', last_name: 'User', password: 'txt@1234', dragon_stamps: 0, role_id: 2)
+  User.create(email: 'player@test.com', first_name: 'Player', last_name: 'User', password: 'txt@1234', dragon_stamps: 0, role_id: 1)
 
   Member.create(user_id: 1, chapter_id:2, goblin_stamps: 0)
   Member.create(user_id: 4, chapter_id:1, goblin_stamps: 0)
