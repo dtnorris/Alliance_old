@@ -10,4 +10,8 @@ class Chapter < ActiveRecord::Base
   validates_presence_of :owner
   validates_presence_of :email
   validates_presence_of :location
+
+  def self.data_import chapter
+    Chapter.create(name: chapter[:name], owner: chapter[:owner], email: chapter[:email], location: chapter[:location])
+  end
 end

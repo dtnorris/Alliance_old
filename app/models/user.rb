@@ -16,6 +16,42 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
 
+  def self.data_import data, chapter_location
+    c = Chapter.find_by_location(chapter_location)
+    count = 0
+    email_count = 0
+    data.each do |row|
+      hash = {}
+      goblins = row[:Goblin] 
+      hash['first_name'] = row[:'First Name']
+      hash['last_name'] = row[:'Last Name']
+      hash['email'] = row[:'Email Name']
+      hash['password'] = 'temp1234'
+      hash['password_confirmation'] = 'temp1234'
+      if hash['first_name'].blank?
+        puts "record: #{count} not imported, missing first name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}"
+        import = false
+      elsif hash['last_name'].blank?
+        puts "record: #{count} not imported, missing last name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}"
+        import = false
+      elsif hash['email'].blank?
+        hash['email'] = hash['first_name'] + '_' + hash['last_name'] + '@test.com'
+        email_count += 1
+        import = true
+      else
+        import = true
+      end
+      #debugger
+      if import
+        us = User.create hash
+        Member.data_import c.id, us.id, goblins.to_i
+        StampTrack.data_import c.id, us.id, goblins.to_i
+      end
+      count += 1
+    end
+    puts "#{email_count}: records missing emails, defaults created <first_name>_<last_name>@test.com"
+  end
+
   def self.all_for_given_members(members)
     users = []
     members.each do |m|
