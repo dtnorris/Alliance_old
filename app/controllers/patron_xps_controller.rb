@@ -49,7 +49,7 @@ class PatronXpsController < ApplicationController
         if session[:event_id_for_single_blanket]
           format.html { redirect_to @event, notice: 'Patron successfully added to the event' }
         else
-          format.html { redirect_to for_user_patron_xp_path(@user.id), notice: 'Patron xp was successfully created.' }
+          format.html { redirect_to patron_xp_path(@user.id), notice: 'Patron xp was successfully created.' }
           format.json { render json: @patron_xp, status: :created, location: @patron_xp }
         end
       else

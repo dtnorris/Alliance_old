@@ -3,7 +3,7 @@ Alliance::Application.routes.draw do
   resources :patron_xps do
     member do
       get :new_for_chapter
-      get :for_user
+      #get :for_user
     end
   end
 
