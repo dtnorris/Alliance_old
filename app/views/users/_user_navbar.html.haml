@@ -1,4 +1,4 @@
 %ul.nav.nav-tabs
   %li= link_to 'View', user_path(@user.id), class: "btn"
   %li= link_to 'Edit', edit_user_path(@user.id), class: "btn"
-  %li= link_to 'Events Attended', for_user_patron_xp_path(@user.id), class: "btn"
+  %li= link_to 'Events Attended', patron_xp_path(@user.id), class: "btn"
