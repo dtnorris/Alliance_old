@@ -3,7 +3,7 @@ require "spec_helper"
 describe "basic navigation" do
   before :each do
     visit "/"
-    fill_in "user_email", with: "dreamingfurther@gmail.com"
+    fill_in "user_email", with: "admin@test.com"
     fill_in "user_password", with: "txt@1234"
     click_button "Sign in"
   end
@@ -15,8 +15,8 @@ describe "basic navigation" do
     fill_in "Amount to change", with: "1000"
     fill_in "Reason", with: "test goblin stamp add"
     click_button "Add/Remove Goblin Stamps"
-    click_link "dreamingfurther@gmail.com"
+    click_link "admin@test.com"
     #save_and_open_page
-    page.should have_content("Caldaria View Events 1000 View Stamp Log")
+    page.should have_content("T_Chapter_1 View Events 1000 View Stamp Log")
   end
 end

@@ -132,8 +132,8 @@ Skill.create(name: 'Formal Earth', fighter: 12, scout: 12, rogue: 8, adept: 4, s
 
 # Extra seeded objects for developmental user
 
-Chapter.create(name: 'Caldaria', owner: 'Jessie Hennessey', email: 'gm@caldaria.com', location: "CT")
-User.create(email: 'dreamingfurther@gmail.com', first_name: 'David', last_name: 'Tengdin', password: 'txt@1234', dragon_stamps: 0, role_id: 5)
+Chapter.create(name: 'T_Chapter_1', owner: 'Owner One', email: 'gm@T_Chapter_1.com', location: "TS1")
+User.create(email: 'admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0, role_id: 5)
 Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
 Character.create(home_chapter: 1, name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
 Event.create(name: "The Start", date: "2012/7/20".to_date, event_type_id: 2, chapter_id: 1)
@@ -141,7 +141,7 @@ PatronXp.create(character_id: 1, event_id: 1, pc: false)
 
 # More seeded objects not needed in test
 if Rails.env != 'test'
-  Chapter.create(name: 'Deadlands', owner: 'Gary Marvel', email: 'nh@gmail.com', location: "NH")
+  Chapter.create(name: 'T_Chapter_2', owner: 'Owner Two', email: 'gm@test.com', location: "TS2")
 
   User.create(email: 'national@test.com', first_name: 'Mike', last_name: 'Ventrela', password: 'txt@1234', dragon_stamps: 0, role_id: 4)
   User.create(email: 'chapter@test.com', first_name: 'Paige', last_name: 'Hubble', password: 'txt@1234', dragon_stamps: 0, role_id: 2)

@@ -3,7 +3,7 @@ require "spec_helper"
 describe "basic navigation" do
   before :each do
     visit "/"
-    fill_in "user_email", with: "dreamingfurther@gmail.com"
+    fill_in "user_email", with: "admin@test.com"
     fill_in "user_password", with: "txt@1234"
     click_button "Sign in"
   end
@@ -34,7 +34,7 @@ describe "basic navigation" do
   #   click_link "Delete"
   #   #save_and_open_page
   #   #click_button "OK"
-  #   page.should_not have_content("dreamingfurther@gmail.com")
+  #   page.should_not have_content("admin@test.com")
   #   page.should have_content("Remember me")
   # end
 
