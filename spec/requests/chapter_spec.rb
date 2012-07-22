@@ -3,7 +3,7 @@ require "spec_helper"
 describe "basic navigation" do
   before :each do
     visit "/"
-    fill_in "user_email", with: "dreamingfurther@test.com"
+    fill_in "user_email", with: "dreamingfurther@gmail.com"
     fill_in "user_password", with: "txt@1234"
     click_button "Sign in"
     visit "/chapters"

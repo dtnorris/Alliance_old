@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721042911) do
+ActiveRecord::Schema.define(:version => 20120721232926) do
 
   create_table "chapters", :force => true do |t|
     t.string   "owner"
@@ -96,6 +96,12 @@ ActiveRecord::Schema.define(:version => 20120721042911) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "skills", :force => true do |t|
     t.string   "name"
     t.string   "skill_type"
@@ -134,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20120721042911) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "dragon_stamps"
+    t.integer  "role_id"
     t.string   "first_name"
     t.string   "last_name"
   end

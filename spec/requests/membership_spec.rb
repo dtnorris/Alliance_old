@@ -3,7 +3,7 @@ require "spec_helper"
 describe "basic navigation" do
   before :each do
     visit "/"
-    fill_in "user_email", with: "dreamingfurther@test.com"
+    fill_in "user_email", with: "dreamingfurther@gmail.com"
     fill_in "user_password", with: "txt@1234"
     click_button "Sign in"
 
@@ -16,7 +16,7 @@ describe "basic navigation" do
   end
 
   it "should be able to add new membership" do
-    click_link "dreamingfurther@test.com"
+    click_link "dreamingfurther@gmail.com"
     click_link "Edit"
     select("Gaden", :from => "Chapter")
     click_button "Add Membership"

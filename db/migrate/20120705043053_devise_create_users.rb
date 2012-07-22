@@ -39,6 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       # Extra App specific variables
       t.integer :dragon_stamps
+      t.integer :role_id
     end
 
     add_index :users, :email,                :unique => true

@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Role.create(name: 'Player')
+Role.create(name: 'Chapter')
+Role.create(name: 'Owner')
+Role.create(name: 'National')
+Role.create(name: 'Admin')
+
 EventType.create(name: 'Module Day', value: 0.5)
 EventType.create(name: 'Faire Day', value: 1)
 EventType.create(name: 'Goblin Blanket', value: 1)
@@ -123,20 +129,23 @@ Skill.create(name: 'Earth Level 8', fighter: 12, scout: 12, rogue: 8, adept: 5, 
 Skill.create(name: 'Earth Level 9', fighter: 15, scout: 15, rogue: 10, adept: 6, scholar: 5, templar: 6, artisan: 6, skill_type: 'int', group: 'spells')
 Skill.create(name: 'Formal Earth', fighter: 12, scout: 12, rogue: 8, adept: 4, scholar: 3, templar: 4, artisan: 4, skill_type: 'int', group: 'spells')
 
+
+# Extra seeded objects for developmental user
+
 Chapter.create(name: 'Caldaria', owner: 'Jessie Hennessey', email: 'gm@caldaria.com', location: "CT")
-User.create(email: 'dreamingfurther@test.com', first_name: 'Dreaming', last_name: 'Further', password: 'txt@1234', dragon_stamps: 0)
+User.create(email: 'dreamingfurther@gmail.com', first_name: 'David', last_name: 'Tengdin', password: 'txt@1234', dragon_stamps: 0, role_id: 5)
 Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
 Character.create(home_chapter: 'Caldaria', name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
 Event.create(name: "The Start", date: "2012/7/20".to_date, event_type_id: 2, chapter_id: 1)
 PatronXp.create(character_id: 1, event_id: 1, pc: false)
 
-# Seed some basic users and characters for development
+# More seeded objects not needed in test
 if Rails.env != 'test'
   Chapter.create(name: 'Gaden', owner: 'Dave Glaiser', email: 'djglaeser@gmail.com', location: "SoMN")
 
-  User.create(email: 'alliance_admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
-  User.create(email: 'chapter_admin@test.com', first_name: 'Chapter', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
-  User.create(email: 'alliance_player@test.com', first_name: 'Alliance', last_name: 'Player', password: 'txt@1234', dragon_stamps: 0)
+  User.create(email: 'national@test.com', first_name: 'Mike', last_name: 'Ventrela', password: 'txt@1234', dragon_stamps: 0, role_id: 4)
+  User.create(email: 'chapter@test.com', first_name: 'Paige', last_name: 'Hubble', password: 'txt@1234', dragon_stamps: 0, role_id: 2)
+  User.create(email: 'player@test.com', first_name: 'Ryan', last_name: 'Burke', password: 'txt@1234', dragon_stamps: 0, role_id: 1)
 
   Member.create(user_id: 1, chapter_id:2, goblin_stamps: 0)
   Member.create(user_id: 4, chapter_id:1, goblin_stamps: 0)

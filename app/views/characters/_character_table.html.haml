@@ -2,6 +2,7 @@
   %tr
     -#%th
     %th
+    %th Player:
     %th Name: 
     %th Race:
     %th Class:
@@ -12,6 +13,7 @@
     %tr
       -#%td= link_to 'Edit', edit_character_path(character), class: "btn"
       %td= link_to 'View', character_path(character), class: "btn"
+      %td= User.find(character.user_id).name
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
       %td= CharClass.find_by_id(character.char_class_id).name if Race.find_by_id(character.race_id)
