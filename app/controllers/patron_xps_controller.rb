@@ -24,7 +24,11 @@ class PatronXpsController < ApplicationController
   def show
     @user = User.find(params[:id])
     @patron_xps = @user.all_patron_xps
+    #HACKED, this allows a user with no patron_xps to see a blank page, somewhat hackish
+    @patron_xps = []
+    @patron_xps << @user
     authorize! :read, @patron_xps.first
+    @patron_xps = @user.all_patron_xps
 
     respond_to do |format|
       format.html # index.html.erb
