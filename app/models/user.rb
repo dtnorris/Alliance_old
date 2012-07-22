@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
       hash['email'] = row[:'Email Name']
       hash['password'] = 'temp1234'
       hash['password_confirmation'] = 'temp1234'
+      hash['role_id'] = 1
       if hash['first_name'].blank?
         puts "record: #{count} not imported, missing first name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}"
         import = false
