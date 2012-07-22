@@ -1,20 +1,5 @@
 class UsersController < ApplicationController
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    @user = User.find(params[:id]) if params[:id]
-    @user = User.find(current_user.id) unless @user
-    session[:user_id_for_membership] = @user.id
-    session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
-
-    @members = Member.find_all_by_user_id(@user.id)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
-  end
+  load_and_authorize_resource :except => [:view_goblins, :show]
 
   # GET /users/1/view_goblins
   def view_goblins
@@ -25,9 +10,27 @@ class UsersController < ApplicationController
       @user = User.find(session[:user_id_for_membership])
       @chapter_id = Chapter.find(params[:id]).id
     end
+    @chapter = Chapter.find(@chapter_id)
     @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter_id)
     session[:user_id_for_new_stamps] = @user.id
     @stamp_track = StampTrack.new
+    authorize! :view_goblins, @chapter
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user }
+    end
+  end
+
+  # GET /users/1
+  # GET /users/1.json
+  def show
+    @user = User.find(params[:id]) if params[:id]
+    @user = User.find(current_user.id) unless @user
+    session[:user_id_for_membership] = @user.id
+    session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
+    @members = Member.find_all_by_user_id(@user.id)
+    authorize! :show, @user
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +40,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
     @members = Member.find_all_by_user_id(@user.id)
     @member = Member.new
     session[:user_id_for_membership] = @user.id
@@ -46,8 +48,6 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -57,7 +57,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
     @user.dragon_stamps = 0
     @user.save
     @member = Member.new(user_id: @user.id, chapter_id: session[:chapter_id_for_new_user], goblin_stamps: 0)
@@ -79,13 +78,10 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
     @characters = Character.find_all_by_user_id(@user.id)
     @members = Member.find_all_by_user_id(@user.id)
-    #debugger
     @user.destroy
     @characters.each do |ch|
-      #debugger
       ch.destroy
     end
     @members.each do |mb|
@@ -98,10 +94,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1
   def update
-    #debugger
-    @user = User.find(params[:id])
-
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)

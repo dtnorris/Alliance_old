@@ -1,5 +1,6 @@
 %ul.nav.nav-tabs
   /%li= link_to 'Back', :back, class: "btn"
   %li= link_to 'View', @character, class: "btn"
-  %li= link_to 'Edit', edit_character_path(@character), class: "btn"
+  - if can? :update, @character
+    %li= link_to 'Edit', edit_character_path(@character), class: "btn"
   %li= link_to 'XP Track', xp_track_character_path(@character), class: "btn", method: :get

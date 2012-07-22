@@ -15,6 +15,7 @@ class StampTracksController < ApplicationController
     @stamp_track.save
     @membership.goblin_stamps += params[:stamp_track][:amount_to_change].to_i
     @membership.save
+    authorize! :create, @stamp_track
 
     respond_to do |format|
       format.html { redirect_to view_goblins_user_path(@user.id) }

@@ -1,9 +1,61 @@
 class EventsController < ApplicationController
+  load_and_authorize_resource :except => [:events_for_chapter, :apply_to_single_character, :apply]
+
+  # GET /events_for_chapter/1
+  def events_for_chapter
+    @chapter = Chapter.find(params[:id])
+    @events = Event.find_all_by_chapter_id(@chapter.id)
+    @user = User.find(session[:user_id_for_membership])
+    @in_user_show = true
+    authorize! :events_for_chapter, @chapter
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  # PUT /events/1/apply_to_single_character
+  def apply_to_single_character
+    @event = Event.find(session[:event_id_for_single_blanket])
+    @character = Character.find(params[:id])
+    @patron_xp = PatronXp.find_by_event_id_and_character_id(@event.id, @character.id)
+    authorize! :apply_to_single_character, @event
+    
+    respond_to do |format|
+      #debugger
+      if @patron_xp.apply_event
+        format.html { redirect_to @event, notice: 'Single Blanket successfully applied.' }
+      else
+        format.html { redirect_to @event, notice: 'Error applying event blanket' }
+      end
+    end
+  end
+
+  # PUT /events/1/apply
+  def apply
+    @event = Event.find(params[:id])
+    @event.apply_blanket
+    @chapter = Chapter.find(session[:chapter_id_for_new_user]) if session[:chapter_id_for_new_user]
+    authorize! :apply_to_single_character, @event
+
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+        if @chapter
+          format.html { redirect_to @chapter, notice: 'Event was successfully updated.' }
+        else
+          format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
+        end
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-    
     @in_national_show = true
     session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
 
@@ -16,7 +68,6 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
     @chapter = Chapter.find(@event.chapter_id)
     @members = Member.find_all_by_chapter_id(@chapter.id)
     @users = User.all_for_given_members(@members)
@@ -31,22 +82,9 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events_for_chapter/1
-  def events_for_chapter
-    @chapter = Chapter.find(params[:id])
-    @events = Event.find_all_by_chapter_id(@chapter.id)
-    @user = User.find(session[:user_id_for_membership])
-    @in_user_show = true
-
-    respond_to do |format|
-      format.html
-    end
-  end
-
   # GET /events/new
   # GET /events/new.json
   def new
-    @event = Event.new
     @chapter = Chapter.find(session[:chapter_id_for_new_user])
 
     respond_to do |format|
@@ -57,7 +95,6 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
   end
 
   # POST /events
@@ -79,48 +116,9 @@ class EventsController < ApplicationController
     end
   end
 
-  # PUT /events/1/apply_to_single_character
-  def apply_to_single_character
-    @event = Event.find(session[:event_id_for_single_blanket])
-    @character = Character.find(params[:id])
-    @patron_xp = PatronXp.find_by_event_id_and_character_id(@event.id, @character.id)
-    
-    respond_to do |format|
-      #debugger
-      if @patron_xp.apply_event
-        format.html { redirect_to @event, notice: 'Single Blanket successfully applied.' }
-      else
-        format.html { redirect_to @event, notice: 'Error applying event blanket' }
-      end
-    end
-  end
-
-  # PUT /events/1/apply
-  def apply
-    @event = Event.find(params[:id])
-    @event.apply_blanket
-    @chapter = Chapter.find(session[:chapter_id_for_new_user]) if session[:chapter_id_for_new_user]
-
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        if @chapter
-          format.html { redirect_to @chapter, notice: 'Event was successfully updated.' }
-        else
-          format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
-        end
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
-
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -135,7 +133,6 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
 
     respond_to do |format|

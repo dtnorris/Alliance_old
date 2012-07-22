@@ -6,6 +6,7 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'decent_exposure'
 gem "devise", :git => "git://github.com/plataformatec/devise.git"
+gem "cancan"
 #gem 'devise'#, '1.1.rc0'
 
 group :assets do

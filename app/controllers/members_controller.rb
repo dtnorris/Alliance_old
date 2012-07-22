@@ -1,9 +1,11 @@
 class MembersController < ApplicationController
+  load_and_authorize_resource :except => [:alliance_player, :create]
 
   # GET /members
   # GET /members.json
   def alliance_player
     @users = User.all
+    authorize! :alliance_player, @users
 
     respond_to do |format|
       format.html # show.html.erb
@@ -18,6 +20,7 @@ class MembersController < ApplicationController
     @member.user_id = session[:user_id_for_membership]
     @member.goblin_stamps = 0
     another_like_me = Member.find_by_user_id_and_chapter_id(@member.user_id, params[:member][:chapter_id])
+    authorize! :create, @member
 
     respond_to do |format|
       if !another_like_me

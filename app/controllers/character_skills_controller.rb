@@ -1,6 +1,7 @@
 class CharacterSkillsController < ApplicationController
+  load_and_authorize_resource
+
   def destroy
-    @character_skill = CharacterSkill.find(params[:id])
     @character = Character.find(@character_skill.character_id)
     @character_skill.destroy
     @character.save

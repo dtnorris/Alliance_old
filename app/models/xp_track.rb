@@ -5,7 +5,9 @@ class XpTrack < ActiveRecord::Base
     patron_xps = PatronXp.find_all_by_character_id(character_id)
     xp_tracks = []
     patron_xps.each do |p|
-      xp_tracks << XpTrack.find_by_patron_xp_id(p.id)
+      if track = XpTrack.find_by_patron_xp_id(p.id)
+        xp_tracks << track
+      end
     end
     xp_tracks
   end
