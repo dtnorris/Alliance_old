@@ -3,7 +3,7 @@ include DataImport
 Time.zone = 'Eastern Time (US & Canada)'
 
 chapters = [
-  { name: 'Gaden', owner: 'David Glaiser', email: 'dg@test.com', location: 'SoMN' }
+  { name: 'Gaden', owner: 'David Glaiser', email: 'dg@test.com', location: 'soMN' }
 ]
 
 chapters.each do |c|
