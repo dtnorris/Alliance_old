@@ -71,6 +71,7 @@ class EventsController < ApplicationController
     @chapter = Chapter.find(@event.chapter_id)
     @members = Member.find_all_by_chapter_id(@chapter.id)
     @users = User.all_for_given_members(@members)
+    @users = @users.sort_by { |u| u.name }
     @patron_xp = PatronXp.new
     @patron_xps = PatronXp.find_all_by_event_id(@event.id)
     session[:event_id_for_single_blanket] = @event.id

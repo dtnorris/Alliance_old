@@ -1,5 +1,4 @@
 %h1 Event Details
-%p#notice= notice
 
 - if session[:chapter_id_for_new_user]
   - path = @chapter
@@ -7,6 +6,7 @@
   - path = events_path
 %ul.nav.nav-tabs
   %li= link_to 'Back', path, class: "btn"
+%p#notice= notice
 
 .span3
   %table.table

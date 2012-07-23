@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def all_characters_for_user
-    Character.find_all_by_user_id(self.id)
+    chars = Character.find_all_by_user_id(self.id)
   end
 
   def name

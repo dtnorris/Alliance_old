@@ -15,8 +15,57 @@ class Character < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :race_id
   validates_presence_of :char_class_id
-  validates_presence_of :home_chapter
+  #validates_presence_of :home_chapter
   validate :legal_spent_build
+
+  def self.data_import data, chapter
+    ch = Chapter.find_by_location(chapter)
+    count = 0
+    imported_count = 0
+    not_home_count = 0
+
+    data.each do |row|
+      hash = {}
+      us = User.find_by_first_name_and_last_name(row[:FirstN], row[:LastN])
+      #TODO refactor this into chapter name parsing method
+      old_home = row[:HomeCampaign]
+      if old_home == 'Minnesota' or old_home == 'Southern'
+        old_home = 'Southern Minnesota'
+      end
+      new_home = Chapter.find_by_name(old_home)
+      if us && new_home
+        hash[:user_id] = us.id if us
+        hash[:name] = row[:CName]
+        #TODO refactor this into race parsing method
+        if row[:Race] == "Orc"
+          hash[:race_id] = Race.find_by_name('High Orc').id
+        else
+          hash[:race_id] = Race.find_by_name(row[:Race].gsub('_', ' ')).id
+        end
+        hash[:char_class_id] = CharClass.find_by_name(row[:Class]).id
+        hash[:home_chapter] = new_home.id
+        import = true
+      else
+        import = false
+        if !us
+          puts "Record: #{count}, cannot find User: #{row[:FirstN]} #{row[:LastN]} for Character: #{row[:CName]}"
+        else
+          not_home_count += 1
+          #puts "Record: #{count}, not home for Character: #{row[:CName]}, of User: #{row[:FirstN]} #{row[:LastN]}"
+        end
+      end
+      if import
+        hash[:experience_points] = row[:'Total XP']
+        hash[:build_points] = row[:totalBP]
+        hash[:spent_build] = 0
+
+        Character.create hash
+        imported_count += 1
+      end
+      count += 1
+    end
+    puts "#{count}: total records, records imported: #{imported_count}, Characters not home chapter: #{not_home_count}"
+  end
 
   def self.memberships_of_user(id)
     memberships = Member.find_all_by_user_id(id)
