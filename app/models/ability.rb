@@ -9,7 +9,7 @@ class Ability
       can [:read, :update], User do |this_user|
         this_user.id == user.id
       end
-      can [:read, :xp_track], [Character, PatronXp] do |this|
+      can [:read, :xp_track], [Character, Attendee] do |this|
         this.user_id == user.id
       end
       can [:view_goblins, :events_for_chapter], Chapter

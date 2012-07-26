@@ -8,9 +8,9 @@
     - if @in_chapter_show
       %th
       %th
-      %th
+      / %th
     - if @in_user_show
-      %th
+      / %th
 
   - @events.reverse.each do |event|
     - chapter = Chapter.find(event.chapter_id)
@@ -26,13 +26,13 @@
       - if @in_chapter_show
         - if event.applied == true
           %td= button_to 'Apply Event', @chapter, class: "btn", :disabled => true
-          /%td= link_to 'Apply Event', @chapter, class: "btn", method: :put, :disabled => true
+          / %td= link_to 'Apply Event', @chapter, class: "btn", method: :put, :disabled => true
         - else
           %td= link_to 'Apply Event', apply_event_path(event), class: "btn", method: :put
       - if @in_chapter_show or @in_national_show
         %td= link_to 'View', event, class: "btn"
-        /%td= link_to 'Edit', edit_event_path(event), class: "btn"
-        %td= link_to 'Destroy', event, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
+        / %td= link_to 'Edit', edit_event_path(event), class: "btn"
+        / %td= link_to 'Destroy', event, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
       - if @in_user_show
-        %td= link_to 'Attend', new_for_chapter_patron_xp_path(event.id), class: "btn"
+        / %td= link_to 'Attend', new_for_chapter_attendee_path(event.id), class: "btn"
 

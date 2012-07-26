@@ -1,0 +1,28 @@
+%h2 Listing all event blankets
+= render 'users/user_navbar'
+
+#notice= notice
+%p
+%table.table.xp-table
+  %tr
+    %th Character
+    %th Chapter
+    %th Date
+    %th Event Type
+    /%th Event 
+    %th Applied
+    /%th
+    /%th
+    %th
+
+  - @attendees.reverse.each do |attendee|
+    - event = Event.find(attendee.event_id)
+    %tr
+      %td= Character.find(attendee.character_id).name
+      %td= Chapter.find(event.chapter_id).name
+      %td= event.date.to_s
+      %td= EventType.find(event.event_type_id).name
+      %td= attendee.applied
+      /%td= link_to 'Show', attendee, class: "btn"
+      /%td= link_to 'Edit', edit_attendee_path(attendee), class: "btn"
+      %td= link_to 'Destroy', attendee, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"

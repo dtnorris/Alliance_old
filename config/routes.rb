@@ -1,43 +1,21 @@
 Alliance::Application.routes.draw do
   
-  resources :patron_xps do
+  resources :attendees do
     member do
       get :new_for_chapter
-      #get :for_user
     end
   end
 
-  resources :members do
-    collection do
-      get :alliance_player
-    end
-  end
-
-  devise_for :users, :path_prefix => 'd'
-  resources :users do
-    member do
-      get :view_goblins
-      get :edit_password_form
-    end
-  end
-
-  resources :stamp_tracks do
-    member do
-      post :stamp_track
-    end
-  end
+  resources :chapters
 
   resources :characters do
     member do 
-      put :xp_mod_day
-      put :xp_one_day
-      put :xp_weekend
-      put :xp_long_weekend
       get :xp_track
       get :new_for_user
       post :create_for_user
     end
   end
+
   resources :character_skills
 
   resources :events do
@@ -48,7 +26,25 @@ Alliance::Application.routes.draw do
     end
   end
 
-  resources :chapters
+  resources :members do
+    collection do
+      get :alliance_player
+    end
+  end
+
+  resources :stamp_tracks do
+    member do
+      post :stamp_track
+    end
+  end
+
+  devise_for :users, :path_prefix => 'd'
+  resources :users do
+    member do
+      get :view_goblins
+      get :edit_password_form
+    end
+  end
 
   # root :to => 'pages#home'
    root :to => 'users#show'

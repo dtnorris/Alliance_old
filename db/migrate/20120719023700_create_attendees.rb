@@ -1,6 +1,6 @@
-class CreatePatronXps < ActiveRecord::Migration
+class CreateAttendees < ActiveRecord::Migration
   def change
-    create_table :patron_xps do |t|
+    create_table :attendees do |t|
       t.integer :character_id
       t.integer :event_id
       t.boolean :applied,     :default => false

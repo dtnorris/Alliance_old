@@ -72,13 +72,13 @@ class User < ActiveRecord::Base
     self.first_name + ' ' + self.last_name
   end
 
-  def all_patron_xps
+  def all_attendees
     characters = Character.find_all_by_user_id(id)
-    patron_xps = []
+    attendees = []
     characters.each do |c|
-      patron_xps += PatronXp.find_all_by_character_id(c)
+      attendees += Attendee.find_all_by_character_id(c)
     end
-    patron_xps
+    attendees
   end
 
 end

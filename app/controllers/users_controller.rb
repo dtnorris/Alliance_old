@@ -77,22 +77,22 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.json
-  def destroy
-    @characters = Character.find_all_by_user_id(@user.id)
-    @members = Member.find_all_by_user_id(@user.id)
-    @user.destroy
-    @characters.each do |ch|
-      ch.destroy
-    end
-    @members.each do |mb|
-      mb.destroy
-    end
+  # def destroy
+  #   @characters = Character.find_all_by_user_id(@user.id)
+  #   @members = Member.find_all_by_user_id(@user.id)
+  #   @user.destroy
+  #   @characters.each do |ch|
+  #     ch.destroy
+  #   end
+  #   @members.each do |mb|
+  #     mb.destroy
+  #   end
 
-    respond_to do |format|
-      format.html { redirect_to alliance_player_members_path }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to alliance_player_members_path }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   # POST /users/1
   def update

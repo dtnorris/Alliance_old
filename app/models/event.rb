@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :chapter_id, :date, :name, :event_type_id, :applied
 
-  has_many :patron_xp
+  has_many :attendee
 
   validates_presence_of :name
   validates_presence_of :chapter_id
@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   def apply_blanket
     if applied != true
       self.applied = true
-      PatronXp.find_all_by_event_id(self.id).each do |px|
+      Attendee.find_all_by_event_id(self.id).each do |px|
         px.apply_event
       end
       self.save

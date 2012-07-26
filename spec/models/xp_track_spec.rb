@@ -3,7 +3,7 @@ require 'spec_helper'
 describe XpTrack do
   let!(:new_char) { FactoryGirl.create(:character) }
   let!(:new_event) { FactoryGirl.create(:event) }
-  let!(:new_patron) { FactoryGirl.create(:patron_xp) }
+  let!(:new_attendee) { FactoryGirl.create(:attendee) }
   let!(:xp_track) { FactoryGirl.create(:xp_track)}
 
   it "should be able to find_all_by_character_id" do

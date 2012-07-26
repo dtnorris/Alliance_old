@@ -1,4 +1,4 @@
-class PatronXp < ActiveRecord::Base
+class Attendee < ActiveRecord::Base
   attr_accessible :applied, :character_id, :event_id, :pc
 
   belongs_to :character
@@ -19,7 +19,7 @@ class PatronXp < ActiveRecord::Base
       event_type = EventType.find(event.event_type_id)
       reason = event.event_reason(event_type)
       xp = Character.find(self.character_id).add_xp(event_type.value, reason)
-      xp.patron_xp_id = self.id
+      xp.attendee_id = self.id
       xp.save
       self.applied = true
       self.save

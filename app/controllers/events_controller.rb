@@ -18,12 +18,12 @@ class EventsController < ApplicationController
   def apply_to_single_character
     @event = Event.find(session[:event_id_for_single_blanket])
     @character = Character.find(params[:id])
-    @patron_xp = PatronXp.find_by_event_id_and_character_id(@event.id, @character.id)
+    @attendee = Attendee.find_by_event_id_and_character_id(@event.id, @character.id)
     authorize! :apply_to_single_character, @event
     
     respond_to do |format|
       #debugger
-      if @patron_xp.apply_event
+      if @attendee.apply_event
         format.html { redirect_to @event, notice: 'Single Blanket successfully applied.' }
       else
         format.html { redirect_to @event, notice: 'Error applying event blanket' }
@@ -72,10 +72,10 @@ class EventsController < ApplicationController
     @members = Member.find_all_by_chapter_id(@chapter.id)
     @users = User.all_for_given_members(@members)
     @users = @users.sort_by { |u| u.name }
-    @patron_xp = PatronXp.new
-    @patron_xps = PatronXp.find_all_by_event_id(@event.id)
+    @attendee = Attendee.new
+    @attendees = Attendee.find_all_by_event_id(@event.id)
     session[:event_id_for_single_blanket] = @event.id
-    session.delete :event_id_for_new_patron_xp if session[:event_id_for_new_patron_xp]
+    session.delete :event_id_for_new_attendee if session[:event_id_for_new_attendee]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -133,12 +133,12 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   # DELETE /events/1.json
-  def destroy
-    @event.destroy
+  # def destroy
+  #   @event.destroy
 
-    respond_to do |format|
-      format.html { redirect_to events_url }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to events_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 end

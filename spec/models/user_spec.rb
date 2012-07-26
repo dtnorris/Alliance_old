@@ -7,7 +7,7 @@ describe User do
   let!(:char) { FactoryGirl.create(:character) }
   let!(:char1) { FactoryGirl.create(:character) }
   let!(:char2) { FactoryGirl.create(:character) }
-  let!(:patron) { FactoryGirl.create(:patron_xp) }
+  let!(:attendee) { FactoryGirl.create(:attendee) }
 
   it "should be able to return all users of given memberships" do
     User.all_for_given_members([mem1]).count.should == 1
@@ -21,7 +21,7 @@ describe User do
     user.name.should == "hello world"
   end
 
-  it "should be able to return all_patron_xps" do
-    user.all_patron_xps.count.should == 1
+  it "should be able to return all_attendees" do
+    user.all_attendees.count.should == 1
   end
 end

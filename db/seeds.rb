@@ -137,7 +137,7 @@ User.create(email: 'admin@test.com', first_name: 'Alliance', last_name: 'Admin',
 Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
 Character.create(home_chapter: 1, name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
 Event.create(name: "The Start", date: "2012/7/20".to_date, event_type_id: 2, chapter_id: 1)
-PatronXp.create(character_id: 1, event_id: 1, pc: false)
+Attendee.create(character_id: 1, event_id: 1, pc: false)
 
 # More seeded objects not needed in test
 if Rails.env != 'test'

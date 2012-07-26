@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "PatronXps" do
+describe "Attendees" do
 
 end

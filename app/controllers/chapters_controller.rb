@@ -68,12 +68,12 @@ class ChaptersController < ApplicationController
 
   # DELETE /chapters/1
   # DELETE /chapters/1.json
-  def destroy
-    @chapter.destroy
+  # def destroy
+  #   @chapter.destroy
     
-    respond_to do |format|
-      format.html { redirect_to chapters_url }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to chapters_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 end

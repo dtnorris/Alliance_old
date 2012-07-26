@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :xp_track do
-    patron_xp_id 2
+    attendee_id 2
     end_xp 30
     reason "test reason"
     start_xp 0

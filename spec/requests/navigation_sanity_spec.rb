@@ -21,7 +21,7 @@ describe "basic navigation" do
 
   it "allows a user to view Players tab" do
     visit "/members/alliance_player"
-    page.should have_content("All Alliance Members")
+    page.should have_content("All Alliance Users")
   end
 
   it "allows a user to view Chapter tab" do

@@ -94,19 +94,19 @@ class CharactersController < ApplicationController
 
   # DELETE /characters/1
   # DELETE /characters/1.json
-  def destroy
-    @character.destroy
+  # def destroy
+  #   @character.destroy
 
-    respond_to do |format|
-      format.html { redirect_to characters_url }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to characters_url }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   # def xp_mod_day
   #   @character = Character.find(params[:id])
   #   xp = @character.add_xp(0.5, 'Mod Day')
-  #   xp.patron_xp_id = 1
+  #   xp.attendee_id = 1
   #   xp.save
 
   #   respond_to do |format|
@@ -118,7 +118,7 @@ class CharactersController < ApplicationController
   # def xp_one_day
   #   @character = Character.find(params[:id])
   #   xp = @character.add_xp(1, 'One Day')
-  #   xp.patron_xp_id = 1
+  #   xp.attendee_id = 1
   #   xp.save
 
   #   respond_to do |format|
@@ -130,7 +130,7 @@ class CharactersController < ApplicationController
   # def xp_weekend
   #   @character = Character.find(params[:id])
   #   xp = @character.add_xp(2, 'Weekend')
-  #   xp.patron_xp_id = 1
+  #   xp.attendee_id = 1
   #   xp.save
 
   #   respond_to do |format|
@@ -142,7 +142,7 @@ class CharactersController < ApplicationController
   # def xp_long_weekend
   #   @character = Character.find(params[:id])
   #   xp = @character.add_xp(3, 'Long Weekend')
-  #   xp.patron_xp_id = 1
+  #   xp.attendee_id = 1
   #   xp.save
 
   #   respond_to do |format|
