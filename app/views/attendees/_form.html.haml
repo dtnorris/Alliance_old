@@ -1,8 +1,10 @@
 = simple_form_for(@attendee) do |f|
   = f.error_notification
 
-  .form-inputs#user_select
-    = f.input :character_id, :label => 'Select Character:', :collection => @characters, :include_blank => false
+  .form-inputs
+    = f.input :user_id, :label => 'Select Yourself:', :collection => [@user], :include_blank => true
+    = f.input :character_id, :collection => [@user], :as => :grouped_select, :group_method => :all_characters_for_user, :group_label_method => :name, :label_method => :name, :value_method => :id, :include_blank => false
+    / = f.input :character_id, :label => 'Select Character:', :collection => @characters, :include_blank => false
     = f.input :pc, :label => 'PC or NPC', :collection => {"NPC" => 0, "PC" => 1}, :include_blank => false
     %p
     = f.button :submit, "Attend Event"

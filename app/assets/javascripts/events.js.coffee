@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   $('#attendee_character_id').parent().hide()
-  #$('#attendee_pc').parent().hide()
+  $('#attendee_pc').parent().hide()
   characters = $('#attendee_character_id').html()
   $('#attendee_user_id').change ->
     user = $('#attendee_user_id :selected').text()
@@ -16,4 +16,4 @@ jQuery ->
     else
       $('#attendee_character_id').empty()
       $('#attendee_character_id').parent().hide()
-      #$('#attendee_pc').parent().hide()
+      $('#attendee_pc').parent().hide()

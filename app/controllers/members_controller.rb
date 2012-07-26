@@ -1,18 +1,6 @@
 class MembersController < ApplicationController
   load_and_authorize_resource :except => [:alliance_player, :create]
 
-  # GET /members
-  # GET /members.json
-  def alliance_player
-    @users = User.all
-    authorize! :alliance_player, @users
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
-  end
-
   # POST /members
   # POST /members.json
   def create

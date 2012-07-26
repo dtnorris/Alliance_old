@@ -8,5 +8,5 @@
     = f.input :character_id, :collection => @users, :as => :grouped_select, :group_method => :all_characters_for_user, :group_label_method => :name, :label_method => :name, :value_method => :id, :include_blank => true
     = f.input :pc, :label => 'PC or NPC', :collection => {"NPC" => 0, "PC" => 1}, :include_blank => false
     %p
-    = f.button :submit, "Attend Event"
+    = f.button :submit, "Add Attendee"
 

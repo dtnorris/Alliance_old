@@ -21,22 +21,14 @@ Alliance::Application.routes.draw do
   resources :events do
     member do
       put :apply
-      get :events_for_chapter
       put :apply_to_single_character
+      get :events_for_chapter
     end
   end
 
-  resources :members do
-    collection do
-      get :alliance_player
-    end
-  end
+  resources :members
 
-  resources :stamp_tracks do
-    member do
-      post :stamp_track
-    end
-  end
+  resources :stamp_tracks
 
   devise_for :users, :path_prefix => 'd'
   resources :users do
