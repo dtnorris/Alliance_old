@@ -2,6 +2,9 @@
 
 = render 'character_nav_tabs'
 .span4
+  = link_to "PDF Character Card", character_path(@character, format: "pdf"), class: "btn"
+  %p
+
   %table.table.user-summary-table
     %tbody
       %tr

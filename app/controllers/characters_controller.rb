@@ -12,9 +12,16 @@ class CharactersController < ApplicationController
   # GET /characters/1
   # GET /characters/1.json
   def show
+    #@user = User.find(@character.user_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @character }
+      format.pdf do
+        pdf = CharacterPdf.new(@character)
+        send_data pdf.render, filename: "Character_#{@character.name}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
     end
   end
 
