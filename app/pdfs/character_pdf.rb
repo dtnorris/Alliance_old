@@ -70,7 +70,7 @@ class CharacterPdf < Prawn:: Document
         #rows(1..2).padding_right = 2
         rows(1..2).columns(1..9).width = 13.5
         rows(0..2).columns(1..9).align = :center
-        column(0).padding_left = 0.125.in
+        column(0).padding_left = 0.225.in
         column(0).borders = []
         column(0).align = :right
         column(0).padding_right = 4
@@ -81,9 +81,9 @@ class CharacterPdf < Prawn:: Document
       celestial.each { |x| if x != 'Celestial' && x != nil then total_c_spells += x end }
       wand_dmg = 1
       wand_dmg += celestial[9] unless celestial[9] == nil
-      text "Total Wand Charges: #{total_c_spells},    Wand Damage: #{wand_dmg}",
+      text "Total Wand Charges: #{total_c_spells},     Wand Damage: #{wand_dmg}",
           size: 8,
-          indent_paragraphs: 2
+          indent_paragraphs: 5
     end
   end
 
@@ -101,7 +101,7 @@ class CharacterPdf < Prawn:: Document
         rows(0).font_style = :bold
         columns(0).font_style = :bold
         columns(0).align = :right
-        columns(0).padding_left = 0.25.in
+        columns(0).padding_left = 0.35.in
         columns(1..3).align = :center
         rows(0..2).columns(0..3).borders = []
       end
@@ -219,20 +219,20 @@ class CharacterPdf < Prawn:: Document
 
   def card_size_consts
     # Overal card dimensions
-    @total_width = 8.6.in
+    @total_width = 9.1.in
     @total_height = 3.6.in
     
     # Card section consts
     @main_orig = 0
-    @main_width = 2.45.in
-    @rpds_orig = 2.45.in
-    @rpds_width = 1.7.in
-    @cs_orig = 4.15.in
-    @cs_width = 1.75.in
-    @cf_orig = 5.9.in
-    @cf_width = 1.7.in
-    @lt_orig = 7.6.in
-    @lt_width = 1.in
+    @main_width = 2.55.in
+    @rpds_orig = 2.55.in
+    @rpds_width = 1.8.in
+    @cs_orig = 4.35.in
+    @cs_width = 1.85.in
+    @cf_orig = 6.2.in
+    @cf_width = 1.8.in
+    @lt_orig = 8.in
+    @lt_width = 1.1.in
 
     #main info box consts
     @main_ch_height = 0.3.in
