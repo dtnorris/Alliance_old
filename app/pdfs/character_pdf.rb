@@ -7,8 +7,7 @@ class CharacterPdf < Prawn:: Document
     @chapter = Chapter.find(@character.home_chapter)
     @user = User.find(@character.user_id)
     @member = Member.find_by_chapter_id_and_user_id(@chapter.id, @user.id)
-    #text @chapter.name
-    #character_name
+    @chararacter_skills = CharacterSkill.find_all_by_character_id(@character.id)
     card_size_consts
     card_outline
     card_text
@@ -43,6 +42,48 @@ class CharacterPdf < Prawn:: Document
   def main_spell_info
     bounding_box [@main_orig,@total_height], width: @main_width, height: @main_spell_height do
       stroke_bounds
+      move_down 2.8.in
+      total_spell_array = 10
+      celestial = ["Celestial"]
+      celestial += CharacterSkill.all_spells(@character,"Celestial")
+      if celestial.length != total_spell_array
+        count = total_spell_array - celestial.length
+        count.times { |x| celestial += [nil] }
+      end
+      earth = ["Earth"]
+      earth += CharacterSkill.all_spells(@character,"Earth")
+      if earth.length != total_spell_array
+        count = total_spell_array - earth.length
+        count.times { |x| earth += [nil] }
+      end
+      #debugger
+      data = [["","1","2","3","4","5","6","7","8","9"],
+              celestial,
+              earth,
+             ]
+      table(data) do
+        cells.align = :center
+        cells.size = 9
+        cells.padding = 1
+        rows(0).padding_bottom = 2
+        #rows(1..2).padding_left = 2
+        #rows(1..2).padding_right = 2
+        rows(1..2).columns(1..9).width = 13.5
+        rows(0..2).columns(1..9).align = :center
+        column(0).padding_left = 0.125.in
+        column(0).borders = []
+        column(0).align = :right
+        column(0).padding_right = 4
+        rows(0).columns(0..9).borders = []
+      end
+      move_down 0.1.in
+      total_c_spells = 0
+      celestial.each { |x| if x != 'Celestial' && x != nil then total_c_spells += x end }
+      wand_dmg = 1
+      wand_dmg += celestial[9] unless celestial[9] == nil
+      text "Total Wand Charges: #{total_c_spells},    Wand Damage: #{wand_dmg}",
+          size: 8,
+          indent_paragraphs: 2
     end
   end
 

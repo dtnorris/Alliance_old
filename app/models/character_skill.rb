@@ -8,31 +8,16 @@ class CharacterSkill < ActiveRecord::Base
 
   validate :legal_spent_build, :on => :update
 
-  def legal_spent_build
-    if character_id
-      char = Character.find(character_id)
-      new_sk = 0
-      self_saved = CharacterSkill.find_by_character_id_and_skill_id(self.character_id, self.skill_id)
-      if (self_saved.bought != self.bought) || (self_saved.amount != self.amount)
-        new_sk = new_sk = Skill.find(self.skill_id)[CharClass.find(char.char_class_id).name.downcase]
-      end
-      if char.build_points >= (char.calculate_spent_build + new_sk)
-        return true
-      else
-        errors.add(:char_class_id, "You do not have the necessary build for this update")
-        "You do not have the necessary build for this update"
+  def self.all_spells character, type
+    arr = []
+    count = 1
+    CharacterSkill.all_bought_skills(character).each do |s|
+      if s == "#{type} Level #{count}"
+        arr << CharacterSkill.find_by_character_id_and_skill_id(character.id, Skill.find_by_name(s).id).amount
+        count += 1
       end
     end
-  end
-
-  def update_spent_build
-    if character_id
-      char = Character.find(character_id)
-      tmp_build = char.calculate_spent_build
-      if char
-        char.update_column(:spent_build, tmp_build)
-      end
-    end
+    arr
   end
 
   def self.all_bought_skills(character)
@@ -65,6 +50,33 @@ class CharacterSkill < ActiveRecord::Base
         CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :amount => 0
       elsif char_skill == 'bol'
         CharacterSkill.create :character_id => character_id, :skill_id => skill_id, :bought => false
+      end
+    end
+  end
+
+  def legal_spent_build
+    if character_id
+      char = Character.find(character_id)
+      new_sk = 0
+      self_saved = CharacterSkill.find_by_character_id_and_skill_id(self.character_id, self.skill_id)
+      if (self_saved.bought != self.bought) || (self_saved.amount != self.amount)
+        new_sk = new_sk = Skill.find(self.skill_id)[CharClass.find(char.char_class_id).name.downcase]
+      end
+      if char.build_points >= (char.calculate_spent_build + new_sk)
+        return true
+      else
+        errors.add(:char_class_id, "You do not have the necessary build for this update")
+        "You do not have the necessary build for this update"
+      end
+    end
+  end
+
+  def update_spent_build
+    if character_id
+      char = Character.find(character_id)
+      tmp_build = char.calculate_spent_build
+      if char
+        char.update_column(:spent_build, tmp_build)
       end
     end
   end
