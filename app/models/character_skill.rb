@@ -21,6 +21,16 @@ class CharacterSkill < ActiveRecord::Base
     arr
   end
 
+  def self.all_racials character
+    arr = []
+    CharacterSkill.all_bought_skills(character).each do |s|
+      if Skill.find_by_name(s).group == 'race'
+        arr << s
+      end
+    end
+    arr
+  end
+
   def self.all_bought_skills(character)
     all_skills = CharacterSkill.find_all_by_character_id(character.id)
     ret = all_skills.map {|r| Skill.find(r.skill_id).name }

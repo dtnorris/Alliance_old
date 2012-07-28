@@ -91,6 +91,18 @@ class Character < ActiveRecord::Base
     xp_track
   end
 
+  def per_day_skills
+    skills = CharacterSkill.all_bought_skills(self)
+    ret = []
+    skills.each do |sn|
+      sk = Skill.find_by_name(sn)
+      if (sk.group == 'specialty' or sk.name == 'Teacher') and (sn != 'Weapon Proficiency') and (sn != 'Backstab')
+        ret << sn
+      end
+    end
+    ret
+  end
+
   def update_body
     self.body_points = 0
     self.body_points += 6 + Race.find(self.race_id).body_mod
@@ -189,6 +201,7 @@ class Character < ActiveRecord::Base
     elsif race == "Sarr"
       CharacterSkill.add_skill(self.id, Skill.find_by_name('Racial Assassinate').id)
       CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Poison').id)
+      CharacterSkill.add_skill(self.id, Skill.find_by_name('Claws').id)
     elsif race == "Stone Elf"
       CharacterSkill.add_skill(self.id, Skill.find_by_name('Break Command').id)
       CharacterSkill.add_skill(self.id, Skill.find_by_name('Resist Command').id)

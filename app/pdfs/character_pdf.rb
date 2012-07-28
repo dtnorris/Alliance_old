@@ -155,7 +155,7 @@ class CharacterPdf < Prawn:: Document
       stroke_bounds
       move_down 3.5 #center in the box
       #TODO calculate Earth's bounty body
-      text "<b>Base Body</b> #{@character.body_points}  <b>E.Bounty</b> 0  <b>Body</b> #{@character.body_points}",
+      text "<b>Base Body</b> #{@character.body_points}   <b>E.Bounty</b> 0   <b>Body</b> #{@character.body_points}",
           size: 9,
           indent_paragraphs: 3,
           inline_format: true
@@ -196,18 +196,78 @@ class CharacterPdf < Prawn:: Document
   def racial_per_day_skills
     bounding_box [@rpds_orig,@total_height], width: @rpds_width, height: @total_height do
       stroke_bounds
+      racial_box
+      per_day_box
+    end
+  end
+
+  def racial_box
+    bounding_box [0,@total_height], width: @rpds_width, height: 0.655.in do
+      stroke_bounds
+      move_down 3
+      skill_header '<u>Racial Skills</u>'
+      data = []
+      CharacterSkill.all_racials(@character).each do |s|
+        sk = CharacterSkill.find_by_character_id_and_skill_id(@character.id,Skill.find_by_name(s).id)
+        val = sk.amount || sk.bought
+        val = 0 if val == false; val = 1 if val == true
+        data << [s,val]
+      end
+      move_up 1.5
+      skill_table data
+    end
+  end
+
+  def per_day_box
+    bounding_box [0,@total_height], width: @rpds_width, height: 3.15.in do
+      stroke_bounds
+      move_down 0.68.in
+      skill_header '<u>Per Day Skills</u>'
+      data = [["",""]]
+      @character.per_day_skills.each do |s|
+        sk = CharacterSkill.find_by_character_id_and_skill_id(@character.id,Skill.find_by_name(s).id)
+        val = sk.amount || sk.bought
+        val = 0 if val == false; val = 1 if val == true
+        data << [s,val]
+      end
+      move_up 12.5
+      skill_table data
+    end
+  end
+
+  def skill_header label
+    text "#{label}",
+          size: 9,
+          style: :bold_italic,
+          inline_format: :true,
+          indent_paragraphs: 3
+  end
+
+  def skill_table data
+    table(data) do
+      rows(0..30).borders = []
+      columns(0).width = 1.6.in
+      cells.size = 9
+      cells.align = :left
+      cells.height = 10
+      cells.padding = 0
+      cells.padding_left = 3
     end
   end
 
   def continuous_skills 
     bounding_box [@cs_orig,@total_height], width: @cs_width, height: @total_height do
       stroke_bounds
+      move_down 3
+      skill_header '<u>Continuous Skills</u>'
     end
   end
 
   def craftsman_skills 
     bounding_box [@cf_orig,@total_height], width: @cf_width, height: @total_height do
       stroke_bounds
+      move_down 3
+      skill_header 'Continuous Skills Cont.'
     end
   end
 
@@ -228,11 +288,11 @@ class CharacterPdf < Prawn:: Document
     @rpds_orig = 2.55.in
     @rpds_width = 1.8.in
     @cs_orig = 4.35.in
-    @cs_width = 1.85.in
-    @cf_orig = 6.2.in
+    @cs_width = 1.8.in
+    @cf_orig = 6.15.in
     @cf_width = 1.8.in
-    @lt_orig = 8.in
-    @lt_width = 1.1.in
+    @lt_orig = 7.95.in
+    @lt_width = 1.15.in
 
     #main info box consts
     @main_ch_height = 0.3.in
