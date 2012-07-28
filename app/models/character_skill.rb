@@ -10,11 +10,12 @@ class CharacterSkill < ActiveRecord::Base
 
   def self.all_spells character, type
     arr = []
-    count = 1
-    CharacterSkill.all_bought_skills(character).each do |s|
-      if s == "#{type} Level #{count}"
-        arr << CharacterSkill.find_by_character_id_and_skill_id(character.id, Skill.find_by_name(s).id).amount
-        count += 1
+    count = 10
+    count.times do |c|
+      CharacterSkill.all_bought_skills(character).each do |s|
+        if s == "#{type} Level #{c}"
+          arr << CharacterSkill.find_by_character_id_and_skill_id(character.id, Skill.find_by_name(s).id).amount
+        end
       end
     end
     arr
