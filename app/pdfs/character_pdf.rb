@@ -92,7 +92,7 @@ class CharacterPdf < Prawn:: Document
       data = [["",""]]
       @extra_data = [["",""]]
       count = 25
-      @character.continuous_skills.each do |s|
+      @character.continuous_skills.sort.each do |s|
         count -= 1
         sk = CharacterSkill.find_by_character_id_and_skill_id(@character.id,Skill.find_by_name(s).id)
         val = sk.amount || sk.bought
@@ -320,7 +320,7 @@ class CharacterPdf < Prawn:: Document
       move_down 0.68.in
       skill_header '<u>Per Day Skills</u>'
       data = [["",""]]
-      @character.per_day_skills.each do |s|
+      @character.per_day_skills.sort.each do |s|
         sk = CharacterSkill.find_by_character_id_and_skill_id(@character.id,Skill.find_by_name(s).id)
         val = sk.amount || sk.bought
         val = 0 if val == false; val = 1 if val == true
