@@ -10,10 +10,32 @@ class CharacterPdf < Prawn:: Document
     @chararacter_skills = CharacterSkill.find_all_by_character_id(@character.id)
     card_size_consts
     card_outline
-    card_text
   end
 
-  def card_text
+  def card_size_consts
+    # Overal card dimensions
+    @total_width = 9.1.in
+    @total_height = 3.6.in
+    
+    # Card section consts
+    @main_orig = 0
+    @main_width = 2.55.in
+    @rpds_orig = 2.55.in
+    @rpds_width = 1.8.in
+    @cs_orig = 4.35.in
+    @cs_width = 1.8.in
+    @cf_orig = 6.15.in
+    @cf_width = 1.8.in
+    @lt_orig = 7.95.in
+    @lt_width = 1.15.in
+
+    #main info box consts
+    @main_ch_height = 0.3.in
+    @main_member_height = 0.6.in + @main_ch_height
+    @main_character_height = 0.85.in + @main_member_height
+    @main_death_height = 0.45.in + @main_character_height
+    @main_build_height = 0.6.in + @main_death_height
+    @main_spell_height = 0.8.in + @main_build_height
   end
 
   def card_outline
@@ -39,6 +61,87 @@ class CharacterPdf < Prawn:: Document
     end
   end
 
+  def racial_per_day_skills
+    bounding_box [@rpds_orig,@total_height], width: @rpds_width, height: @total_height do
+      stroke_bounds
+      racial_box
+      per_day_box
+      move_down 5
+      ce = CharacterSkill.find_by_character_id_and_skill_id(@character.id, Skill.find_by_name('Formal Celestial').id)
+      ea = CharacterSkill.find_by_character_id_and_skill_id(@character.id, Skill.find_by_name('Formal Earth').id)
+      if ce
+        c_formal = "#{ce.amount} Celestial"
+      else
+        c_formal = ""
+      end
+      if ea
+        e_formal = "#{ea.amount} Earth"
+      else
+        e_formal = ""
+      end
+      text "<u><b>Formal</b></u>    #{c_formal}", size: 8, indent_paragraphs: 2, inline_format: :true
+      text "<u><b>Levels</b></u>     #{e_formal}", size: 8, indent_paragraphs: 2, inline_format: :true
+    end
+  end
+
+  def continuous_skills 
+    bounding_box [@cs_orig,@total_height], width: @cs_width, height: @total_height do
+      stroke_bounds
+      move_down 3
+      skill_header '<u>Continuous Skills</u>'
+      data = [["",""]]
+      @extra_data = [["",""]]
+      count = 25
+      @character.continuous_skills.each do |s|
+        count -= 1
+        sk = CharacterSkill.find_by_character_id_and_skill_id(@character.id,Skill.find_by_name(s).id)
+        val = sk.amount || sk.bought
+        val = 0 if val == false; val = 1 if val == true
+        if count > 0
+          data << [s,val]
+        else
+          @extra_data << [s,val]
+        end
+      end
+      move_up 12.5
+      skill_table data
+    end
+  end
+
+  def craftsman_skills 
+    bounding_box [@cf_orig,@total_height], width: @cf_width, height: @total_height do
+      stroke_bounds
+      extra_continuous_skills
+      move_down 3
+      skill_header '<u>Craftsman Skills</u>'
+      data = [["",""]]
+      sk = CharacterSkill.find_by_character_id_and_skill_id(@character.id, Skill.find_by_name('Craftsman').id)
+      if sk
+        data << ["Craftsman <type>",sk.amount]
+      else 
+        sk = CharacterSkill.new(amount: 0)
+      end
+      move_down 2.15.in
+      text "Total Craftsman #{sk.amount}", 
+          size: 8,
+          indent_paragraphs: 0.75.in
+      move_up 2.45.in
+      skill_table data
+    end
+  end
+
+  def life_tag
+    bounding_box [@lt_orig,@total_height], width: @lt_width, height: @total_height do
+      stroke_bounds
+      move_down 0.25.in
+      text @chapter.location, size: 9, style: :bold, align: :center
+      info_block
+      move_down 0.15.in
+      text "Alive", size: 16, style: :bold, align: :center
+      text "1 Body Point", size: 10, align: :center
+    end
+  end
+
   def main_spell_info
     bounding_box [@main_orig,@total_height], width: @main_width, height: @main_spell_height do
       stroke_bounds
@@ -56,18 +159,12 @@ class CharacterPdf < Prawn:: Document
         count = total_spell_array - earth.length
         count.times { |x| earth += [nil] }
       end
-      #debugger
-      data = [["","1","2","3","4","5","6","7","8","9"],
-              celestial,
-              earth,
-             ]
+      data = [["","1","2","3","4","5","6","7","8","9"], celestial, earth]
       table(data) do
         cells.align = :center
         cells.size = 9
         cells.padding = 1
         rows(0).padding_bottom = 2
-        #rows(1..2).padding_left = 2
-        #rows(1..2).padding_right = 2
         rows(1..2).columns(1..9).width = 13.5
         rows(0..2).columns(1..9).align = :center
         column(0).padding_left = 0.225.in
@@ -129,20 +226,14 @@ class CharacterPdf < Prawn:: Document
     bounding_box [@main_orig,@total_height], width: @main_width, height: @main_character_height do
       stroke_bounds
       move_down 0.975.in #start the text in the box
-      #text "<b>Character:</b> #{@character.name}",
-      text @character.name,
-          size: 10,
-          indent_paragraphs: 5,
-          inline_format: :true
+      text @character.name, size: 10, indent_paragraphs: 5, inline_format: :true
       body_boxes
       move_down 4
-      #text "<b>Race:</b> #{Race.find(@character.race_id).name}",
       text "#{Race.find(@character.race_id).name}",
           size: 10,
           indent_paragraphs: 5,
           inline_format: :true
       move_down 1
-      #text "<b>Class:</b> #{CharClass.find(@character.char_class_id).name}",
       text "#{CharClass.find(@character.char_class_id).name}",
           size: 10,
           indent_paragraphs: 5,
@@ -186,18 +277,23 @@ class CharacterPdf < Prawn:: Document
     bounding_box [@main_orig,@total_height], width: @main_width, height: @main_ch_height do
       stroke_bounds
       move_down 4.5 #to center the chapter name vertically
-      text @chapter.name, 
-          size: 15,
-          style: :bold, 
-          align: :center
+      text @chapter.name, size: 15, style: :bold, align: :center
     end
   end
 
-  def racial_per_day_skills
-    bounding_box [@rpds_orig,@total_height], width: @rpds_width, height: @total_height do
-      stroke_bounds
-      racial_box
-      per_day_box
+  def skill_header label
+    text "#{label}", size: 9, style: :bold_italic, inline_format: :true, indent_paragraphs: 3
+  end
+
+  def skill_table data
+    table(data) do
+      rows(0..30).borders = []
+      columns(0).width = 1.6.in
+      cells.size = 9
+      cells.align = :left
+      cells.height = 10
+      cells.padding = 0
+      cells.padding_left = 3
     end
   end
 
@@ -235,71 +331,33 @@ class CharacterPdf < Prawn:: Document
     end
   end
 
-  def skill_header label
-    text "#{label}",
-          size: 9,
-          style: :bold_italic,
-          inline_format: :true,
-          indent_paragraphs: 3
-  end
-
-  def skill_table data
-    table(data) do
-      rows(0..30).borders = []
-      columns(0).width = 1.6.in
-      cells.size = 9
-      cells.align = :left
-      cells.height = 10
-      cells.padding = 0
-      cells.padding_left = 3
-    end
-  end
-
-  def continuous_skills 
-    bounding_box [@cs_orig,@total_height], width: @cs_width, height: @total_height do
-      stroke_bounds
-      move_down 3
-      skill_header '<u>Continuous Skills</u>'
-    end
-  end
-
-  def craftsman_skills 
-    bounding_box [@cf_orig,@total_height], width: @cf_width, height: @total_height do
+  def extra_continuous_skills
+    bounding_box [0,@total_height], width: @cf_width, height: 0.95.in do
       stroke_bounds
       move_down 3
       skill_header 'Continuous Skills Cont.'
+      move_up 12.5
+      skill_table @extra_data
     end
   end
 
-  def life_tag
-    bounding_box [@lt_orig,@total_height], width: @lt_width, height: @total_height do
+  def info_block
+    bounding_box [0,@total_height-0.4.in], width: @lt_width, height: 2.5.in do
       stroke_bounds
+      move_down 0.1.in
+      text @member.id.to_s, size: 9, align: :center
+      text @user.first_name, size: 9, align: :center
+      text @user.last_name, size: 9, align: :center
+      move_down 0.15.in
+      text "<u>Character</u>", size: 11, align: :center, style: :bold, inline_format: :true
+      text @character.name, size: 9, align: :center
+      move_down 0.75.in
+      text "Home Chapter", size: 8, align: :center, style: :bold
+      text Chapter.find(@character.home_chapter).name, size: 8, align: :center
+      move_down 0.125.in
+      text "<b>BP:</b>            #{@character.build_points}", size: 9, align: :center, inline_format: :true
+      move_down 0.045.in
+      text Time.now.to_date.to_s, size: 9, align: :center
     end
-  end
-
-  def card_size_consts
-    # Overal card dimensions
-    @total_width = 9.1.in
-    @total_height = 3.6.in
-    
-    # Card section consts
-    @main_orig = 0
-    @main_width = 2.55.in
-    @rpds_orig = 2.55.in
-    @rpds_width = 1.8.in
-    @cs_orig = 4.35.in
-    @cs_width = 1.8.in
-    @cf_orig = 6.15.in
-    @cf_width = 1.8.in
-    @lt_orig = 7.95.in
-    @lt_width = 1.15.in
-
-    #main info box consts
-    @main_ch_height = 0.3.in
-    @main_member_height = 0.6.in + @main_ch_height
-    @main_character_height = 0.85.in + @main_member_height
-    @main_death_height = 0.45.in + @main_character_height
-    @main_build_height = 0.6.in + @main_death_height
-    @main_spell_height = 0.8.in + @main_build_height
   end
 end

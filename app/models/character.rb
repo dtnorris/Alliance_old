@@ -91,6 +91,18 @@ class Character < ActiveRecord::Base
     xp_track
   end
 
+  def continuous_skills
+    skills = CharacterSkill.all_bought_skills(self)
+    ret = []
+    skills.each do |sn|
+      sk = Skill.find_by_name(sn)
+      if (sk.group == 'other' and sk.name != 'Teacher') or sk.group == 'weapon' or sk.name == 'Weapon Proficiency' or sk.name == 'Backstab' or sk.name == 'Read And Write' or sk.name == 'Read Magic' or sk.name == 'First Aid' or sk.name == 'Healing Arts' and sk.name != 'Craftsman'
+        ret << sn
+      end
+    end
+    ret
+  end
+
   def per_day_skills
     skills = CharacterSkill.all_bought_skills(self)
     ret = []

@@ -66,7 +66,7 @@ describe "character" do
     nc12 = Character.create(id: 12, home_chapter: 'T_Chapter_1', user_id: 1, name: 'Bob', race_id: 12, char_class_id: 1, experience_points: 0, build_points: 15)
     CharacterSkill.find_all_by_character_id(nc12.id).count.should == 2
     nc13 = Character.create(id: 13, home_chapter: 'T_Chapter_1', user_id: 1, name: 'Bob', race_id: 13, char_class_id: 1, experience_points: 0, build_points: 15)
-    CharacterSkill.find_all_by_character_id(nc13.id).count.should == 2
+    CharacterSkill.find_all_by_character_id(nc13.id).count.should == 3
     nc14 = Character.create(id: 14, home_chapter: 'T_Chapter_1', user_id: 1, name: 'Bob', race_id: 14, char_class_id: 1, experience_points: 0, build_points: 15)
     CharacterSkill.find_all_by_character_id(nc14.id).count.should == 2
   end
