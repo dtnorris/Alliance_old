@@ -11,6 +11,7 @@ describe "Attendees" do
 
   it "should be able to create a new attendee from the chapter" do
     click_link "Home"
+    click_link "Chapter Events"
     click_link "View Attendees"
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
@@ -21,6 +22,7 @@ describe "Attendees" do
 
   it "should be able to show a list of events attended" do
     click_link "Home"
+    click_link "Chapter Events"
     click_link "Apply Event"
     click_link "Home - admin@test.com"
     click_link "Events Attended"

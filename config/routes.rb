@@ -13,6 +13,7 @@ Alliance::Application.routes.draw do
       get :xp_track
       get :new_for_user
       post :create_for_user
+      get :characters_for_chapter
     end
   end
 
@@ -35,6 +36,7 @@ Alliance::Application.routes.draw do
     member do
       get :view_goblins
       get :edit_password_form
+      get :users_for_chapter
     end
   end
 

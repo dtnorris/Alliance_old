@@ -6,7 +6,8 @@ class EventsController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @events = Event.find_all_by_chapter_id(@chapter.id)
     @user = User.find(session[:user_id_for_membership])
-    @in_user_show = true
+    @in_user_show = true unless session[:chapter_id_for_new_user]
+    @in_chapter_show = true if session[:chapter_id_for_new_user]
     authorize! :events_for_chapter, @chapter
 
     respond_to do |format|

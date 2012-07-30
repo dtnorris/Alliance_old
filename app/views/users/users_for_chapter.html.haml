@@ -1,0 +1,8 @@
+%h1= 'Players for ' + @chapter.name
+
+= render 'chapters/chapter_navbar'
+
+%p= link_to 'New Member', new_user_path, class: "btn"
+%P
+
+= render 'chapters/user_table'

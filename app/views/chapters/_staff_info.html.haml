@@ -1,17 +1,25 @@
-%h3 List of Events
-
+/%h3 List of Events
+/.span2
+%br
+= link_to 'New Member', new_user_path, class: "btn"
+%p
+%p
+  %b Number of Members:
+  = @members.count
+%br
 = link_to 'New Event', new_event_path, class: "btn"
 %p
+%p
+  %b Number of Events:
+  = @events.count
 
-= render 'events/event_table'
+/= render 'events/event_table'
 
-%h3 List of Members
+/%h3 List of Members
+/.span2
 
-%p= link_to 'New Member', new_user_path, class: "btn"
-%P
+/= render 'user_table'
 
-= render 'user_table'
+/%h3 List of Characters
 
-%h3 List of Characters
-
-= render 'characters/character_table'
+/= render 'characters/character_table'

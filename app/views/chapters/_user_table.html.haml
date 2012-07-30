@@ -13,6 +13,7 @@
     %tr
       %td= user.email
       %td= name
+      - #debugger
       %td.ln= Member.find_by_user_id_and_chapter_id(user.id, session[:chapter_id_for_new_user]).goblin_stamps
       %td= link_to 'Add/Remove', view_goblins_user_path(user), class: "btn"
       %td= collection_select(:get, :character_id, characters, :id, :name)

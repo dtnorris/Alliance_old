@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start 'rails'
+SimpleCov.start 'rails' do
+  add_filter "/pdfs/"
+end
 SimpleCov.coverage_dir 'coverage/'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'

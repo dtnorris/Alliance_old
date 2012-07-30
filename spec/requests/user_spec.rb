@@ -10,6 +10,7 @@ describe "basic navigation" do
 
   it "should be able to create a nem Member" do
     visit "chapters/1"
+    #click_link "Chapter Players"
     click_link "New Member"
     fill_in "Email", with: "new_test@test.com"
     fill_in "First name", with: "Jane"
@@ -17,7 +18,7 @@ describe "basic navigation" do
     fill_in "Password", with: "txt@1234"
     fill_in "Password confirmation", with: "txt@1234"
     click_button "Add Member"
-
+    #save_and_open_page
     page.should have_content("new_test@test.com Jane Doe")
   end
 

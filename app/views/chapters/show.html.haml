@@ -1,24 +1,28 @@
 %h1 Basic Info
+
+= render 'chapter_navbar'
 %p#notice= notice
 /%ul.nav.nav-tabs
 /  %li= link_to 'Back', :back, class: "btn"
 /.error1= flash[:notice] if flash[:notice]
-%p
+.span5
+  %p
 
-%p
-  %b Name:
-  = @chapter.name
-%p
-  %b Location:
-  = @chapter.location
-%p
-  %b Owner:
-  = @chapter.owner
-%p
-  %b Email:
-  = @chapter.email
-
-= render 'staff_info'
+  %p
+    %b Name:
+    = @chapter.name
+  %p
+    %b Location:
+    = @chapter.location
+  %p
+    %b Owner:
+    = @chapter.owner
+  %p
+    %b Email:
+    = @chapter.email
+  %p
+  
+  = render 'staff_info'
 
 /= link_to 'Edit', edit_chapter_path(@chapter)
 /\|

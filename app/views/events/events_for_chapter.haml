@@ -1,7 +1,14 @@
 %h1= 'Events for ' + @chapter.name
 
 %ul.nav.nav-tabs
-  %li= link_to 'Back', @user, class: "btn"
+  -if @in_user_show
+    %li= link_to 'Back', @user, class: "btn"
+  -else
+    = render 'chapters/chapter_navbar'
+
+-if @in_chapter_show
+  = link_to 'New Event', new_event_path, class: "btn"
+  %p
 
 = render 'event_table'
 

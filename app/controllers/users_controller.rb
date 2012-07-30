@@ -1,5 +1,17 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:view_goblins, :show]
+  load_and_authorize_resource :except => [:view_goblins, :show, :users_for_chapter]
+
+  # GET /users/1/users_for_chapter
+  def users_for_chapter
+    @chapter = Chapter.find(params[:id])
+    @members = Member.find_all_by_chapter_id(@chapter.id)
+    @users = User.all_for_given_members(@members)
+    authorize! :users_for_chapter, @chapter
+
+    respond_to do |format|
+      format.html
+    end
+  end
 
   # GET /users/1/view_goblins
   def view_goblins
@@ -61,12 +73,12 @@ class UsersController < ApplicationController
     @user.save
     @member = Member.new(user_id: @user.id, chapter_id: session[:chapter_id_for_new_user], goblin_stamps: 0)
     @member.save
-    session.delete :chapter_id_for_new_user
+    #session.delete :chapter_id_for_new_user
 
     respond_to do |format|
       if @user.save
         #flash[:alert] = "New user created successfully!"
-        format.html { redirect_to chapter_path(@member.chapter_id), notice: 'User was successfully created.' }
+        format.html { redirect_to users_for_chapter_user_path(@member.chapter_id), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
