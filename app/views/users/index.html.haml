@@ -1,3 +1,13 @@
-%h1 All Alliance Users
+-if params[:chapter_id]
+  %h1= 'Players for ' + @chapter.name
 
-= render 'user_table'
+  = render 'chapters/chapter_navbar'
+
+  %p= link_to 'New Member', new_user_path, class: "btn"
+  %P
+
+  = render 'chapters/user_table'
+-else
+  %h1 All Alliance Users
+
+  = render 'user_table'

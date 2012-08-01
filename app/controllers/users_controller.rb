@@ -1,15 +1,18 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:view_goblins, :show, :users_for_chapter]
+  load_and_authorize_resource :except => [:view_goblins, :show]
 
-  # GET /users/1/users_for_chapter
-  def users_for_chapter
-    @chapter = Chapter.find(params[:id])
-    @members = Member.find_all_by_chapter_id(@chapter.id)
-    @users = User.all_for_given_members(@members)
-    authorize! :users_for_chapter, @chapter
+  #GET /users
+  #GET /users.json
+  def index
+    if params[:chapter_id]
+      @chapter = Chapter.find(params[:chapter_id])
+      @members = Member.find_all_by_chapter_id(@chapter.id)
+      @users = User.all_for_given_members(@members)
+    end
 
     respond_to do |format|
-      format.html
+      format.html # index.html.erb
+      format.json { render json: @user }
     end
   end
 
@@ -78,7 +81,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         #flash[:alert] = "New user created successfully!"
-        format.html { redirect_to users_for_chapter_user_path(@member.chapter_id), notice: 'User was successfully created.' }
+        format.html { redirect_to chapter_users_path(@member.chapter_id), notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -133,17 +136,6 @@ class UsersController < ApplicationController
   #     redirect_to root_path
   #   else
   #     render "edit"
-  #   end
-  # end
-
-  # GET /users
-  # GET /users.json
-  # def index
-  #   @user = User.all
-
-  #   respond_to do |format|
-  #     format.html # index.html.erb
-  #     format.json { render json: @user }
   #   end
   # end
 

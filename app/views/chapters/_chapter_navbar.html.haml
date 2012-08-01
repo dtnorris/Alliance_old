@@ -1,5 +1,5 @@
 %ul.nav.nav-tabs
-  %li= link_to 'Chapter Home', @chapter, class: "btn"
-  %li= link_to 'Chapter Events', events_for_chapter_event_path(@chapter.id), class: "btn"
-  %li= link_to 'Chapter Players', users_for_chapter_user_path(@chapter.id), class: "btn"
-  %li= link_to 'Chapter Characters', characters_for_chapter_character_path(@chapter.id), class: "btn"
+  %li= link_to "Home", @chapter, class: "btn"
+  %li= link_to "Events", chapter_events_path(@chapter.id), class: "btn", id: "chapter_events"
+  %li= link_to "Players", chapter_users_path(@chapter.id), class: "btn", id: "chapter_players"
+  %li= link_to "Characters", chapter_characters_path(@chapter.id), class: "btn", id: "chapter_characters"

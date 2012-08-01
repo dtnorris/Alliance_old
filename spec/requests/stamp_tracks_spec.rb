@@ -10,7 +10,7 @@ describe "basic navigation" do
 
   it "should be able to add goblin stamps" do
     visit "/chapters/1"
-    click_link "Chapter Players"
+    click_link "chapter_players"
     click_link "Add/Remove"
 
     fill_in "Amount to change", with: "1000"

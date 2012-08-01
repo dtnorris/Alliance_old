@@ -6,14 +6,17 @@ Alliance::Application.routes.draw do
     end
   end
 
-  resources :chapters
+  resources :chapters do
+    resources :characters
+    resources :users
+    resources :events
+  end
 
   resources :characters do
     member do 
       get :xp_track
       get :new_for_user
       post :create_for_user
-      get :characters_for_chapter
     end
   end
 
@@ -23,7 +26,6 @@ Alliance::Application.routes.draw do
     member do
       put :apply
       put :apply_to_single_character
-      get :events_for_chapter
     end
   end
 
@@ -33,10 +35,12 @@ Alliance::Application.routes.draw do
 
   devise_for :users, :path_prefix => 'd'
   resources :users do
+    resources :chapters do
+      resources :events
+    end
     member do
       get :view_goblins
       get :edit_password_form
-      get :users_for_chapter
     end
   end
 

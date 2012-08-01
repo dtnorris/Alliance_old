@@ -1,8 +1,12 @@
 class CharactersController < ApplicationController
-  load_and_authorize_resource :except => [:new_for_user, :characters_for_chapter]
+  load_and_authorize_resource :except => [:new_for_user]
   # GET /characters
   # GET /characters.json
   def index
+    if params[:chapter_id]
+      @chapter = Chapter.find(params[:chapter_id])
+      @characters = Character.find_all_by_home_chapter(@chapter.id)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @characters }
@@ -21,17 +25,6 @@ class CharactersController < ApplicationController
                               type: "application/pdf",
                               disposition: "inline"
       end
-    end
-  end
-
-  # GET /characters/1/characters_for_chapter
-  def characters_for_chapter
-    @chapter = Chapter.find(params[:id])
-    @characters = Character.find_all_by_home_chapter(@chapter.id)
-    authorize! :characters_for_chapter, @chapter
-
-    respond_to do |format|
-      format.html
     end
   end
 

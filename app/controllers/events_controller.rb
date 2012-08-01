@@ -1,17 +1,22 @@
 class EventsController < ApplicationController
-  load_and_authorize_resource :except => [:events_for_chapter, :apply_to_single_character, :apply]
+  load_and_authorize_resource :except => [:apply_to_single_character, :apply]
 
-  # GET /events_for_chapter/1
-  def events_for_chapter
-    @chapter = Chapter.find(params[:id])
-    @events = Event.find_all_by_chapter_id(@chapter.id)
-    @user = User.find(session[:user_id_for_membership])
-    @in_user_show = true unless session[:chapter_id_for_new_user]
-    @in_chapter_show = true if session[:chapter_id_for_new_user]
-    authorize! :events_for_chapter, @chapter
+  # GET /events
+  # GET /events.json
+  def index
+    if params[:chapter_id]
+      @chapter = Chapter.find(params[:chapter_id])
+      @events = Event.find_all_by_chapter_id(@chapter.id)
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      end
+    end
+    #@in_national_show = true
+    #session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
 
     respond_to do |format|
-      format.html
+      format.html # index.html.erb
+      format.json { render json: @events }
     end
   end
 
@@ -51,18 +56,6 @@ class EventsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # GET /events
-  # GET /events.json
-  def index
-    @in_national_show = true
-    session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @events }
     end
   end
 

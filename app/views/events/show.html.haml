@@ -1,7 +1,7 @@
 %h1 Event Details
 
 - if session[:chapter_id_for_new_user]
-  - path = events_for_chapter_event_path(@chapter.id)
+  - path = chapter_events_path(@chapter.id)
 - else
   - path = events_path
 %ul.nav.nav-tabs

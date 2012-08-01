@@ -1,5 +1,19 @@
-%h1 All Alliance Events
-%p#notice= notice
+-if params[:chapter_id]
+  %h1= 'Events for ' + @chapter.name
+
+  %ul.nav.nav-tabs
+    -if params[:user_id]
+      %li= link_to 'Back', @user, class: "btn"
+    -else
+      = render 'chapters/chapter_navbar'
+
+  -if params[:chapter_id] && !params[:user_id]
+    = link_to 'New Event', new_event_path, class: "btn"
+    %p
+
+-else
+  %h1 All Alliance Events
+  %p#notice= notice
 
 = render 'event_table'
 

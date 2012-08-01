@@ -9,7 +9,7 @@ describe "character creation and modification" do
     click_button "Sign in"
 
     visit "/chapters/1"
-    click_link "Chapter Players"
+    click_link "chapter_players"
     click_link "New Character"
     fill_in "Character Name:", with: "Bob"
     select("Human", :from => "Race:")
