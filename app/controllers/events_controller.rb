@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   def index
     if params[:chapter_id]
       @chapter = Chapter.find(params[:chapter_id])
-      @events = Event.find_all_by_chapter_id(@chapter.id)
+      @events = @chapter.events
       if params[:user_id]
         @user = User.find(params[:user_id])
       end

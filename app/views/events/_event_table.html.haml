@@ -5,10 +5,10 @@
     %th Event Type
     %th Date
     %th Applied?
-    - if params[:chapter_id] && !params[:user_id]
+    - if @chapter && !@user
       %th
       %th
-    - if params[:user_id]
+    - if @user
       %th
 
   - @events.reverse.each do |event|
@@ -22,13 +22,13 @@
         %td.ln Yes
       - else
         %td.ln No
-      - if params[:chapter_id] && !params[:user_id]
+      - if @chapter && !@user
         - if event.applied == true
           %td= button_to 'Apply Event', @chapter, class: "btn", :disabled => true
         - else
           %td= link_to 'Apply Event', apply_event_path(event), class: "btn", method: :put
-      - if !params[:user_id]
+      - if !@user
         %td= link_to 'View Attendees', event, class: "btn"
-      - if params[:user_id]
+      - if @user
         %td= link_to 'Attend', new_for_chapter_attendee_path(event.id), class: "btn"
 

@@ -2,8 +2,8 @@ class Character < ActiveRecord::Base
   attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id, :home_chapter
   belongs_to :race
   belongs_to :char_class
-  has_many :character_skill
-  has_many :attendee
+  has_many :character_skills
+  has_many :attendees
 
   after_create :purchase_racial_skills
 

@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :dragon_stamps, :role_id
 
-  has_many :character
-  has_many :member
+  has_many :characters
+  has_many :members
 
   validates_presence_of :email
   validates_presence_of :first_name

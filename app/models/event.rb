@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :chapter_id, :date, :name, :event_type_id, :applied
 
-  has_many :attendee
+  has_many :attendees
 
   validates_presence_of :name
   validates_presence_of :chapter_id

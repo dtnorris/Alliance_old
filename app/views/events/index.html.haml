@@ -1,13 +1,14 @@
--if params[:chapter_id]
+/ -if @chapter
+-if @chapter
   %h1= 'Events for ' + @chapter.name
 
   %ul.nav.nav-tabs
-    -if params[:user_id]
+    -if @user
       %li= link_to 'Back', @user, class: "btn"
     -else
       = render 'chapters/chapter_navbar'
 
-  -if params[:chapter_id] && !params[:user_id]
+  -if @chapter && !@user
     = link_to 'New Event', new_event_path, class: "btn"
     %p
 

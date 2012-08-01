@@ -3,7 +3,7 @@
     -#%th
     %th
     %th Player:
-    -unless params[:chapter_id]
+    -unless @chapter
       %th Home Chapter:
     %th Name: 
     %th Race:
@@ -16,7 +16,7 @@
       -#%td= link_to 'Edit', edit_character_path(character), class: "btn"
       %td= link_to 'View', character_path(character), class: "btn"
       %td= User.find(character.user_id).name
-      -unless params[:chapter_id]
+      -unless @chapter
         %td= Chapter.find(character.home_chapter).name
       %td= character.name
       %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)

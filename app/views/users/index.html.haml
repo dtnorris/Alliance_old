@@ -1,4 +1,4 @@
--if params[:chapter_id]
+-if @chapter
   %h1= 'Players for ' + @chapter.name
 
   = render 'chapters/chapter_navbar'

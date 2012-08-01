@@ -1,10 +1,10 @@
 class Chapter < ActiveRecord::Base
   attr_accessible :email, :location, :name, :owner
 
-  has_many :event
-  has_many :character
-  has_many :member
-  has_many :stramp_track
+  has_many :events
+  has_many :characters
+  has_many :members
+  has_many :stramp_tracks
 
   validates_presence_of :name
   validates_presence_of :owner

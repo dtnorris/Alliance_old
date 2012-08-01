@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def index
     if params[:chapter_id]
       @chapter = Chapter.find(params[:chapter_id])
-      @members = Member.find_all_by_chapter_id(@chapter.id)
+      @members = @chapter.members
       @users = User.all_for_given_members(@members)
     end
 
