@@ -2,7 +2,7 @@
   %h1= "Attend " + @chapter.name + " event on " + @event.date.to_s + " with:"
   .error1= notice
   %ul.nav.nav-tabs
-    %li= link_to 'Back', user_chapter_events_path(@user.id,@chapter.id), class: "btn"
+    %li= link_to 'Back', chapter_user_events_path(@chapter.id,@user.id), class: "btn"
 
   = render 'attendees/form'
 

@@ -25,7 +25,7 @@
       %td= (character.build_points - 5) / 10
       %td= attendee.applied
       - if attendee.applied != true
-        %td= link_to 'Apply Event', apply_to_single_character_event_path(character.id), class: "btn", :method => :put
+        %td= link_to 'Apply Event', chapter_character_event_apply_path(@chapter.id,character.id,@event.id), class: "btn", :method => :put
       - else
         %td= button_to 'Apply Event', attendee, class: "btn", :disabled => true
       /%td= link_to 'Show', attendee

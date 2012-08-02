@@ -1,39 +1,34 @@
 class EventsController < ApplicationController
-  load_and_authorize_resource :except => [:apply_to_single_character, :apply]
+  load_and_authorize_resource :except => [:apply]
 
-  # PUT /events/1/apply_to_single_character
-  def apply_to_single_character
-    @event = Event.find(session[:event_id_for_single_blanket])
-    @character = Character.find(params[:id])
-    @attendee = Attendee.find_by_event_id_and_character_id(@event.id, @character.id)
-    authorize! :apply_to_single_character, @event
-    
-    respond_to do |format|
-      if @attendee.apply_event
-        format.html { redirect_to @event, notice: 'Single Blanket successfully applied.' }
-      else
-        format.html { redirect_to @event, notice: 'Error applying event blanket' }
-      end
-    end
-  end
-
-  # PUT /events/1/apply
+  # PUT .../events/1/apply
   def apply
-    @event = Event.find(params[:id])
-    @event.apply_blanket
     @chapter = Chapter.find(params[:chapter_id])
+    if params[:character_id]
+      @event = Event.find(params[:event_id])
+      @character = Character.find(params[:character_id])
+      @attendee = Attendee.find_by_event_id_and_character_id(@event.id, @character.id)
+    else
+      @event = Event.find(params[:id])
+      @event_apply = @event.apply_blanket
+    end
     authorize! :apply, @event
 
     respond_to do |format|
-      if @event.update_attributes(params[:event])
-        if @chapter
-          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully updated.' }
+      if @attendee
+        if @attendee.apply_event
+          format.html { redirect_to chapter_event_path(@chapter.id,@event.id), notice: 'Single Blanket successfully applied' }
         else
-          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully updated.' }
+          format.html { redirect_to chapter_event_path(@chapter.id,@event.id), notice: 'Error applying event blanket' }
         end
-        format.json { head :no_content }
+      elsif @event.update_attributes(params[:event])
+        if @event_apply
+          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully updated' }
+        else
+          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Error applying event' }
+        end
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Error applying event' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -56,26 +51,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
-  def show
-    @chapter = Chapter.find(@event.chapter_id)
-    @members = @chapter.members
-    @users = User.all_for_given_members(@members)
-    @users = @users.sort_by { |u| u.name }
-    @attendee = Attendee.new
-    @attendees = Attendee.find_all_by_event_id(@event.id)
-    session[:event_id_for_single_blanket] = @event.id
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-    end
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @event }
-    end
-  end
-
   # GET /events/new
   # GET /events/new.json
   def new
@@ -85,10 +60,6 @@ class EventsController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @event }
     end
-  end
-
-  # GET /events/1/edit
-  def edit
   end
 
   # POST /events
@@ -105,6 +76,30 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /events/1
+  # GET /events/1.json
+  def show
+    @chapter = Chapter.find(@event.chapter_id)
+    @members = @chapter.members
+    @users = User.all_for_given_members(@members)
+    @users = @users.sort_by { |u| u.name }
+    @attendee = Attendee.new
+    @attendees = @event.attendees
+    session[:event_id_for_single_blanket] = @event.id
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @event }
+    end
+  end
+
+  # GET /events/1/edit
+  def edit
   end
 
   # PUT /events/1

@@ -2,6 +2,7 @@
   %tr
     -#%th
     %th
+    %th
     %th Player:
     -unless @chapter
       %th Home Chapter:
@@ -15,6 +16,7 @@
     %tr
       -#%td= link_to 'Edit', edit_character_path(character), class: "btn"
       %td= link_to 'View', character_path(character), class: "btn"
+      %td= link_to 'XP', xp_track_character_path(character), class: "btn"
       %td= User.find(character.user_id).name
       -unless @chapter
         %td= Chapter.find(character.home_chapter).name

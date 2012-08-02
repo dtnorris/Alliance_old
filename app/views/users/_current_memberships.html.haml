@@ -11,7 +11,7 @@
     - chapter = Chapter.find(member.chapter_id)
     %tr
       %td= chapter.name
-      %td= link_to 'View Events', user_chapter_events_path(@user.id,chapter.id), class: "btn"
+      %td= link_to 'View Events', chapter_user_events_path(chapter.id,@user.id), class: "btn"
       %td.ln= member.goblin_stamps
       %td= link_to 'View Stamp Log', view_goblins_user_path(chapter.id), class: "btn"
       /%td= link_to 'Show', member
