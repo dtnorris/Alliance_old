@@ -278,6 +278,7 @@ DEPENDENCIES
   rails
   rails_best_practices
   rantly
+  rb-fsevent
   rspec-instafail
   rspec-rails
   rspec-steps
