@@ -5,6 +5,6 @@
     = f.input :name
     = f.input :date
     = f.input :event_type_id, :label => 'Event Type', :collection => EventType.all, :include_blank => false
-    /= f.input :chapter_id, :input_html => { :value => session[:chapter_id_for_new_user]}
+    = f.hidden_field :chapter_id, value: @chapter.id
 
     = f.button :submit

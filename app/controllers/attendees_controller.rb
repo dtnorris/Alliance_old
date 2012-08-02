@@ -1,23 +1,5 @@
 class AttendeesController < ApplicationController
-  load_and_authorize_resource :except => [:new_for_chapter, :show, :create]
-
-  # GET /attendees/1/new_for_chapter
-  def new_for_chapter
-    @attendee = Attendee.new
-    @user = User.find(session[:user_id_for_membership])
-    @characters = Character.find_all_by_user_id(@user.id)
-    @event = Event.find(params[:id])
-    @chapter = Chapter.find(@event.chapter_id)
-    session[:chapter_id_for_new_attendee] = @chapter.id
-    session[:event_id_for_new_attendee] = @event.id
-    session.delete :event_id_for_single_blanket if session[:event_id_for_single_blanket]
-    authorize! :new_for_chapter, @attendee
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @attendee }
-    end
-  end
+  load_and_authorize_resource :except => [:show, :create]
 
   # GET /attendees/1
   # GET /attendees/1.json
@@ -39,29 +21,30 @@ class AttendeesController < ApplicationController
   # POST /attendees
   # POST /attendees.json
   def create
-    @user = User.find(params[:attendee][:user_id]) unless session[:user_id_for_membership]
-    @user = User.find(session[:user_id_for_membership])
-    params[:attendee].delete("user_id")
-    params[:attendee][:event_id] = session[:event_id_for_new_attendee] if session[:event_id_for_new_attendee]
-    params[:attendee][:event_id] = session[:event_id_for_single_blanket] unless params[:attendee][:event_id]
+    if params[:attendee][:chapter_id]
+      @chapter = Chapter.find(params[:attendee][:chapter_id])
+      params[:attendee].delete('chapter_id')
+    end
+    @user = User.find(params[:attendee][:user_id])
+    params[:attendee].delete('user_id')
     @attendee = Attendee.new(params[:attendee])
     @event = Event.find(@attendee.event_id)
-    authorize! :new_for_chapter, @attendee
+    authorize! :create, @attendee
 
     respond_to do |format|
       if @attendee.save
-        if session[:event_id_for_single_blanket]
-          format.html { redirect_to @event, notice: 'attendee successfully added to the event' }
+        if @chapter
+          format.html { redirect_to chapter_event_path(@chapter.id,@event.id), notice: 'attendee successfully added to the event' }
         else
           format.html { redirect_to attendee_path(@user.id), notice: 'attendee was successfully created.' }
           format.json { render json: @attendee, status: :created, location: @attendee }
         end
       else
-        if session[:event_id_for_single_blanket]
-          format.html { redirect_to @event, notice: 'attendee not successfuly added' }
+        if @chapter
+          format.html { redirect_to chapter_event_path(@chapter.id,@event.id), notice: 'attendee not successfuly added' }
         else
-          format.html { redirect_to new_for_chapter_attendee_path(@event.id), notice: 'attendee not successfully added' }
-          format.json { render json: @attendee.errors, status: :unprocessable_entity }
+          format.html { redirect_to attendee_path(@user.id), notice: 'attendee not successfully added' }
+          format.json { render json: @attendee, status: :unprocessable_entity }
         end
       end
     end

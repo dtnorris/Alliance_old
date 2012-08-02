@@ -17,7 +17,6 @@ class ChaptersController < ApplicationController
     @users = User.all_for_given_members(@members)
     @characters = Character.find_all_by_home_chapter(@chapter.id)
     session[:chapter_id_for_new_user] = params[:id]
-    @in_chapter_show = true
 
     respond_to do |format|
       format.html # show.html.erb

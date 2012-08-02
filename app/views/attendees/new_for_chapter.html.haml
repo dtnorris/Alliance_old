@@ -1,6 +1,0 @@
-%h1= "Attend " + @chapter.name + " event on " + @event.date.to_s + " with:"
-.error1= notice
-%ul.nav.nav-tabs
-  %li= link_to 'Back', chapter_events_path(@chapter.id), class: "btn"
-
-= render 'form'

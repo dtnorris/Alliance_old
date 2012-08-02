@@ -1,15 +1,15 @@
 Alliance::Application.routes.draw do
   
-  resources :attendees do
-    member do
-      get :new_for_chapter
-    end
-  end
+  resources :attendees
 
   resources :chapters do
     resources :characters
     resources :users
-    resources :events
+    resources :events do
+      member do
+        put :apply
+      end
+    end
   end
 
   resources :characters do
@@ -23,8 +23,8 @@ Alliance::Application.routes.draw do
   resources :character_skills
 
   resources :events do
+    resources :attendees
     member do
-      put :apply
       put :apply_to_single_character
     end
   end
@@ -35,6 +35,7 @@ Alliance::Application.routes.draw do
 
   devise_for :users, :path_prefix => 'd'
   resources :users do
+    resources :events
     resources :chapters do
       resources :events
     end

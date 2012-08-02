@@ -1,25 +1,6 @@
 class EventsController < ApplicationController
   load_and_authorize_resource :except => [:apply_to_single_character, :apply]
 
-  # GET /events
-  # GET /events.json
-  def index
-    if params[:chapter_id]
-      @chapter = Chapter.find(params[:chapter_id])
-      @events = @chapter.events
-      if params[:user_id]
-        @user = User.find(params[:user_id])
-      end
-    end
-    #@in_national_show = true
-    #session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @events }
-    end
-  end
-
   # PUT /events/1/apply_to_single_character
   def apply_to_single_character
     @event = Event.find(session[:event_id_for_single_blanket])
@@ -28,7 +9,6 @@ class EventsController < ApplicationController
     authorize! :apply_to_single_character, @event
     
     respond_to do |format|
-      #debugger
       if @attendee.apply_event
         format.html { redirect_to @event, notice: 'Single Blanket successfully applied.' }
       else
@@ -41,15 +21,15 @@ class EventsController < ApplicationController
   def apply
     @event = Event.find(params[:id])
     @event.apply_blanket
-    @chapter = Chapter.find(session[:chapter_id_for_new_user]) if session[:chapter_id_for_new_user]
-    authorize! :apply_to_single_character, @event
+    @chapter = Chapter.find(params[:chapter_id])
+    authorize! :apply, @event
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
         if @chapter
-          format.html { redirect_to @chapter, notice: 'Event was successfully updated.' }
+          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully updated.' }
         else
-          format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
+          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully updated.' }
         end
         format.json { head :no_content }
       else
@@ -59,17 +39,36 @@ class EventsController < ApplicationController
     end
   end
 
+  # GET /events
+  # GET /events.json
+  def index
+    if params[:chapter_id]
+      @chapter = Chapter.find(params[:chapter_id])
+      @events = @chapter.events
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      end
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+    end
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show
     @chapter = Chapter.find(@event.chapter_id)
-    @members = Member.find_all_by_chapter_id(@chapter.id)
+    @members = @chapter.members
     @users = User.all_for_given_members(@members)
     @users = @users.sort_by { |u| u.name }
     @attendee = Attendee.new
     @attendees = Attendee.find_all_by_event_id(@event.id)
     session[:event_id_for_single_blanket] = @event.id
-    session.delete :event_id_for_new_attendee if session[:event_id_for_new_attendee]
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -80,7 +79,7 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.json
   def new
-    @chapter = Chapter.find(session[:chapter_id_for_new_user])
+    @chapter = Chapter.find(params[:chapter_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -95,17 +94,14 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @chapter = Chapter.find(session[:chapter_id_for_new_user])
-
-    @event = Event.new(params[:event])
-    @event.chapter_id = @chapter.id
+    @chapter = params[:event][:chapter_id]
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @chapter, notice: 'Event was successfully created.' }
+        format.html { redirect_to chapter_events_path(@chapter), notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
-        format.html { redirect_to new_event_path, notice: 'Error creating Event, missing required fields.' }
+        format.html { redirect_to chapter_events_path(@chapter), notice: 'Error creating Event, missing required fields.' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end

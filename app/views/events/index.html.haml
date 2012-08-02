@@ -7,9 +7,10 @@
       %li= link_to 'Back', @user, class: "btn"
     -else
       = render 'chapters/chapter_navbar'
+      %p#notice= notice
 
   -if @chapter && !@user
-    = link_to 'New Event', new_event_path, class: "btn"
+    = link_to 'New Event', new_chapter_event_path(@chapter.id), class: "btn"
     %p
 
 -else
