@@ -49,7 +49,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rantly'
   gem 'heroku'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent' #, :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
 end
 
