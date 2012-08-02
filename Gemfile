@@ -45,15 +45,12 @@ group :development, :test do
   gem "selenium-webdriver"
   gem 'launchy' # provides save_and_open_page
 
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
   gem 'rantly'
   gem 'heroku'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
-end
-
-group :test do
-  gem 'cucumber-rails'
-  gem 'database_cleaner'
 end
 
 group :production do
