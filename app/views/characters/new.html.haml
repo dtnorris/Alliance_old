@@ -2,6 +2,8 @@
 %ul.nav.nav-tabs
   %li= link_to 'Back', :back, class: "btn"
 
+%p#notice= notice
+
 - #@character.user_id = params[:id]
 
 = render 'form'

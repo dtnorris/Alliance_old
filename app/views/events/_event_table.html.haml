@@ -22,12 +22,12 @@
         %td.ln Yes
       - else
         %td.ln No
-      - if @chapter && !@user
+      - if @chapter and !@user
         - if event.applied == true
           %td= button_to 'Apply Event', @event, class: "btn", :disabled => true
         - else
           %td= link_to 'Apply Event', apply_chapter_event_path(@chapter.id,event.id), class: "btn", method: :put
-      - if !@user
+      - if @chapter and !@user
         %td= link_to 'View Attendees', chapter_event_path(@chapter.id,event.id), class: "btn"
       - if @user
         %td= link_to 'Attend', user_event_path(@user.id,event.id), class: "btn"

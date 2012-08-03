@@ -1,8 +1,13 @@
 class Character < ActiveRecord::Base
   attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id, :home_chapter
+
   belongs_to :race
   belongs_to :char_class
+  belongs_to :chapter
+  belongs_to :user
+
   has_many :character_skills
+  has_many :skills, :through => :character_skills
   has_many :attendees
 
   after_create :purchase_racial_skills
@@ -15,7 +20,7 @@ class Character < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :race_id
   validates_presence_of :char_class_id
-  #validates_presence_of :home_chapter
+
   validate :legal_spent_build
 
   def self.data_import data, chapter

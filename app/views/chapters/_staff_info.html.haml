@@ -1,13 +1,13 @@
 /%h3 List of Events
 /.span2
 %br
-= link_to 'New Member', new_user_path, class: "btn"
+= link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"
 %p
 %p
   %b Number of Members:
   = @members.count
 %br
-= link_to 'New Event', new_event_path, class: "btn"
+= link_to 'New Event', new_chapter_event_path(@chapter.id), class: "btn"
 %p
 %p
   %b Number of Events:

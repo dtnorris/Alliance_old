@@ -2,11 +2,12 @@
   = f.error_notification
 
   .form-inputs
-    - mb_ch = Character.memberships_of_user(@character.user_id)
-    - mb_ch = Character.memberships_of_user(session['user_id_for_new_character']) unless @character.user_id
+    /- mb_ch = Character.memberships_of_user(@user.id)
+    /- mb_ch = Character.memberships_of_user(session['user_id_for_new_character']) unless @character.user_id
     /-user_id = params[:id]
+    = f.hidden_field :user_id, value: @user.id
     /= f.hidden_field :user_id, :input_html => { :value => user_id }#, :disabled => true#, :collection => [params[:id].to_i], :include_blank => false #params[:id]
-    = f.input :home_chapter, :label => 'Home Chapter:', :collection => mb_ch, :include_blank => false
+    = f.input :home_chapter, :label => 'Home Chapter:', :collection => Character.memberships_of_user(@user.id), :include_blank => false
     = f.input :name, :label => 'Character Name:'
     = f.input :race_id, :label => 'Race:', :collection => Race.all
     = f.input :char_class_id, :label => 'Character Class:', :collection => CharClass.all

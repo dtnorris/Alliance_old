@@ -5,7 +5,7 @@ class AttendeesController < ApplicationController
   # GET /attendees/1.json
   def show
     @user = User.find(params[:id])
-    @attendees = @user.all_attendees
+    #@attendees = @user.all_attendees
     #HACKED, this allows a user with no attendees to see a blank page, somewhat hackish
     @attendees = []
     @attendees << @user

@@ -1,13 +1,13 @@
 %h1 Goblin Stamp Tracking
 
-- if session[:chapter_id_for_new_user]
-  - path = Chapter.find(session[:chapter_id_for_new_user])
-- elsif session[:user_id_for_membership]
+- if @chapter
+  - path = chapter_users_path(@chapter.id)
+- else
   - path = @user
 %ul.nav.nav-tabs
   %li= link_to 'Back', path, class: "btn"
 
-- if session[:chapter_id_for_new_user]
+- if @chapter
   = render 'stamp_form'
 
 %table.table.users-table

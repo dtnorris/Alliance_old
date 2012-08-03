@@ -82,12 +82,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @chapter = Chapter.find(@event.chapter_id)
-    @members = @chapter.members
-    @users = User.all_for_given_members(@members)
-    @users = @users.sort_by { |u| u.name }
-    @attendee = Attendee.new
+    @users = @chapter.users
     @attendees = @event.attendees
-    session[:event_id_for_single_blanket] = @event.id
+    @attendee = Attendee.new
     if params[:user_id]
       @user = User.find(params[:user_id])
     end

@@ -1,26 +1,12 @@
 class ChaptersController < ApplicationController
   load_and_authorize_resource
+  
   # GET /chapters
   # GET /chapters.json
   def index
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @chapters }
-    end
-  end
-
-  # GET /chapters/1
-  # GET /chapters/1.json
-  def show
-    @events = Event.find_all_by_chapter_id(@chapter.id)
-    @members = Member.find_all_by_chapter_id(@chapter.id)
-    @users = User.all_for_given_members(@members)
-    @characters = Character.find_all_by_home_chapter(@chapter.id)
-    session[:chapter_id_for_new_user] = params[:id]
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @chapter }
     end
   end
 
@@ -31,10 +17,6 @@ class ChaptersController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @chapter }
     end
-  end
-
-  # GET /chapters/1/edit
-  def edit
   end
 
   # POST /chapters
@@ -49,6 +31,24 @@ class ChaptersController < ApplicationController
         format.json { render json: @chapter.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /chapters/1
+  # GET /chapters/1.json
+  def show
+    @events     = @chapter.events
+    @members    = @chapter.members
+    @users      = @chapter.users
+    @characters = @chapter.characters
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @chapter }
+    end
+  end
+
+  # GET /chapters/1/edit
+  def edit
   end
 
   # PUT /chapters/1

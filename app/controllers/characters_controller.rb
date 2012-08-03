@@ -1,5 +1,5 @@
 class CharactersController < ApplicationController
-  load_and_authorize_resource :except => [:new_for_user]
+  load_and_authorize_resource
   # GET /characters
   # GET /characters.json
   def index
@@ -10,6 +10,18 @@ class CharactersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @characters }
+    end
+  end
+
+  # GET /characters/1/new
+  def new
+    @character = Character.new
+    @chapter = Chapter.find(params[:chapter_id])
+    @user = User.find(params[:user_id])
+
+    respond_to do |format|
+      format.html
+      format.json {render json: @character}
     end
   end
 
@@ -38,38 +50,26 @@ class CharactersController < ApplicationController
     end
   end
 
-  # GET /characters/1/new_for_user
-  def new_for_user
-    @character = Character.new
-    session[:user_id_for_new_character] = params[:id]
-    authorize! :new_for_user, @character
-
-    respond_to do |format|
-      format.html
-      format.json {render json: @character}
-    end
-  end
-
   # GET /characters/1/edit
   def edit
+    @user = User.find(@character.user_id)
+    @chapter = Chapter.find(@character.home_chapter)
   end
 
   # POST /characters
   # POST /characters.json
   def create
-    @character.user_id = session[:user_id_for_new_character].to_i
     @character.build_points = 15
     @character.spent_build = 0
     @character.experience_points = 0
     @character.save
-    session.delete :user_id_for_new_character
 
     respond_to do |format|
       if @character.save
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render json: @character, status: :created, location: @character }
       else
-        format.html { render action: "new_for_user" }
+        format.html { render action: "new" }
         format.json { render json: @character.errors, status: :unprocessable_entity }
       end
     end
@@ -83,7 +83,6 @@ class CharactersController < ApplicationController
     end
     if params[:character][:buy_skill] && params[:character][:buy_skill] != ""
       purchase_ret = CharacterSkill.purchase_skill(@character.id, Skill.find_by_name(params[:character][:buy_skill]).id)
-      #debugger
       if purchase_ret == "Pre-requisites are not met to purchase this skill"
         params[:purchase_error] = purchase_ret
       elsif purchase_ret && purchase_ret.legal_spent_build == "You do not have the necessary build for this update"

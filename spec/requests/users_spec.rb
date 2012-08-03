@@ -27,7 +27,7 @@ describe "basic navigation" do
     click_link "New Member"
     click_button "Add Member"
 
-    page.should have_content("Please review the problems below:")
+    page.should have_content("* Password confirmation")
   end
 
   # it "should be able to delete a user" do

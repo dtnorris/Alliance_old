@@ -302,7 +302,7 @@ class CharacterPdf < Prawn:: Document
       stroke_bounds
       move_down 3
       skill_header '<u>Racial Skills</u>'
-      data = []
+      data = [["",""]]
       CharacterSkill.all_racials(@character).each do |s|
         sk = CharacterSkill.find_by_character_id_and_skill_id(@character.id,Skill.find_by_name(s).id)
         val = sk.amount || sk.bought

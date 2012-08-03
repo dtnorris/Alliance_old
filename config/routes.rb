@@ -1,7 +1,5 @@
 Alliance::Application.routes.draw do
   
-  resources :attendees
-
   resources :chapters do
     resources :characters do
       resources :events do
@@ -9,7 +7,11 @@ Alliance::Application.routes.draw do
       end
     end
     resources :users do
+      member do
+        get :view_goblins
+      end
       resources :events
+      resources :characters
     end
     resources :events do
       member do
@@ -21,12 +23,12 @@ Alliance::Application.routes.draw do
   resources :characters do
     member do 
       get :xp_track
-      get :new_for_user
-      post :create_for_user
     end
   end
 
   resources :character_skills
+
+  resources :attendees
 
   resources :events do
     resources :attendees

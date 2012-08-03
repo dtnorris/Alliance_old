@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:view_goblins, :show]
+  load_and_authorize_resource :except => [:view_goblins, :show, :create]
 
   #GET /users
   #GET /users.json
@@ -18,16 +18,15 @@ class UsersController < ApplicationController
 
   # GET /users/1/view_goblins
   def view_goblins
-    if session[:chapter_id_for_new_user]
+    if params[:chapter_id]
       @user = User.find(params[:id])
-      @chapter_id = session[:chapter_id_for_new_user]
+      @chapter = Chapter.find(params[:chapter_id])
+      @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter.id)
     elsif session[:user_id_for_membership]
       @user = User.find(session[:user_id_for_membership])
-      @chapter_id = Chapter.find(params[:id]).id
+      @chapter_id = params[:id]
+      @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter_id)
     end
-    @chapter = Chapter.find(@chapter_id)
-    @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter_id)
-    session[:user_id_for_new_stamps] = @user.id
     @stamp_track = StampTrack.new
     authorize! :view_goblins, @chapter
 
@@ -63,6 +62,10 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
+    if params[:chapter_id]
+      @chapter = Chapter.find(params[:chapter_id])
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -72,19 +75,21 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    @chapter = Chapter.find(params[:user][:chapter_id])
+    params[:user].delete('chapter_id')
+    @user = User.create(params[:user])
     @user.dragon_stamps = 0
     @user.save
-    @member = Member.new(user_id: @user.id, chapter_id: session[:chapter_id_for_new_user], goblin_stamps: 0)
-    @member.save
-    #session.delete :chapter_id_for_new_user
+    @member = Member.create(user_id: @user.id, chapter_id: @chapter.id, goblin_stamps: 0)
+    authorize! :create, @user
 
     respond_to do |format|
       if @user.save
         #flash[:alert] = "New user created successfully!"
-        format.html { redirect_to chapter_users_path(@member.chapter_id), notice: 'User was successfully created.' }
+        format.html { redirect_to chapter_users_path(@member.chapter_id), notice: 'Player was successfully created' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to new_chapter_user_path(@member.chapter_id), notice: 'Failed to create new player' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
