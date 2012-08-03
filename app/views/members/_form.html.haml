@@ -2,7 +2,7 @@
   = f.error_notification
 
   .form-inputs
-
+    = f.hidden_field :user_id, value: @user.id
     = f.input :chapter_id, :collection => Chapter.all
     = f.button :submit, "Add Membership"
     /, :text => 'Add Membership'

@@ -42,7 +42,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) if params[:id]
     @user = User.find(current_user.id) unless @user
     session[:user_id_for_membership] = @user.id
-    session.delete :chapter_id_for_new_user if session[:chapter_id_for_new_user]
     @members = Member.find_all_by_user_id(@user.id)
     authorize! :show, @user
 
@@ -95,6 +94,24 @@ class UsersController < ApplicationController
     end
   end
 
+  # POST /users/1
+  def update
+    if params[:user][:password].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   # def destroy
@@ -113,24 +130,6 @@ class UsersController < ApplicationController
   #     format.json { head :no_content }
   #   end
   # end
-
-  # POST /users/1
-  def update
-    if params[:user][:password].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
-    end
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # GET /users/1/edit_password_form
   # def edit_password_form

@@ -5,9 +5,8 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(params[:member])
-    @member.user_id = session[:user_id_for_membership]
     @member.goblin_stamps = 0
-    another_like_me = Member.find_by_user_id_and_chapter_id(@member.user_id, params[:member][:chapter_id])
+    another_like_me = Member.find_by_user_id_and_chapter_id(@member.user_id, @member.chapter_id)
     authorize! :create, @member
 
     respond_to do |format|
