@@ -17,6 +17,10 @@ describe "character creation and modification" do
     click_button "Create Character"
   end
 
+  it "should see build costs by each class option" do
+    pending
+  end
+
   it "should be able to view xp_track" do
     click_link "XP Track"
     page.should have_content("Experience Point Tracking for: Bob")
