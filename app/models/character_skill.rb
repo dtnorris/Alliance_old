@@ -187,8 +187,8 @@ class CharacterSkill < ActiveRecord::Base
       return false
     elsif sk_buying_n == 'Backstab'
       skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Back Attack' && sk_check.amount == 4
-          sk_check.amount = 0
+        if Skill.find(sk_check.skill_id).name == 'Back Attack' && sk_check.amount >= 4
+          sk_check.amount = sk_check.amount - 4
           sk_check.save
           return true
         end
@@ -196,8 +196,8 @@ class CharacterSkill < ActiveRecord::Base
       return false
     elsif sk_buying_n == 'Weapon Proficiency'
       skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Critical Attack' && sk_check.amount == 4
-          sk_check.amount = 0
+        if Skill.find(sk_check.skill_id).name == 'Critical Attack' && sk_check.amount >= 4
+          sk_check.amount = sk_check.amount - 4
           sk_check.save
           return true
         end

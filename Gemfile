@@ -30,7 +30,6 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 2.0'
   gem 'sqlite3'
   gem 'simplecov', require: false
-  gem 'database_cleaner'
 
   gem 'rspec-rails'
   gem 'rspec-instafail'
