@@ -2,10 +2,8 @@
 
 = render 'chapter_navbar'
 %p#notice= notice
-/%ul.nav.nav-tabs
-/  %li= link_to 'Back', :back, class: "btn"
-/.error1= flash[:notice] if flash[:notice]
-.span5
+
+.span3
   %p
 
   %p
@@ -21,8 +19,25 @@
     %b Email:
     = @chapter.email
   %p
-  
-  = render 'staff_info'
+  %br
+  = link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"
+  %p
+  %p
+    %b Number of Members:
+    = @members.count
+  %br
+  = link_to 'New Event', new_chapter_event_path(@chapter.id), class: "btn"
+  %p
+  %p
+    %b Number of Events:
+    = @events.count
 
-/= link_to 'Edit', edit_chapter_path(@chapter)
-/\|
+.span7
+  %h3 Monthly Blanket Stuff
+  %p
+  %ul.nav.nav-tabs
+    %li= link_to "New", @chapter, class: "btn"
+    %li= link_to "Current", @chapter, class: "btn"
+    %li= link_to "Older", @chapter, class: "btn"
+  %p
+  = render 'events/blanket_event_table'

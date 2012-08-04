@@ -1,10 +1,10 @@
 require 'rubygems'
-require 'spork'
+#require 'spork'
 #require '../lib/data_import.rb'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
-Spork.prefork do
+#Spork.prefork do
   require 'simplecov'
   SimpleCov.start 'rails' do
     add_filter "/pdfs/"
@@ -45,14 +45,14 @@ Spork.prefork do
     config.infer_base_class_for_anonymous_controllers = false
   end
 
-end
+#end
 
-Spork.each_run do
+#Spork.each_run do
   # This code will be run each time you run your specs.
-  ActiveSupport::Dependencies.clear
-  DatabaseCleaner.clean
-  FactoryGirl.reload
-end
+  #ActiveSupport::Dependencies.clear
+  #DatabaseCleaner.clean
+  #FactoryGirl.reload
+#end
 
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run

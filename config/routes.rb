@@ -2,9 +2,7 @@ Alliance::Application.routes.draw do
   
   resources :chapters do
     resources :characters do
-      resources :events do
-        put :apply
-      end
+      resources :events
     end
     resources :users do
       member do
@@ -13,11 +11,7 @@ Alliance::Application.routes.draw do
       resources :events
       resources :characters
     end
-    resources :events do
-      member do
-        put :apply
-      end
-    end
+    resources :events
   end
 
   resources :characters do
@@ -40,11 +34,11 @@ Alliance::Application.routes.draw do
 
   devise_for :users, :path_prefix => 'd'
   resources :users do
-    resources :events
     member do
       get :view_goblins
       get :edit_password_form
     end
+    resources :events
   end
 
   # root :to => 'pages#home'

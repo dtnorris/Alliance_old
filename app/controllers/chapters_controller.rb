@@ -40,6 +40,7 @@ class ChaptersController < ApplicationController
     @members    = @chapter.members
     @users      = @chapter.users
     @characters = @chapter.characters
+    @goblin_events = @events.inject([]) { |arr,e| arr << e if EventType.find(e.event_type_id).name == 'Goblin Blanket'; arr }
 
     respond_to do |format|
       format.html # show.html.erb

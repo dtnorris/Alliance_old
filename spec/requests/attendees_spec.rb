@@ -24,8 +24,10 @@ describe "Attendees" do
     click_link "Home"
     click_link "chapter_events"
     click_link "Apply Event"
+    #save_and_open_page
     click_link "Home - admin@test.com"
     click_link "Events Attended"
+    #save_and_open_page
     page.should have_content("Bob T_Chapter_1 2012-07-20 Faire Day true")
   end
 

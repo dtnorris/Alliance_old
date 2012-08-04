@@ -8,6 +8,10 @@ class Event < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :event_type_id
 
+  def nice_date
+    Date::MONTHNAMES[date.month] + ', ' + date.year.to_s
+  end
+
   def event_reason(event_type)
     event_type.name + ' for ' + Chapter.find(self.chapter_id).name + ' on ' + self.date.to_s
   end

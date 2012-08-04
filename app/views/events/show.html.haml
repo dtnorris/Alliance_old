@@ -9,37 +9,41 @@
 -else
   %h1 Event Details
 
-  - if @chapter
-    - path = chapter_events_path(@chapter.id)
+  - if @event_type.name == 'Goblin Blanket'
+    - path = chapter_path(@chapter.id)
   - else
-    - path = events_path
+    - path = chapter_events_path(@chapter.id)
   %ul.nav.nav-tabs
     %li= link_to 'Back', path, class: "btn"
   %p#notice= notice
 
-  .span3
-    %table.table
-      %tr
-        %th Name:
-        %td= @event.name
-      %tr
-        %th Date:
-        %td= @event.date
-      %tr
-        %th Chapter:
-        %td= Chapter.find(@event.chapter_id).name
-      %tr
-        %th Event Type:
-        %td= EventType.find(@event.event_type_id).name
-      %tr
-        %th Applied?
-        - if @event.applied != true
-          %td false
-        - else
-          %td= @event.applied
+  -if @event_type.name == 'Goblin Blanket'
+    %h3 This is a Goblin Blanket
 
-  .span3
-    = render 'attendees/form'
+  -else
+    .span3
+      %table.table
+        %tr
+          %th Name:
+          %td= @event.name
+        %tr
+          %th Date:
+          %td= @event.date
+        %tr
+          %th Chapter:
+          %td= Chapter.find(@event.chapter_id).name
+        %tr
+          %th Event Type:
+          %td= @event_type.name
+        %tr
+          %th Applied?
+          - if @event.applied != true
+            %td false
+          - else
+            %td= @event.applied
 
-  .span7
-    = render 'attendees/event_attendees'
+    .span3
+      = render 'attendees/form'
+
+    .span7
+      = render 'attendees/event_attendees'
