@@ -9,6 +9,7 @@ class Character < ActiveRecord::Base
   has_many :character_skills
   has_many :skills, :through => :character_skills
   has_many :attendees
+  has_many :members, :through => :user
 
   after_create :purchase_racial_skills
 
@@ -70,15 +71,6 @@ class Character < ActiveRecord::Base
       count += 1
     end
     puts "#{count}: total records, records imported: #{imported_count}, Characters not home chapter: #{not_home_count}"
-  end
-
-  def self.memberships_of_user(id)
-    memberships = Member.find_all_by_user_id(id)
-    chapters = []
-    memberships.each do |ch|
-      chapters << Chapter.find(ch.chapter_id)
-    end
-    chapters
   end
 
   def add_xp(multiplier, reason)

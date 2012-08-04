@@ -18,6 +18,7 @@ class CharactersController < ApplicationController
     @character = Character.new
     @chapter = Chapter.find(params[:chapter_id])
     @user = User.find(params[:user_id])
+    @chapters = @user.members.inject([]) { |arr,m| arr << Chapter.find(m.chapter_id); arr }
 
     respond_to do |format|
       format.html
@@ -54,6 +55,7 @@ class CharactersController < ApplicationController
   def edit
     @user = User.find(@character.user_id)
     @chapter = Chapter.find(@character.home_chapter)
+    @chapters = @user.members.inject([]) { |arr,m| arr << Chapter.find(m.chapter_id); arr }
   end
 
   # POST /characters

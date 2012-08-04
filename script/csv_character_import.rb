@@ -8,7 +8,7 @@ chapters = [
 ]
 
 chapters.each do |c|
-  char_data = DataImport.character_import(c[:location])
+  char_data = DataImport.character_import("#{Rails.root}/data/#{c[:location]}/Characters_#{c[:location]}.csv")
 
   puts "Importing Characters for: #{c[:location]}"
   Character.data_import(char_data, c[:location])

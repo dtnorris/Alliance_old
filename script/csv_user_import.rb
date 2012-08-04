@@ -8,7 +8,7 @@ chapters = [
 ]
 
 chapters.each do |c|
-  user_data = DataImport.user_import(c[:location])
+  user_data = DataImport.user_import("#{Rails.root}/data/#{c[:location]}/Members_#{c[:location]}.csv")
 
   puts "Creating Chapter: #{c[:location]}"
   Chapter.data_import(c)

@@ -1,0 +1,6 @@
+Member ID,First Name,Last Name,Member Type ID,Home Address,Home Phone,Email Name,Birthdate,LegalRelease,Goblin,Gender,MarshalList,Probationary,TagSign,WeaponSafety,FullMarshal,Adjudicator,AllianceMarshal,RitualMarshal,Banned,Password,DateUpdated,DateSynchronized,UpdatedBy,WebMemberID
+1,Josh,Clark,,605 SW McKinley Ave,515-867-6770,,,FALSE,1872,Male,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,,
+2,Joy,Clark,,605 SW McKinley Ave,515-953-8167,,#########,TRUE,3295,Female,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,,
+3,David,Glaeser,Staff Comped,14201 Aspen Avenue,952-334-7256,dglaeserj@yahoo.com,,TRUE,5551,Male,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,FALSE,TRUE,FALSE,,,,,
+2,,Clark,,605 SW McKinley Ave,515-953-8167,,#########,TRUE,3295,Female,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,,
+2,Joy,,,605 SW McKinley Ave,515-953-8167,,#########,TRUE,3295,Female,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,,,,,
