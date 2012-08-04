@@ -10,7 +10,7 @@ Spork.prefork do
     add_filter "/pdfs/"
   end
   SimpleCov.coverage_dir 'coverage/'
-
+  
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
@@ -49,6 +49,7 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+
   FactoryGirl.reload
 end
 

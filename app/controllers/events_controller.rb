@@ -96,22 +96,22 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
-  # PUT /events/1
-  # PUT /events/1.json
-  def update
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # # PUT /events/1
+  # # PUT /events/1.json
+  # def update
+  #   respond_to do |format|
+  #     if @event.update_attributes(params[:event])
+  #       format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: "edit" }
+  #       format.json { render json: @event.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /events/1
   # DELETE /events/1.json

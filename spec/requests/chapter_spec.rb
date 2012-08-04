@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "basic navigation" do
+describe "chapter navigation" do
   before :each do
     visit "/"
     fill_in "user_email", with: "admin@test.com"

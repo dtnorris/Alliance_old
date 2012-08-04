@@ -17,6 +17,11 @@ describe "character creation and modification" do
     click_button "Create Character"
   end
 
+  it "should be able to view xp_track" do
+    click_link "XP Track"
+    page.should have_content("Experience Point Tracking for: Bob")
+  end
+
   it "should have calculated body points on creation" do
     page.should have_content("Body Points: 6")
   end
