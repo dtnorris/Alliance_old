@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   def index
     if params[:chapter_id]
       @chapter = Chapter.find(params[:chapter_id])
-    elsif params[:q][:chapter_id]
+    elsif params[:q] and params[:q][:chapter_id]
       @chapter = Chapter.find(params[:q][:chapter_id])
       params[:q].delete('chapter_id')
     end
