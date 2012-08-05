@@ -67,7 +67,7 @@ describe "events navigation" do
     click_link "Back"
 
     click_link "Apply Event"
-    page.should have_content("Event was successfully updated")
+    page.should have_content("Event was successfully applied")
     click_link "View Attendees"
     page.should have_content("Bob 1 true")
   end

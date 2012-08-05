@@ -1,6 +1,11 @@
 Alliance::Application.routes.draw do
   
   resources :chapters do
+    member do
+      get :blanket_list
+      get :new_blanket
+      get :old_blankets
+    end
     resources :characters do
       resources :events
     end
@@ -39,6 +44,7 @@ Alliance::Application.routes.draw do
       get :edit_password_form
     end
     resources :events
+    resources :members
   end
 
   # root :to => 'pages#home'

@@ -17,33 +17,33 @@
     %li= link_to 'Back', path, class: "btn"
   %p#notice= notice
 
-  -if @event_type.name == 'Goblin Blanket'
-    %h3 This is a Goblin Blanket
+  /-if @event_type.name == 'Goblin Blanket'
+  /  %h3 This is a Goblin Blanket
 
-  -else
-    .span3
-      %table.table
-        %tr
-          %th Name:
-          %td= @event.name
-        %tr
-          %th Date:
-          %td= @event.date
-        %tr
-          %th Chapter:
-          %td= Chapter.find(@event.chapter_id).name
-        %tr
-          %th Event Type:
-          %td= @event_type.name
-        %tr
-          %th Applied?
-          - if @event.applied != true
-            %td false
-          - else
-            %td= @event.applied
+  /-else
+  .span3
+    %table.table
+      %tr
+        %th Name:
+        %td= @event.name
+      %tr
+        %th Date:
+        %td= @event.date
+      %tr
+        %th Chapter:
+        %td= Chapter.find(@event.chapter_id).name
+      %tr
+        %th Event Type:
+        %td= @event_type.name
+      %tr
+        %th Applied?
+        - if @event.applied != true
+          %td false
+        - else
+          %td= @event.applied
 
-    .span3
-      = render 'attendees/form'
+  .span3
+    = render 'attendees/form'
 
-    .span7
-      = render 'attendees/event_attendees'
+  .span7
+    = render 'attendees/event_attendees'

@@ -32,12 +32,20 @@
     %b Number of Events:
     = @events.count
 
-.span7
-  %h3 Monthly Blanket Stuff
+.span5
+  %h3 Monthly Blankets
   %p
   %ul.nav.nav-tabs
-    %li= link_to "New", @chapter, class: "btn"
     %li= link_to "Current", @chapter, class: "btn"
-    %li= link_to "Older", @chapter, class: "btn"
+    %li= link_to "List", blanket_list_chapter_path(@chapter.id), class: "btn"
+    %li= link_to "New", new_blanket_chapter_path(@chapter.id), class: "btn"
+    %li= link_to "Older", old_blankets_chapter_path(@chapter.id), class: "btn"
   %p
-  = render 'events/blanket_event_table'
+  -if @blanket_list
+    = render 'members/member_table'
+  -elsif @new_blanket
+    = render 'events/form'
+  -elsif @old_blankets
+    = render 'events/blanket_event_table'
+  -else
+    = render 'events/blanket_event_table'

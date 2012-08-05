@@ -32,12 +32,23 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @chapter = params[:event][:chapter_id]
+    @chapter = @event.chapter
+    if @event.event_type_id == 3
+      @event.name = Date::MONTHNAMES[@event.date.month] + ' Monthly Goblin Blanket'
+    end
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to chapter_events_path(@chapter), notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
+        if @event.event_type_id == 3 #Hard coded ID of Goblin Blankets
+          @stamp_characters = @chapter.members.inject([]) { |arr,m| arr << Character.find(m.character_id) if m.character_id and m.blanket_list; arr }
+          @stamp_characters.each do |c|
+            Attendee.create(character_id: c.id, event_id: @event.id, applied: false, pc: false)
+          end
+          format.html { redirect_to chapter_path(@chapter.id), notice: 'Blanket was successfully created'}
+        else
+          format.html { redirect_to chapter_events_path(@chapter), notice: 'Event was successfully created.' }
+          format.json { render json: @event, status: :created, location: @event }
+        end
       else
         format.html { redirect_to chapter_events_path(@chapter), notice: 'Error creating Event, missing required fields.' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -83,7 +94,11 @@ class EventsController < ApplicationController
         end
       elsif @event.update_attributes(params[:event])
         if @event_apply
-          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully updated' }
+          if @event.event_type_id == 3
+            format.html { redirect_to @chapter, notice: 'Monthly Blanket applied' }
+          else
+            format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully applied' }
+          end
         else
           format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Error applying event' }
         end

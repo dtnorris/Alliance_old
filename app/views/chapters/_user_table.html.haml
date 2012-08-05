@@ -1,5 +1,7 @@
 %table.table.users-table.xp-table
   %tr
+    -if @chapter
+      %th Membership
     %th Email
     %th Name
     %th.ln Goblin
@@ -10,7 +12,11 @@
   - @users.each do |user|
     - name = user.first_name + ' ' + user.last_name
     - characters = Character.find_all_by_user_id(user.id)
+    -if @chapter
+      - member = Member.find_by_user_id_and_chapter_id(user.id,@chapter.id)
     %tr
+      -if @chapter
+        %td= link_to 'View Membership', edit_user_member_path(user.id,member.id), class: "btn"
       %td= user.email
       %td= name
       %td.ln= Member.find_by_user_id_and_chapter_id(user.id, @chapter.id).goblin_stamps

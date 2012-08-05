@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120721232926) do
+ActiveRecord::Schema.define(:version => 20120805025347) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "character_id"
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20120721232926) do
     t.integer  "goblin_stamps"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "character_id"
+    t.boolean  "blanket_list"
   end
 
   create_table "races", :force => true do |t|

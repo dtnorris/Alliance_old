@@ -19,11 +19,11 @@ describe "basic navigation" do
     click_link "admin@test.com"
     click_link "Edit"
     select("Gaden", :from => "Chapter")
-    click_button "Add Membership"
+    click_button "Add/Modify Membership"
     page.should have_content("Gaden")
 
     select("Gaden", :from => "Chapter")
-    click_button "Add Membership"
+    click_button "Add/Modify Membership"
     page.should_not have_content("Gaden/\n/\n0/\n/\n/\n/\nGaden/\n/\n0")
   end
 

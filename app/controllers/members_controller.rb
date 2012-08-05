@@ -6,6 +6,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(params[:member])
     @member.goblin_stamps = 0
+    @member.blanket_list = false
     another_like_me = Member.find_by_user_id_and_chapter_id(@member.user_id, @member.chapter_id)
     authorize! :create, @member
 
@@ -17,6 +18,26 @@ class MembersController < ApplicationController
         end
       else
         format.html { redirect_to edit_user_path(current_user.id) }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # # GET /members/1/edit
+  def edit  
+    @user = User.find(params[:user_id]) if params[:user_id]
+  end
+
+  # PUT /members/1
+  # PUT /members/1.json
+  def update
+
+    respond_to do |format|
+      if @member.update_attributes(params[:member])
+        format.html { redirect_to blanket_list_chapter_path(@member.chapter_id), notice: 'Member was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end
@@ -52,27 +73,6 @@ class MembersController < ApplicationController
   #   respond_to do |format|
   #     format.html # new.html.erb
   #     format.json { render json: @member }
-  #   end
-  # end
-
-  # # GET /members/1/edit
-  # def edit
-  #   @member = Member.find(params[:id])
-  # end
-
-  # PUT /members/1
-  # PUT /members/1.json
-  # def update
-  #   @member = Member.find(params[:id])
-
-  #   respond_to do |format|
-  #     if @member.update_attributes(params[:member])
-  #       format.html { redirect_to @member, notice: 'Member was successfully updated.' }
-  #       format.json { head :no_content }
-  #     else
-  #       format.html { render action: "edit" }
-  #       format.json { render json: @member.errors, status: :unprocessable_entity }
-  #     end
   #   end
   # end
 
