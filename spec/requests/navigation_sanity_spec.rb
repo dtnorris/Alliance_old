@@ -13,7 +13,7 @@ describe "basic navigation" do
     click_link "Home"
     click_link "chapter_characters"
     page.should have_content("Characters for T_Chapter_1")
-    page.should have_content("Alliance Admin Bob Barbarian Fighter 1")
+    page.should have_content("Bob Barbarian Fighter 1 Alliance Admin")
   end
 
   it "allows a user to view Character tab" do

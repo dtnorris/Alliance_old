@@ -5,7 +5,14 @@ class CharactersController < ApplicationController
   def index
     if params[:chapter_id]
       @chapter = Chapter.find(params[:chapter_id])
-      @characters = Character.find_all_by_home_chapter(@chapter.id)
+    elsif params[:q] and params[:q][:chapter_id]
+      @chapter = Chapter.find(params[:q][:chapter_id])
+      params[:q].delete('chapter_id')
+    end
+    @search = Character.search(params[:q])
+    @characters = @search.result
+    if @chapter
+      @characters = @characters.inject([]) { |a,c| a << c if c.home_chapter == @chapter.id; a }
     end
     respond_to do |format|
       format.html # index.html.erb

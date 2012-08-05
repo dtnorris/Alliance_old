@@ -25,7 +25,7 @@ describe "basic navigation" do
     fill_in "Password confirmation", with: "txt@1234"
     click_button "Add Member"
     #save_and_open_page
-    page.should have_content("new_test@test.com Jane Doe")
+    page.should have_content("Jane Doe new_test@test.com")
   end
 
   it "should give good errors with bad fields" do

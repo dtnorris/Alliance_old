@@ -1,13 +1,21 @@
 -if @chapter
-  %h1= 'Players for ' + @chapter.name
+  %h1= "Players for #{@chapter.name}"
 
   = render 'chapters/chapter_navbar'
-
-  %p= link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"
-  %P
-
-  = render 'chapter_user_table'
+  %p
 -else
   %h1 All Alliance Users
+=search_form_for(@search) do |f|
+  = f.condition_fields do |c|
+    = render 'layouts/condition_fields', f: c
+  -if @chapter
+    = f.hidden_field :chapter_id, :value => @chapter.id
+  = link_to_add_fields "Add Search Condition", f, :condition
+  = f.submit 'Search', class: "btn"
+  -if @chapter
+    = link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"
 
+-if @chapter
+  = render 'chapter_user_table'
+-else
   = render 'user_table'

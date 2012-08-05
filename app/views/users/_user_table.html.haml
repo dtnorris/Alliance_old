@@ -1,20 +1,22 @@
 %table.table.users-table.xp-table
   %tr
-    %th
-    /%th
-    %th Name
-    %th Email
-    %th Role
+    %th.srt= sort_link @search, :first_name, 'First'
+    %th.srt= sort_link @search, :last_name,  'Last'
+    %th.srt= sort_link @search, :email,      'Email'
+    %th.srt= sort_link @search, :role_id,    'Role'
     %th Characters
     %th Dragon Stamps
+    %th
+    /%th
 
   - @users.each do |user|
     - characters = Character.find_all_by_user_id(user.id)
     %tr
-      %td= link_to 'Edit', edit_user_path(user), class: "btn"
       /%td= link_to 'Delete', user, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
-      %td= user.name
+      %td= user.first_name
+      %td= user.last_name
       %td= user.email
       %td= Role.find(user.role_id).name
       %td= collection_select(:get, :character_id, characters, :id, :name)
       %td.ln= user.dragon_stamps
+      %td= link_to 'Edit', edit_user_path(user), class: "btn"

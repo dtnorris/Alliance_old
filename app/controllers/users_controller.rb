@@ -4,10 +4,16 @@ class UsersController < ApplicationController
   #GET /users
   #GET /users.json
   def index
+    @search = User.search(params[:q])
+    @users = @search.result
     if params[:chapter_id]
       @chapter = Chapter.find(params[:chapter_id])
+    elsif params[:q] and params[:q][:chapter_id]
+      @chapter = Chapter.find(params[:q][:chapter_id])
+    end
+    if @chapter
       @members = @chapter.members
-      @users = User.all_for_given_members(@members)
+      @users = @users.inject([]) { |arr,u| arr << u if u.member_of_chapter(@chapter); arr }
     end
 
     respond_to do |format|

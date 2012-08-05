@@ -1,24 +1,25 @@
 %table.table.users-table.xp-table
   %tr
+    %th.srt= sort_link @search, :first_name, 'First'
+    %th.srt= sort_link @search, :last_name,  'Last'
+    %th.srt= sort_link @search, :email,      'Email'
     -if @chapter
       %th Membership
-    %th Email
-    %th Name
     %th.ln Goblin
     %th Stamps
     %th Characters
     %th New Character
     
   - @users.each do |user|
-    - name = user.first_name + ' ' + user.last_name
     - characters = Character.find_all_by_user_id(user.id)
     -if @chapter
       - member = Member.find_by_user_id_and_chapter_id(user.id,@chapter.id)
     %tr
+      %td= user.first_name
+      %td= user.last_name
+      %td= user.email
       -if @chapter
         %td= link_to 'View Membership', edit_user_member_path(user.id,member.id), class: "btn"
-      %td= user.email
-      %td= name
       %td.ln= Member.find_by_user_id_and_chapter_id(user.id, @chapter.id).goblin_stamps
       %td= link_to 'Add/Remove', view_goblins_chapter_user_path(@chapter.id, user.id), class: "btn"
       %td= collection_select(:get, :character_id, characters, :id, :name)

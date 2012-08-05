@@ -1,9 +1,10 @@
 %table.table.xp-table
   %tr
-    %th Chapter
-    %th Name
-    %th Event Type
-    %th Date
+    -unless @chapter or @user
+      %th.srt= sort_link @search, :chapter_id, 'Chapter'
+    %th.srt= sort_link @search, :name, 'Name'
+    %th.srt= sort_link @search, :event_type_id, 'Event Type'
+    %th.srt= sort_link @search, :date, 'Date'
     %th Applied?
     - if @chapter && !@user
       %th
@@ -16,7 +17,8 @@
     - event_type = EventType.find(event.event_type_id)
     - unless event_type.name == 'Goblin Blanket'
       %tr
-        %td= chapter.name
+        -unless @chapter or @user
+          %td= chapter.name
         %td= event.name
         %td= EventType.find(event.event_type_id).name
         %td= event.date

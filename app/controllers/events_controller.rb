@@ -6,7 +6,14 @@ class EventsController < ApplicationController
   def index
     if params[:chapter_id]
       @chapter = Chapter.find(params[:chapter_id])
-      @events = @chapter.events
+    elsif params[:q][:chapter_id]
+      @chapter = Chapter.find(params[:q][:chapter_id])
+      params[:q].delete('chapter_id')
+    end
+    @search = Event.search(params[:q])
+    @events = @search.result
+    if @chapter
+      @events = @search.result.inject([]) {|a,e| a << e if e.chapter_id == @chapter.id; a }
       if params[:user_id]
         @user = User.find(params[:user_id])
       end

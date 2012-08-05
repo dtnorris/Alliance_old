@@ -16,7 +16,7 @@ describe "events navigation" do
     fill_in "Name", with: "test event"
     click_button "Create Event"
     page.should have_content("Event was successfully created.")
-    page.should have_content("T_Chapter_1 test event Module Day")
+    page.should have_content("test event Module Day")
   end
 
   it "should be able to view/add attendees" do

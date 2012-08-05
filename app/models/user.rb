@@ -18,6 +18,12 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name
   validates_presence_of :last_name
 
+  UNRANSACKABLE_ATTRIBUTES = ['id','dragon_stamps','role_id','encrypted_password','reset_password_token','reset_password_sent_at','remember_created_at','sign_in_count','current_sign_in_at','last_sign_in_at','current_sign_in_ip','last_sign_in_ip']
+
+  def self.ransackable_attributes auth_object = nil
+    (column_names - UNRANSACKABLE_ATTRIBUTES) + _ransackers.keys
+  end
+
   def self.data_import data, chapter_location
     c = Chapter.find_by_location(chapter_location)
     count = 0
@@ -66,12 +72,21 @@ class User < ActiveRecord::Base
     users
   end
 
+  def member_of_chapter chapter
+    self.members.each do |m|
+      if m.chapter_id == chapter.id
+        return true
+      end
+    end
+    return false
+  end
+
   def all_characters_for_user
     chars = Character.find_all_by_user_id(self.id)
   end
 
   def name
-    self.first_name + ' ' + self.last_name
+    "#{self.first_name} #{self.last_name}"
   end
 
   def all_attendees

@@ -52,6 +52,7 @@ group :development, :test do
   gem 'guard-rspec'
   #gem 'spork', '~> 1.0rc'
   #gem 'guard-spork'
+  gem 'ransack'
 end
 
 group :production do
