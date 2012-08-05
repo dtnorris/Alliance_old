@@ -8,6 +8,7 @@ gem 'decent_exposure'
 gem "devise", :git => "git://github.com/plataformatec/devise.git"
 gem 'cancan'
 gem 'prawn'
+gem 'ransack'
 
 group :assets do
   gem 'execjs'
@@ -52,7 +53,6 @@ group :development, :test do
   gem 'guard-rspec'
   #gem 'spork', '~> 1.0rc'
   #gem 'guard-spork'
-  gem 'ransack'
 end
 
 group :production do
