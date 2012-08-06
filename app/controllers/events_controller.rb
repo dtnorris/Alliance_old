@@ -67,7 +67,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @chapter = Chapter.find(@event.chapter_id)
-    @users = @chapter.users.sort!
+    @users = @chapter.users
     @attendees = @event.attendees
     @event_type = EventType.find(@event.event_type_id)
     @attendee = Attendee.new
