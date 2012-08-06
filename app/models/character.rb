@@ -24,6 +24,12 @@ class Character < ActiveRecord::Base
 
   validate :legal_spent_build
 
+  UNRANSACKABLE_ATTRIBUTES = ['id','user_id','home_chapter','race_id','char_class_id','experience_points','build_points','spent_build','new_skill','buy_skill','body_points','created_at','updated_at']
+
+  def self.ransackable_attributes auth_object = nil
+    (column_names - UNRANSACKABLE_ATTRIBUTES) + _ransackers.keys
+  end
+
   def self.data_import data, chapter
     ch = Chapter.find_by_location(chapter)
     count = 0

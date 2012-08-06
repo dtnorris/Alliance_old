@@ -11,6 +11,12 @@ class Event < ActiveRecord::Base
   validates_presence_of :date
   validates_presence_of :event_type_id
 
+  UNRANSACKABLE_ATTRIBUTES = ['id','chapter_id','event_type_id','date','applied','created_at','updated_at']
+
+  def self.ransackable_attributes auth_object = nil
+    (column_names - UNRANSACKABLE_ATTRIBUTES) + _ransackers.keys
+  end
+
   def nice_date
     Date::MONTHNAMES[date.month] + ', ' + date.year.to_s
   end
