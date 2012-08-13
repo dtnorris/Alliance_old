@@ -37,7 +37,7 @@ group :development, :test do
   gem 'rspec-steps'
 
   gem 'factory_girl_rails', '~> 2.0'
- 
+  gem 'fuubar'
   #gem "cucumber-rails", require: false
 
   gem "capybara"
