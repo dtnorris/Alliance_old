@@ -31,7 +31,6 @@ class MembersController < ApplicationController
   # PUT /members/1
   # PUT /members/1.json
   def update
-
     respond_to do |format|
       if @member.update_attributes(params[:member])
         format.html { redirect_to blanket_list_chapter_path(@member.chapter_id), notice: 'Member was successfully updated.' }

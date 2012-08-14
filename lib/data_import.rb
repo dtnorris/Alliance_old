@@ -3,7 +3,7 @@ require 'csv'
 module DataImport
   def self.parse_csv csv_string
     csv = CSV.parse csv_string
-    puts "number of lines in the file #{csv.size}"
+    puts "number of lines in the file #{csv.size}" unless Rails.env = 'test'
     headers = csv.shift.map {|i| i.to_s.to_sym }
     cells = csv.map {|row| row.map {|cell| cell.to_s.strip } }
     data = cells.map {|row| Hash[*headers.zip(row).flatten] }

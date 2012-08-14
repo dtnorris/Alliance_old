@@ -66,11 +66,13 @@ class ChaptersController < ApplicationController
     session[:blanket_list] = true
     redirect_to @chapter
   end
+  # GET /chapters/1/blanket_list
   def new_blanket
     @chapter = Chapter.find(params[:id])
     session[:new_blanket] = true
     redirect_to @chapter
   end
+  # GET /chapters/1/blanket_list
   def old_blankets
     @chapter = Chapter.find(params[:id])
     session[:old_blankets] = true

@@ -39,10 +39,10 @@ class User < ActiveRecord::Base
       hash['password_confirmation'] = 'temp1234'
       hash['role_id'] = 1
       if hash['first_name'].blank?
-        puts "record: #{count} not imported, missing first name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}"
+        puts "record: #{count} not imported, missing first name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}" unless Rails.env = 'test'
         import = false
       elsif hash['last_name'].blank?
-        puts "record: #{count} not imported, missing last name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}"
+        puts "record: #{count} not imported, missing last name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}" unless Rails.env = 'test'
         import = false
       elsif hash['email'].blank?
         hash['email'] = hash['first_name'] + '_' + hash['last_name'] + '@' + c.name + '.com'
@@ -60,8 +60,8 @@ class User < ActiveRecord::Base
       end
       count += 1
     end
-    puts "#{email_count}: records missing emails, defaults created <first_name>_<last_name>@#{c.name}.com"
-    puts "#{count}: total records, #{imported_count}: records imported"
+    puts "#{email_count}: records missing emails, defaults created <first_name>_<last_name>@#{c.name}.com" unless Rails.env = 'test'
+    puts "#{count}: total records, #{imported_count}: records imported" unless Rails.env = 'test'
   end
 
   def self.all_for_given_members(members)

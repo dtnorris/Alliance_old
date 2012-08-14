@@ -60,7 +60,7 @@ class Character < ActiveRecord::Base
       else
         import = false
         if !us
-          puts "Record: #{count}, cannot find User: #{row[:FirstN]} #{row[:LastN]} for Character: #{row[:CName]}"
+          puts "Record: #{count}, cannot find User: #{row[:FirstN]} #{row[:LastN]} for Character: #{row[:CName]}" unless Rails.env = 'test'
         else
           not_home_count += 1
           #puts "Record: #{count}, not home for Character: #{row[:CName]}, of User: #{row[:FirstN]} #{row[:LastN]}"
@@ -76,7 +76,7 @@ class Character < ActiveRecord::Base
       end
       count += 1
     end
-    puts "#{count}: total records, records imported: #{imported_count}, Characters not home chapter: #{not_home_count}"
+    puts "#{count}: total records, records imported: #{imported_count}, Characters not home chapter: #{not_home_count}" unless Rails.env = 'test'
   end
 
   def add_xp(multiplier, reason)
