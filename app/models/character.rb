@@ -10,6 +10,7 @@ class Character < ActiveRecord::Base
   has_many :skills, :through => :character_skills
   has_many :attendees
   has_many :members, :through => :user
+  has_many :deaths
 
   after_create :purchase_racial_skills
 

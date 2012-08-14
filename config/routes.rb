@@ -1,5 +1,5 @@
 Alliance::Application.routes.draw do
-  
+
   resources :chapters do
     member do
       get :blanket_list
@@ -19,7 +19,8 @@ Alliance::Application.routes.draw do
     resources :events
   end
 
-  resources :characters do
+  resources :characters do  
+    resources :deaths
     member do 
       get :xp_track
     end

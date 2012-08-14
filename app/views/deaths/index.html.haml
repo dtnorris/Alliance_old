@@ -1,0 +1,25 @@
+%h1 Listing deaths
+
+%table
+  %tr
+    %th Character
+    %th Chapter
+    %th Regen css
+    %th Buyback
+    %th
+    %th
+    %th
+
+  - @deaths.each do |death|
+    %tr
+      %td= death.character_id
+      %td= death.chapter_id
+      %td= death.regen_css
+      %td= death.buyback
+      %td= link_to 'Show', death
+      %td= link_to 'Edit', edit_death_path(death)
+      %td= link_to 'Destroy', death, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Death', new_death_path

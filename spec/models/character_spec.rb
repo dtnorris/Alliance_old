@@ -16,7 +16,7 @@ describe "character" do
   end
 
   describe "basic functions" do
-    let!(:char) { FactoryGirl.create(:character) }
+    let(:char) { FactoryGirl.create(:character) }
     let(:hb_char) do 
       hb = FactoryGirl.create(:character)
       hb.experience_points = 100000

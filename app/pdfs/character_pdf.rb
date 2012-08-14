@@ -4,6 +4,7 @@ class CharacterPdf < Prawn:: Document
   def initialize(character)
     super(page_layout: :landscape)
     @character = character
+    @deaths = character.deaths
     @chapter = Chapter.find(@character.home_chapter)
     @user = User.find(@character.user_id)
     @member = Member.find_by_chapter_id_and_user_id(@chapter.id, @user.id)
@@ -210,12 +211,12 @@ class CharacterPdf < Prawn:: Document
       stroke_bounds
       move_down 1.8.in
       #TODO calculate off character death values
-      text "<b>Deaths</b> 0           <b>Bought Back</b> 0",
+      text "<b>Deaths</b> #{Death.regular @deaths}           <b>Bought Back</b> #{Death.buyback @deaths}",
           size: 10,
           indent_paragraphs: 5,
           inline_format: :true
       move_down 0.05.in
-      text "<b>Deaths while Regen/Css:</b> 0",
+      text "<b>Deaths while Regen/Css:</b> #{Death.regen_css @deaths}",
           size: 10,
           indent_paragraphs: 5,
           inline_format: :true

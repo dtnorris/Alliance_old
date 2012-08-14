@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120805025347) do
+ActiveRecord::Schema.define(:version => 20120814004658) do
 
   create_table "attendees", :force => true do |t|
     t.integer  "character_id"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(:version => 20120805025347) do
     t.integer  "body_points"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "deaths", :force => true do |t|
+    t.integer  "character_id"
+    t.integer  "chapter_id"
+    t.boolean  "regen_css",    :default => false
+    t.boolean  "buyback",      :default => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "event_types", :force => true do |t|

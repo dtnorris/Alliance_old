@@ -39,6 +39,9 @@ describe "character creation and modification" do
     page.should have_content("Unspent Build: 15")
     page.should have_content("Spent Build: 0")
     page.should have_content("Total Build: 15")
+    page.should have_content("Deaths: 0")
+    page.should have_content("Regen/CSS Deaths: 0")
+    page.should have_content("Deaths Bought Back: 0")
   end
 
   it "should be able to edit character skills" do
@@ -52,6 +55,9 @@ describe "character creation and modification" do
     page.should have_content("Race: Dark Elf")
     page.should have_content("Class: Adept")
     page.should have_content("Level: 1")
+    page.should have_content("Deaths: 0")
+    page.should have_content("Regen/CSS Deaths: 0")
+    page.should have_content("Deaths Bought Back: 0")
   end
 
   it "should be about to go to the view page after creation" do

@@ -1,0 +1,11 @@
+= simple_form_for(@death) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :character_id
+    = f.input :chapter_id
+    = f.input :regen_css
+    = f.input :buyback
+
+  .form-actions
+    = f.button :submit
