@@ -11,14 +11,14 @@ describe Death do
   let!(:death6) { FactoryGirl.create(:death, character_id: char.id, chapter_id: chap.id, buyback: true) }
   
   it "should calculate regular deaths" do
-    Death.regular(char.deaths).should == 3
+    Death.regular(char.deaths).count.should == 3
   end
 
   it "should calculate regen_css deaths" do
-    Death.regen_css(char.deaths).should == 1
+    Death.regen_css(char.deaths).count.should == 1
   end
 
   it "should calculate buyback deaths" do
-    Death.buyback(char.deaths).should == 2
+    Death.buyback(char.deaths).count.should == 2
   end
 end

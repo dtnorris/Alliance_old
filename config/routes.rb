@@ -1,5 +1,7 @@
 Alliance::Application.routes.draw do
 
+  resources :deaths
+
   resources :chapters do
     member do
       get :blanket_list

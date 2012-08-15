@@ -211,12 +211,12 @@ class CharacterPdf < Prawn:: Document
       stroke_bounds
       move_down 1.8.in
       #TODO calculate off character death values
-      text "<b>Deaths</b> #{Death.regular @deaths}           <b>Bought Back</b> #{Death.buyback @deaths}",
+      text "<b>Deaths</b> #{Death.regular(@deaths).count}           <b>Bought Back</b> #{Death.buyback(@deaths).count}",
           size: 10,
           indent_paragraphs: 5,
           inline_format: :true
       move_down 0.05.in
-      text "<b>Deaths while Regen/Css:</b> #{Death.regen_css @deaths}",
+      text "<b>Deaths while Regen/Css:</b> #{Death.regen_css(@deaths).count}",
           size: 10,
           indent_paragraphs: 5,
           inline_format: :true

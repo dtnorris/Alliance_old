@@ -36,13 +36,13 @@
         %td= @character.spent_build
       %tr
         %td.ln Deaths:
-        %td= Death.regular @deaths
+        %td= Death.regular(@deaths).count
       %tr
         %td.ln Regen/CSS Deaths:
-        %td= Death.regen_css @deaths
+        %td= Death.regen_css(@deaths).count
       %tr
         %td.ln Deaths Bought Back:
-        %td= Death.buyback @deaths
+        %td= Death.buyback(@deaths).count
   %p
 .span5
   = render 'character_skills/skills'

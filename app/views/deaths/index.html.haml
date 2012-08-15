@@ -1,25 +1,18 @@
-%h1 Listing deaths
+%h1= "Death Tracking for #{@character.name}" 
+%ul.nav.nav-tabs
+  %li= link_to 'Back', edit_character_path(@character.id), class: "btn"
 
-%table
-  %tr
-    %th Character
-    %th Chapter
-    %th Regen css
-    %th Buyback
-    %th
-    %th
-    %th
+.span3
+  - @calc_deaths = Death.buyback(@deaths)
+  %h3= "Deaths Bought Back: #{@calc_deaths.count}"
+  = render 'death_table'
 
-  - @deaths.each do |death|
-    %tr
-      %td= death.character_id
-      %td= death.chapter_id
-      %td= death.regen_css
-      %td= death.buyback
-      %td= link_to 'Show', death
-      %td= link_to 'Edit', edit_death_path(death)
-      %td= link_to 'Destroy', death, :confirm => 'Are you sure?', :method => :delete
+.span3
+  - @calc_deaths = Death.regular(@deaths)
+  %h3= "Regular Deaths: #{@calc_deaths.count}"
+  = render 'death_table'
 
-%br
-
-= link_to 'New Death', new_death_path
+.span3
+  - @calc_deaths = Death.regen_css(@deaths)
+  %h3= "Deaths Regen/CSS: #{@calc_deaths.count}"
+  = render 'death_table'

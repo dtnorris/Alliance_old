@@ -64,6 +64,7 @@ class CharactersController < ApplicationController
     @user = User.find(@character.user_id)
     @chapter = Chapter.find(@character.home_chapter)
     @chapters = @user.members.inject([]) { |arr,m| arr << Chapter.find(m.chapter_id); arr }
+    @death = Death.new
   end
 
   # POST /characters
@@ -102,7 +103,7 @@ class CharactersController < ApplicationController
     end
     respond_to do |format|
       if @character.update_attributes(params[:character])
-        format.html { redirect_to edit_character_path(@character, purchase_ret), notice: 'Character was successfully updated.' }
+        format.html { redirect_to edit_character_path(@character, purchase_ret), notice: 'Character was successfully updated' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
