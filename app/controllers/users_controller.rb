@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   #GET /users
   #GET /users.json
   def index
+    authorize! :index, Ability
     @search = User.search(params[:q])
     @users = @search.result
     if params[:chapter_id]

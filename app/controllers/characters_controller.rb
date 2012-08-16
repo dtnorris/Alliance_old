@@ -3,6 +3,7 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.json
   def index
+    authorize! :index, Ability
     if params[:chapter_id]
       @chapter = Chapter.find(params[:chapter_id])
     elsif params[:q] and params[:q][:chapter_id]
