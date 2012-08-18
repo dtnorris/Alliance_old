@@ -2,8 +2,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    role = Role.find(user.role_id)
-    if role.name == 'Admin'
+    #debugger
+    assignments = user.assignments
+    if assignments.any? { |a| a.role.name == 'Admin' }
       can :manage, :all
     else # Player user and all other users
       can [:read, :update], User do |this_user|

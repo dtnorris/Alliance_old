@@ -83,15 +83,19 @@ class UsersController < ApplicationController
   def create
     @chapter = Chapter.find(params[:user][:chapter_id])
     params[:user].delete('chapter_id')
+    @assignment = Assignment.new(role_id: params[:user][:role_id])
+    params[:user].delete('role_id')
+
     @user = User.create(params[:user])
     @user.dragon_stamps = 0
     @user.save
+    @assignment.user_id = @user.id
+    @assignment.save
     @member = Member.create(user_id: @user.id, chapter_id: @chapter.id, goblin_stamps: 0)
     authorize! :create, @user
 
     respond_to do |format|
       if @user.save
-        #flash[:alert] = "New user created successfully!"
         format.html { redirect_to chapter_users_path(@member.chapter_id), notice: 'Player was successfully created' }
         format.json { render json: @user, status: :created, location: @user }
       else

@@ -7,12 +7,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :dragon_stamps, :role_id
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :dragon_stamps
 
-  #attr_accessor :chapter_id
+  attr_accessor :role_id
 
   has_many :characters
   has_many :members
+  has_many :assignments
 
   validates_presence_of :email
   validates_presence_of :first_name
@@ -37,7 +38,6 @@ class User < ActiveRecord::Base
       hash['email'] = row[:'Email Name']
       hash['password'] = 'temp1234'
       hash['password_confirmation'] = 'temp1234'
-      hash['role_id'] = 1
       if hash['first_name'].blank?
         puts "record: #{count} not imported, missing first name: #{hash['first_name']}, #{hash['last_name']}, #{hash['email']}" unless Rails.env = 'test'
         import = false
@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
       if import
         us = User.find_by_first_name_and_last_name(hash['first_name'], hash['last_name'])
         us = User.create hash unless us
+        Assignment.data_import us.id
         Member.data_import c.id, us.id, goblins.to_i
         StampTrack.data_import c.id, us.id, goblins.to_i
         imported_count += 1

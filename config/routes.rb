@@ -1,5 +1,7 @@
 Alliance::Application.routes.draw do
 
+  resources :assignments
+
   resources :deaths
 
   resources :chapters do

@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814004658) do
+ActiveRecord::Schema.define(:version => 20120816215759) do
+
+  create_table "assignments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "chapter_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "attendees", :force => true do |t|
     t.integer  "character_id"
@@ -151,7 +159,6 @@ ActiveRecord::Schema.define(:version => 20120814004658) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.integer  "dragon_stamps"
-    t.integer  "role_id"
     t.string   "first_name"
     t.string   "last_name"
   end

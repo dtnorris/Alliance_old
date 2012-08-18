@@ -23,6 +23,7 @@ describe "basic navigation" do
     fill_in "Last name", with: "Doe"
     fill_in "Password", with: "txt@1234"
     fill_in "Password confirmation", with: "txt@1234"
+    select 'Player', from: 'Role'
     click_button "Add Member"
     #save_and_open_page
     page.should have_content("Jane Doe new_test@test.com")
