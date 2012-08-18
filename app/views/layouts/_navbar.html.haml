@@ -1,14 +1,20 @@
-%ul.nav.nav-tabs
-  - home = 'Home - ' + current_user.email
-  %li= link_to home, user_path(current_user.id), class: "btn"
-  - if can? :update, @chapter
-    %li= link_to 'Chapters', chapters_path, class: "btn"
-    %li= link_to 'Events', events_path, class: "btn"
-    %li= link_to 'Players', users_path, class: "btn", method: :get
-    %li= link_to 'Characters', characters_path, class: "btn"
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      .btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+        .icon-bar
+        .icon-bar
+        .icon-bar
+      .brand= 'Alliance LARP'
+      .nav-collapse
+        .nav
+          - home = 'Home - ' + current_user.email
+          %li= link_to home, user_path(current_user.id)
+          - if can? :update, @chapter
+            %li= link_to 'Chapters', chapters_path
+            %li= link_to 'Events', events_path
+            %li= link_to 'Players', users_path, method: :get
+            %li= link_to 'Characters', characters_path
 
-  - if user_signed_in?
-    %li= link_to 'Log Out', destroy_user_session_path, class: "btn", method: :delete
-  /- else
-  /  %li= link_to 'Sign Up', new_user_registration_path, class: "btn"
-  /  %li= link_to 'Log In', new_user_session_path, class: "btn"
+          - if user_signed_in?
+            %li= link_to 'Log Out', destroy_user_session_path, method: :delete

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Ability' do
   let!(:player) { FactoryGirl.create(:user, email: 'player@test.com', first_name: 'john', last_name: 'doe', password: 'txt@1234', password_confirmation: 'txt@1234') }
   let!(:chapter) { FactoryGirl.create(:chapter, name: 'Steel', owner: 'The Boss', email: 'tb@test.com', location: 'TBD')}
-  let!(:p_char) { FactoryGirl.create(:character, user_id: player.id, home_chapter: 1, name: 'Garth', race_id: 1, char_class_id: 1)}
+  let!(:p_char) { FactoryGirl.create(:character, user_id: player.id, chapter_id: 1, name: 'Garth', race_id: 1, char_class_id: 1)}
 
   describe 'player permissions' do
     before :each do
@@ -44,7 +44,7 @@ describe 'Ability' do
 
     it 'should be able to view characters' do
       within('#character_table') do
-        click_link 'View'
+        click_link 'Garth'
       end
       page.should have_content('Name: Garth')
       page.should have_content('View')
@@ -54,7 +54,7 @@ describe 'Ability' do
 
     it 'should be able to view character xp track' do
       within('#character_table') do
-        click_link 'View'
+        click_link 'Garth'
       end
       click_link 'XP Track'
       page.should have_content('Experience Point Tracking for: Garth')

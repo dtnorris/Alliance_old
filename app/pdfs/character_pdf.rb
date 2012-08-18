@@ -5,8 +5,8 @@ class CharacterPdf < Prawn:: Document
     super(page_layout: :landscape)
     @character = character
     @deaths = character.deaths
-    @chapter = Chapter.find(@character.home_chapter)
-    @user = User.find(@character.user_id)
+    @chapter = @character.chapter
+    @user = @character.user
     @member = Member.find_by_chapter_id_and_user_id(@chapter.id, @user.id)
     @chararacter_skills = CharacterSkill.find_all_by_character_id(@character.id)
     card_size_consts
@@ -354,7 +354,7 @@ class CharacterPdf < Prawn:: Document
       text @character.name, size: 9, align: :center
       move_down 0.75.in
       text "Home Chapter", size: 8, align: :center, style: :bold
-      text Chapter.find(@character.home_chapter).name, size: 8, align: :center
+      text @character.chapter.name, size: 8, align: :center
       move_down 0.125.in
       text "<b>BP:</b>            #{@character.build_points}", size: 9, align: :center, inline_format: :true
       move_down 0.045.in

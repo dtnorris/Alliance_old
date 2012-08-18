@@ -13,7 +13,7 @@ class CharactersController < ApplicationController
     @search = Character.search(params[:q])
     @characters = @search.result
     if @chapter
-      @characters = @characters.inject([]) { |a,c| a << c if c.home_chapter == @chapter.id; a }
+      @characters = @characters.inject([]) { |a,c| a << c if c.chapter_id == @chapter.id; a }
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -62,9 +62,9 @@ class CharactersController < ApplicationController
 
   # GET /characters/1/edit
   def edit
-    @user = User.find(@character.user_id)
-    @chapter = Chapter.find(@character.home_chapter)
-    @chapters = @user.members.inject([]) { |arr,m| arr << Chapter.find(m.chapter_id); arr }
+    @user = @character.user
+    @chapter = @character.chapter
+    @chapters = @character.user.members.inject([]) { |arr,m| arr << m.chapter.name; arr }
     @death = Death.new
   end
 

@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.hidden_field :user_id, value: @user.id
-    = f.input :home_chapter, :label => 'Home Chapter:', :collection => @chapters, :include_blank => false
+    = f.input :chapter_id, :label => 'Home Chapter:', :collection => @chapters, :include_blank => false
     = f.input :name, :label => 'Character Name:'
     = f.input :race_id, :label => 'Race:', :collection => Race.all
     = f.input :char_class_id, :label => 'Character Class:', :collection => CharClass.all

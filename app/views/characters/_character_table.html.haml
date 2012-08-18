@@ -1,25 +1,34 @@
-%table.table.users-table.xp-table
-  %tr
-    %th.srt= sort_link @search, :name, 'Name:' 
-    %th.srt= sort_link @search, :race_id, 'Race:'
-    %th.srt= sort_link @search, :char_class_id, 'Class:'
-    %th.srt= sort_link @search, :build_points, 'Level:'
-    -unless @chapter
-      %th.srt= sort_link @search, :home_chapter, 'Home Chapter:'
-    %th Player:
-    %th
-    %th
-    %th
-  - @characters.each do |character|
+#character_table
+  %table.table.table-striped
     %tr
-      %td= character.name
-      %td= Race.find_by_id(character.race_id).name if Race.find_by_id(character.race_id)
-      %td= CharClass.find_by_id(character.char_class_id).name if Race.find_by_id(character.race_id)
-      %td.ln= ((character.build_points - 5) / 10)
-      -unless @chapter
-        %td= Chapter.find(character.home_chapter).name
-      %td= User.find(character.user_id).name
-      %td= link_to 'View', character_path(character), class: "btn"
-      %td= link_to 'Edit', edit_character_path(character), class: "btn"
-      %td= link_to 'XP', xp_track_character_path(character), class: "btn"
-%br
+      -if @user
+        %th Name
+        %th Race
+        %th Class
+        %th Level
+        %th Home Chapter
+      -else
+        %th= sort_link @search, :name, 'Name' 
+        %th= sort_link @search, :race_id, 'Race'
+        %th= sort_link @search, :char_class_id, 'Class'
+        %th= sort_link @search, :build_points, 'Level'
+        -unless @chapter
+          %th= sort_link @search, :chapter_id, 'Home Chapter:'
+        %th Player
+        %th
+    - @characters = @user.characters unless @characters
+    - @characters.each do |character|
+      %tr
+        -if @user
+          %td= link_to character.name, character_path(character)
+        -else
+          %td= link_to character.name, edit_character_path(character)
+        %td= character.race.name
+        %td= character.char_class.name
+        %td= ((character.build_points - 5) / 10)
+        -if @user or !@chapter
+          %td= character.chapter.name
+        -else
+          %td= character.user.name
+        -unless @user
+          %td= link_to 'XP', xp_track_character_path(character), class: 'btn btn-mini'

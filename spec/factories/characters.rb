@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :character do
-    home_chapter 'T_Chapter_1'
+    chapter_id 1
     #id 1
     user_id 2
     name 'Bob'

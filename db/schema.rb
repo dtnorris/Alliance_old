@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20120816215759) do
   create_table "characters", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.integer  "home_chapter"
+    t.integer  "chapter_id"
     t.integer  "race_id"
     t.integer  "char_class_id"
     t.integer  "experience_points"

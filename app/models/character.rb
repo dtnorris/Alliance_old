@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id, :home_chapter
+  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id, :chapter_id
 
   belongs_to :race
   belongs_to :char_class
@@ -25,7 +25,7 @@ class Character < ActiveRecord::Base
 
   validate :legal_spent_build
 
-  UNRANSACKABLE_ATTRIBUTES = ['id','user_id','home_chapter','race_id','char_class_id','experience_points','build_points','spent_build','new_skill','buy_skill','body_points','created_at','updated_at']
+  UNRANSACKABLE_ATTRIBUTES = ['id','user_id','chapter_id','race_id','char_class_id','experience_points','build_points','spent_build','new_skill','buy_skill','body_points','created_at','updated_at']
 
   def self.ransackable_attributes auth_object = nil
     (column_names - UNRANSACKABLE_ATTRIBUTES) + _ransackers.keys
@@ -56,7 +56,7 @@ class Character < ActiveRecord::Base
           hash[:race_id] = Race.find_by_name(row[:Race].gsub('_', ' ')).id
         end
         hash[:char_class_id] = CharClass.find_by_name(row[:Class]).id
-        hash[:home_chapter] = new_home.id
+        hash[:chapter_id] = new_home.id
         import = true
       else
         import = false

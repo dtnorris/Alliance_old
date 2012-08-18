@@ -6,7 +6,7 @@
     -unless @member.id
       = f.input :chapter_id, :collection => Chapter.all
     -if @member.id
-      = f.input :character_id, :collection => @user.characters.inject([]) { |arr,c| arr << c if c.home_chapter == @member.chapter_id; arr }, :label => 'Character to Blanket:'
+      = f.input :character_id, :collection => @user.characters.inject([]) { |arr,c| arr << c if c.chapter_id == @member.chapter_id; arr }, :label => 'Character to Blanket:'
       = f.input :blanket_list
     -else
       = f.hidden_field :blanket_list

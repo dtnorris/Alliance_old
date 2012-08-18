@@ -136,7 +136,7 @@ Chapter.create(name: 'T_Chapter_1', owner: 'Owner One', email: 'gm@T_Chapter_1.c
 User.create(email: 'admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
 Assignment.create(user_id: 1, role_id: 5)
 Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
-Character.create(home_chapter: 1, name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
+Character.create(chapter_id: 1, name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0)
 Event.create(name: "The Start", date: "2012/7/20".to_date, event_type_id: 2, chapter_id: 1)
 Attendee.create(character_id: 1, event_id: 1, pc: false)
 
@@ -144,11 +144,11 @@ Attendee.create(character_id: 1, event_id: 1, pc: false)
 if Rails.env != 'test'
   Chapter.create(name: 'T_Chapter_2', owner: 'Owner Two', email: 'gm@test.com', location: "TS2")
 
-  User.create(email: 'national@test.com', first_name: 'National', last_name: 'User', password: 'txt@1234', dragon_stamps: 0, role_id: 4)
+  User.create(email: 'national@test.com', first_name: 'National', last_name: 'User', password: 'txt@1234', dragon_stamps: 0)
   Assignment.create(user_id: 2, role_id: 4)
-  User.create(email: 'chapter@test.com', first_name: 'Chapter', last_name: 'User', password: 'txt@1234', dragon_stamps: 0, role_id: 2)
+  User.create(email: 'chapter@test.com', first_name: 'Chapter', last_name: 'User', password: 'txt@1234', dragon_stamps: 0)
   Assignment.create(user_id: 3, role_id: 2)
-  User.create(email: 'player@test.com', first_name: 'Player', last_name: 'User', password: 'txt@1234', dragon_stamps: 0, role_id: 1)
+  User.create(email: 'player@test.com', first_name: 'Player', last_name: 'User', password: 'txt@1234', dragon_stamps: 0)
   Assignment.create(user_id: 4, role_id: 1)
 
   Member.create(user_id: 1, chapter_id:2, goblin_stamps: 0)
@@ -157,6 +157,6 @@ if Rails.env != 'test'
   Event.create(name: "The End", date: "2012/7/20".to_date, event_type_id: 3, chapter_id: 2)
 
 
-  Character.create(home_chapter: 2, name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 2)
-  Character.create(home_chapter: 1, name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0, home_chapter: 1)
+  Character.create(chapter_id: 2, name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0)
+  Character.create(chapter_id: 1, name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0)
 end
