@@ -5,6 +5,7 @@
     = f.hidden_field :character_id, value: @character.id
     = f.hidden_field :chapter_id, value: @character.chapter_id
     = f.input :buyback, :label => 'Buyback?'
+    %br
     = f.input :regen_css, :label => 'Regen/CSS?'
-
+    %br
     = f.button :submit, 'Add Death'

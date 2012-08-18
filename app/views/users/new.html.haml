@@ -3,16 +3,17 @@
 %ul.nav.nav-tabs
   %li= link_to 'Back', :back, class: "btn"
 
-= simple_form_for(@user) do |f|
-  = f.error_notification
+.form-horizontal
+  = simple_form_for(@user) do |f|
+    = f.error_notification
 
-  .form-inputs
-    = f.input :email, :required => true, :autofocus => true
-    = f.input :first_name, :required => true
-    = f.input :last_name, :required => true
-    = f.input :password, :required => true
-    = f.input :password_confirmation, :required => true
-    = f.input :role_id, :collection => Role.all, :include_blank => false
-    = f.hidden_field :chapter_id, value: @chapter.id
-    
-    = f.button :submit, 'Add Member'
+    .control-group
+      = f.input :email, :required => true, :autofocus => true
+      = f.input :first_name, :required => true
+      = f.input :last_name, :required => true
+      = f.input :password, :required => true
+      = f.input :password_confirmation, :required => true
+      = f.input :role_id, :collection => Role.all, :include_blank => false
+      = f.hidden_field :chapter_id, value: @chapter.id
+    .form-actions
+      = f.button :submit, 'Add Member'

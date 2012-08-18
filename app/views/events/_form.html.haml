@@ -1,16 +1,16 @@
-= simple_form_for(@event) do |f|
-  = f.error_notification
+.form-horizontal
+  = simple_form_for(@event) do |f|
+    = f.error_notification
 
-  .form-inputs
-    -if @new_blanket
-      /=f.input :name, :input_html => { :value => '<enter month> Monthly Blanket'}
-    -else
-      = f.input :name
-    = f.input :date
-    -if @new_blanket
-      =f.hidden_field :event_type_id, value: @goblin_blanket
-    -else
-      = f.input :event_type_id, :label => 'Event Type', :collection => EventType.all, :include_blank => false
-    = f.hidden_field :chapter_id, value: @chapter.id
-
-    = f.button :submit
+    .control-group
+      -if @new_blanket
+      -else
+        = f.input :name
+      = f.input :date
+      -if @new_blanket
+        =f.hidden_field :event_type_id, value: @goblin_blanket
+      -else
+        = f.input :event_type_id, :label => 'Event Type', :collection => EventType.all, :include_blank => false
+      = f.hidden_field :chapter_id, value: @chapter.id
+    .form-actions
+      = f.button :submit

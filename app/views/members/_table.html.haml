@@ -1,0 +1,34 @@
+%table.table.striped-table
+  %tr
+    -if @user
+      %th Chapter
+      %th
+    -else
+      %th Edit
+      %th Name
+      %th Character
+      %th Blanket
+    %th Goblins
+    -if @user
+      %th
+
+  - @members.reverse.each do |member|
+    - character = member.character if member.character_id
+    %tr
+      -if @user
+        %td= member.chapter.name
+        %td= link_to 'View Events', chapter_user_events_path(member.chapter.id,@user.id), class: 'btn btn-mini'
+      -else
+        %td= link_to 'Edit', edit_user_member_path(member.user_id,member.id), class: 'btn btn-mini'
+        %td= member.user.name
+        -if character
+          %td= character.name
+        -else
+          %td
+        -if member.blanket_list == true
+          %td= 'Yes'
+        -else
+          %td= 'No'
+      %td= member.goblin_stamps
+      -if @user
+        %td= link_to 'View Stamp Log', view_goblins_user_path(member.chapter.id), class: 'btn btn-mini'

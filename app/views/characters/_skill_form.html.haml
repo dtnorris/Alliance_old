@@ -1,8 +1,6 @@
 = simple_form_for(@character) do |f|
   = f.error_notification
 
-  - #debugger
-  - #if params[:format] == "Pre-requisites are not met to purchase this skill" || params[:format] == "You do not have the necessary build for this update"
   - if params[:format] && (params[:format].length > 20)
     %p.error1= params[:format]
       
@@ -10,4 +8,4 @@
     = f.input :new_skill, :collection => Skill.all(:order => 'name'), :label => 'Add Skill:', :include_blank => true, :selected => ''
     = f.input :buy_skill, :collection => CharacterSkill.all_bought_skills(@character), :label => 'Purchase Skill:', :include_blank => true, :selected => ''
 
-    = f.button :submit, :id => 'add_skills'
+    = f.button :submit, 'Update Skills', :id => 'add_skills'

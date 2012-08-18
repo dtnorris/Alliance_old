@@ -1,21 +1,15 @@
-= simple_form_for(@character) do |f|
-  = f.error_notification
+.form-horizontal
+  = simple_form_for(@character) do |f|
+    = f.error_notification
 
-  .form-inputs
-    = f.hidden_field :user_id, value: @user.id
-    = f.input :chapter_id, :label => 'Home Chapter:', :collection => @chapters, :include_blank => false
-    = f.input :name, :label => 'Character Name:'
-    = f.input :race_id, :label => 'Race:', :collection => Race.all
-    = f.input :char_class_id, :label => 'Character Class:', :collection => CharClass.all
-    = f.button :submit
-    %p
-    = f.label :name, :label => 'Body Points'
-    %td= @character.body_points
-    %p
-    = f.label :name, :label => 'Unspent Build:'
-    %td= (@character.build_points - @character.spent_build) if @character.spent_build
-    %p
-    = f.label :name, :label => 'Spent Build:'
-    %td= @character.spent_build
-    / = f.label :name, :label => 'Experience Points:'
-    / %td= @character.experience_points
+    .form-inputs
+      = f.hidden_field :user_id, value: @user.id
+      -if @character.id
+        = f.input :chapter_id, :label => 'Home Chapter:', :collection => @chapters, :include_blank => false
+      -else 
+        = f.input :chapter_id, :lable => 'Home Chapter:', :collection => [@chapter], :include_blank => false
+      = f.input :name, :label => 'Character Name:'
+      = f.input :race_id, :label => 'Race:', :collection => Race.all
+      = f.input :char_class_id, :label => 'Character Class:', :collection => CharClass.all
+    .form-actions
+      = f.button :submit

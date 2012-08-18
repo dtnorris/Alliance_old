@@ -64,7 +64,7 @@ class CharactersController < ApplicationController
   def edit
     @user = @character.user
     @chapter = @character.chapter
-    @chapters = @character.user.members.inject([]) { |arr,m| arr << m.chapter.name; arr }
+    @chapters = @character.user.members.inject([]) { |arr,m| arr << [m.chapter.name, m.chapter.id]; arr }
     @death = Death.new
   end
 

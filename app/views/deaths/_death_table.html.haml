@@ -7,4 +7,4 @@
     %tr
       %td.sm= Chapter.find(death.chapter_id).name
       %td.sm= death.created_at.to_date
-      %td= link_to 'X', death, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: 'btn'
+      %td= link_to 'X', death, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: 'btn btn-mini btn-danger'

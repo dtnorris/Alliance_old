@@ -1,4 +1,4 @@
-%table.table.users-table.xp-table
+%table.table.striped-table
   %tr
     %th.srt= sort_link @search, :first_name, 'First'
     %th.srt= sort_link @search, :last_name,  'Last'
@@ -19,4 +19,4 @@
       /%td= Role.find(user.role_id).name
       %td= collection_select(:get, :character_id, characters, :id, :name)
       %td.ln= user.dragon_stamps
-      %td= link_to 'Edit', edit_user_path(user), class: "btn"
+      %td= link_to 'Edit', edit_user_path(user), class: 'btn btn-mini'
