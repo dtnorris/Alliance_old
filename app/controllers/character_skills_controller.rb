@@ -31,6 +31,15 @@ class CharacterSkillsController < ApplicationController
       elsif !purchase_ret.legal_spent_build
         if @character_skill.amount
           @character_skill.amount -= 1
+          if @character_skill.skill.name == 'Weapon Proficiency'
+            ca = CharacterSkill.find_by_character_id_and_skill_id(@character.id, Skill.find_by_name('Critical Attack').id)
+            ca.amount = 4
+            ca.save
+          elsif @character_skill.skill.name == 'Backstab'
+            ca = CharacterSkill.find_by_character_id_and_skill_id(@character.id, Skill.find_by_name('Back Attack').id)
+            ca.amount = 4
+            ca.save
+          end
         elsif @character_skill.bought
           @character_skill.bought = false
         end
