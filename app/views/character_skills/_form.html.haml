@@ -1,0 +1,12 @@
+= simple_form_for(@character_skill) do |f|
+  = f.error_notification
+   
+  .form-inputs
+    = f.input :other, :collection => Skill.all.inject([]) {|a,s| a << s if s.group == 'other'; a}, :label => 'Choose Skill: Various', :include_blank => true, :selected => '', :id => 'other'
+    = f.input :weapon, :collection => Skill.all.inject([]) {|a,s| a << s if s.group == 'weapon'; a}, :label => 'Choose Skill: Weapon', :include_blank => true, :selected => '', :id => 'weapon'
+    = f.input :specialty, :collection => Skill.all.inject([]) {|a,s| a << s if s.group == 'specialty'; a}, :label => 'Choose Skill: Martial Skill', :include_blank => true, :selected => '', :id => 'specialty'
+    = f.input :spells, :collection => Skill.all.inject([]) {|a,s| a << s if s.group == 'spells'; a}, :label => 'Choose Skill: Spells', :include_blank => true, :selected => '', :id => 'spells'
+    = f.input :race, :collection => Skill.all.inject([]) {|a,s| a << s if s.group == 'race'; a}, :label => 'Choose Skill: Race', :include_blank => true, :selected => '', :id => 'race'
+    = f.hidden_field :character_id, value: @character.id
+
+    = f.button :submit, 'Add Skill', :id => 'add_skills'

@@ -9,8 +9,6 @@ class CreateCharacters < ActiveRecord::Migration
       t.integer :experience_points
       t.integer :build_points
       t.integer :spent_build
-      t.integer :new_skill
-      t.integer :buy_skill
       t.integer :body_points
 
       t.timestamps

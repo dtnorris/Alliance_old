@@ -1,6 +1,8 @@
 class CharacterSkill < ActiveRecord::Base
   attr_accessible :character_id, :skill_id, :bought, :amount
 
+  attr_accessor :other, :race, :weapon, :specialty, :spells
+
   belongs_to :character
   belongs_to :skill
 
@@ -49,7 +51,7 @@ class CharacterSkill < ActiveRecord::Base
         return skill
       end
     else
-      return "Pre-requisites are not met to purchase this skill"
+      return false
     end
   end
 
@@ -76,8 +78,7 @@ class CharacterSkill < ActiveRecord::Base
       if char.build_points >= (char.calculate_spent_build + new_sk)
         return true
       else
-        errors.add(:char_class_id, "You do not have the necessary build for this update")
-        "You do not have the necessary build for this update"
+        return false
       end
     end
   end

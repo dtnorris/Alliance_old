@@ -2,10 +2,10 @@
   = f.error_notification
 
   .form-inputs
+    = f.button :submit, 'Add Death'
     = f.hidden_field :character_id, value: @character.id
     = f.hidden_field :chapter_id, value: @character.chapter_id
+    %p
     = f.input :buyback, :label => 'Buyback?'
     %br
     = f.input :regen_css, :label => 'Regen/CSS?'
-    %br
-    = f.button :submit, 'Add Death'

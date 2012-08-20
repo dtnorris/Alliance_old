@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :characters
   has_many :members
   has_many :assignments
+  has_many :stamp_tracks
 
   validates_presence_of :email
   validates_presence_of :first_name

@@ -14,7 +14,7 @@ describe "skill validation" do
     skill = Skill.find_by_name(skill)
     pre_req = Skill.find_by_name(pre_req)
     CharacterSkill.add_skill(char.id, skill.id)
-    CharacterSkill.purchase_skill(char.id, skill.id).should == "Pre-requisites are not met to purchase this skill"
+    CharacterSkill.purchase_skill(char.id, skill.id).should == false
     pr = CharacterSkill.add_skill(char.id, pre_req.id)
     pr.bought = true
     pr.amount = amount
@@ -25,7 +25,7 @@ describe "skill validation" do
   def validate_race_pre_req(skill, race)
     skill = Skill.find_by_name(skill)
     CharacterSkill.add_skill(char.id, skill.id)
-    CharacterSkill.purchase_skill(char.id, skill.id).should == "Pre-requisites are not met to purchase this skill"
+    CharacterSkill.purchase_skill(char.id, skill.id).should == false
     char.race_id = Race.find_by_name(race).id
     char.save
     CharacterSkill.purchase_skill(char.id, skill.id)
@@ -60,7 +60,7 @@ describe "skill validation" do
     skill1 = Skill.find_by_name('Read And Write')
     skill2 = Skill.find_by_name('First Aid')
     CharacterSkill.add_skill(char.id, skill.id)
-    CharacterSkill.purchase_skill(char.id, skill.id).should == "Pre-requisites are not met to purchase this skill"
+    CharacterSkill.purchase_skill(char.id, skill.id).should == false
     CharacterSkill.add_skill(char.id, skill1.id)
     CharacterSkill.add_skill(char.id, skill2.id)
     CharacterSkill.purchase_skill(char.id, skill1.id)

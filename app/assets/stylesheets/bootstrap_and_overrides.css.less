@@ -27,3 +27,14 @@ body { padding-top: 60px; }
 //
 // Example:
 // @linkColor: #ff0000;
+
+@blue: #0074CC;
+@blueDark: darken(@blue, 5);
+
+.btn {
+  // Primary Button Type
+  &.primary {
+    color: @white;
+    .gradientBar(@blue, @blueDark)
+  }
+}

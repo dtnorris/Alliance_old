@@ -1,5 +1,5 @@
 class Character < ActiveRecord::Base
-  attr_accessible :build_points, :experience_points, :name, :race_id, :new_skill, :char_class_id, :spent_build, :buy_skill, :body_points, :user_id, :chapter_id
+  attr_accessible :build_points, :experience_points, :name, :race_id, :char_class_id, :spent_build, :body_points, :user_id, :chapter_id
 
   belongs_to :race
   belongs_to :char_class

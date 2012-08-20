@@ -65,8 +65,6 @@ ActiveRecord::Schema.define(:version => 20120816215759) do
     t.integer  "experience_points"
     t.integer  "build_points"
     t.integer  "spent_build"
-    t.integer  "new_skill"
-    t.integer  "buy_skill"
     t.integer  "body_points"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false

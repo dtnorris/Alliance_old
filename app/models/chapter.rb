@@ -7,6 +7,7 @@ class Chapter < ActiveRecord::Base
   has_many :stramp_tracks
   has_many :users, :through => :members
   has_many :deaths
+  has_many :assignments
 
   validates_presence_of :name
   validates_presence_of :owner

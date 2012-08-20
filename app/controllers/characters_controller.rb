@@ -66,6 +66,7 @@ class CharactersController < ApplicationController
     @chapter = @character.chapter
     @chapters = @character.user.members.inject([]) { |arr,m| arr << [m.chapter.name, m.chapter.id]; arr }
     @death = Death.new
+    @character_skill = CharacterSkill.new
   end
 
   # POST /characters
@@ -90,21 +91,9 @@ class CharactersController < ApplicationController
   # PUT /characters/1
   # PUT /characters/1.json
   def update
-    if params[:character][:new_skill] != ""
-      CharacterSkill.add_skill(@character.id, params[:character][:new_skill].to_i)
-    end
-    if params[:character][:buy_skill] && params[:character][:buy_skill] != ""
-      purchase_ret = CharacterSkill.purchase_skill(@character.id, Skill.find_by_name(params[:character][:buy_skill]).id)
-      if purchase_ret == "Pre-requisites are not met to purchase this skill"
-        params[:purchase_error] = purchase_ret
-      elsif purchase_ret && purchase_ret.legal_spent_build == "You do not have the necessary build for this update"
-        params[:purchase_error] = purchase_ret.legal_spent_build
-        purchase_ret = purchase_ret.legal_spent_build
-      end
-    end
     respond_to do |format|
       if @character.update_attributes(params[:character])
-        format.html { redirect_to edit_character_path(@character, purchase_ret), notice: 'Character was successfully updated' }
+        format.html { redirect_to edit_character_path(@character), notice: 'Character was successfully updated' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

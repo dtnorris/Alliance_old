@@ -1,3 +1,16 @@
+-if @character.id
+  %table.table.striped-table
+    %tbody
+      %tr
+        %td Body Points:
+        %td= @character.body_points
+      %tr
+        %td Unspent Build:
+        %td= (@character.build_points - @character.spent_build) if @character.spent_build
+      %tr
+        %td Spent Build:
+        %td= @character.spent_build
+
 .form-horizontal
   = simple_form_for(@character) do |f|
     = f.error_notification

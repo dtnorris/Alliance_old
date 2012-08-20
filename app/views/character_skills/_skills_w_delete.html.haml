@@ -1,13 +1,14 @@
--#%h2 Character Skills
-%table.table.user-table
+%table.table.striped-table
   %tbody
-    - CharacterSkill.find_all_by_character_id(@character.id).each do |skill|
+    - @character.character_skills.each do |skill|
       %tr
-        %td.ln #{Skill.find(skill.skill_id).name}:
+        %td #{Skill.find(skill.skill_id).name}:
         - if skill.bought == true
           %td 1
         - if skill.bought == false
           %td 0
         - if skill.amount
           %td= skill.amount
-        %td= link_to 'X', skill, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: 'btn btn-mini btn-danger', :id => 'delete_skill'
+        %td= link_to 'Add', skill, class: 'primary btn commit create btn-mini', name: 'commit', type: 'submit', :method => :put
+        %td= link_to 'X', skill, :method => :delete, class: 'btn btn-mini btn-danger', :id => 'delete_skill'
+        / , :data => { :confirm => 'Are you sure?' }

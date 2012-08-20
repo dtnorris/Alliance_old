@@ -5,10 +5,12 @@
         
 .span5
   = render 'form'
-.span3
-  = render 'deaths/form'
-  = link_to 'Death Track', character_deaths_path(@character.id), class: "btn"
   %p
-  = render 'skill_form'
+  .span2
+    = render 'deaths/form'
+  .span2
+    = link_to 'Death Track', character_deaths_path(@character.id), class: "btn"
+.span3
+  = render 'character_skills/form'
 .span3
   = render 'character_skills/skills_w_delete'
