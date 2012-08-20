@@ -13,28 +13,28 @@ describe "skill validation" do
   def validate_one_pre_req(skill, pre_req, amount=1)
     skill = Skill.find_by_name(skill)
     pre_req = Skill.find_by_name(pre_req)
-    CharacterSkill.add_skill(char.id, skill.id)
-    CharacterSkill.purchase_skill(char.id, skill.id).should == false
+    ad = CharacterSkill.add_skill(char.id, skill.id)
+    CharacterSkill.purchase_skill(ad).should == false
     pr = CharacterSkill.add_skill(char.id, pre_req.id)
     pr.bought = true
     pr.amount = amount
     pr.save
-    CharacterSkill.purchase_skill(char.id, skill.id)
+    CharacterSkill.purchase_skill(ad)
   end
 
   def validate_race_pre_req(skill, race)
     skill = Skill.find_by_name(skill)
-    CharacterSkill.add_skill(char.id, skill.id)
-    CharacterSkill.purchase_skill(char.id, skill.id).should == false
+    ad = CharacterSkill.add_skill(char.id, skill.id)
+    CharacterSkill.purchase_skill(ad).should == false
     char.race_id = Race.find_by_name(race).id
     char.save
-    CharacterSkill.purchase_skill(char.id, skill.id)
+    CharacterSkill.purchase_skill(ad)
   end
 
   it "can validate non-dependant skill purchse" do
     skill = Skill.find_by_name('Blacksmith')
-    CharacterSkill.add_skill(char.id, skill.id)
-    sk = CharacterSkill.purchase_skill(char.id, skill.id)
+    ad = CharacterSkill.add_skill(char.id, skill.id)
+    sk = CharacterSkill.purchase_skill(ad)
     sk.amount.should == 1
   end
   it "can validate Alchemy purchase" do
@@ -59,13 +59,13 @@ describe "skill validation" do
     skill = Skill.find_by_name('Healing Arts')
     skill1 = Skill.find_by_name('Read And Write')
     skill2 = Skill.find_by_name('First Aid')
-    CharacterSkill.add_skill(char.id, skill.id)
-    CharacterSkill.purchase_skill(char.id, skill.id).should == false
-    CharacterSkill.add_skill(char.id, skill1.id)
-    CharacterSkill.add_skill(char.id, skill2.id)
-    CharacterSkill.purchase_skill(char.id, skill1.id)
-    CharacterSkill.purchase_skill(char.id, skill2.id)
-    CharacterSkill.purchase_skill(char.id, skill.id).bought.should == true
+    sk1 = CharacterSkill.add_skill(char.id, skill.id)
+    CharacterSkill.purchase_skill(sk1).should == false
+    sk2 = CharacterSkill.add_skill(char.id, skill1.id)
+    sk3 = CharacterSkill.add_skill(char.id, skill2.id)
+    CharacterSkill.purchase_skill(sk2)
+    CharacterSkill.purchase_skill(sk3)
+    CharacterSkill.purchase_skill(sk1).bought.should == true
   end
   it "can validate Style Master purchase" do
     validate_one_pre_req('Style Master', 'One Handed Master').bought.should == true

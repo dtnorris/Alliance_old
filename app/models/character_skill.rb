@@ -38,8 +38,8 @@ class CharacterSkill < ActiveRecord::Base
     ret = all_skills.map {|r| Skill.find(r.skill_id).name }
   end
 
-  def self.purchase_skill(character_id, skill_id)
-    skill = CharacterSkill.find_by_skill_id_and_character_id(skill_id, character_id)
+  def self.purchase_skill(character_skill)
+    skill = character_skill
     if skill && skill.validate_skill_can_be_purchased
       if skill.amount
         skill.amount +=1
@@ -69,11 +69,11 @@ class CharacterSkill < ActiveRecord::Base
 
   def legal_spent_build
     if character_id
-      char = Character.find(character_id)
+      char = self.character
       new_sk = 0
       self_saved = CharacterSkill.find_by_character_id_and_skill_id(self.character_id, self.skill_id)
       if (self_saved.bought != self.bought) || (self_saved.amount != self.amount)
-        new_sk = new_sk = Skill.find(self.skill_id)[CharClass.find(char.char_class_id).name.downcase]
+        new_sk = self.skill[CharClass.find(char.char_class_id).name.downcase]
       end
       if char.build_points >= (char.calculate_spent_build + new_sk)
         return true

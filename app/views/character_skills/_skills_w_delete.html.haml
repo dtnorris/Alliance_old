@@ -1,6 +1,6 @@
 %table.table.striped-table
   %tbody
-    - @character.character_skills.each do |skill|
+    - @character.character_skills.sort.each do |skill|
       %tr
         %td #{Skill.find(skill.skill_id).name}:
         - if skill.bought == true

@@ -43,13 +43,11 @@ describe "CharacterSkill" do
   end
 
   it "can purchase_skill" do
-    CharacterSkill.add_skill(char.id, skill_smith.id)
-    CharacterSkill.add_skill(char.id, skill_smith.id)
-    CharacterSkill.add_skill(char.id, skill_shield.id)
-    CharacterSkill.add_skill(char.id, skill_shield.id)
+    cs1 = CharacterSkill.add_skill(char.id, skill_smith.id)
+    cs2 = CharacterSkill.add_skill(char.id, skill_shield.id)
     
-    CharacterSkill.purchase_skill(char.id, skill_smith.id)
-    CharacterSkill.purchase_skill(char.id, skill_shield.id)
+    CharacterSkill.purchase_skill(cs1)
+    CharacterSkill.purchase_skill(cs2)
     CharacterSkill.find_by_skill_id(skill_smith.id).amount.should == 1
     CharacterSkill.find_by_skill_id(skill_shield.id).bought.should == true
   end

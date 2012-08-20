@@ -56,20 +56,20 @@ describe "character" do
     end
 
     it "should calculate spent build off asociated skills" do
-      CharacterSkill.add_skill(hb_char.id, 2) #3
-      CharacterSkill.add_skill(hb_char.id, 2) #3
-      CharacterSkill.add_skill(hb_char.id, 29) #5
-      CharacterSkill.add_skill(hb_char.id, 29) ##
-      CharacterSkill.add_skill(hb_char.id, 8) #3
-      CharacterSkill.add_skill(hb_char.id, 7) #10
+      sk1 = CharacterSkill.add_skill(hb_char.id, 2) #3
+      sk2 = CharacterSkill.add_skill(hb_char.id, 2) #3
+      sk3 = CharacterSkill.add_skill(hb_char.id, 29) #5
+      sk4 = CharacterSkill.add_skill(hb_char.id, 29) ##
+      sk5 = CharacterSkill.add_skill(hb_char.id, 8) #3
+      sk6 = CharacterSkill.add_skill(hb_char.id, 7) #10
       hb_char.calculate_spent_build.should == 0
 
-      CharacterSkill.purchase_skill(hb_char.id, 2) #3
-      CharacterSkill.purchase_skill(hb_char.id, 2) #3
-      CharacterSkill.purchase_skill(hb_char.id, 29) #5
-      CharacterSkill.purchase_skill(hb_char.id, 29) ##
-      CharacterSkill.purchase_skill(hb_char.id, 8) #3
-      CharacterSkill.purchase_skill(hb_char.id, 7) #10
+      CharacterSkill.purchase_skill(sk1) #3
+      CharacterSkill.purchase_skill(sk1) #3
+      CharacterSkill.purchase_skill(sk3) #5
+      CharacterSkill.purchase_skill(sk4) ##
+      CharacterSkill.purchase_skill(sk5) #3
+      CharacterSkill.purchase_skill(sk6) #10
       hb_char.calculate_spent_build.should == 24
     end
 

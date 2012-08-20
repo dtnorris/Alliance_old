@@ -24,15 +24,20 @@ class CharacterSkillsController < ApplicationController
 
   def update
     @character = @character_skill.character
-    purchase_ret = CharacterSkill.purchase_skill(@character.id, @character_skill.skill.id)
+    purchase_ret = CharacterSkill.purchase_skill(@character_skill)
     respond_to do |format|
       if !purchase_ret     
         format.html { redirect_to edit_character_path(@character), notice: 'Pre-requisites are not met to purchase this skill' }
       elsif !purchase_ret.legal_spent_build
+        if @character_skill.amount
+          @character_skill.amount -= 1
+        elsif @character_skill.bought
+          @character_skill.bought = false
+        end
+        @character_skill.save
         format.html { redirect_to edit_character_path(@character), notice: 'You do not have the necessary build for this update' }
       else
-        @character.save
-        format.html { redirect_to edit_character_path(@character, purchase_ret), notice: 'Character was successfully updated' }
+        format.html { redirect_to edit_character_path(@character), notice: 'Character was successfully updated' }
       end
     end
   end
@@ -51,7 +56,7 @@ class CharacterSkillsController < ApplicationController
     @character.save
 
     respond_to do |format|
-      format.html { redirect_to edit_character_path(@character) }
+      format.html { redirect_to edit_character_path(@character, notice: 'Skill Removed') }
       format.json { head :no_content }
     end
   end
