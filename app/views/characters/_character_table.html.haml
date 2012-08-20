@@ -28,7 +28,7 @@
         %td= ((character.build_points - 5) / 10)
         -if @user or !@chapter
           %td= character.chapter.name
-        -else
+        -unless @user
           %td= character.user.name
         -unless @user
           %td= link_to 'XP', xp_track_character_path(character), class: 'btn btn-mini'
