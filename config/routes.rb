@@ -11,6 +11,9 @@ Alliance::Application.routes.draw do
       get :old_blankets
     end
     resources :characters do
+      member do 
+        get :xp_track
+      end
       resources :events
     end
     resources :users do
@@ -47,6 +50,11 @@ Alliance::Application.routes.draw do
     member do
       get :view_goblins
       get :edit_password_form
+    end
+    resources :characters do 
+      member do 
+        get :xp_track
+      end
     end
     resources :events
     resources :members

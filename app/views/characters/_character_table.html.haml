@@ -15,14 +15,14 @@
         -unless @chapter
           %th= sort_link @search, :chapter_id, 'Home Chapter:'
         %th Player
-        %th
+        /%th
     - @characters = @user.characters unless @characters
     - @characters.each do |character|
       %tr
         -if @user
-          %td= link_to character.name, character_path(character)
+          %td= link_to character.name, user_character_path(@user, character)
         -else
-          %td= link_to character.name, edit_character_path(character)
+          %td= link_to character.name, edit_chapter_character_path(character.chapter, character)
         %td= character.race.name
         %td= character.char_class.name
         %td= ((character.build_points - 5) / 10)
@@ -30,5 +30,5 @@
           %td= character.chapter.name
         -unless @user
           %td= character.user.name
-        -unless @user
-          %td= link_to 'XP', xp_track_character_path(character), class: 'btn btn-mini'
+        /-unless @user
+        /  %td= link_to 'XP', xp_track_character_path(character), class: 'btn btn-mini'

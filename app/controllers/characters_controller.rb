@@ -37,6 +37,8 @@ class CharactersController < ApplicationController
   # GET /characters/1
   # GET /characters/1.json
   def show
+    @user = User.find(params[:user_id]) if params[:user_id]
+    @chapter = Chapter.find(params[:chapter_id]) if params[:chapter_id]
     @deaths = @character.deaths
     respond_to do |format|
       format.html # show.html.erb
@@ -52,6 +54,8 @@ class CharactersController < ApplicationController
 
   # GET /characters/1/xp_track
   def xp_track
+    @user = User.find(params[:user_id]) if params[:user_id]
+    @chapter = Chapter.find(params[:chapter_id]) if params[:chapter_id]
     @xp_tracks = XpTrack.find_all_by_character_id(@character.id)
 
     respond_to do |format|
@@ -62,8 +66,8 @@ class CharactersController < ApplicationController
 
   # GET /characters/1/edit
   def edit
-    @user = @character.user
-    @chapter = @character.chapter
+    @user = User.find(params[:user_id]) if params[:user_id]
+    @chapter = Chapter.find(params[:chapter_id]) if params[:chapter_id]
     @chapters = @character.user.members.inject([]) { |arr,m| arr << [m.chapter.name, m.chapter.id]; arr }
     @death = Death.new
     @character_skill = CharacterSkill.new

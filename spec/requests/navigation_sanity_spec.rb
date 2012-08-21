@@ -37,6 +37,42 @@ describe "basic navigation" do
     page.should have_content("Home For: Alliance Admin")
   end
 
+  it 'should present proper back button on character page' do 
+    visit '/users/1'
+    click_link 'Bob'
+    click_link 'Back'
+    page.should have_content('Home For: Alliance Admin')
+    click_link 'Bob'
+    click_link 'View'
+    click_link 'Back'
+    page.should have_content('Home For: Alliance Admin')
+    click_link 'Bob'
+    click_link 'XP Track'
+    click_link 'Back'
+    page.should have_content('Home For: Alliance Admin')
+    click_link 'Bob'
+    click_link 'Back'
+    page.should have_content('Home For: Alliance Admin')
+  end
 
+  it 'should present proper back button on character page from chapter' do
+    visit '/chapters/1'
+    click_link 'chapter_characters'
+    click_link 'Bob'
+    click_link 'View'
+    click_link 'Back'
+    page.should have_content('Characters for T_Chapter_1')
+    click_link 'Bob'
+    click_link 'Edit'
+    click_link 'Back'
+    page.should have_content('Characters for T_Chapter_1')
+    click_link 'Bob'
+    click_link 'XP Track'
+    click_link 'Back'
+    page.should have_content('Characters for T_Chapter_1')
+    click_link 'Bob'
+    click_link 'Back'
+    page.should have_content('Characters for T_Chapter_1')
+  end
 
 end
