@@ -41,9 +41,10 @@
           %td false
         - else
           %td= @event.applied
+    .span7
+      %br
+      %br
+      = render 'attendees/event_attendees'
 
   .span3
     = render 'attendees/form'
-
-  .span7
-    = render 'attendees/event_attendees'

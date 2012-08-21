@@ -1,4 +1,4 @@
-%h3 Listing attendees for Event
+%h3 Listing Attendees
 %p
 
 %table.table.xp-table
@@ -12,9 +12,9 @@
     /%th
     /%th
 
-  - @attendees.each do |attendee|
-    - character = Character.find(attendee.character_id)
-    - user = User.find(character.user_id)
+  - (@attendees.sort_by! {|a| a.character.user.name}).each do |attendee|
+    - character = attendee.character
+    - user = character.user
     %tr
       %td= user.first_name + ' ' + user.last_name
       - if attendee.pc == true
