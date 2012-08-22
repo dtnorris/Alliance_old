@@ -155,8 +155,23 @@ class Character < ActiveRecord::Base
           end
         end
       end
-      tmp_spent_build
+      tmp_spent_build = self.add_racial_discounts skills_array, tmp_spent_build
     end
+  end
+
+  def add_racial_discounts skills_array, spent_build
+    if self.has_racial_discounts
+      skills_array.each do |s|
+        if self.race.name == 'Dark Elf' and s.skill.name == 'Archery' and s.bought
+          spent_build -= (s.skill[self.char_class.name.downcase] / 2)
+        end
+      end
+    end
+    spent_build
+  end
+
+  def has_racial_discounts
+    (self.race.name == 'Dark Elf') or (self.race.name == 'Dryad') or (self.race.name == 'Dwarf') or (self.race.name == 'Elf') or (self.race.name == 'Hobling') or (self.race.name == 'Mystic Wood Elf') or (self.race.name == 'Stone Elf')
   end
 
   def update_xp_and_build

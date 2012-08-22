@@ -55,6 +55,13 @@ describe "character" do
       char.experience_points.should == 30
     end
 
+    it 'should calculate Dark Elf racial discounts' do 
+      hb_char.race_id = 3
+      purchase_skill hb_char, 'Archery', true, nil
+      hb_char.save
+      hb_char.spent_build.should == 3
+    end
+
     it "should calculate spent build off asociated skills" do
       sk1 = CharacterSkill.add_skill(hb_char.id, 2) #3
       sk2 = CharacterSkill.add_skill(hb_char.id, 2) #3
