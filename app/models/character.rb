@@ -156,18 +156,44 @@ class Character < ActiveRecord::Base
         end
       end
       tmp_spent_build = self.add_racial_discounts skills_array, tmp_spent_build
+      tmp_spent_build = self.add_racial_costs skills_array, tmp_spent_build
     end
+  end
+
+  def add_racial_costs skills_array, spent_build
+    if self.has_racial_costs
+      skills_array.each do |s|
+        if (self.race.name == 'Barbarian' || self.race.name == 'High Orc' || self.race.name == 'High Ogre' || self.race.name == 'Wylderkin') and (s.skill.name == 'Read And Write' || s.skill.name == 'Read Magic') and s.bought
+          spent_build += s.skill[self.char_class.name.downcase]
+        elsif self.race.name == 'Dwarf' and s.skill.name == 'Read Magic' and s.bought
+          spent_build += s.skill[self.char_class.name.downcase]
+        end
+      end
+    end
+    spent_build
   end
 
   def add_racial_discounts skills_array, spent_build
     if self.has_racial_discounts
       skills_array.each do |s|
-        if self.race.name == 'Dark Elf' and s.skill.name == 'Archery' and s.bought
+        if (self.race.name == 'Dark Elf' || self.race.name == 'Elf' || self.race.name == 'Stone Elf') and s.skill.name == 'Archery' and s.bought
           spent_build -= (s.skill[self.char_class.name.downcase] / 2)
+        elsif self.race.name == 'Dryad' and s.skill.name == 'Herbal Lore' and s.bought
+          spent_build -= (s.skill[self.char_class.name.downcase] / 2)
+        elsif self.race.name == 'Dwarf' and s.skill.name == 'Blacksmith' and s.amount > 0
+          spent_build -= s.amount
+        elsif self.race.name == 'Hobling' and s.skill.name == 'Legerdemain' and s.bought
+          spent_build -= (s.skill[self.char_class.name.downcase] / 2)
+        elsif self.race.name == 'Mystic Wood Elf' and s.skill.name == 'Craftsman' and s.amount > 0
+          spent_build -= s.amount
         end
       end
     end
     spent_build
+  end
+
+  def has_racial_costs
+    (self.race.name == 'Barbarian') or (self.race.name == 'Dwarf') or (self.race.name == 'High Ogre') or (self.race.name == 'High Orc') or (self.race.name == 'Wylderkin')
   end
 
   def has_racial_discounts

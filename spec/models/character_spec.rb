@@ -55,12 +55,73 @@ describe "character" do
       char.experience_points.should == 30
     end
 
-    it 'should calculate Dark Elf racial discounts' do 
-      hb_char.race_id = 3
+    it 'should calculate Dwaf racial costs' do 
+      hb_char.race_id = Race.find_by_name('Dwarf').id
+      purchase_skill hb_char, 'Read And Write', true, nil
+      purchase_skill hb_char, 'Read Magic', true, nil
+      hb_char.save
+      hb_char.spent_build.should == 22
+    end
+
+    it 'should calculate Barbarian, High Orc, High Ogre, and Wylderkin racial costs' do 
+      hb_char.race_id = Race.find_by_name('Barbarian').id
+      purchase_skill hb_char, 'Read And Write', true, nil
+      purchase_skill hb_char, 'Read Magic', true, nil
+      hb_char.save
+      hb_char.spent_build.should == 28
+      hb_char.race_id = Race.find_by_name('High Orc').id
+      hb_char.save
+      hb_char.spent_build.should == 28
+      hb_char.race_id = Race.find_by_name('High Ogre').id
+      hb_char.save
+      hb_char.spent_build.should == 28
+      hb_char.race_id = Race.find_by_name('Wylderkin').id
+      hb_char.save
+      hb_char.spent_build.should == 28
+    end
+
+    it 'should calculate Dark Elf, Elf, and Stone Elf racial discounts' do 
+      hb_char.race_id = Race.find_by_name('Dark Elf').id
       purchase_skill hb_char, 'Archery', true, nil
       hb_char.save
       hb_char.spent_build.should == 3
+      hb_char.race_id = Race.find_by_name('Elf').id
+      hb_char.save
+      hb_char.spent_build.should == 3
+      hb_char.race_id = Race.find_by_name('Stone Elf').id
+      hb_char.save
+      hb_char.spent_build.should == 3
     end
+
+    it 'should calculate Dryad racial discounts' do
+      hb_char.race_id = Race.find_by_name('Dryad').id
+      purchase_skill hb_char, 'Read And Write', true, nil
+      purchase_skill hb_char, 'Herbal Lore', true, nil
+      hb_char.save
+      hb_char.spent_build.should == 9
+    end
+
+    it 'should calculate Dwarf racial discounts' do
+      hb_char.race_id = Race.find_by_name('Dwarf').id
+      purchase_skill hb_char, 'Blacksmith', nil, 10
+      hb_char.save
+      hb_char.spent_build.should == 20
+    end
+
+    it 'should calculate Hobling racial discounts' do 
+      hb_char.race_id = Race.find_by_name('Hobling').id
+      purchase_skill hb_char, 'Legerdemain', true, nil
+      hb_char.save
+      hb_char.spent_build.should == 5
+    end
+
+    it 'should calculate Mystic Wood Elf racial discounts' do
+      hb_char.race_id = Race.find_by_name('Mystic Wood Elf').id
+      purchase_skill hb_char, 'Craftsman', nil, 10
+      hb_char.save
+      hb_char.spent_build.should == 10
+    end
+
 
     it "should calculate spent build off asociated skills" do
       sk1 = CharacterSkill.add_skill(hb_char.id, 2) #3
