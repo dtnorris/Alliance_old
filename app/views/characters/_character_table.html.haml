@@ -21,8 +21,10 @@
       %tr
         -if @user
           %td= link_to character.name, user_character_path(@user, character)
-        -else
+        -elsif @chapter
           %td= link_to character.name, edit_chapter_character_path(character.chapter, character)
+        -else
+          %td= link_to character.name, edit_character_path(character)
         %td= character.race.name
         %td= character.char_class.name
         %td= ((character.build_points - 5) / 10)

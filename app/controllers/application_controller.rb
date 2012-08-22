@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :authenticate_user!
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, notice: "Access denied."
+    flash[:error] = "Access denied."
+    redirect_to root_url 
   end
 end

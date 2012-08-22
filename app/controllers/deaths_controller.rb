@@ -29,7 +29,8 @@ class DeathsController < ApplicationController
         format.html { redirect_to edit_character_path(@death.character_id), notice: notice }
         format.json { render json: @death, status: :created, location: @death }
       else
-        format.html { render action: "new" }
+        flash[:error] = 'Death not created'
+        format.html { redirect_to edit_character_path(@death.character_id), notice: notice }
         format.json { render json: @death.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +43,7 @@ class DeathsController < ApplicationController
     @death.destroy
 
     respond_to do |format|
-      format.html { redirect_to character_deaths_path(@character.id) }
+      format.html { redirect_to character_deaths_path(@character.id), notice: 'Death removed' }
       format.json { head :no_content }
     end
   end

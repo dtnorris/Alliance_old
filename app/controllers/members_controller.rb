@@ -17,6 +17,7 @@ class MembersController < ApplicationController
           format.json { render json: @member, status: :created, location: @member }
         end
       else
+        flash[:error] = 'Failed to add membership.'
         format.html { redirect_to edit_user_path(current_user.id) }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
@@ -36,7 +37,8 @@ class MembersController < ApplicationController
         format.html { redirect_to blanket_list_chapter_path(@member.chapter_id), notice: 'Member was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        flash[:error] = 'Error modifying membership.'
+        format.html { redirect_to blanket_list_chapter_path(@member.chapter_id) }
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end

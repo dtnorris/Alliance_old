@@ -57,7 +57,8 @@ class EventsController < ApplicationController
           format.json { render json: @event, status: :created, location: @event }
         end
       else
-        format.html { redirect_to chapter_events_path(@chapter), notice: 'Error creating Event, missing required fields.' }
+        flash[:error] = 'Error creating Event, missing required fields.'
+        format.html { redirect_to new_chapter_event_path(@chapter) }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -97,7 +98,8 @@ class EventsController < ApplicationController
         if @attendee.apply_event
           format.html { redirect_to chapter_event_path(@chapter.id,@event.id), notice: 'Single Blanket successfully applied' }
         else
-          format.html { redirect_to chapter_event_path(@chapter.id,@event.id), notice: 'Error applying event blanket' }
+          flash[:error] = 'Error applying event blanket'
+          format.html { redirect_to chapter_event_path(@chapter.id,@event.id) }
         end
       elsif @event.update_attributes(params[:event])
         if @event_apply
@@ -107,10 +109,12 @@ class EventsController < ApplicationController
             format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Event was successfully applied' }
           end
         else
-          format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Error applying event' }
+          flash[:error] = 'Error applying event'
+          format.html { redirect_to chapter_events_path(@chapter.id) }
         end
       else
-        format.html { redirect_to chapter_events_path(@chapter.id), notice: 'Error applying event' }
+        flash[:error] =  'Error applying event'
+        format.html { redirect_to chapter_events_path(@chapter.id) }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end

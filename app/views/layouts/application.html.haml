@@ -8,8 +8,20 @@
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tag
-  %body.container
-    .row
-      = render 'layouts/navbar' if current_user
-      .span12
-        = yield
+  %body
+    .container
+      - flash.each do |name, msg|
+        -if name == :notice
+          .alert.alert-success
+            .close{"data-dismiss" => "alert"}
+              ='x'
+            = msg
+        -else
+          .alert.alert-error
+            .close{"data-dismiss" => "alert"}
+              ='x'
+            = msg
+      .row
+        = render 'layouts/navbar' if current_user
+        .span12
+          = yield

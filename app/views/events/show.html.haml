@@ -1,6 +1,5 @@
 -if @user
   %h1= "Attend " + @chapter.name + " event on " + @event.date.to_s + " with:"
-  .error1= notice
   %ul.nav.nav-tabs
     %li= link_to 'Back', chapter_user_events_path(@chapter.id,@user.id), class: "btn"
 
@@ -15,12 +14,7 @@
     - path = chapter_events_path(@chapter.id)
   %ul.nav.nav-tabs
     %li= link_to 'Back', path, class: "btn"
-  %p#notice= notice
 
-  /-if @event_type.name == 'Goblin Blanket'
-  /  %h3 This is a Goblin Blanket
-
-  /-else
   .span3
     %table.table
       %tr

@@ -1,4 +1,3 @@
-/ -if @chapter
 -if @chapter
   %h1= 'Events for ' + @chapter.name
 
@@ -7,15 +6,9 @@
       %li= link_to 'Back', @user, class: "btn"
     -else
       = render 'chapters/chapter_navbar'
-      %p#notice= notice
-
-  / -if @chapter && !@user
-  /   = link_to 'New Event', new_chapter_event_path(@chapter.id), class: "btn"
-  /   %p
 
 -else
   %h1 All Alliance Events
-  %p#notice= notice
 
 =search_form_for(@search) do |f|
   = f.condition_fields do |c|

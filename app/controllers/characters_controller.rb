@@ -76,6 +76,8 @@ class CharactersController < ApplicationController
   # POST /characters
   # POST /characters.json
   def create
+    @chapter = @character.chapter
+    @user = @character.user
     @character.build_points = 15
     @character.spent_build = 0
     @character.experience_points = 0
@@ -86,7 +88,8 @@ class CharactersController < ApplicationController
         format.html { redirect_to @character, notice: 'Character was successfully created.' }
         format.json { render json: @character, status: :created, location: @character }
       else
-        format.html { render action: "new" }
+        flash[:error] = 'Error creating character.'
+        format.html { redirect_to new_chapter_user_character_path(@chapter, @user) }
         format.json { render json: @character.errors, status: :unprocessable_entity }
       end
     end
@@ -100,7 +103,8 @@ class CharactersController < ApplicationController
         format.html { redirect_to edit_character_path(@character), notice: 'Character was successfully updated' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        flash[:error] = 'Error updating character.'
+        format.html { redirect_to edit_character_path(@character) }
         format.json { render json: @character.errors, status: :unprocessable_entity }
       end
     end

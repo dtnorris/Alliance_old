@@ -99,7 +99,8 @@ class UsersController < ApplicationController
         format.html { redirect_to chapter_users_path(@member.chapter_id), notice: 'Player was successfully created' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { redirect_to new_chapter_user_path(@member.chapter_id), notice: 'Failed to create new player' }
+        flash[:error] = 'Failed to create new player'
+        format.html { redirect_to new_chapter_user_path(@member.chapter_id) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -114,10 +115,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to user_path(@user), notice: 'User was successfully updated.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        flash[:error] = 'Error updating user.'
+        format.html { redirect_to edit_user_path(@user) }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
