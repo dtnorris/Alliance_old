@@ -39,7 +39,7 @@ describe "character creation and modification" do
 
   it "should be able to view xp_track" do
     click_link "XP Track"
-    page.should have_content("Experience Point Tracking for: Bob")
+    page.should have_content("Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:")
   end
 
   it "should have calculated body points on creation" do
@@ -62,7 +62,7 @@ describe "character creation and modification" do
 
   it "should be about to go to the view page after creation" do
     click_link "View"
-    page.should have_content("Character Summary")
+    page.should have_content("PDF Character Card")
   end
 
   it "should properly re-calculate spent build" do

@@ -1,4 +1,13 @@
-%ul.nav.nav-tabs
-  %li= link_to 'View', user_path(@user.id), class: "btn"
-  %li= link_to 'Edit', edit_user_path(@user.id), class: "btn"
-  %li= link_to 'Events Attended', attendee_path(@user.id), class: "btn"
+.navbar
+  .navbar-inner
+    .container
+      .btn.btn-navbar{"data-target" => ".nav-collapse.2", "data-toggle" => "collapse"}
+        .icon-bar
+        .icon-bar
+        .icon-bar
+      .brand= 'Home'
+      .nav-collapse.2
+        .nav
+          %li= link_to 'View', user_path(@user.id)
+          %li= link_to 'Edit', edit_user_path(@user.id)
+          %li= link_to 'Events Attended', attendee_path(@user.id)

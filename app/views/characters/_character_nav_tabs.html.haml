@@ -1,18 +1,26 @@
-%ul.nav.nav-tabs
-  -if @user
-    %li= link_to 'Back', @user, class: 'btn'
-    %li= link_to 'View', user_character_path(@user, @character), class: "btn"
-    %li= link_to 'XP Track', xp_track_user_character_path(@user, @character), class: "btn", method: :get
-  -elsif @chapter
-    %li= link_to 'Back', chapter_characters_path(@chapter.id), class: 'btn'
-    %li= link_to 'View', chapter_character_path(@chapter, @character), class: "btn"
-    - if can? :update, @character
-      %li= link_to 'Edit', edit_chapter_character_path(@chapter, @character), class: 'btn'
-    %li= link_to 'XP Track', xp_track_chapter_character_path(@character), class: "btn", method: :get
-  -else
-    %li= link_to 'Back', characters_path, class: 'btn'
-    %li= link_to 'View', @character, class: "btn"
-    - if can? :update, @character
-      %li= link_to 'Edit', edit_character_path(@character), class: "btn"
-    %li= link_to 'XP Track', xp_track_character_path(@character), class: "btn", method: :get
-
+.navbar
+  .navbar-inner
+    .container
+      .btn.btn-navbar{"data-target" => ".nav-collapse.3", "data-toggle" => "collapse"}
+        .icon-bar
+        .icon-bar
+        .icon-bar
+      .brand= @character.name
+      .nav-collapse.3
+        .nav
+          -if @user
+            %li= link_to 'Back', @user
+            %li= link_to 'View', user_character_path(@user, @character)
+            %li= link_to 'XP Track', xp_track_user_character_path(@user, @character), method: :get
+          -elsif @chapter
+            %li= link_to 'Back', chapter_characters_path(@chapter.id)
+            %li= link_to 'View', chapter_character_path(@chapter, @character)
+            - if can? :update, @character
+              %li= link_to 'Edit', edit_chapter_character_path(@chapter, @character)
+            %li= link_to 'XP Track', xp_track_chapter_character_path(@character), method: :get
+          -else
+            %li= link_to 'Back', characters_path
+            %li= link_to 'View', @character
+            - if can? :update, @character
+              %li= link_to 'Edit', edit_character_path(@character)
+            %li= link_to 'XP Track', xp_track_character_path(@character), method: :get

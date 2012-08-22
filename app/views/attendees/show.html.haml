@@ -1,5 +1,5 @@
-%h2 Listing all event blankets
 = render 'users/user_navbar'
+%h2= User.find(params[:id]).name + ': event blankets'
 
 %p
 %table.table.xp-table

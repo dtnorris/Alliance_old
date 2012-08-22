@@ -12,7 +12,7 @@ describe "basic navigation" do
     click_link "Chapters"
     click_link "Home"
     click_link "chapter_characters"
-    page.should have_content("Characters for T_Chapter_1")
+    page.should have_content("T_Chapter_1")
     page.should have_content("Bob Barbarian Fighter 1 Alliance Admin")
   end
 
@@ -34,25 +34,25 @@ describe "basic navigation" do
 
   it "allows a user to view User page" do
     visit "/users/1"
-    page.should have_content("Home For: Alliance Admin")
+    page.should have_content("Alliance Admin")
   end
 
   it 'should present proper back button on character page' do 
     visit '/users/1'
     click_link 'Bob'
     click_link 'Back'
-    page.should have_content('Home For: Alliance Admin')
+    page.should have_content('Alliance Admin')
     click_link 'Bob'
     click_link 'View'
     click_link 'Back'
-    page.should have_content('Home For: Alliance Admin')
+    page.should have_content('Alliance Admin')
     click_link 'Bob'
     click_link 'XP Track'
     click_link 'Back'
-    page.should have_content('Home For: Alliance Admin')
+    page.should have_content('Alliance Admin')
     click_link 'Bob'
     click_link 'Back'
-    page.should have_content('Home For: Alliance Admin')
+    page.should have_content('Alliance Admin')
   end
 
   it 'should present proper back button on character page from chapter' do
@@ -61,18 +61,18 @@ describe "basic navigation" do
     click_link 'Bob'
     click_link 'View'
     click_link 'Back'
-    page.should have_content('Characters for T_Chapter_1')
+    page.should have_content('T_Chapter_1')
     click_link 'Bob'
     click_link 'Edit'
     click_link 'Back'
-    page.should have_content('Characters for T_Chapter_1')
+    page.should have_content('T_Chapter_1')
     click_link 'Bob'
     click_link 'XP Track'
     click_link 'Back'
-    page.should have_content('Characters for T_Chapter_1')
+    page.should have_content('T_Chapter_1')
     click_link 'Bob'
     click_link 'Back'
-    page.should have_content('Characters for T_Chapter_1')
+    page.should have_content('T_Chapter_1')
   end
 
 end

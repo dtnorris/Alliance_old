@@ -1,5 +1,14 @@
-%ul.nav.nav-tabs
-  %li= link_to "Home", @chapter, class: "btn"
-  %li= link_to "Events", chapter_events_path(@chapter.id), class: "btn", id: "chapter_events"
-  %li= link_to "Players", chapter_users_path(@chapter.id), class: "btn", id: "chapter_players"
-  %li= link_to "Characters", chapter_characters_path(@chapter.id), class: "btn", id: "chapter_characters"
+.navbar
+  .navbar-inner
+    .container
+      .btn.btn-navbar{"data-target" => ".nav-collapse.4", "data-toggle" => "collapse"}
+        .icon-bar
+        .icon-bar
+        .icon-bar
+      .brand= @chapter.name
+      .nav-collapse.4
+        .nav
+          %li= link_to "Home", @chapter
+          %li= link_to "Events", chapter_events_path(@chapter.id), id: "chapter_events"
+          %li= link_to "Players", chapter_users_path(@chapter.id), id: "chapter_players"
+          %li= link_to "Characters", chapter_characters_path(@chapter.id), id: "chapter_characters"

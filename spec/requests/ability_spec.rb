@@ -57,7 +57,7 @@ describe 'Ability' do
         click_link 'Garth'
       end
       click_link 'XP Track'
-      page.should have_content('Experience Point Tracking for: Garth')
+      page.should have_content('Garth')
       page.should have_content('Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:')
     end
   end

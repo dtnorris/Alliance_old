@@ -1,6 +1,6 @@
-- user_head = 'Edit: ' + @user.first_name + ' ' + @user.last_name
-%h2= user_head
 = render 'user_navbar'
+- user_head = @user.first_name + ' ' + @user.last_name
+%h2= user_head
 
 .span3
   %h3 Account Details

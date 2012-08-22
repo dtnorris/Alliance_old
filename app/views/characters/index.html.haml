@@ -1,10 +1,7 @@
 -if @chapter
-  %h1= 'Characters for ' + @chapter.name
   = render 'chapters/chapter_navbar'
-
 -else
   %h1 All Alliance Characters
-  %p
 
 =search_form_for(@search) do |f|
   = f.condition_fields do |c|

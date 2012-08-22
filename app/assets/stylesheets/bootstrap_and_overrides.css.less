@@ -1,5 +1,5 @@
 @import "twitter/bootstrap/bootstrap";
-body { padding-top: 60px; }
+body { padding-top: 42px; }
 
 @import "twitter/bootstrap/responsive";
 
@@ -30,6 +30,8 @@ body { padding-top: 60px; }
 
 @blue: #0074CC;
 @blueDark: darken(@blue, 5);
+@navbarBack: #B8B8B8;
+@navbarText: #000000;
 
 .btn {
   // Primary Button Type
@@ -37,4 +39,14 @@ body { padding-top: 60px; }
     color: @white;
     .gradientBar(@blue, @blueDark)
   }
+}
+.navbar .nav > li > a {
+  color: @blue;
+  text-shadow: none;
+}
+.navbar-inner {
+  background: @navbarBack;
+}
+.alert{
+  margin-bottom: 2px;
 }

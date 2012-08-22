@@ -1,12 +1,12 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      .btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+      .btn.btn-navbar{"data-target" => ".nav-collapse.1", "data-toggle" => "collapse"}
         .icon-bar
         .icon-bar
         .icon-bar
       .brand= 'Alliance LARP'
-      .nav-collapse
+      .nav-collapse.1
         .nav
           - home = 'Home - ' + current_user.email
           %li= link_to home, user_path(current_user.id)

@@ -10,18 +10,18 @@
     = csrf_meta_tag
   %body
     .container
-      - flash.each do |name, msg|
-        -if name == :notice
-          .alert.alert-success
-            .close{"data-dismiss" => "alert"}
-              ='x'
-            = msg
-        -else
-          .alert.alert-error
-            .close{"data-dismiss" => "alert"}
-              ='x'
-            = msg
       .row
         = render 'layouts/navbar' if current_user
+        - flash.each do |name, msg|
+          -if name == :notice
+            .alert.alert-success
+              .close{"data-dismiss" => "alert"}
+                ='x'
+              = msg
+          -else
+            .alert.alert-error
+              .close{"data-dismiss" => "alert"}
+                ='x'
+              = msg
         .span12
           = yield
