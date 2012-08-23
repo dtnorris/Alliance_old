@@ -17,7 +17,7 @@
             %li= link_to 'View', chapter_character_path(@chapter, @character)
             - if can? :update, @character
               %li= link_to 'Edit', edit_chapter_character_path(@chapter, @character)
-            %li= link_to 'XP Track', xp_track_chapter_character_path(@character), method: :get
+            %li= link_to 'XP Track', xp_track_chapter_character_path(@chapter), method: :get
           -else
             %li= link_to 'Back', characters_path
             %li= link_to 'View', @character

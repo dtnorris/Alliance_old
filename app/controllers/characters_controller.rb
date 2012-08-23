@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
     @chapters = @user.members.inject([]) { |arr,m| arr << Chapter.find(m.chapter_id); arr }
 
     respond_to do |format|
-      format.html
+      format.html 
       format.json {render json: @character}
     end
   end
@@ -85,7 +85,7 @@ class CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to @character, notice: 'Character was successfully created.' }
+        format.html { redirect_to chapter_character_path(@chapter, @character), notice: 'Character was successfully created.' }
         format.json { render json: @character, status: :created, location: @character }
       else
         flash[:error] = 'Error creating character.'
