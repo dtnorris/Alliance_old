@@ -168,6 +168,15 @@ class CharacterSkill < ActiveRecord::Base
           (Skill.find(sk_check.skill_id).name == 'Two Handed Sword' && sk_check.bought) || 
           (Skill.find(sk_check.skill_id).name == 'Two Handed Master' && sk_check.bought) || 
           (Skill.find(sk_check.skill_id).name == 'Weapon Master' && sk_check.bought)
+          # Logic to sell back skills under Style Master
+          if sk_buying_n == 'Style Master'
+            skills_arr.each do |sk_check|
+              if sk_check.skill.name == 'Florentine' || sk_check.skill.name == 'Two Weapons' || sk_check.skill.name == 'Shield'
+                sk_check.bought = false
+                sk_check.save
+              end
+            end
+          end
           return true
         end
       end
@@ -186,24 +195,55 @@ class CharacterSkill < ActiveRecord::Base
         end
       end
       return false
+    # Logic to sell back back attacks
     elsif sk_buying_n == 'Backstab'
       skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Back Attack' && sk_check.amount >= 4
+        if Skill.find(sk_check.skill_id).name == 'Back Attack' 
           sk_check.amount = sk_check.amount - 4
+          sk_check.amount = 0 if sk_check.amount < 0
           sk_check.save
           return true
         end
       end
       return false
+    # Logic to sell back critical attacks
     elsif sk_buying_n == 'Weapon Proficiency'
       skills_arr.each do |sk_check|
-        if Skill.find(sk_check.skill_id).name == 'Critical Attack' && sk_check.amount >= 4
+        if Skill.find(sk_check.skill_id).name == 'Critical Attack' 
           sk_check.amount = sk_check.amount - 4
+          sk_check.amount = 0 if sk_check.amount < 0
           sk_check.save
           return true
         end
       end
       return false
+    # Logic to sell back skills under Weapon Master
+    elsif sk_buying_n == 'Weapon Master'
+      skills_arr.each do |sk_check|
+        if (sk_check.skill.name == 'One Handed Blunt') or (sk_check.skill.name == 'One Handed Edged') or (sk_check.skill.name == 'One Handed Master') or (sk_check.skill.name == 'Polearm') or (sk_check.skill.name == 'Small Weapon') or (sk_check.skill.name == 'Staff') or (sk_check.skill.name == 'Two Handed Blunt') or (sk_check.skill.name == 'Two Handed Sword') or (sk_check.skill.name == 'Two Handed Master')
+          sk_check.bought = false
+          sk_check.save
+        end
+      end
+      return true
+    # Logic to sell back skills under One Handed Master
+    elsif sk_buying_n == 'One Handed Master'
+      skills_arr.each do |sk_check|
+        if sk_check.skill.name== 'One Handed Blunt' || sk_check.skill.name == 'One Handed Edged' || sk_check.skill.name == 'Small Weapon'
+          sk_check.bought = false
+          sk_check.save
+        end
+      end
+      return true
+    # Logic to sell back skills under Two Handed Master
+    elsif sk_buying_n == 'Two Handed Master'
+      skills_arr.each do |sk_check|
+        if sk_check.skill.name == 'Polearm' || sk_check.skill.name == 'Two Handed Blunt' || sk_check.skill.name == 'Two Handed Sword' || sk_check.skill.name == 'Staff' 
+          sk_check.bought = false
+          sk_check.save
+        end
+      end
+      return true
     elsif sk_buying_n == 'Break Command'
       if Race.find(Character.find(self.character_id).race_id).name == 'Biata' || Race.find(Character.find(self.character_id).race_id).name == 'Mystic Wood Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Stone Elf' || Race.find(Character.find(self.character_id).race_id).name == 'Wylderkin'
         return true

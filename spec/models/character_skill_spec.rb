@@ -14,7 +14,77 @@ describe "CharacterSkill" do
   end
 
   def purchase_skill character, skill, bought=nil, amount=nil
-    FactoryGirl.create(:character_skill, character_id: character.id, skill_id: Skill.find_by_name(skill).id, bought: bought, amount: amount)
+    cs = FactoryGirl.create(:character_skill, character_id: character.id, skill_id: Skill.find_by_name(skill).id, bought: bought, amount: amount)
+    cs.save
+  end
+
+  it 'sells back other skills when I purchase One Handed master' do  
+    purchase_skill hb_char, 'One Handed Edged', true, nil
+    purchase_skill hb_char, 'One Handed Blunt', true, nil
+    purchase_skill hb_char, 'Small Weapon', true, nil
+    hb_char.save
+    hb_char.spent_build.should == 10
+
+    wpm = CharacterSkill.add_skill(hb_char.id, Skill.find_by_name('One Handed Master').id)
+    CharacterSkill.purchase_skill(wpm)
+    hb_char.save
+    hb_char.spent_build.should == 7
+  end
+
+  it 'sells back other skills when I purchase Two Handed master' do
+    purchase_skill hb_char, 'Polearm', true, nil
+    purchase_skill hb_char, 'Staff', true, nil
+    purchase_skill hb_char, 'Two Handed Blunt', true, nil
+    purchase_skill hb_char, 'Two Handed Sword', true, nil
+    hb_char.save
+    hb_char.spent_build.should == 26
+
+    wpm = CharacterSkill.add_skill(hb_char.id, Skill.find_by_name('Two Handed Master').id)
+    CharacterSkill.purchase_skill(wpm)
+    hb_char.save
+    hb_char.spent_build.should == 10
+  end
+
+  it 'sells back other master skills when I purchase Weapon Master' do 
+    purchase_skill hb_char, 'One Handed Master', true, nil
+    purchase_skill hb_char, 'Two Handed Master', true, nil
+    hb_char.save
+    hb_char.spent_build.should == 17
+
+    wpm = CharacterSkill.add_skill(hb_char.id, Skill.find_by_name('Weapon Master').id)
+    CharacterSkill.purchase_skill(wpm)
+    hb_char.save
+    hb_char.spent_build.should == 15
+  end
+
+  it 'sells back included skills when I purchase Weapon Master' do 
+    purchase_skill hb_char, 'One Handed Edged', true, nil
+    purchase_skill hb_char, 'One Handed Blunt', true, nil
+    purchase_skill hb_char, 'Small Weapon', true, nil
+    purchase_skill hb_char, 'Polearm', true, nil
+    purchase_skill hb_char, 'Staff', true, nil
+    purchase_skill hb_char, 'Two Handed Blunt', true, nil
+    purchase_skill hb_char, 'Two Handed Sword', true, nil
+    hb_char.save
+    hb_char.spent_build.should == 36
+    wpm = CharacterSkill.add_skill(hb_char.id, Skill.find_by_name('Weapon Master').id)
+    CharacterSkill.purchase_skill(wpm)
+    hb_char.save
+    hb_char.spent_build.should == 15
+  end
+
+  it 'sells back other skills when I purchase Style Master' do
+    purchase_skill hb_char, 'Small Weapon', true, nil
+    purchase_skill hb_char, 'Florentine', true, nil
+    purchase_skill hb_char, 'Two Weapons', true, nil
+    purchase_skill hb_char, 'Shield', true, nil
+    hb_char.save
+    hb_char.spent_build.should == 14
+
+    wpm = CharacterSkill.add_skill(hb_char.id, Skill.find_by_name('Style Master').id)
+    CharacterSkill.purchase_skill(wpm)
+    hb_char.save
+    hb_char.spent_build.should == 12
   end
 
   it "can determine character spells" do

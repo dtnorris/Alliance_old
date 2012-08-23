@@ -160,17 +160,8 @@ class Character < ActiveRecord::Base
     end
   end
 
-  def add_racial_costs skills_array, spent_build
-    if self.has_racial_costs
-      skills_array.each do |s|
-        if (self.race.name == 'Barbarian' || self.race.name == 'High Orc' || self.race.name == 'High Ogre' || self.race.name == 'Wylderkin') and (s.skill.name == 'Read And Write' || s.skill.name == 'Read Magic') and s.bought
-          spent_build += s.skill[self.char_class.name.downcase]
-        elsif self.race.name == 'Dwarf' and s.skill.name == 'Read Magic' and s.bought
-          spent_build += s.skill[self.char_class.name.downcase]
-        end
-      end
-    end
-    spent_build
+  def has_racial_discounts
+    (self.race.name == 'Dark Elf') or (self.race.name == 'Dryad') or (self.race.name == 'Dwarf') or (self.race.name == 'Elf') or (self.race.name == 'Hobling') or (self.race.name == 'Mystic Wood Elf') or (self.race.name == 'Stone Elf')
   end
 
   def add_racial_discounts skills_array, spent_build
@@ -196,8 +187,17 @@ class Character < ActiveRecord::Base
     (self.race.name == 'Barbarian') or (self.race.name == 'Dwarf') or (self.race.name == 'High Ogre') or (self.race.name == 'High Orc') or (self.race.name == 'Wylderkin')
   end
 
-  def has_racial_discounts
-    (self.race.name == 'Dark Elf') or (self.race.name == 'Dryad') or (self.race.name == 'Dwarf') or (self.race.name == 'Elf') or (self.race.name == 'Hobling') or (self.race.name == 'Mystic Wood Elf') or (self.race.name == 'Stone Elf')
+  def add_racial_costs skills_array, spent_build
+    if self.has_racial_costs
+      skills_array.each do |s|
+        if (self.race.name == 'Barbarian' || self.race.name == 'High Orc' || self.race.name == 'High Ogre' || self.race.name == 'Wylderkin') and (s.skill.name == 'Read And Write' || s.skill.name == 'Read Magic') and s.bought
+          spent_build += s.skill[self.char_class.name.downcase]
+        elsif self.race.name == 'Dwarf' and s.skill.name == 'Read Magic' and s.bought
+          spent_build += s.skill[self.char_class.name.downcase]
+        end
+      end
+    end
+    spent_build
   end
 
   def update_xp_and_build
