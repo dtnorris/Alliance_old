@@ -1,9 +1,13 @@
 = render 'character_nav_tabs'
-/%h2 Stats/Skills
-= link_to "PDF Character Card", character_path(@character, format: "pdf"), class: "btn"
-%p
 
 .span4
+  .span2
+    = link_to "PDF Character Card", character_path(@character, format: "pdf"), :target => '_blank', class: 'btn'    
+    %p
+  .span1
+    - if can? :update, @character
+      = link_to "Edit", edit_character_path(@character), class: 'btn', id: 'edit_button'
+    %p
   %table.table.user-summary-table
     %tbody
       %tr
@@ -44,6 +48,7 @@
         %td= Death.buyback(@deaths).count
   %p
 .span4
+  %br
   = render 'character_skills/skills'
 
 

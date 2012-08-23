@@ -9,7 +9,7 @@ describe "basic navigation" do
   end
 
   it "should be able to edit myself" do
-    click_link "Edit"
+    click_link "Profile info"
     fill_in "Email", with: "actual@test.com"
     click_button "Update User"
     page.should have_content("User was successfully updated.")

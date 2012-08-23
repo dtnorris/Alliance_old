@@ -5,7 +5,7 @@
         .icon-bar
         .icon-bar
         .icon-bar
-      .brand= 'Alliance LARP'
+      .brand= link_to 'Alliance LARP', user_path(current_user.id), id: 'brand'
       .nav-collapse.1
         .nav
           - home = 'Home - ' + current_user.email

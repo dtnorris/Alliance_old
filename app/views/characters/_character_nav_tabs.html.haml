@@ -11,16 +11,19 @@
           -if @user
             %li= link_to 'Back', @user
             %li= link_to 'View', user_character_path(@user, @character)
+            %li= link_to 'PDF', character_path(@character, format: "pdf"), :target => '_blank'
             %li= link_to 'XP Track', xp_track_user_character_path(@user, @character), method: :get
           -elsif @chapter
             %li= link_to 'Back', chapter_characters_path(@chapter.id)
             %li= link_to 'View', chapter_character_path(@chapter, @character)
+            %li= link_to 'PDF', character_path(@character, format: "pdf"), :target => '_blank'
             - if can? :update, @character
               %li= link_to 'Edit', edit_chapter_character_path(@chapter, @character)
             %li= link_to 'XP Track', xp_track_chapter_character_path(@chapter), method: :get
           -else
             %li= link_to 'Back', characters_path
             %li= link_to 'View', @character
+            %li= link_to 'PDF', character_path(@character, format: "pdf"), :target => '_blank'
             - if can? :update, @character
               %li= link_to 'Edit', edit_character_path(@character)
             %li= link_to 'XP Track', xp_track_character_path(@character), method: :get

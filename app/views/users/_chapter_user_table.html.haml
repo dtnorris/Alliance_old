@@ -3,10 +3,10 @@
     %th.srt= sort_link @search, :first_name, 'First'
     %th.srt= sort_link @search, :last_name,  'Last'
     %th.srt= sort_link @search, :email,      'Email'
-    -if @chapter
-      %th Membership
-    %th.ln Goblin
-    %th Stamps
+    /-if @chapter
+    /  %th Membership
+    %th.ln Total
+    %th Goblin Stamps
     %th Characters
     %th New Character
     
@@ -18,8 +18,8 @@
       %td= user.first_name
       %td= user.last_name
       %td= user.email
-      -if @chapter
-        %td= link_to 'View Membership', edit_user_member_path(user.id,member.id), class: "btn"
+      /-if @chapter
+      /  %td= link_to 'View Membership', edit_user_member_path(user.id,member.id), class: "btn"
       %td.ln= Member.find_by_user_id_and_chapter_id(user.id, @chapter.id).goblin_stamps
       %td= link_to 'Add/Remove', view_goblins_chapter_user_path(@chapter.id, user.id), class: "btn"
       %td= collection_select(:get, :character_id, characters, :id, :name)

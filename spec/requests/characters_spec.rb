@@ -21,6 +21,19 @@ describe "character creation and modification" do
   #   pending
   # end
 
+  it 'should have multiple edit buttons and pdf buttons' do 
+    click_link('edit_button')
+    page.should have_content('Choose Skill: VariousAlchemyBlacksmithCraftsmanCreate PotionCreate ScrollCreate TrapHerbal LoreLegerdemainMerchantTeacherWear Extra Armor')
+  end
+
+  it 'should have the correct links after creating new character' do
+    click_link 'XP Track'
+    page.should have_content('Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:')
+    click_link 'Back'
+    page.should have_content('Name Race Class Level Player')
+    page.should have_content('Bob Human Fighter 1 Alliance Admin')
+  end
+
   it "should be able to edit character race and class" do
     click_link "Edit"
     fill_in "Character Name:", with: "Eldarion"

@@ -8,6 +8,18 @@ describe "basic navigation" do
     click_button "Sign in"
   end
 
+  it 'should go to the user homepage by clicking the brand name' do
+    click_link 'Alliance LARP'
+    page.should have_content 'Alliance Admin'
+    page.should have_content 'Dragon stamps: 0'
+  end
+
+  it 'should go to the user homepage by clicking the Home link' do
+    click_link 'Home'
+    page.should have_content 'Alliance Admin'
+    page.should have_content 'Dragon stamps: 0'
+  end
+
   it "should allow a chapter to view chapter characters" do
     click_link "Chapters"
     click_link "Home"

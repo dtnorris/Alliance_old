@@ -17,7 +17,7 @@ describe "basic navigation" do
 
   it "should be able to add new membership" do
     click_link "admin@test.com"
-    click_link "Edit"
+    click_link "Profile info"
     select("Gaden", :from => "Chapter")
     click_button "Add/Modify Membership"
     page.should have_content("Gaden")

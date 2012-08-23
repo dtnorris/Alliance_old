@@ -9,6 +9,11 @@ describe "chapter navigation" do
     visit "/chapters"
   end
 
+  it 'should display total characters on chapter home page' do 
+    click_link 'Home'
+    page.should have_content('Number of Characters: 1')
+  end
+
   it "should not be able to create a new chapter without fields" do
     click_link "New Chapter"
     click_button "Create Chapter"

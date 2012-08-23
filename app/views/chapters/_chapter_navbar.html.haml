@@ -5,7 +5,7 @@
         .icon-bar
         .icon-bar
         .icon-bar
-      .brand= @chapter.name
+      .brand= link_to "#{@chapter.name}", @chapter, id: 'brand'
       .nav-collapse.4
         .nav
           %li= link_to "Home", @chapter

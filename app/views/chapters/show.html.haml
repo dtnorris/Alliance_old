@@ -15,6 +15,9 @@
   %p
     %b Email:
     = @chapter.email
+  %br
+  %p
+    %b= "Number of Characters: #{@characters.count}"
   %p
   %br
   = link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"
