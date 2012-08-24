@@ -10,10 +10,23 @@ describe "Deaths" do
     visit "/chapters/1"
     click_link "chapter_players"
     click_link "New Character"
-    fill_in "Character Name:", with: "Bob"
+    fill_in "Character Name:", with: "Bill"
     select("Human", :from => "Race:")
     select("Fighter", :from => "Character Class:")
     click_button "Create Character"
+  end
+
+  it 'adding a death does not mess up routing' do 
+    click_link 'Edit'
+    click_button 'add_death'
+    click_link 'Back'
+    page.should have_content 'T_Chapter_1'
+
+    click_link 'Characters'
+    click_link 'Bob'
+    click_button 'add_death'
+    click_link 'Back'
+    page.should have_content 'T_Chapter_1'
   end
 
   it "should have an add death form" do
@@ -54,7 +67,7 @@ describe "Deaths" do
     click_button 'Add Regen/CSS Death'
     click_link "Death Track"
     page.should have_content('Back')
-    page.should have_content('Death Tracking for Bob')
+    page.should have_content('Death Tracking for Bill')
 
     page.should have_content('Deaths Bought Back: 1')
     page.should have_content('Regular Deaths: 1')

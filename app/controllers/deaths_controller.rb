@@ -17,6 +17,8 @@ class DeathsController < ApplicationController
   # POST /deaths
   # POST /deaths.json
   def create
+    @chapter = Chapter.find(session[:chapter_id]) if session[:chapter_id]
+    session[:chapter_id] = nil
     if @death.buyback 
       notice = 'Death buyback was successfully created'
     elsif @death.regen_css
@@ -26,12 +28,18 @@ class DeathsController < ApplicationController
     end
     respond_to do |format|
       if @death.save
-        format.html { redirect_to edit_character_path(@death.character_id), notice: notice }
-        format.json { render json: @death, status: :created, location: @death }
+        if @chapter
+          format.html { redirect_to edit_chapter_character_path(@death.chapter_id, @death.character_id), notice: notice }
+        else
+          format.html { redirect_to edit_character_path(@death.character_id), notice: notice }
+        end
       else
         flash[:error] = 'Death not created'
-        format.html { redirect_to edit_character_path(@death.character_id), notice: notice }
-        format.json { render json: @death.errors, status: :unprocessable_entity }
+        if @chapter
+          format.html { redirect_to edit_chapter_character_path(@death.chapter_id, @death.character_id), notice: notice }
+        else
+          format.html { redirect_to edit_character_path(@death.character_id), notice: notice }
+        end
       end
     end
   end
