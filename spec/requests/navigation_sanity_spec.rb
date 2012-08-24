@@ -8,6 +8,19 @@ describe "basic navigation" do
     click_button "Sign in"
   end
 
+  it 'should follow the edit button from the character page properly' do 
+    click_link 'Bob'
+    page.should_not have_content 'Edit'
+    click_link 'Chapters'
+    click_link 'Home'
+    click_link 'chapter_characters'
+    click_link 'Bob'
+    click_link 'View'
+    click_link 'edit_button'
+    click_link 'Back'
+    page.should have_content 'Bob Barbarian Fighter 1 Alliance Admin'
+  end
+
   it 'should go to the user homepage by clicking the brand name' do
     click_link 'Alliance LARP'
     page.should have_content 'Alliance Admin'

@@ -6,7 +6,9 @@
   = render 'form'
   %p
   .span2
-    = render 'deaths/form'
+    = render 'deaths/add_death'
+    = render 'deaths/buyback_death'
+    = render 'deaths/add_regen_css_death'
   .span2
     = link_to 'Death Track', character_deaths_path(@character.id), class: "btn"
 .span3

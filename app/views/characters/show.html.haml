@@ -5,13 +5,11 @@
     = link_to "PDF Character Card", character_path(@character, format: "pdf"), :target => '_blank', class: 'btn'    
     %p
   .span1
-    -if can? :update, @character
-      -if @user
-        -path = edit_user_character_path(@user,@character)
-      -elsif @chapter
-        -path = edit_chapter_character_path(@chapter,@character)
-      -else
-        -path = edit_character_path(@character)
+    -if @chapter
+      -path = edit_chapter_character_path(@chapter,@character)
+    -else
+      -path = edit_character_path(@character)
+    -if (can? :update, @character) && !@user
       = link_to "Edit", path, class: 'btn', id: 'edit_button'
 
     %p

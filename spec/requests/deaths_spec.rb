@@ -18,13 +18,14 @@ describe "Deaths" do
 
   it "should have an add death form" do
     click_link "Edit"
-    page.should have_content("Buyback?")
-    page.should have_content("Regen/CSS?")
+    find_button('Add Death').should be_true
+    find_button('Buyback Death').should be_true
+    find_button('Add Regen/CSS Death').should be_true
   end
 
   it "should be able to add all regular deaths" do
     click_link "Edit"
-    click_button "Add Death"
+    click_button 'add_death'
     page.should have_content('Death was successfully created')
     click_link "View"
     page.should have_content("Deaths: 1")
@@ -32,8 +33,7 @@ describe "Deaths" do
 
   it 'should be able to add Buyback deaths' do
     click_link "Edit"
-    check('Buyback?')
-    click_button "Add Death"
+    click_button 'buyback_death'
     page.should have_content('Death buyback was successfully created')
     click_link "View"
     page.should have_content('Deaths Bought Back: 1')
@@ -41,8 +41,7 @@ describe "Deaths" do
 
   it 'should be able to add Regen_CSS deaths' do
     click_link "Edit"
-    check('Regen/CSS?')
-    click_button "Add Death"
+    click_button 'add_regen_css_death'
     page.should have_content('Regen/CSS Death was successfully created')
     click_link "View"
     page.should have_content('Regen/CSS Deaths: 1')
@@ -51,10 +50,8 @@ describe "Deaths" do
   it 'should be able to visit death tracking page' do
     click_link "Edit"
     click_button "Add Death"
-    check('Buyback?')
-    click_button "Add Death"
-    check('Regen/CSS?')
-    click_button "Add Death"
+    click_button 'Buyback Death'
+    click_button 'Add Regen/CSS Death'
     click_link "Death Track"
     page.should have_content('Back')
     page.should have_content('Death Tracking for Bob')

@@ -1,0 +1,9 @@
+= simple_form_for(@death) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.button :submit, 'Add Regen/CSS Death', id: 'add_regen_css_death'
+    = f.hidden_field :buyback, value: false
+    = f.hidden_field :regen_css, value: true
+    = f.hidden_field :character_id, value: @character.id
+    = f.hidden_field :chapter_id, value: @character.chapter_id
