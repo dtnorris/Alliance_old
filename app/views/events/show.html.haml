@@ -1,7 +1,7 @@
 -if @user
-  %h1= "Attend " + @chapter.name + " event on " + @event.date.to_s + " with:"
+  %h1= "Attend #{@event.chapter.name} event on #{@event.date.to_s} with:"
   %ul.nav.nav-tabs
-    %li= link_to 'Back', chapter_user_events_path(@chapter.id,@user.id), class: "btn"
+    %li= link_to 'Back', chapter_user_events_path(@event.chapter.id,@user.id), class: "btn"
 
   = render 'attendees/form'
 
@@ -9,11 +9,14 @@
   %h1 Event Details
 
   - if @event_type.name == 'Goblin Blanket'
-    - path = chapter_path(@chapter.id)
+    - path = chapter_path(@event.chapter.id)
   - else
-    - path = chapter_events_path(@chapter.id)
+    - path = chapter_events_path(@event.chapter.id)
   %ul.nav.nav-tabs
-    %li= link_to 'Back', path, class: "btn"
+    -if @chapter
+      %li= link_to 'Back', chapter_events_path(@event.chapter.id), class: "btn"
+    -else
+      %li= link_to 'Back', events_path, class: "btn"
 
   .span3
     %table.table
@@ -25,7 +28,7 @@
         %td= @event.date
       %tr
         %th Chapter:
-        %td= Chapter.find(@event.chapter_id).name
+        %td= @event.chapter.name
       %tr
         %th Event Type:
         %td= @event_type.name

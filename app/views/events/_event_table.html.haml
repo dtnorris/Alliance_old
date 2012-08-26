@@ -17,8 +17,10 @@
     - event_type = EventType.find(event.event_type_id)
     - unless event_type.name == 'Goblin Blanket'
       %tr
-        - if !@user
+        - if @chapter and !@user
           %td= link_to event.name, chapter_event_path(event.chapter.id,event.id)
+        -elsif !@user
+          %td= link_to event.name, event_path(event.id)
         - else
           %td= link_to event.name, user_event_path(@user.id,event.id)
         - unless @chapter or @user
