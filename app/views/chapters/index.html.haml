@@ -3,25 +3,18 @@
 = link_to 'New Chapter', new_chapter_path, class: "btn"
 %p
 
-%table.table.users-table
+%table.table.table-striped
   %tr
-    %th
     %th Name
     %th Location
     %th Owner
     %th Email
     %th
-    / %th
 
   - @chapters.each do |chapter|
     %tr
-      %td= link_to 'Home', chapter, class: "btn"
-      %td= chapter.name
+      %td= link_to chapter.name, chapter
       %td= chapter.location
       %td= chapter.owner
       %td= chapter.email
-      %td= link_to 'Edit', edit_chapter_path(chapter), class: "btn"
-      / %td= link_to 'Delete', chapter, :data => { :confirm => 'Are you sure?' }, :method => :delete, class: "btn"
-
-%br
-
+      %td= link_to 'Edit', edit_chapter_path(chapter), class: 'btn btn-mini'

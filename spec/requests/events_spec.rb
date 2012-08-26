@@ -10,21 +10,22 @@ describe "events navigation" do
   end
 
   it "should be able to create an event" do
-    click_link "Home"
+    click_link 'T_Chapter_1'
     click_link "New Event"
 
     fill_in "Name", with: "test event"
     click_button "Create Event"
     page.should have_content("Event was successfully created.")
-    page.should have_content("test event Module Day")
+    page.should have_content 'test event'
+    page.should have_content 'Module Day'
   end
 
   it "should be able to view/add attendees" do
-    click_link "Home"
+    click_link 'T_Chapter_1'
     click_link "New Event"
     fill_in "Name", with: "test event"
     click_button "Create Event"
-    click_link "View Attendees"
+    click_link 'test event'
 
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
@@ -41,11 +42,11 @@ describe "events navigation" do
   end
 
   it "should be able to apply a single blanket" do
-    click_link "Home"
+    click_link 'T_Chapter_1'
     click_link "New Event"
     fill_in "Name", with: "test event"
     click_button "Create Event"
-    click_link "View Attendees"
+    click_link 'test event'
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
     click_button "Add Attendee"
@@ -56,11 +57,11 @@ describe "events navigation" do
   end
 
   it "should be able to apply blanket to entire event" do
-    click_link "Home"
+    click_link 'T_Chapter_1'
     click_link "New Event"
     fill_in "Name", with: "test event"
     click_button "Create Event"
-    click_link "View Attendees"
+    click_link 'test event'
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
     click_button "Add Attendee"
@@ -68,7 +69,12 @@ describe "events navigation" do
 
     click_link "Apply Event"
     page.should have_content("Event was successfully applied")
-    click_link "View Attendees"
+    click_link 'test event'
     page.should have_content("Bob 1 true")
+    click_link 'Characters'
+    click_link 'Bob'
+    click_link 'XP Track'
+    time = '15 17 2 0 7 Module Day for T_Chapter_1 on ' + "#{Date::MONTHNAMES[Time.now.month]}, #{Time.now.day.to_s}, #{Time.now.year.to_s}"
+    page.should have_content time
   end
 end

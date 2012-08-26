@@ -1,8 +1,7 @@
-%table.table.striped-table
+%table.table.table-striped
   %tr
     -if @user
       %th Chapter
-      %th
     -else
       %th Edit
       %th Name
@@ -16,8 +15,7 @@
     - character = member.character if member.character_id
     %tr
       -if @user
-        %td= member.chapter.name
-        %td= link_to 'View Events', chapter_user_events_path(member.chapter.id,@user.id), class: 'btn btn-mini'
+        %td= link_to member.chapter.name, chapter_user_events_path(member.chapter.id,@user.id)
       -else
         %td= link_to 'Edit', edit_user_member_path(member.user_id,member.id), class: 'btn btn-mini'
         %td= member.user.name

@@ -10,9 +10,9 @@ describe "Attendees" do
   end
 
   it "should be able to create a new attendee from the chapter" do
-    click_link "Home"
+    click_link 'T_Chapter_1'
     click_link "chapter_events"
-    click_link "View Attendees"
+    click_link 'The Start'
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
     select("PC", :from => "PC or NPC")
@@ -21,7 +21,7 @@ describe "Attendees" do
   end
 
   it "should be able to show a list of events attended" do
-    click_link "Home"
+    click_link 'T_Chapter_1'
     click_link "chapter_events"
     click_link "Apply Event"
     #save_and_open_page
@@ -33,8 +33,8 @@ describe "Attendees" do
 
   it "should be able to add an attendee form the user homepage" do
     click_link "Home - admin@test.com"
-    click_link "View Events"
-    click_link "Attend"
+    click_link 'T_Chapter_1'
+    click_link 'The Start'
     select("Alliance Admin", :from => "Select Yourself:")
     select("Bob", :from => "Character")
     select("PC", :from => "PC or NPC")

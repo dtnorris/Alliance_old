@@ -18,6 +18,6 @@ describe "basic navigation" do
     click_button "Add/Remove Goblin Stamps"
     click_link "admin@test.com"
     #save_and_open_page
-    page.should have_content("T_Chapter_1 View Events 1000 View Stamp Log")
+    page.should have_content("T_Chapter_1 1000 View Stamp Log")
   end
 end

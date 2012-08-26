@@ -1,5 +1,4 @@
--#%h2 Character Skills
-%table.table.user-table
+%table.table.table-striped
   %tbody
     - CharacterSkill.find_all_by_character_id(@character.id).each do |skill|
       %tr

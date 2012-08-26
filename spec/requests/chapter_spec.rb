@@ -10,7 +10,7 @@ describe "chapter navigation" do
   end
 
   it 'should display total characters on chapter home page' do 
-    click_link 'Home'
+    click_link 'T_Chapter_1'
     page.should have_content('Number of Characters: 1')
   end
 

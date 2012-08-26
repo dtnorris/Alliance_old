@@ -12,7 +12,7 @@ describe "basic navigation" do
     click_link 'Bob'
     page.should_not have_content 'Edit'
     click_link 'Chapters'
-    click_link 'Home'
+    click_link 'T_Chapter_1'
     click_link 'chapter_characters'
     click_link 'Bob'
     click_link 'View'
@@ -27,15 +27,21 @@ describe "basic navigation" do
     page.should have_content 'Dragon stamps: 0'
   end
 
-  it 'should go to the user homepage by clicking the Home link' do
+  it 'should go to the user homepage by clicking various Home link' do
+    click_link 'Home - admin@test.com'
+    page.should have_content 'Alliance Admin'
+    page.should have_content 'Dragon stamps: 0'
     click_link 'Home'
+    page.should have_content 'Alliance Admin'
+    page.should have_content 'Dragon stamps: 0'
+    click_link 'Alliance LARP'
     page.should have_content 'Alliance Admin'
     page.should have_content 'Dragon stamps: 0'
   end
 
   it "should allow a chapter to view chapter characters" do
     click_link "Chapters"
-    click_link "Home"
+    click_link 'T_Chapter_1'
     click_link "chapter_characters"
     page.should have_content("T_Chapter_1")
     page.should have_content("Bob Barbarian Fighter 1 Alliance Admin")
