@@ -286,7 +286,7 @@ DEPENDENCIES
   launchy
   pg
   prawn
-  rails
+  rails (~> 3.2.3)
   rails_best_practices
   ransack
   rantly

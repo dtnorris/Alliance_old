@@ -74,7 +74,7 @@ describe "events navigation" do
     click_link 'Characters'
     click_link 'Bob'
     click_link 'XP Track'
-    time = '15 17 2 0 7 Module Day for T_Chapter_1 on ' + "#{Date::MONTHNAMES[Time.now.month]}, #{Time.now.day.to_s}, #{Time.now.year.to_s}"
+    time = '15 17 2 0 7 Module Day for T_Chapter_1 on '
     page.should have_content time
   end
 end

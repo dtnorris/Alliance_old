@@ -1,5 +1,5 @@
 %h1 Editing member
 %ul.nav.nav-tabs
-    %li= link_to "Back", blanket_list_chapter_path(@member.chapter_id), class: "btn"
+    %li= link_to "Back", chapter_path(@member.chapter.id, tab: 'list'), class: "btn"
 
 = render 'form'

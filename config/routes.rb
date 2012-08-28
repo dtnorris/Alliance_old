@@ -1,16 +1,14 @@
 Alliance::Application.routes.draw do
 
   resources :assignments
-
+  resources :attendees
+  resources :character_skills
   resources :deaths
+  resources :members
+  resources :stamp_tracks
 
   resources :chapters do
     resources :deaths
-    member do
-      get :blanket_list
-      get :new_blanket
-      get :old_blankets
-    end
     resources :characters do
       member do 
         get :xp_track
@@ -34,17 +32,9 @@ Alliance::Application.routes.draw do
     end
   end
 
-  resources :character_skills
-
-  resources :attendees
-
   resources :events do
     resources :attendees
   end
-
-  resources :members
-
-  resources :stamp_tracks
 
   devise_for :users, :path_prefix => 'd'
   resources :users do

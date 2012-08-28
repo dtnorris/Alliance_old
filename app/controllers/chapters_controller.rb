@@ -36,18 +36,14 @@ class ChaptersController < ApplicationController
   # GET /chapters/1
   # GET /chapters/1.json
   def show
-    if session[:blanket_list]
-      @blanket_list = true
-      session[:blanket_list] = nil
-    elsif session[:new_blanket]
+    @blanket_list = true if params[:tab] == 'list'
+    @old_blankets = true if params[:tab] == 'old'
+    if params[:tab] = 'new'
       @event = Event.new
       @goblin_blanket = EventType.find_by_name('Goblin Blanket').id
       @new_blanket = true
-      session[:new_blanket] = nil
-    elsif session[:old_blankets]
-      @old_blankets = true
-      session[:old_blankets] = nil
     end
+
     @events        = @chapter.events
     @members       = @chapter.members
     @users         = @chapter.users
@@ -55,28 +51,9 @@ class ChaptersController < ApplicationController
     @goblin_events = @events.inject([]) { |arr,e| arr << e if EventType.find(e.event_type_id).name == 'Goblin Blanket'; arr }
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.json { render json: @chapter }
     end
-  end
-
-  # GET /chapters/1/blanket_list
-  def blanket_list
-    @chapter = Chapter.find(params[:id])
-    session[:blanket_list] = true
-    redirect_to @chapter
-  end
-  # GET /chapters/1/blanket_list
-  def new_blanket
-    @chapter = Chapter.find(params[:id])
-    session[:new_blanket] = true
-    redirect_to @chapter
-  end
-  # GET /chapters/1/blanket_list
-  def old_blankets
-    @chapter = Chapter.find(params[:id])
-    session[:old_blankets] = true
-    redirect_to @chapter
   end
 
   # GET /chapters/1/edit

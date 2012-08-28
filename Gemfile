@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails',   '~> 3.2.3'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'simple_form'
