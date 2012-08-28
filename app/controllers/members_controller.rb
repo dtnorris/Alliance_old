@@ -34,7 +34,7 @@ class MembersController < ApplicationController
   def update
     respond_to do |format|
       if @member.update_attributes(params[:member])
-        format.html { redirect_to blanket_list_chapter_path(@member.chapter_id), notice: 'Member was successfully updated.' }
+        format.html { redirect_to chapter_path(@member.chapter.id, tab: 'list'), notice: 'Member was successfully updated.' }
         format.json { head :no_content }
       else
         flash[:error] = 'Error modifying membership.'

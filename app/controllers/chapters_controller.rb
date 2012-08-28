@@ -38,7 +38,7 @@ class ChaptersController < ApplicationController
   def show
     @blanket_list = true if params[:tab] == 'list'
     @old_blankets = true if params[:tab] == 'old'
-    if params[:tab] = 'new'
+    if params[:tab] == 'new'
       @event = Event.new
       @goblin_blanket = EventType.find_by_name('Goblin Blanket').id
       @new_blanket = true
