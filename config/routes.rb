@@ -1,6 +1,6 @@
 Alliance::Application.routes.draw do
 
-  resources :assignments
+  #resources :assignments
   resources :attendees
   resources :character_skills
   resources :deaths

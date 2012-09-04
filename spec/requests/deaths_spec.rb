@@ -76,4 +76,13 @@ describe "Deaths" do
     page.should have_content('X')
   end
 
+  it 'should be able to delete a death' do 
+    click_link 'Edit'
+    click_button 'Add Death'
+    click_link 'Death Track'
+    click_link 'X'
+    page.should_not have_content 'T_Chapter_1'
+    page.should_not have_content 'X'
+  end
+
 end

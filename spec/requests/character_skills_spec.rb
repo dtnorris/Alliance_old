@@ -18,6 +18,19 @@ describe "character skill manipulation" do
     click_link "Edit"
   end
 
+  it 'should not error when attempting to add no new 0 build skill' do 
+    click_button 'Add Skill'
+    page.should have_content 'No skill selected.'
+  end
+
+  it 'should not be able to purchase a skill without the pre-reqs' do 
+    select 'Weapon Proficiency', from: 'Choose Skill: Martial Skill'
+    click_button 'add_skills'
+    click_link 'Add'
+    page.should have_content 'Pre-requisites are not met to purchase this skill'
+    page.should have_content 'Weapon Proficiency: 0'
+  end
+
   it 'should be able to purchase skill' do
     click_link "Edit"
     select "Read And Write", from: 'Choose Skill: Spells'
@@ -34,13 +47,23 @@ describe "character skill manipulation" do
     page.should have_content("Read And Write: 0")
   end
 
-  it "should be able to delete a skill" do
+  it "should be able to delete a 0 skill" do
     click_link "Edit"
     select "Read And Write", from: 'Choose Skill: Spells'
     click_button "add_skills"
     page.should have_content("Read And Write:")
     click_link "X"
     page.should_not have_content("Read And Write:")
+  end
+
+  it 'should be able to delete a purchased skill without removing the skill' do 
+    click_link 'Edit'
+    select 'Read And Write', from: 'Choose Skill: Spells'
+    click_button 'add_skills'
+    click_link 'Add'
+    click_link 'X'
+    page.should have_content 'Skill Removed'
+    page.should have_content 'Read And Write: 0'
   end
 
   it 'should only remove a skill entirely if it is not purchased' do
@@ -77,5 +100,25 @@ describe "character skill manipulation" do
     #save_and_open_page
     page.should have_content('Weapon Proficiency: 1')
     page.should have_content('Critical Attack: 2')
+  end
+
+  it 'should be able to add backstabs/profs with no crit attacks' do 
+    char = Character.find_by_name("Fred")
+    char.experience_points = 10000
+    char.save
+    select 'One Handed Edged', from: 'Choose Skill: Weapon'
+    click_button 'add_skills'
+    select 'Critical Attack', from: 'Choose Skill: Martial Skill'
+    click_button 'add_skills'
+    select 'Weapon Proficiency', from: 'Choose Skill: Martial Skill'
+    click_button 'add_skills'
+    within(:xpath, "//tr[.//*[contains(text(), 'One Handed Edged')]]") do
+      click_link 'Add'
+    end
+    within(:xpath, "//tr[.//*[contains(text(), 'Weapon Proficiency')]]") do
+      click_link 'Add'
+    end
+    page.should have_content 'Character was successfully updated'
+    page.should have_content 'Weapon Proficiency: 1'
   end
 end

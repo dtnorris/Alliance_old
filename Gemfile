@@ -35,7 +35,6 @@ group :development, :test do
   gem 'launchy' # provides save_and_open_page
   gem 'fuubar'
 
-  #gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'rantly'
   gem 'heroku'
