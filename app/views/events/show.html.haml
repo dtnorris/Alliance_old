@@ -14,7 +14,7 @@
     - path = chapter_events_path(@event.chapter.id)
   %ul.nav.nav-tabs
     -if @chapter
-      %li= link_to 'Back', chapter_events_path(@event.chapter.id), class: "btn"
+      %li= link_to 'Back', path, class: "btn"
     -else
       %li= link_to 'Back', events_path, class: "btn"
 

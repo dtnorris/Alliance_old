@@ -9,6 +9,15 @@ describe "events navigation" do
     visit "/chapters"
   end
 
+  it 'back buttons goes back to chapter show page from blanket event' do 
+    click_link 'T_Chapter_1'
+    click_link 'New'
+    click_button 'Create Event'
+    click_link 'View Attendees'
+    click_link 'Back'
+    page.should have_content 'Monthly Blankets'
+  end
+
   it "should be able to create an event" do
     click_link 'T_Chapter_1'
     click_link "New Event"
