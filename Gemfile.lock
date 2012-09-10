@@ -43,7 +43,6 @@ GEM
     arel (3.0.2)
     awesome_print (1.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.0.4.0)
     builder (3.0.0)
     cancan (1.6.8)
     capybara (1.1.2)
@@ -268,7 +267,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
   cancan
   capybara
   coffee-rails (~> 3.2.1)
