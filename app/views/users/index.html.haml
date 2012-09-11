@@ -13,6 +13,7 @@
   -if @chapter
     = link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"
 
+= will_paginate @users
 -if @chapter
   = render 'chapter_user_table'
 -else

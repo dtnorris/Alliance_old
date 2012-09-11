@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class CharactersController < ApplicationController
   load_and_authorize_resource
   # GET /characters
@@ -15,6 +17,7 @@ class CharactersController < ApplicationController
     if @chapter
       @characters = @characters.inject([]) { |a,c| a << c if c.chapter_id == @chapter.id; a }
     end
+    @characters = @characters.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @characters }

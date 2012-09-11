@@ -9,6 +9,7 @@ gem "devise", :git => "git://github.com/plataformatec/devise.git"
 gem 'cancan'
 gem 'prawn'
 gem 'ransack'
+gem 'will_paginate', '> 3.0'
 
 group :assets do
   gem 'execjs'

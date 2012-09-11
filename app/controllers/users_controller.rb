@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class UsersController < ApplicationController
   load_and_authorize_resource :except => [:view_goblins, :show, :create]
 
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
       @members = @chapter.members
       @users = @users.inject([]) { |arr,u| arr << u if u.member_of_chapter(@chapter); arr }
     end
+    @users = @users.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb

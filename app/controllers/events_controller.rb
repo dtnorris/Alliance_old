@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class EventsController < ApplicationController
   load_and_authorize_resource
 
@@ -18,6 +20,7 @@ class EventsController < ApplicationController
         @user = User.find(params[:user_id])
       end
     end
+    @events = @events.paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html # index.html.erb

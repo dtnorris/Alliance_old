@@ -10,5 +10,6 @@
     = f.hidden_field :chapter_id, :value => @chapter.id
   = link_to_add_fields "Add Search Condition", f, :condition
   = f.submit 'Search', class: "btn"
-    
+
+= will_paginate @characters
 = render 'character_table'

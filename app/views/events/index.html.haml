@@ -18,5 +18,6 @@
   -if @chapter && !@user
     = link_to 'New Event', new_chapter_event_path(@chapter.id), class: "btn"
 
+= will_paginate @events
 = render 'event_table'
 
