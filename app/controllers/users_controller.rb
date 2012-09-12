@@ -128,6 +128,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_password
+    @user = User.find(params[:user_id])
+    if @user.update_attributes(params[:user])
+      # Sign in the user by passing validation in case his password changed
+      sign_in @user, :bypass => true
+      redirect_to edit_user_path(@user), notice: 'Password successfully updated.'
+    end
+  end
+
+  def edit_password_form
+    @user = User.find(params[:user_id])
+    #end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   # def destroy
@@ -144,18 +158,6 @@ class UsersController < ApplicationController
   #   respond_to do |format|
   #     format.html { redirect_to alliance_player_members_path }
   #     format.json { head :no_content }
-  #   end
-  # end
-
-  # GET /users/1/edit_password_form
-  # def edit_password_form
-  #   @user = User.find(params[:id])
-  #   if @user.update_attributes(params[:user])
-  #     # Sign in the user by passing validation in case his password changed
-  #     sign_in @user, :bypass => true
-  #     redirect_to root_path
-  #   else
-  #     render "edit"
   #   end
   # end
 

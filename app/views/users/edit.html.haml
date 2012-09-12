@@ -8,7 +8,7 @@
   = render 'form'
 
   %p
-  = link_to 'Change Password', edit_password_form_user_path(@user.id), class: "btn"
+  = link_to 'Change Password', user_edit_password_form_path(@user.id), class: "btn", method: 'get'
 
 .span6
   %h3 Chapter Associations

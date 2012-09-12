@@ -8,6 +8,21 @@ describe "basic navigation" do
     click_button "Sign in"
   end
 
+  it 'should be able to change my password' do
+    click_link 'Profile info'
+    click_link 'Change Password'
+    fill_in 'New password', with: 'tmp@2345'
+    fill_in 'Confirm your new password', with: 'tmp@2345'
+    click_button 'Change my password'
+    page.should have_content 'Password successfully updated.'
+
+    click_link 'Log Out'
+    fill_in 'Email', with: 'admin@test.com' 
+    fill_in 'Password', with: 'tmp@2345'
+    click_button 'Sign in'
+    page.should have_content 'Signed in successfully.'
+  end
+
   it "should be able to edit myself" do
     click_link "Profile info"
     fill_in "Email", with: "actual@test.com"

@@ -38,9 +38,10 @@ Alliance::Application.routes.draw do
 
   devise_for :users, :path_prefix => 'd'
   resources :users do
+    get :edit_password_form
+    put :edit_password
     member do
       get :view_goblins
-      get :edit_password_form
     end
     resources :characters do 
       member do 
