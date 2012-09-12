@@ -2,4 +2,5 @@
 %ul.nav.nav-tabs
     %li= link_to "Back", chapter_path(@member.chapter.id, tab: 'list'), class: "btn"
 
+- @chapter = @member.chapter
 = render 'form'

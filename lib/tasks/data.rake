@@ -6,8 +6,8 @@ namespace :import do
     end
 
     task :characters => :environment do
-      puts "Deleting all Existing Characters"
-      Character.delete_all
+      #puts "Deleting all Existing Characters"
+      #Character.delete_all
 
       puts "Importing All Characters"
       load("#{Rails.root}/script/csv_character_import.rb")

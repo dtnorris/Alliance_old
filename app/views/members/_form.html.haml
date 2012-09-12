@@ -11,4 +11,7 @@
     -else
       = f.hidden_field :blanket_list
     %br
-    = f.button :submit, "Add/Modify Membership"
+    -if @chapter
+      = f.button :submit, "Modify Blanket Settings"
+    -else
+      = f.button :submit, "Add Chapter Association"
