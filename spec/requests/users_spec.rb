@@ -8,6 +8,14 @@ describe "basic navigation" do
     click_button "Sign in"
   end
 
+  it 'should display an error when password doesn''t update' do 
+    click_link 'Profile info'
+    click_link 'Change Password'
+    fill_in 'New password', with: 'tmp@2345'
+    click_button 'Change my password'
+    page.should have_content 'Error updating password.'
+  end
+
   it 'should be able to change my password' do
     click_link 'Profile info'
     click_link 'Change Password'

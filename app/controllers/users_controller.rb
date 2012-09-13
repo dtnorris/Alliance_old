@@ -134,12 +134,14 @@ class UsersController < ApplicationController
       # Sign in the user by passing validation in case his password changed
       sign_in @user, :bypass => true
       redirect_to edit_user_path(@user), notice: 'Password successfully updated.'
+    else
+      flash[:error] = 'Error updating password.'
+      redirect_to user_edit_password_form_path(@user)
     end
   end
 
   def edit_password_form
     @user = User.find(params[:user_id])
-    #end
   end
 
   # DELETE /users/1
