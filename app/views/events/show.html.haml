@@ -1,11 +1,11 @@
--if @user
+- if @user
   %h1= "Attend #{@event.chapter.name} event on #{@event.date.to_s} with:"
   %ul.nav.nav-tabs
     %li= link_to 'Back', chapter_user_events_path(@event.chapter.id,@user.id), class: "btn"
 
   = render 'attendees/form'
 
--else
+- else
   %h1 Event Details
 
   - if @event_type.name == 'Goblin Blanket'

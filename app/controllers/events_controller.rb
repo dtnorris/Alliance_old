@@ -72,6 +72,7 @@ class EventsController < ApplicationController
   def show
     if params[:chapter_id]
       @chapter = Chapter.find(@event.chapter.id)
+      authorize! :update, @chapter
     end
     @users = @event.chapter.users
     @attendees = @event.attendees
@@ -79,6 +80,10 @@ class EventsController < ApplicationController
     @attendee = Attendee.new
     if params[:user_id]
       @user = User.find(params[:user_id])
+      authorize! :update, @user
+    end
+    if !params[:chapter_id] and !params[:user_id]
+      authorize! :update, @event
     end
 
     respond_to do |format|
