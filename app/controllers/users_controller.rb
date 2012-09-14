@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter_id)
     end
     @stamp_track = StampTrack.new
-    authorize! :view_goblins, @chapter
+    authorize! :view_goblins, @user
 
     respond_to do |format|
       format.html # show.html.erb

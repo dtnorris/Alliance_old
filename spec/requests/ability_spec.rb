@@ -24,22 +24,22 @@ describe 'Ability' do
       page.should have_content('Access denied')      
     end
 
-    it 'should not be able to go to events page' do
+    it 'should be able to go to events page' do
       visit '/events'
-      page.should have_content('Access denied')
-      page.should_not have_content('Alliance Chapters')
+      #page.should have_content('Access denied')
+      page.should have_content('All Alliance Events')
     end
 
     it 'should not be able to go to users page' do
       visit '/users'
       page.should have_content('Access denied')
-      page.should_not have_content('Alliance Chapters')
+      page.should_not have_content('All Alliance Users')
     end
 
     it 'should not be able to go to characters page' do
       visit '/characters'
       page.should have_content('Access denied')
-      page.should_not have_content('Alliance Chapters')
+      page.should_not have_content('All Alliance Characters')
     end
 
     it 'should be able to view characters' do

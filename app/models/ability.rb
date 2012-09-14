@@ -11,10 +11,13 @@ class Ability
         this_user.id == user.id
       end
       can [:read, :xp_track], [Character, Attendee] do |this|
-        this.user_id == user.id
+        this.user.id == user.id
       end
-      can [:view_goblins, :events_for_chapter], Chapter
-      can :create, Member
+      can :view_goblins, User do |this|
+        this.id == user.id 
+      end
+      can :read, Event
+      can :create, [Member, Attendee]
     end
 
     # player
