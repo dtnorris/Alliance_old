@@ -2,7 +2,6 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    #debugger
     assignments = user.assignments
     if assignments.any? { |a| a.role.name == 'Admin' }
       can :manage, :all
@@ -10,11 +9,8 @@ class Ability
       can [:read, :update], User do |this_user|
         this_user.id == user.id
       end
-      can [:read, :xp_track], [Character, Attendee] do |this|
-        this.user.id == user.id
-      end
-      can :view_goblins, User do |this|
-        this.id == user.id 
+      can :read, [Character, Attendee, StampTrack, XpTrack] do |this|
+        this.user.id == user.id 
       end
       can :read, Event
       can :create, [Member, Attendee]

@@ -1,6 +1,8 @@
 class XpTrack < ActiveRecord::Base
   attr_accessible :attendee_id, :end_xp, :reason, :start_xp, :start_build, :end_build
 
+  belongs_to :attendee
+
   def self.find_all_by_character_id(character_id)
     attendees = Attendee.find_all_by_character_id(character_id)
     xp_tracks = []

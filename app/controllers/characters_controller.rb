@@ -55,18 +55,6 @@ class CharactersController < ApplicationController
     end
   end
 
-  # GET /characters/1/xp_track
-  def xp_track
-    @user = User.find(params[:user_id]) if params[:user_id]
-    @chapter = Chapter.find(params[:chapter_id]) if params[:chapter_id]
-    @xp_tracks = XpTrack.find_all_by_character_id(@character.id)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @character }
-    end
-  end
-
   # GET /characters/1/edit
   def edit
     @user = User.find(params[:user_id]) if params[:user_id]
@@ -121,54 +109,6 @@ class CharactersController < ApplicationController
   #   respond_to do |format|
   #     format.html { redirect_to characters_url }
   #     format.json { head :no_content }
-  #   end
-  # end
-
-  # def xp_mod_day
-  #   @character = Character.find(params[:id])
-  #   xp = @character.add_xp(0.5, 'Mod Day')
-  #   xp.attendee_id = 1
-  #   xp.save
-
-  #   respond_to do |format|
-  #     format.html { redirect_to xp_track_character_path(@character) }
-  #     format.json { render json: @characters }
-  #   end
-  # end
-
-  # def xp_one_day
-  #   @character = Character.find(params[:id])
-  #   xp = @character.add_xp(1, 'One Day')
-  #   xp.attendee_id = 1
-  #   xp.save
-
-  #   respond_to do |format|
-  #     format.html { redirect_to xp_track_character_path(@character) }
-  #     format.json { render json: @characters }
-  #   end
-  # end
-
-  # def xp_weekend
-  #   @character = Character.find(params[:id])
-  #   xp = @character.add_xp(2, 'Weekend')
-  #   xp.attendee_id = 1
-  #   xp.save
-
-  #   respond_to do |format|
-  #     format.html { redirect_to xp_track_character_path(@character) }
-  #     format.json { render json: @characters }
-  #   end
-  # end
-
-  # def xp_long_weekend
-  #   @character = Character.find(params[:id])
-  #   xp = @character.add_xp(3, 'Long Weekend')
-  #   xp.attendee_id = 1
-  #   xp.save
-
-  #   respond_to do |format|
-  #     format.html { redirect_to xp_track_character_path(@character) }
-  #     format.json { render json: @characters }
   #   end
   # end
 end

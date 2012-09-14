@@ -1,6 +1,6 @@
 /%h1 Experience Point Tracking for: #{@character.name}
 
-= render 'character_nav_tabs'
+= render 'characters/character_nav_tabs'
 
 /%table.table.xp-table
 /  %tr
@@ -11,7 +11,6 @@
 
 %table.table.xp-table
   %tr
-    /%th id:
     %th Start Build:
     %th Final Build:
     %th Build Gained:
@@ -21,7 +20,6 @@
   - all_xp = @xp_tracks
   - all_xp.reverse.each do |xp|
     %tr
-      /%td= xp.id
       %td.ln= xp.start_build
       %td.ln= xp.end_build
       %td.ln= xp.end_build - xp.start_build

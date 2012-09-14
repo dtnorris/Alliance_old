@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:view_goblins, :show, :create]
+  load_and_authorize_resource :except => [:show, :create]
 
   #GET /users
   #GET /users.json
@@ -22,26 +22,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @user }
-    end
-  end
-
-  # GET /users/1/view_goblins
-  def view_goblins
-    if params[:chapter_id]
-      @user = User.find(params[:id])
-      @chapter = Chapter.find(params[:chapter_id])
-      @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter.id)
-    elsif session[:user_id_for_membership]
-      @user = User.find(session[:user_id_for_membership])
-      @chapter_id = params[:id]
-      @all_goblins = StampTrack.find_all_by_user_id_and_chapter_id(@user.id, @chapter_id)
-    end
-    @stamp_track = StampTrack.new
-    authorize! :view_goblins, @user
-
-    respond_to do |format|
-      format.html # show.html.erb
       format.json { render json: @user }
     end
   end

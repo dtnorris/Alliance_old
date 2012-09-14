@@ -29,4 +29,4 @@
           %td= 'No'
       %td= member.goblin_stamps
       -if @user
-        %td= link_to 'View Stamp Log', view_goblins_user_path(member.chapter.id), class: 'btn btn-mini'
+        %td= link_to 'View Stamp Log', user_stamp_tracks_path(member.user.id, tab: member.chapter.id), class: 'btn btn-mini'

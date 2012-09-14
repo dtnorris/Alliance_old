@@ -1,5 +1,4 @@
 Alliance::Application.routes.draw do
-
   #resources :assignments
   resources :attendees
   resources :character_skills
@@ -7,53 +6,43 @@ Alliance::Application.routes.draw do
   resources :members
   resources :stamp_tracks
 
-  resources :chapters do
-    resources :deaths
-    resources :characters do
-      member do 
-        get :xp_track
-      end
-      resources :events
-    end
-    resources :users do
-      member do
-        get :view_goblins
-      end
-      resources :events
-      resources :characters
-    end
-    resources :events
+  resources :events do
+    resources :attendees
   end
 
   resources :characters do  
     resources :deaths
-    member do 
-      get :xp_track
-    end
-  end
-
-  resources :events do
-    resources :attendees
+    resources :xp_tracks
   end
 
   devise_for :users, :path_prefix => 'd'
   resources :users do
     get :edit_password_form
     put :edit_password
-    member do
-      get :view_goblins
-    end
+    resources :stamp_tracks
     resources :characters do 
-      member do 
-        get :xp_track
-      end
+      resources :xp_tracks
     end
     resources :events
     resources :members
   end
 
+  resources :chapters do
+    resources :deaths
+    resources :characters do
+      resources :xp_tracks
+      resources :events
+    end
+    resources :users do
+      resources :stamp_tracks
+      resources :events
+      resources :characters
+    end
+    resources :events
+  end
+
+  root :to => 'users#show'
   # root :to => 'pages#home'
-   root :to => 'users#show'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

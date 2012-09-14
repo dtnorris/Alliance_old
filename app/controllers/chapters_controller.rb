@@ -43,7 +43,6 @@ class ChaptersController < ApplicationController
       @goblin_blanket = EventType.find_by_name('Goblin Blanket').id
       @new_blanket = true
     end
-
     @events        = @chapter.events
     @members       = @chapter.members
     @users         = @chapter.users
