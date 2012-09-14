@@ -9,8 +9,6 @@
     %th Level
     %th Applied
     %th
-    /%th
-    /%th
 
   - (@attendees.sort_by! {|a| a.character.user.name}).each do |attendee|
     - character = attendee.character
@@ -25,9 +23,6 @@
       %td= (character.build_points - 5) / 10
       %td= attendee.applied
       - if attendee.applied != true
-        %td= link_to 'Apply Event', chapter_character_event_path(@chapter.id,character.id,@event.id), class: "btn", :method => :put
+        %td= link_to 'Apply Event', chapter_character_event_path(@event.chapter.id,character.id,@event.id), class: "btn", :method => :put
       - else
         %td= button_to 'Apply Event', attendee, class: "btn", :disabled => true
-      /%td= link_to 'Show', attendee
-      /%td= link_to 'Edit', edit_attendee_path(attendee)
-      /%td= link_to 'Destroy', attendee, :confirm => 'Are you sure?', :method => :delete

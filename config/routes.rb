@@ -28,6 +28,7 @@ Alliance::Application.routes.draw do
   end
 
   resources :chapters do
+    resources :events
     resources :deaths
     resources :characters do
       resources :xp_tracks
@@ -38,7 +39,6 @@ Alliance::Application.routes.draw do
       resources :events
       resources :characters
     end
-    resources :events
   end
 
   root :to => 'users#show'
