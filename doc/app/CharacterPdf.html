@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class CharacterPdf - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/pdfs/character_pdf.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Prawn::Document
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-body_boxes">#body_boxes</a>
+    
+    <li><a href="#method-i-card_outline">#card_outline</a>
+    
+    <li><a href="#method-i-card_size_consts">#card_size_consts</a>
+    
+    <li><a href="#method-i-continuous_skills">#continuous_skills</a>
+    
+    <li><a href="#method-i-craftsman_skills">#craftsman_skills</a>
+    
+    <li><a href="#method-i-extra_continuous_skills">#extra_continuous_skills</a>
+    
+    <li><a href="#method-i-info_block">#info_block</a>
+    
+    <li><a href="#method-i-life_tag">#life_tag</a>
+    
+    <li><a href="#method-i-main_build_info">#main_build_info</a>
+    
+    <li><a href="#method-i-main_chapter_name">#main_chapter_name</a>
+    
+    <li><a href="#method-i-main_character_info">#main_character_info</a>
+    
+    <li><a href="#method-i-main_death_info">#main_death_info</a>
+    
+    <li><a href="#method-i-main_info">#main_info</a>
+    
+    <li><a href="#method-i-main_member_info">#main_member_info</a>
+    
+    <li><a href="#method-i-main_spell_info">#main_spell_info</a>
+    
+    <li><a href="#method-i-per_day_box">#per_day_box</a>
+    
+    <li><a href="#method-i-racial_box">#racial_box</a>
+    
+    <li><a href="#method-i-racial_per_day_skills">#racial_per_day_skills</a>
+    
+    <li><a href="#method-i-skill_header">#skill_header</a>
+    
+    <li><a href="#method-i-skill_table">#skill_table</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentsController.html">AssignmentsController</a>
+  
+    <li><a href="./AssignmentsHelper.html">AssignmentsHelper</a>
+  
+    <li><a href="./Attendee.html">Attendee</a>
+  
+    <li><a href="./AttendeesController.html">AttendeesController</a>
+  
+    <li><a href="./Chapter.html">Chapter</a>
+  
+    <li><a href="./ChaptersController.html">ChaptersController</a>
+  
+    <li><a href="./CharClass.html">CharClass</a>
+  
+    <li><a href="./Character.html">Character</a>
+  
+    <li><a href="./CharacterPdf.html">CharacterPdf</a>
+  
+    <li><a href="./CharacterSkill.html">CharacterSkill</a>
+  
+    <li><a href="./CharacterSkillsController.html">CharacterSkillsController</a>
+  
+    <li><a href="./CharactersController.html">CharactersController</a>
+  
+    <li><a href="./DataImport.html">DataImport</a>
+  
+    <li><a href="./Death.html">Death</a>
+  
+    <li><a href="./DeathsController.html">DeathsController</a>
+  
+    <li><a href="./Event.html">Event</a>
+  
+    <li><a href="./EventType.html">EventType</a>
+  
+    <li><a href="./EventsController.html">EventsController</a>
+  
+    <li><a href="./Member.html">Member</a>
+  
+    <li><a href="./MembersController.html">MembersController</a>
+  
+    <li><a href="./PagesController.html">PagesController</a>
+  
+    <li><a href="./Race.html">Race</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./Skill.html">Skill</a>
+  
+    <li><a href="./StampTrack.html">StampTrack</a>
+  
+    <li><a href="./StampTracksController.html">StampTracksController</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./XpTrack.html">XpTrack</a>
+  
+    <li><a href="./XpTracksController.html">XpTracksController</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class CharacterPdf</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(character)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">character</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">page_layout</span><span class="ruby-operator">:</span> <span class="ruby-value">:landscape</span>)
+  <span class="ruby-ivar">@character</span> = <span class="ruby-identifier">character</span>
+  <span class="ruby-ivar">@deaths</span> = <span class="ruby-identifier">character</span>.<span class="ruby-identifier">deaths</span>
+  <span class="ruby-ivar">@chapter</span> = <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">chapter</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@member</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find_by_chapter_id_and_user_id</span>(<span class="ruby-ivar">@chapter</span>.<span class="ruby-identifier">id</span>, <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@chararacter_skills</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">find_all_by_character_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">card_size_consts</span>
+  <span class="ruby-identifier">card_outline</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-body_boxes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">body_boxes</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="body_boxes-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 245</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">body_boxes</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span> <span class="ruby-operator">+</span> <span class="ruby-value">0.05</span>.<span class="ruby-identifier">in</span>,<span class="ruby-value">0.6</span>.<span class="ruby-identifier">in</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> (<span class="ruby-ivar">@main_width</span> <span class="ruby-operator">-</span> <span class="ruby-value">0.1</span>.<span class="ruby-identifier">in</span>), <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-value">0.2</span>.<span class="ruby-identifier">in</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">3.5</span> <span class="ruby-comment">#center in the box</span>
+    <span class="ruby-comment">#TODO calculate Earth's bounty body</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;b&gt;Base Body&lt;/b&gt; #{@character.body_points}   &lt;b&gt;E.Bounty&lt;/b&gt; 0   &lt;b&gt;Body&lt;/b&gt; #{@character.body_points}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">3</span>,
+        <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- body_boxes-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- body_boxes-method -->
+
+    
+      <div id="method-i-card_outline" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">card_outline</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="card_outline-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">card_outline</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-value">0</span>,<span class="ruby-value">550</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@total_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@total_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">main_info</span>
+    <span class="ruby-identifier">racial_per_day_skills</span>
+    <span class="ruby-identifier">continuous_skills</span>
+    <span class="ruby-identifier">craftsman_skills</span>
+    <span class="ruby-identifier">life_tag</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- card_outline-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- card_outline-method -->
+
+    
+      <div id="method-i-card_size_consts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">card_size_consts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="card_size_consts-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">card_size_consts</span>
+  <span class="ruby-comment"># Overal card dimensions</span>
+  <span class="ruby-ivar">@total_width</span> = <span class="ruby-value">9.1</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@total_height</span> = <span class="ruby-value">3.6</span>.<span class="ruby-identifier">in</span>
+  
+  <span class="ruby-comment"># Card section consts</span>
+  <span class="ruby-ivar">@main_orig</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@main_width</span> = <span class="ruby-value">2.55</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@rpds_orig</span> = <span class="ruby-value">2.55</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@rpds_width</span> = <span class="ruby-value">1.8</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@cs_orig</span> = <span class="ruby-value">4.35</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@cs_width</span> = <span class="ruby-value">1.8</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@cf_orig</span> = <span class="ruby-value">6.15</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@cf_width</span> = <span class="ruby-value">1.8</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@lt_orig</span> = <span class="ruby-value">7.95</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@lt_width</span> = <span class="ruby-value">1.15</span>.<span class="ruby-identifier">in</span>
+
+  <span class="ruby-comment">#main info box consts</span>
+  <span class="ruby-ivar">@main_ch_height</span> = <span class="ruby-value">0.3</span>.<span class="ruby-identifier">in</span>
+  <span class="ruby-ivar">@main_member_height</span> = <span class="ruby-value">0.6</span>.<span class="ruby-identifier">in</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@main_ch_height</span>
+  <span class="ruby-ivar">@main_character_height</span> = <span class="ruby-value">0.85</span>.<span class="ruby-identifier">in</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@main_member_height</span>
+  <span class="ruby-ivar">@main_death_height</span> = <span class="ruby-value">0.45</span>.<span class="ruby-identifier">in</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@main_character_height</span>
+  <span class="ruby-ivar">@main_build_height</span> = <span class="ruby-value">0.6</span>.<span class="ruby-identifier">in</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@main_death_height</span>
+  <span class="ruby-ivar">@main_spell_height</span> = <span class="ruby-value">0.8</span>.<span class="ruby-identifier">in</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@main_build_height</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- card_size_consts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- card_size_consts-method -->
+
+    
+      <div id="method-i-continuous_skills" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">continuous_skills</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="continuous_skills-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">continuous_skills</span> 
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@cs_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cs_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@total_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">3</span>
+    <span class="ruby-identifier">skill_header</span> <span class="ruby-string">'&lt;u&gt;Continuous Skills&lt;/u&gt;'</span>
+    <span class="ruby-identifier">data</span> = [[<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>]]
+    <span class="ruby-ivar">@extra_data</span> = [[<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>]]
+    <span class="ruby-identifier">count</span> = <span class="ruby-value">25</span>
+    <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">continuous_skills</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">count</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">sk</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">find_by_character_id_and_skill_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>,<span class="ruby-constant">Skill</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">s</span>).<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">val</span> = <span class="ruby-identifier">sk</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">sk</span>.<span class="ruby-identifier">bought</span>
+      <span class="ruby-identifier">val</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>; <span class="ruby-identifier">val</span> = <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">s</span>,<span class="ruby-identifier">val</span>]
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@extra_data</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">s</span>,<span class="ruby-identifier">val</span>]
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">move_up</span> <span class="ruby-value">12.5</span>
+    <span class="ruby-identifier">skill_table</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- continuous_skills-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- continuous_skills-method -->
+
+    
+      <div id="method-i-craftsman_skills" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">craftsman_skills</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="craftsman_skills-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">craftsman_skills</span> 
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@cf_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cf_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@total_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">extra_continuous_skills</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">3</span>
+    <span class="ruby-identifier">skill_header</span> <span class="ruby-string">'&lt;u&gt;Craftsman Skills&lt;/u&gt;'</span>
+    <span class="ruby-identifier">data</span> = [[<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>]]
+    <span class="ruby-identifier">sk</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">find_by_character_id_and_skill_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>, <span class="ruby-constant">Skill</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Craftsman'</span>).<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">sk</span>
+      <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-string">&quot;Craftsman &lt;type&gt;&quot;</span>,<span class="ruby-identifier">sk</span>.<span class="ruby-identifier">amount</span>]
+    <span class="ruby-keyword">else</span> 
+      <span class="ruby-identifier">sk</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">amount</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">2.15</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;Total Craftsman #{sk.amount}&quot;</span>, 
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">0.75</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">move_up</span> <span class="ruby-value">2.45</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">skill_table</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- craftsman_skills-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- craftsman_skills-method -->
+
+    
+      <div id="method-i-extra_continuous_skills" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extra_continuous_skills</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="extra_continuous_skills-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 335</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extra_continuous_skills</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-value">0</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@cf_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-value">0.95</span>.<span class="ruby-identifier">in</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">3</span>
+    <span class="ruby-identifier">skill_header</span> <span class="ruby-string">'Continuous Skills Cont.'</span>
+    <span class="ruby-identifier">move_up</span> <span class="ruby-value">12.5</span>
+    <span class="ruby-identifier">skill_table</span> <span class="ruby-ivar">@extra_data</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- extra_continuous_skills-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- extra_continuous_skills-method -->
+
+    
+      <div id="method-i-info_block" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">info_block</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="info_block-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 345</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">info_block</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-value">0</span>,<span class="ruby-ivar">@total_height</span><span class="ruby-operator">-</span><span class="ruby-value">0.4</span>.<span class="ruby-identifier">in</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@lt_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-value">2.5</span>.<span class="ruby-identifier">in</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.1</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@member</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">first_name</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">last_name</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.15</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-string">&quot;&lt;u&gt;Character&lt;/u&gt;&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">11</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-value">:bold</span>, <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.75</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-string">&quot;Home Chapter&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-value">:bold</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">chapter</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.125</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;b&gt;BP:&lt;/b&gt;            #{@character.build_points}&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>, <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.045</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_date</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- info_block-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- info_block-method -->
+
+    
+      <div id="method-i-life_tag" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">life_tag</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="life_tag-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">life_tag</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@lt_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@lt_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@total_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.25</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@chapter</span>.<span class="ruby-identifier">location</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-value">:bold</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+    <span class="ruby-identifier">info_block</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.15</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-string">&quot;Alive&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">16</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-value">:bold</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-string">&quot;1 Body Point&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- life_tag-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- life_tag-method -->
+
+    
+      <div id="method-i-main_build_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_build_info</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main_build_info-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 188</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main_build_info</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_build_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">2.205</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">data</span> = [[<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;Used: &quot;</span>,<span class="ruby-string">&quot;Free: &quot;</span>,<span class="ruby-string">&quot;Total: &quot;</span>],
+            [<span class="ruby-string">&quot;Build:&quot;</span>,<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">spent_build</span>,<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">build_points</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">spent_build</span>,<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">build_points</span>],
+            [<span class="ruby-string">&quot;Experience:&quot;</span>,<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">experience_points</span>]
+           ]
+    <span class="ruby-identifier">table</span>(<span class="ruby-identifier">data</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">padding</span> = <span class="ruby-value">1</span>
+      <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">size</span> = <span class="ruby-value">9</span>
+      <span class="ruby-identifier">rows</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">font_style</span> = <span class="ruby-value">:bold</span>
+      <span class="ruby-identifier">columns</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">font_style</span> = <span class="ruby-value">:bold</span>
+      <span class="ruby-identifier">columns</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">align</span> = <span class="ruby-value">:right</span>
+      <span class="ruby-identifier">columns</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">padding_left</span> = <span class="ruby-value">0.35</span>.<span class="ruby-identifier">in</span>
+      <span class="ruby-identifier">columns</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">align</span> = <span class="ruby-value">:center</span>
+      <span class="ruby-identifier">rows</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>).<span class="ruby-identifier">columns</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>).<span class="ruby-identifier">borders</span> = []
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main_build_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main_build_info-method -->
+
+    
+      <div id="method-i-main_chapter_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_chapter_name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main_chapter_name-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 277</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main_chapter_name</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_ch_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">4.5</span> <span class="ruby-comment">#to center the chapter name vertically</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@chapter</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">15</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-value">:bold</span>, <span class="ruby-identifier">align</span><span class="ruby-operator">:</span> <span class="ruby-value">:center</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main_chapter_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main_chapter_name-method -->
+
+    
+      <div id="method-i-main_character_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_character_info</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main_character_info-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 226</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main_character_info</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_character_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.975</span>.<span class="ruby-identifier">in</span> <span class="ruby-comment">#start the text in the box</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>, <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>, <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+    <span class="ruby-identifier">body_boxes</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">4</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;#{Race.find(@character.race_id).name}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>,
+        <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;#{CharClass.find(@character.char_class_id).name}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>,
+        <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main_character_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main_character_info-method -->
+
+    
+      <div id="method-i-main_death_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_death_info</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main_death_info-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main_death_info</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_death_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">1.8</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-comment">#TODO calculate off character death values</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;b&gt;Deaths&lt;/b&gt; #{Death.regular(@deaths).count}           &lt;b&gt;Bought Back&lt;/b&gt; #{Death.buyback(@deaths).count}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>,
+        <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.05</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;b&gt;Deaths while Regen/Css:&lt;/b&gt; #{Death.regen_css(@deaths).count}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>,
+        <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main_death_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main_death_info-method -->
+
+    
+      <div id="method-i-main_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_info</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main_info-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main_info</span> 
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@total_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">main_chapter_name</span>
+    <span class="ruby-identifier">main_member_info</span>
+    <span class="ruby-identifier">main_character_info</span>
+    <span class="ruby-identifier">main_death_info</span>
+    <span class="ruby-identifier">main_build_info</span>
+    <span class="ruby-identifier">main_spell_info</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main_info-method -->
+
+    
+      <div id="method-i-main_member_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_member_info</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main_member_info-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main_member_info</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_member_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">25</span> <span class="ruby-comment">#start the text in the box</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;b&gt;Member #&lt;/b&gt;            #{@member.id.to_s}          #{Time.now.to_date.to_s}&quot;</span>, 
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>, 
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>, 
+        <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">1.5</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;#{@user.name}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">1.5</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;b&gt;Goblin Stamps:&lt;/b&gt;  #{@member.goblin_stamps}  &lt;b&gt;Level:&lt;/b&gt; #{(@character.build_points - 5) / 10}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>,
+        <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main_member_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main_member_info-method -->
+
+    
+      <div id="method-i-main_spell_info" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">main_spell_info</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="main_spell_info-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main_spell_info</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@main_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@main_spell_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">2.8</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">total_spell_array</span> = <span class="ruby-value">10</span>
+    <span class="ruby-identifier">celestial</span> = [<span class="ruby-string">&quot;Celestial&quot;</span>]
+    <span class="ruby-identifier">celestial</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">all_spells</span>(<span class="ruby-ivar">@character</span>,<span class="ruby-string">&quot;Celestial&quot;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">celestial</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">total_spell_array</span>
+      <span class="ruby-identifier">count</span> = <span class="ruby-identifier">total_spell_array</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">celestial</span>.<span class="ruby-identifier">length</span>
+      <span class="ruby-identifier">count</span>.<span class="ruby-identifier">times</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">celestial</span> <span class="ruby-operator">+=</span> [<span class="ruby-keyword">nil</span>] }
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">earth</span> = [<span class="ruby-string">&quot;Earth&quot;</span>]
+    <span class="ruby-identifier">earth</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">all_spells</span>(<span class="ruby-ivar">@character</span>,<span class="ruby-string">&quot;Earth&quot;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">earth</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">total_spell_array</span>
+      <span class="ruby-identifier">count</span> = <span class="ruby-identifier">total_spell_array</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">earth</span>.<span class="ruby-identifier">length</span>
+      <span class="ruby-identifier">count</span>.<span class="ruby-identifier">times</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">earth</span> <span class="ruby-operator">+=</span> [<span class="ruby-keyword">nil</span>] }
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">data</span> = [[<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;1&quot;</span>,<span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;3&quot;</span>,<span class="ruby-string">&quot;4&quot;</span>,<span class="ruby-string">&quot;5&quot;</span>,<span class="ruby-string">&quot;6&quot;</span>,<span class="ruby-string">&quot;7&quot;</span>,<span class="ruby-string">&quot;8&quot;</span>,<span class="ruby-string">&quot;9&quot;</span>], <span class="ruby-identifier">celestial</span>, <span class="ruby-identifier">earth</span>]
+    <span class="ruby-identifier">table</span>(<span class="ruby-identifier">data</span>) <span class="ruby-keyword">do</span>
+      <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">align</span> = <span class="ruby-value">:center</span>
+      <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">size</span> = <span class="ruby-value">9</span>
+      <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">padding</span> = <span class="ruby-value">1</span>
+      <span class="ruby-identifier">rows</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">padding_bottom</span> = <span class="ruby-value">2</span>
+      <span class="ruby-identifier">rows</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>).<span class="ruby-identifier">columns</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">9</span>).<span class="ruby-identifier">width</span> = <span class="ruby-value">13.5</span>
+      <span class="ruby-identifier">rows</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>).<span class="ruby-identifier">columns</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">9</span>).<span class="ruby-identifier">align</span> = <span class="ruby-value">:center</span>
+      <span class="ruby-identifier">column</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">padding_left</span> = <span class="ruby-value">0.225</span>.<span class="ruby-identifier">in</span>
+      <span class="ruby-identifier">column</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">borders</span> = []
+      <span class="ruby-identifier">column</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">align</span> = <span class="ruby-value">:right</span>
+      <span class="ruby-identifier">column</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">padding_right</span> = <span class="ruby-value">4</span>
+      <span class="ruby-identifier">rows</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">columns</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">9</span>).<span class="ruby-identifier">borders</span> = []
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.1</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">total_c_spells</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">celestial</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">!=</span> <span class="ruby-string">'Celestial'</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">x</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">total_c_spells</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">x</span> <span class="ruby-keyword">end</span> }
+    <span class="ruby-identifier">wand_dmg</span> = <span class="ruby-value">1</span>
+    <span class="ruby-identifier">wand_dmg</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">celestial</span>[<span class="ruby-value">9</span>] <span class="ruby-keyword">unless</span> <span class="ruby-identifier">celestial</span>[<span class="ruby-value">9</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;Total Wand Charges: #{total_c_spells},     Wand Damage: #{wand_dmg}&quot;</span>,
+        <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>,
+        <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">5</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- main_spell_info-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- main_spell_info-method -->
+
+    
+      <div id="method-i-per_day_box" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">per_day_box</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="per_day_box-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 318</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">per_day_box</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-value">0</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rpds_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-value">3.15</span>.<span class="ruby-identifier">in</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">0.68</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">skill_header</span> <span class="ruby-string">'&lt;u&gt;Per Day Skills&lt;/u&gt;'</span>
+    <span class="ruby-identifier">data</span> = [[<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>]]
+    <span class="ruby-ivar">@character</span>.<span class="ruby-identifier">per_day_skills</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">sk</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">find_by_character_id_and_skill_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>,<span class="ruby-constant">Skill</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">s</span>).<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">val</span> = <span class="ruby-identifier">sk</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">sk</span>.<span class="ruby-identifier">bought</span>
+      <span class="ruby-identifier">val</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>; <span class="ruby-identifier">val</span> = <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">s</span>,<span class="ruby-identifier">val</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">move_up</span> <span class="ruby-value">12.5</span>
+    <span class="ruby-identifier">skill_table</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- per_day_box-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- per_day_box-method -->
+
+    
+      <div id="method-i-racial_box" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">racial_box</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="racial_box-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 301</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">racial_box</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-value">0</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rpds_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-value">0.655</span>.<span class="ruby-identifier">in</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">3</span>
+    <span class="ruby-identifier">skill_header</span> <span class="ruby-string">'&lt;u&gt;Racial Skills&lt;/u&gt;'</span>
+    <span class="ruby-identifier">data</span> = [[<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>]]
+    <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">all_racials</span>(<span class="ruby-ivar">@character</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">sk</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">find_by_character_id_and_skill_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>,<span class="ruby-constant">Skill</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">s</span>).<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">val</span> = <span class="ruby-identifier">sk</span>.<span class="ruby-identifier">amount</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">sk</span>.<span class="ruby-identifier">bought</span>
+      <span class="ruby-identifier">val</span> = <span class="ruby-value">0</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>; <span class="ruby-identifier">val</span> = <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
+      <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">s</span>,<span class="ruby-identifier">val</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">move_up</span> <span class="ruby-value">1.5</span>
+    <span class="ruby-identifier">skill_table</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- racial_box-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- racial_box-method -->
+
+    
+      <div id="method-i-racial_per_day_skills" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">racial_per_day_skills</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="racial_per_day_skills-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">racial_per_day_skills</span>
+  <span class="ruby-identifier">bounding_box</span> [<span class="ruby-ivar">@rpds_orig</span>,<span class="ruby-ivar">@total_height</span>], <span class="ruby-identifier">width</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@rpds_width</span>, <span class="ruby-identifier">height</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@total_height</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">stroke_bounds</span>
+    <span class="ruby-identifier">racial_box</span>
+    <span class="ruby-identifier">per_day_box</span>
+    <span class="ruby-identifier">move_down</span> <span class="ruby-value">5</span>
+    <span class="ruby-identifier">ce</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">find_by_character_id_and_skill_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>, <span class="ruby-constant">Skill</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Formal Celestial'</span>).<span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">ea</span> = <span class="ruby-constant">CharacterSkill</span>.<span class="ruby-identifier">find_by_character_id_and_skill_id</span>(<span class="ruby-ivar">@character</span>.<span class="ruby-identifier">id</span>, <span class="ruby-constant">Skill</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-string">'Formal Earth'</span>).<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">ce</span>
+      <span class="ruby-identifier">c_formal</span> = <span class="ruby-node">&quot;#{ce.amount} Celestial&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">c_formal</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">ea</span>
+      <span class="ruby-identifier">e_formal</span> = <span class="ruby-node">&quot;#{ea.amount} Earth&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">e_formal</span> = <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;u&gt;&lt;b&gt;Formal&lt;/b&gt;&lt;/u&gt;    #{c_formal}&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>, <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+    <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;&lt;u&gt;&lt;b&gt;Levels&lt;/b&gt;&lt;/u&gt;     #{e_formal}&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">8</span>, <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- racial_per_day_skills-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- racial_per_day_skills-method -->
+
+    
+      <div id="method-i-skill_header" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skill_header</span><span
+            class="method-args">(label)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skill_header-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 285</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">skill_header</span> <span class="ruby-identifier">label</span>
+  <span class="ruby-identifier">text</span> <span class="ruby-node">&quot;#{label}&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">9</span>, <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> <span class="ruby-value">:bold_italic</span>, <span class="ruby-identifier">inline_format</span><span class="ruby-operator">:</span> <span class="ruby-value">:true</span>, <span class="ruby-identifier">indent_paragraphs</span><span class="ruby-operator">:</span> <span class="ruby-value">3</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- skill_header-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- skill_header-method -->
+
+    
+      <div id="method-i-skill_table" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">skill_table</span><span
+            class="method-args">(data)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="skill_table-source">
+            <pre><span class="ruby-comment"># File app/pdfs/character_pdf.rb, line 289</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">skill_table</span> <span class="ruby-identifier">data</span>
+  <span class="ruby-identifier">table</span>(<span class="ruby-identifier">data</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">rows</span>(<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">30</span>).<span class="ruby-identifier">borders</span> = []
+    <span class="ruby-identifier">columns</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">width</span> = <span class="ruby-value">1.6</span>.<span class="ruby-identifier">in</span>
+    <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">size</span> = <span class="ruby-value">9</span>
+    <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">align</span> = <span class="ruby-value">:left</span>
+    <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">height</span> = <span class="ruby-value">10</span>
+    <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">padding</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">cells</span>.<span class="ruby-identifier">padding_left</span> = <span class="ruby-value">3</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- skill_table-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- skill_table-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
