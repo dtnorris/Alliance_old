@@ -20,9 +20,5 @@
       %td.ln= Member.find_by_user_id_and_chapter_id(user.id, @chapter.id).goblin_stamps
       %td= link_to 'New Character', new_chapter_user_character_path(@chapter.id,user.id)#, class: "btn btn-mini"
       %td
-        /%ul.left= link_to 'New Character', new_chapter_user_character_path(@chapter.id,user.id), class: "btn btn-mini"
         - characters.each do |c|
           %ul.left= link_to c.name, edit_chapter_character_path(c.chapter, c)#, class: 'btn btn-mini'
-        
-  /%td= characters.each do |c| #{ |c| link_to c.name, edit_chapter_character_path(c.chapter, c) }
-  /    - 
