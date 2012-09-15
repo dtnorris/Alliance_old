@@ -16,6 +16,14 @@ describe "Deaths" do
     click_button "Create Character"
   end
 
+  it 'should be able to navigate back to chapter character page' do 
+    click_link 'Edit'
+    click_link 'Death Track'
+    click_link 'Back'
+    click_link 'Back'
+    page.should have_content 'T_Chapter_1'
+  end
+
   it 'adding a death does not mess up routing' do 
     click_link 'Edit'
     click_button 'add_death'

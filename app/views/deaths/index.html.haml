@@ -1,6 +1,10 @@
-%h1= "Death Tracking for #{@character.name}" 
+%h1= "Death Tracking for #{@character.name}"
+-if @chapter
+  - path = edit_chapter_character_path(@chapter.id, @character.id)
+-else 
+  - path = edit_character_path(@character.id)
 %ul.nav.nav-tabs
-  %li= link_to 'Back', edit_character_path(@character.id), class: "btn"
+  %li= link_to 'Back', path, class: "btn"
 
 .span3
   - @calc_deaths = Death.buyback(@deaths)

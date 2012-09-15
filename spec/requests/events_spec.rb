@@ -39,14 +39,14 @@ describe "events navigation" do
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
     click_button "Add Attendee"
-    page.should have_content("attendee successfully added to the event")
+    page.should have_content("Attendee successfully added to the event")
     page.should have_content("Alliance Admin NPC Bob 1 false")
     
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
     select("PC", :from => 'PC or NPC')
     click_button "Add Attendee"
-    page.should have_content("attendee successfully added to the event")
+    page.should have_content("Attendee successfully added to the event")
     page.should have_content("Alliance Admin PC Bob 1 false")   
   end
 

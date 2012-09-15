@@ -10,7 +10,11 @@
     = render 'deaths/buyback_death'
     = render 'deaths/add_regen_css_death'
   .span2
-    = link_to 'Death Track', character_deaths_path(@character.id), class: "btn"
+    - if @chapter
+      - path = chapter_character_deaths_path(@chapter.id, @character.id)
+    - else
+      - path = character_deaths_path(@character.id)
+    = link_to 'Death Track', path, class: "btn"
 .span3
   = render 'character_skills/form'
 .span3

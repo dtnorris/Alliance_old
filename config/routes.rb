@@ -1,11 +1,4 @@
 Alliance::Application.routes.draw do
-  #resources :assignments
-  resources :attendees
-  resources :character_skills
-  resources :deaths
-  resources :members
-  resources :stamp_tracks
-
   resources :events do
     resources :attendees
   end
@@ -19,27 +12,35 @@ Alliance::Application.routes.draw do
   resources :users do
     get :edit_password_form
     put :edit_password
-    resources :stamp_tracks
-    resources :characters do 
-      resources :xp_tracks
-    end
+    resources :attendees
     resources :events
     resources :members
+    resources :stamp_tracks
+    resources :characters do
+      resources :deaths 
+      resources :xp_tracks
+    end
   end
 
   resources :chapters do
     resources :events
-    resources :deaths
     resources :characters do
+      resources :deaths
       resources :xp_tracks
-      resources :events
+      resources :events #allows application of events to individual characters
     end
     resources :users do
       resources :stamp_tracks
-      resources :events
-      resources :characters
+      resources :events #for table of chapters on user page
+      resources :characters #to create new users for a given chapter
     end
   end
+  
+  resources :attendees #for creation of
+  resources :character_skills #for creation of
+  resources :deaths #for creation of
+  resources :members #for creation of
+  resources :stamp_tracks #for creation of
 
   root :to => 'users#show'
   # root :to => 'pages#home'

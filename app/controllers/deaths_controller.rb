@@ -4,6 +4,9 @@ class DeathsController < ApplicationController
   # GET /deaths
   # GET /deaths.json
   def index
+    if params[:chapter_id]
+      @chapter = Chapter.find(params[:chapter_id])
+    end
     if params[:character_id]
       @character = Character.find(params[:character_id])
       @deaths = @deaths.inject([]) { |a,d| a << d if d.character_id == @character.id; a }
