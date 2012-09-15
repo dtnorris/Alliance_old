@@ -38,10 +38,9 @@
           %td false
         - else
           %td= @event.applied
-    .span7
-      %br
-      %br
-      = render 'attendees/event_attendees'
-
-  .span3
+      %tr
+        %th Total Attendees
+        %td= Attendee.where(event_id: @event.id).count
     = render 'attendees/form'
+  .span8
+    = render 'attendees/event_attendees'
