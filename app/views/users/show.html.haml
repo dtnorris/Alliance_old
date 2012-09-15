@@ -2,17 +2,15 @@
 - user_head = @user.first_name + ' ' + @user.last_name
 %h2= user_head
 
-.span12
+.span12  
+  %h2 Characters
+  = render 'characters/character_table'
+
+  %h2 Chapter Associations
+  = render 'members/table'
+
   %h2 National
   %p
     Dragon stamps:
     = @user.dragon_stamps
   %br
-  
-.span10
-  %h2 Characters
-  = render 'characters/character_table'
-
-.span6
-  %h2 Chapter Associations
-  = render 'members/table'
