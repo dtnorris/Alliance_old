@@ -9,14 +9,14 @@
 .span3
   - @calc_deaths = Death.buyback(@deaths)
   %h3= "Deaths Bought Back: #{@calc_deaths.count}"
-  = render 'death_table'
+  = render 'table'
 
 .span3
   - @calc_deaths = Death.regular(@deaths)
   %h3= "Regular Deaths: #{@calc_deaths.count}"
-  = render 'death_table'
+  = render 'table'
 
 .span3
   - @calc_deaths = Death.regen_css(@deaths)
   %h3= "Deaths Regen/CSS: #{@calc_deaths.count}"
-  = render 'death_table'
+  = render 'table'

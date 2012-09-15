@@ -310,7 +310,7 @@ class CharacterPdf < Prawn:: Document
         val = 0 if val == false; val = 1 if val == true
         data << [s,val]
       end
-      move_up 1.5
+      move_up 9.5
       skill_table data
     end
   end

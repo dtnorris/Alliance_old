@@ -12,7 +12,7 @@ describe "chapter navigation" do
   it 'should be able to edit current member blanket status' do 
     click_link 'T_Chapter_1'
     click_link 'List'
-    click_link 'Edit'
+    click_link 'Alliance Admin'
     select 'Bob', from: 'Character to Blanket:'
     check 'Blanket list'
     click_button 'Modify Blanket Settings'
@@ -23,7 +23,7 @@ describe "chapter navigation" do
   it 'should add members on the blanket list to new monthly blankets' do 
     click_link 'T_Chapter_1'
     click_link 'List'
-    click_link 'Edit'
+    click_link 'Alliance Admin'
     select 'Bob', from: 'Character to Blanket:'
     check 'Blanket list'
     click_button 'Modify Blanket Settings'
@@ -48,7 +48,7 @@ describe "chapter navigation" do
   it 'should not apply blankets to characters whos users do not have enough goblin stamps' do 
     click_link 'T_Chapter_1'
     click_link 'List'
-    click_link 'Edit'
+    click_link 'Alliance Admin'
     select 'Bob', from: 'Character to Blanket:'
     check 'Blanket list'
     click_button 'Modify Blanket Settings'
@@ -66,7 +66,7 @@ describe "chapter navigation" do
     mb.save
     click_link 'T_Chapter_1'
     click_link 'List'
-    click_link 'Edit'
+    click_link 'Alliance Admin'
     select 'Bob', from: 'Character to Blanket:'
     check 'Blanket list'
     click_button 'Modify Blanket Settings'

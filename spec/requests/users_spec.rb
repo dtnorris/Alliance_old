@@ -49,7 +49,7 @@ describe "basic navigation" do
     select 'Player', from: 'Role'
     click_button "Add Member"
     #save_and_open_page
-    page.should have_content("Jane Doe new_test@test.com")
+    page.should have_content("Jane Doe No new_test@test.com")
   end
 
   it "should give good errors with bad fields" do

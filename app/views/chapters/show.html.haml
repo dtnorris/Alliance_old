@@ -1,4 +1,4 @@
-= render 'chapter_navbar'
+= render 'navbar'
 
 .span3
   %p
@@ -17,7 +17,8 @@
     = @chapter.email
   %br
   %p
-    %b= "Number of Characters: #{@characters.count}"
+    %b Number of Characters: 
+    = @characters.count
   %p
   %br
   = link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"

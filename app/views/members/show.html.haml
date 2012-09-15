@@ -1,0 +1,21 @@
+= render 'chapters/navbar'
+
+%h3= "Membership details for #{@member.user.name}"
+
+%p
+%p
+  %b Name:
+  = @member.user.name
+%p
+  %b Active Member?
+  = best_in_place @member, :member, type: :checkbox, collection: %w[No Yes]
+%p
+  %b= link_to 'Goblins:', chapter_user_stamp_tracks_path(@member.chapter, @member.user)
+  = @member.goblin_stamps
+%p
+  %b Character to Blanket:
+  = "#{@member.character.name} - #{@member.blanket_list ? 'Yes' : 'No'}" if @member.character
+%p
+  %b Notes:
+%p
+  = best_in_place @member, :notes, type: :textarea

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120915003614) do
+ActiveRecord::Schema.define(:version => 20120915191635) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -105,10 +105,12 @@ ActiveRecord::Schema.define(:version => 20120915003614) do
     t.integer  "chapter_id"
     t.integer  "user_id"
     t.integer  "goblin_stamps"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "character_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "character_id",  :default => 0
     t.boolean  "blanket_list"
+    t.boolean  "member",        :default => false
+    t.string   "notes"
   end
 
   create_table "races", :force => true do |t|

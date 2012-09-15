@@ -1,5 +1,5 @@
 -if @chapter
-  = render 'chapters/chapter_navbar'
+  = render 'chapters/navbar'
   %p
 -else
   = render 'admins/navbar'
@@ -15,5 +15,5 @@
     = link_to 'New Member', new_chapter_user_path(@chapter.id), class: "btn"
 
 = will_paginate @users
-= render 'user_table'
+= render 'table'
 = will_paginate @users

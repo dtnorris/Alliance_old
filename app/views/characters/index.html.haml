@@ -1,5 +1,5 @@
 -if @chapter
-  = render 'chapters/chapter_navbar'
+  = render 'chapters/navbar'
 -else
   = render 'admins/navbar'
   %h1 All Alliance Characters
@@ -13,5 +13,5 @@
   = f.submit 'Search', class: "btn"
 
 = will_paginate @characters
-= render 'character_table'
+= render 'table'
 = will_paginate @characters

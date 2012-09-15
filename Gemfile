@@ -10,6 +10,7 @@ gem 'cancan'
 gem 'prawn'
 gem 'ransack'
 gem 'will_paginate', '> 3.0'
+gem 'best_in_place'
 
 group :assets do
   gem 'execjs'

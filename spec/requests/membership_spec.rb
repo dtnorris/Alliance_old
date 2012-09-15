@@ -15,6 +15,25 @@ describe "basic navigation" do
     click_button "Create Chapter"
   end
 
+  it 'can navigate to goblin stamps' do 
+    visit '/chapters'
+    click_link 'T_Chapter_1'
+    click_link 'chapter_players'
+    click_link 'Alliance Admin'
+    click_link 'Goblins:'
+    page.should have_content 'Stamp Tracking for T_Chapter_1'
+  end
+
+  it 'should have a show action chapters can get to' do 
+    visit '/chapters'
+    click_link 'T_Chapter_1'
+    click_link 'chapter_players'
+    click_link 'Alliance Admin'
+    page.should have_content 'Membership details for Alliance Admin'
+    page.should have_content 'Name: Alliance Admin'
+    page.should have_content 'Goblins: 0'
+  end
+
   it "should be able to add new membership" do
     click_link "admin@test.com"
     click_link "Profile info"

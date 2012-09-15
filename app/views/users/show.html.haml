@@ -1,10 +1,10 @@
-= render 'user_navbar'
+= render 'navbar'
 - user_head = @user.first_name + ' ' + @user.last_name
 %h2= user_head
 
 .span12  
   %h2 Characters
-  = render 'characters/character_table'
+  = render 'characters/table'
 
   %h2 Chapter Associations
   = render 'members/table'

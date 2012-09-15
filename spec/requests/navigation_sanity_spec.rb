@@ -52,7 +52,7 @@ describe "basic navigation" do
     page.should have_content("All Alliance Characters")
   end
 
-  it "allows a user to view Players tab" do
+  it "allows an admin to view Players tab" do
     visit "/users"
     page.should have_content("All Alliance Users")
   end

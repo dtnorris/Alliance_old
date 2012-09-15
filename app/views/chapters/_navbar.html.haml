@@ -8,7 +8,7 @@
       .brand= link_to "#{@chapter.name}", @chapter, id: 'brand'
       .nav-collapse.4
         .nav
-          %li= link_to "Home", @chapter
+          %li= link_to "Home - #{@chapter.name}", @chapter
           %li= link_to "Events", chapter_events_path(@chapter.id), id: "chapter_events"
           %li= link_to "Players", chapter_users_path(@chapter.id), id: "chapter_players"
           %li= link_to "Characters", chapter_characters_path(@chapter.id), id: "chapter_characters"

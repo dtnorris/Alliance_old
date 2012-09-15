@@ -1,8 +1,8 @@
 %table.table.table-striped
   %tr
-    - unless @chapter
-      %th
     %th.srt= sort_link @search, :last_name,  'Name'
+    - if @chapter
+      %th= 'Member' #.srt= sort_link @search, :member,     'Member'
     %th.srt= sort_link @search, :email,      'Email'
     - if @chapter
       %th Goblin Stamps
@@ -15,16 +15,19 @@
   - @users.each do |user|
     - if @chapter
       - characters = Character.find_all_by_user_id_and_chapter_id(user.id, @chapter.id)
+      - member = Member.find_by_user_id_and_chapter_id(user.id, @chapter.id)
     - else
       - characters = user.characters
     %tr
-      - unless @chapter
-        %td= link_to 'Edit', edit_user_path(user), class: 'btn btn-mini'
-      %td= user.name
+      - if @chapter
+        %td= link_to user.name, member_path(member)
+        %td= best_in_place member, :member, type: :checkbox, collection: %w[No Yes]
+      - else
+        %td= link_to user.name, edit_user_path(user)
       %td= user.email
       - if @chapter
         %td= link_to 'Add/Remove', chapter_user_stamp_tracks_path(@chapter.id, user.id), class: 'btn'
-        %td.ln= Member.find_by_user_id_and_chapter_id(user.id, @chapter.id).goblin_stamps
+        %td.ln= member.goblin_stamps
         %td= link_to 'New Character', new_chapter_user_character_path(@chapter.id,user.id)
       - unless @chapter
         %td.ln= user.dragon_stamps

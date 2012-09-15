@@ -1,14 +1,14 @@
 class MembersController < ApplicationController
-  load_and_authorize_resource :except => [:alliance_player, :create]
+  load_and_authorize_resource #:except => [:create]
+  #in_place_edit_for :member, :notes
 
   # POST /members
   # POST /members.json
   def create
-    @member = Member.new(params[:member])
     @member.goblin_stamps = 0
     @member.blanket_list = false
     another_like_me = Member.find_by_user_id_and_chapter_id(@member.user_id, @member.chapter_id)
-    authorize! :create, @member
+    #authorize! :create, @member
 
     respond_to do |format|
       if !another_like_me
@@ -24,6 +24,17 @@ class MembersController < ApplicationController
     end
   end
 
+  # GET /members/1
+  # GET /members/1.json
+  def show
+    @chapter = @member.chapter
+
+    respond_to do |format|
+      format.html # show.html.erb
+      # format.json { render json: @member }
+    end
+  end
+
   # # GET /members/1/edit
   def edit  
     @user = User.find(params[:user_id]) if params[:user_id]
@@ -35,7 +46,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       if @member.update_attributes(params[:member])
         format.html { redirect_to chapter_path(@member.chapter.id, tab: 'list'), notice: 'Member was successfully updated.' }
-        format.json { head :no_content }
+        format.json { head :ok }
       else
         flash[:error] = 'Error modifying membership.'
         format.html { redirect_to blanket_list_chapter_path(@member.chapter_id) }
@@ -52,17 +63,6 @@ class MembersController < ApplicationController
   #   respond_to do |format|
   #     format.html # index.html.erb
   #     format.json { render json: @members }
-  #   end
-  # end
-
-  # GET /members/1
-  # GET /members/1.json
-  # def show
-  #   @member = Member.find(params[:id])
-
-  #   respond_to do |format|
-  #     format.html # show.html.erb
-  #     format.json { render json: @member }
   #   end
   # end
 

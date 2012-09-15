@@ -1,4 +1,4 @@
-= render 'user_navbar'
+= render 'navbar'
 - user_head = @user.first_name + ' ' + @user.last_name
 %h2= user_head
 
@@ -10,12 +10,12 @@
   %p
   = link_to 'Change Password', user_edit_password_form_path(@user.id), class: "btn", method: 'get'
 
-.span6
-  %h3 Chapter Associations
-  %p
-  = render 'members/table'
-
 .span3
   %h3 Add Chapter Association
   %p
   = render 'members/form'
+  
+.span5
+  %h3 Chapter Associations
+  %p
+  = render 'members/table'

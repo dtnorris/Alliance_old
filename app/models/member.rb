@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  attr_accessible :chapter_id, :goblin_stamps, :user_id, :character_id, :blanket_list
+  attr_accessible :chapter_id, :goblin_stamps, :user_id, :character_id, :blanket_list, :notes, :member
 
   belongs_to :chapter
   belongs_to :user

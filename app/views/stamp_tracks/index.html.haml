@@ -1,11 +1,9 @@
-%h1 Goblin Stamp Tracking
-
 - if @chapter
-  - path = chapter_users_path(@chapter.id)
+  = render 'chapters/navbar'
+  %h2= "Stamp Tracking for #{@chapter.name}"
 - else
-  - path = @user
-%ul.nav.nav-tabs
-  %li= link_to 'Back', path, class: "btn"
+  = render 'users/navbar'
+  %h2= "Stamp Tracking for #{Chapter.find(@chapter_id).name}"
 
 - if @chapter
   = render 'form'

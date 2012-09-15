@@ -43,4 +43,4 @@
         %td= Attendee.where(event_id: @event.id).count
     = render 'attendees/form'
   .span8
-    = render 'attendees/event_attendees'
+    = render 'attendees/table'

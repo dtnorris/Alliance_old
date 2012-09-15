@@ -3,7 +3,7 @@
     -if @user
       %li= link_to 'Back', @user, class: "btn"
     -else
-      = render 'chapters/chapter_navbar'
+      = render 'chapters/navbar'
 
 -else
   %h1 All Alliance Events
@@ -19,6 +19,6 @@
     = link_to 'New Event', new_chapter_event_path(@chapter.id), class: "btn"
 
 = will_paginate @events
-= render 'event_table'
+= render 'table'
 = will_paginate @events
 
