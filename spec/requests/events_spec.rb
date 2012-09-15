@@ -80,6 +80,7 @@ describe "events navigation" do
     page.should have_content("Event was successfully applied")
     click_link 'test event'
     page.should have_content("Bob 1 true")
+    click_link 'Administrate'
     click_link 'Characters'
     click_link 'Bob'
     click_link 'XP Track'
