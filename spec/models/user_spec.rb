@@ -10,6 +10,13 @@ describe User do
     let!(:char2) { FactoryGirl.create(:character) }
     let!(:attendee) { FactoryGirl.create(:attendee) }
 
+    it 'should be able to add default associations' do 
+      user.add_default_associations
+      user.dragon_stamps.should == 0
+      Member.where(user_id: user.id).count.should == 2
+      Character.where(user_id: user.id).count.should == 4
+    end
+
     it "should be able to return all users of given memberships" do
       User.all_for_given_members([mem1]).count.should == 1
     end

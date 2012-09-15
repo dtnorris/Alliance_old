@@ -9,7 +9,7 @@ describe "basic navigation" do
   end
 
   it "should be able to add goblin stamps" do
-    visit "/chapters/1"
+    visit "/chapters/2"
     click_link "chapter_players"
     click_link "Add/Remove"
 

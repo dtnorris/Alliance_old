@@ -7,7 +7,7 @@ describe "Deaths" do
     fill_in "user_password", with: "txt@1234"
     click_button "Sign in"
 
-    visit "/chapters/1"
+    visit "/chapters/2"
     click_link "chapter_players"
     click_link "New Character"
     fill_in "Character Name:", with: "Bill"

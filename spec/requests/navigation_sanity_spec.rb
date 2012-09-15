@@ -87,7 +87,7 @@ describe "basic navigation" do
   end
 
   it 'should present proper back button on character page from chapter' do
-    visit '/chapters/1'
+    visit '/chapters/2'
     click_link 'chapter_characters'
     click_link 'Bob'
     click_link 'View'

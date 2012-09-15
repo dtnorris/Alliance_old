@@ -8,7 +8,7 @@ describe "character creation and modification" do
     fill_in "user_password", with: "txt@1234"
     click_button "Sign in"
 
-    visit "/chapters/1"
+    visit "/chapters/2"
     click_link "chapter_players"
     click_link "New Character"
     fill_in "Character Name:", with: "Bob"
@@ -23,7 +23,7 @@ describe "character creation and modification" do
 
   it 'should have multiple edit buttons and pdf buttons' do 
     click_link('edit_button')
-    page.should have_content('Choose Skill: VariousAlchemyBlacksmithCraftsmanCreate PotionCreate ScrollCreate TrapHerbal LoreLegerdemainMerchantTeacherWear Extra Armor')
+    page.should have_content('Choose Skill: VariousAlchemyBlacksmithCraftsmanCreate PotionCreate ScrollCreate TrapFirst AidHealing ArtsHerbal LoreLegerdemainMerchantRead And WriteRead MagicTeacherWear Extra Armor')
   end
 
   it 'should have the correct links after creating new character' do
@@ -80,7 +80,7 @@ describe "character creation and modification" do
 
   it "should properly re-calculate spent build" do
     click_link "Edit"
-    select "Read And Write", from: 'Choose Skill: Spells'
+    select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     within(:xpath, "//tr[.//*[contains(text(), 'Read And Write')]]") do
       click_link 'Add'
@@ -93,7 +93,7 @@ describe "character creation and modification" do
 
   it "should calculate build exactly" do
     click_link "Edit"
-    select "Read And Write", from: 'Choose Skill: Spells'
+    select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     select "Herbal Lore", from: 'Choose Skill: Various'
     click_button "add_skills"

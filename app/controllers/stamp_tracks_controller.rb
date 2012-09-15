@@ -29,6 +29,7 @@ class StampTracksController < ApplicationController
     @stamp_track.user_id = params[:stamp_track][:user_id]
     @stamp_track.chapter_id = params[:stamp_track][:chapter_id]
     @stamp_track.reason = params[:stamp_track][:reason]
+    @stamp_track.dragon_stamps = true if @stamp_track.chapter_id == 1
 
     @user = @stamp_track.user
     @chapter = @stamp_track.chapter

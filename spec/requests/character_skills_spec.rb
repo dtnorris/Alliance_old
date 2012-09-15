@@ -8,7 +8,7 @@ describe "character skill manipulation" do
     fill_in "user_password", with: "txt@1234"
     click_button "Sign in"
 
-    visit "/chapters/1"
+    visit "/chapters/2"
     click_link "chapter_players"
     click_link "New Character"
     fill_in "Character Name:", with: "Fred"
@@ -33,7 +33,7 @@ describe "character skill manipulation" do
 
   it 'should be able to purchase skill' do
     click_link "Edit"
-    select "Read And Write", from: 'Choose Skill: Spells'
+    select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     page.should have_content("Read And Write:")
     click_link "Add"
@@ -42,14 +42,14 @@ describe "character skill manipulation" do
 
   it "should be able to add new skill" do
     click_link "Edit"
-    select "Read And Write", from: 'Choose Skill: Spells'
+    select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     page.should have_content("Read And Write: 0")
   end
 
   it "should be able to delete a 0 skill" do
     click_link "Edit"
-    select "Read And Write", from: 'Choose Skill: Spells'
+    select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     page.should have_content("Read And Write:")
     click_link "X"
@@ -58,7 +58,7 @@ describe "character skill manipulation" do
 
   it 'should be able to delete a purchased skill without removing the skill' do 
     click_link 'Edit'
-    select 'Read And Write', from: 'Choose Skill: Spells'
+    select 'Read And Write', from: 'Choose Skill: Various'
     click_button 'add_skills'
     click_link 'Add'
     click_link 'X'

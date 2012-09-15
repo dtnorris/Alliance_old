@@ -74,6 +74,25 @@ class User < ActiveRecord::Base
     users
   end
 
+  def add_default_associations
+    self.dragon_stamps = 0
+    self.save
+    member = Member.where(user_id: self.id).first
+    if Member.where(user_id: self.id, chapter_id: 1) != nil
+      Member.create(user_id: self.id, chapter_id: 1, goblin_stamps: 0)
+    end
+    Character.create(
+      user_id: self.id, 
+      chapter_id: member.chapter.id,
+      build_points: 15, 
+      experience_points: 0, 
+      spent_build: 0,
+      name: "#{self.first_name} #{member.chapter.name} Blank", 
+      race_id: 11, #Human
+      char_class_id: 1 #Fighter
+    )
+  end
+
   def member_of_chapter chapter
     self.members.each do |m|
       if m.chapter_id == chapter.id

@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Chapter.create(name: 'National', owner: 'Mike Ventrela', email: 'alliance@test.com', location: "USA")
 
 Role.create(name: 'Player')
 Role.create(name: 'Chapter')
@@ -135,9 +136,9 @@ Skill.create(name: 'Formal Earth', fighter: 12, scout: 12, rogue: 8, adept: 4, s
 Chapter.create(name: 'T_Chapter_1', owner: 'Owner One', email: 'gm@T_Chapter_1.com', location: "TS1")
 User.create(email: 'admin@test.com', first_name: 'Alliance', last_name: 'Admin', password: 'txt@1234', dragon_stamps: 0)
 Assignment.create(user_id: 1, role_id: 5)
-Member.create(user_id: 1, chapter_id:1, goblin_stamps: 0)
-Character.create(chapter_id: 1, name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0)
-Event.create(name: "The Start", date: "2012/7/20".to_date, event_type_id: 2, chapter_id: 1)
+Member.create(user_id: 1, chapter_id: 2, goblin_stamps: 0)
+Character.create(chapter_id: 2, name: 'Bob', user_id: 1, race_id: 1, char_class_id: 1, build_points: 15, spent_build: 0, experience_points: 0)
+Event.create(name: "The Start", date: "2012/7/20".to_date, event_type_id: 2, chapter_id: 2)
 Attendee.create(character_id: 1, event_id: 1, pc: false)
 
 # More seeded objects not needed in test
@@ -151,12 +152,12 @@ if Rails.env != 'test'
   User.create(email: 'player@test.com', first_name: 'Player', last_name: 'User', password: 'txt@1234', dragon_stamps: 0)
   Assignment.create(user_id: 4, role_id: 1)
 
-  Member.create(user_id: 1, chapter_id:2, goblin_stamps: 0)
-  Member.create(user_id: 4, chapter_id:1, goblin_stamps: 0)
+  Member.create(user_id: 1, chapter_id:3, goblin_stamps: 0)
+  Member.create(user_id: 4, chapter_id:2, goblin_stamps: 0)
 
-  Event.create(name: "The End", date: "2012/7/20".to_date, event_type_id: 3, chapter_id: 2)
+  Event.create(name: "The End", date: "2012/7/20".to_date, event_type_id: 3, chapter_id: 3)
 
 
-  Character.create(chapter_id: 2, name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0)
-  Character.create(chapter_id: 1, name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0)
+  Character.create(chapter_id: 3, name: 'Hannah', user_id: 1, race_id: 6, char_class_id: 7, build_points: 15, spent_build: 0, experience_points: 0)
+  Character.create(chapter_id: 2, name: 'Joe', user_id: 4, race_id: 11, char_class_id: 4, build_points: 15, spent_build: 0, experience_points: 0)
 end

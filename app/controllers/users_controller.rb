@@ -70,11 +70,10 @@ class UsersController < ApplicationController
     params[:user].delete('role_id')
 
     @user = User.create(params[:user])
-    @user.dragon_stamps = 0
-    @user.save
     @assignment.user_id = @user.id
     @assignment.save
     @member = Member.create(user_id: @user.id, chapter_id: @chapter.id, goblin_stamps: 0)
+    @user.add_default_associations if @user.save
     authorize! :create, @user
 
     respond_to do |format|

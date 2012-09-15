@@ -9,7 +9,7 @@ describe Event do
   let!(:event_type) { FactoryGirl.create(:event_type) }
 
   it "should be able to return an event reason" do
-    event.event_reason(event_type).should == "MyString for T_Chapter_1 on July, 18, 2012"
+    event.event_reason(event_type).should == "MyString for National on July, 18, 2012"
   end
 
   it "should be able to apply an event_blanket that applies attendees" do
