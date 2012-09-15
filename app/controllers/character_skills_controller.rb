@@ -2,6 +2,7 @@ class CharacterSkillsController < ApplicationController
   load_and_authorize_resource :except => [:create]
 
   def create
+    @chapter = Chapter.find(params[:character_skill][:chapter_id]) if params[:character_skill][:chapter_id]
     @character = Character.find(params[:character_skill][:character_id].to_i)
     if params[:character_skill][:other] != ''
       type = params[:character_skill][:other].to_i
@@ -18,10 +19,19 @@ class CharacterSkillsController < ApplicationController
     respond_to do |format|
       if type
         CharacterSkill.add_skill(@character.id, type) 
-        format.html { redirect_to edit_character_path(@character), notice: 'Skill successfully added' }
+        flash[:notice] = 'Skill successfully added.'
+        if @chapter
+          format.html { redirect_to edit_chapter_character_path(@chapter, @character) }
+        else
+          format.html { redirect_to edit_character_path(@character) }
+        end
       else
         flash[:error] = 'No skill selected.'
-        format.html { redirect_to edit_character_path(@character) }
+        if @chapter
+          format.html {redirect_to edit_chapter_character_path(@chapter, @character) }
+        else
+          format.html { redirect_to edit_character_path(@character) }
+        end
       end
     end
   end

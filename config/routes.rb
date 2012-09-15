@@ -25,6 +25,7 @@ Alliance::Application.routes.draw do
   resources :chapters do
     resources :events
     resources :characters do
+      resources :character_skills
       resources :deaths
       resources :xp_tracks
       resources :events #allows application of events to individual characters

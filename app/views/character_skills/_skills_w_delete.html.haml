@@ -9,6 +9,7 @@
           %td 0
         - if skill.amount
           %td= skill.amount
-        %td= link_to 'Add', skill, class: 'primary btn commit create btn-mini', name: 'commit', type: 'submit', :method => :put
+        %td= link_to 'Add', skill, :method => :put, class: 'primary btn commit create btn-mini', name: 'commit', type: 'submit'
         %td= link_to 'X', skill, :method => :delete, class: 'btn btn-mini btn-danger', :id => 'delete_skill'
         / , :data => { :confirm => 'Are you sure?' }
+        / (tab: @character.chapter.id)

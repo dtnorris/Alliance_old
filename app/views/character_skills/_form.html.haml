@@ -8,5 +8,7 @@
     = f.input :spells, :collection => ((Skill.all.inject([]) {|a,s| a << s if s.group == 'spells'; a}).sort_by! {|skill| skill.name}), :label => 'Choose Skill: Spells', :include_blank => true, :selected => '', :id => 'spells'
     = f.input :race, :collection => (Skill.all.inject([]) {|a,s| a << s if s.group == 'race'; a}).sort_by! {|skill| skill.name}, :label => 'Choose Skill: Race', :include_blank => true, :selected => '', :id => 'race'
     = f.hidden_field :character_id, value: @character.id
+    - if @chapter
+      = f.hidden_field :chapter_id, value: @chapter.id
 
     = f.button :submit, 'Add Skill', :id => 'add_skills'
