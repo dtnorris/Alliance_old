@@ -1,18 +1,34 @@
 %table.table.table-striped
   %tr
-    %th.srt= sort_link @search, :first_name, 'First'
-    %th.srt= sort_link @search, :last_name,  'Last'
+    - unless @chapter
+      %th
+    %th.srt= sort_link @search, :last_name,  'Name'
     %th.srt= sort_link @search, :email,      'Email'
+    - if @chapter
+      %th Goblin Stamps
+      %th.ln Total
+      %th New Character
+    - unless @chapter
+      %th Dragon Stamps
     %th Characters
-    %th Dragon Stamps
-    %th
 
   - @users.each do |user|
-    - characters = Character.find_all_by_user_id(user.id)
+    - if @chapter
+      - characters = Character.find_all_by_user_id_and_chapter_id(user.id, @chapter.id)
+    - else
+      - characters = user.characters
     %tr
-      %td= user.first_name
-      %td= user.last_name
+      - unless @chapter
+        %td= link_to 'Edit', edit_user_path(user), class: 'btn btn-mini'
+      %td= user.name
       %td= user.email
-      %td= collection_select(:get, :character_id, characters, :id, :name)
-      %td.ln= user.dragon_stamps
-      %td= link_to 'Edit', edit_user_path(user), class: 'btn btn-mini'
+      - if @chapter
+        %td= link_to 'Add/Remove', chapter_user_stamp_tracks_path(@chapter.id, user.id), class: 'btn'
+        %td.ln= Member.find_by_user_id_and_chapter_id(user.id, @chapter.id).goblin_stamps
+        %td= link_to 'New Character', new_chapter_user_character_path(@chapter.id,user.id)
+      - unless @chapter
+        %td.ln= user.dragon_stamps
+      %td
+        - characters.each do |c|
+          %ul.left= link_to c.name, edit_chapter_character_path(c.chapter, c)
+      
