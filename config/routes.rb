@@ -36,6 +36,7 @@ Alliance::Application.routes.draw do
     end
   end
   
+  resources :admins  
   resources :attendees #for creation of
   resources :character_skills #for creation of
   resources :deaths #for creation of

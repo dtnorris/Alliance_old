@@ -13,8 +13,9 @@
           %li= link_to 'Events', events_path
           - if can? :update, @chapter
             %li= link_to 'Chapters', chapters_path
-            %li= link_to 'Players', users_path, method: :get
-            %li= link_to 'Characters', characters_path
+          - if can? :delete, @chapter
+            %li= link_to 'Administrate', admins_path
+            
 
           - if user_signed_in?
             %li= link_to 'Log Out', destroy_user_session_path, method: :delete
