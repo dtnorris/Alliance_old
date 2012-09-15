@@ -3,12 +3,10 @@
     %th.srt= sort_link @search, :first_name, 'First'
     %th.srt= sort_link @search, :last_name,  'Last'
     %th.srt= sort_link @search, :email,      'Email'
-    /-if @chapter
-    /  %th Membership
-    %th.ln Total
     %th Goblin Stamps
-    %th Characters
+    %th.ln Total
     %th New Character
+    %th Characters
     
   - @users.each do |user|
     - characters = Character.find_all_by_user_id(user.id)
@@ -18,9 +16,13 @@
       %td= user.first_name
       %td= user.last_name
       %td= user.email
-      /-if @chapter
-      /  %td= link_to 'View Membership', edit_user_member_path(user.id,member.id), class: "btn"
+      %td= link_to 'Add/Remove', chapter_user_stamp_tracks_path(@chapter.id, user.id), class: 'btn'
       %td.ln= Member.find_by_user_id_and_chapter_id(user.id, @chapter.id).goblin_stamps
-      %td= link_to 'Add/Remove', chapter_user_stamp_tracks_path(@chapter.id, user.id), class: "btn"
-      %td= collection_select(:get, :character_id, characters, :id, :name)
-      %td= link_to 'New Character', new_chapter_user_character_path(@chapter.id,user.id), class: "btn"
+      %td= link_to 'New Character', new_chapter_user_character_path(@chapter.id,user.id)#, class: "btn btn-mini"
+      %td
+        /%ul.left= link_to 'New Character', new_chapter_user_character_path(@chapter.id,user.id), class: "btn btn-mini"
+        - characters.each do |c|
+          %ul.left= link_to c.name, edit_chapter_character_path(c.chapter, c)#, class: 'btn btn-mini'
+        
+  /%td= characters.each do |c| #{ |c| link_to c.name, edit_chapter_character_path(c.chapter, c) }
+  /    - 
