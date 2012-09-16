@@ -15,7 +15,7 @@ describe "character skill manipulation" do
     select("Human", :from => "Race:")
     select("Fighter", :from => "Character Class:")
     click_button "Create Character"
-    click_link "Edit"
+    click_link "character_edit"
   end
 
   it 'should not error when attempting to add no new 0 build skill' do 
@@ -32,7 +32,7 @@ describe "character skill manipulation" do
   end
 
   it 'should be able to purchase skill' do
-    click_link "Edit"
+    click_link "character_edit"
     select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     page.should have_content("Read And Write:")
@@ -41,14 +41,14 @@ describe "character skill manipulation" do
   end
 
   it "should be able to add new skill" do
-    click_link "Edit"
+    click_link "character_edit"
     select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     page.should have_content("Read And Write: 0")
   end
 
   it "should be able to delete a 0 skill" do
-    click_link "Edit"
+    click_link "character_edit"
     select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     page.should have_content("Read And Write:")
@@ -57,7 +57,7 @@ describe "character skill manipulation" do
   end
 
   it 'should be able to delete a purchased skill without removing the skill' do 
-    click_link 'Edit'
+    click_link 'character_edit'
     select 'Read And Write', from: 'Choose Skill: Various'
     click_button 'add_skills'
     click_link 'Add'
@@ -67,7 +67,7 @@ describe "character skill manipulation" do
   end
 
   it 'should only remove a skill entirely if it is not purchased' do
-    click_link 'Edit'
+    click_link 'character_edit'
     select 'Blacksmith', from: 'Choose Skill: Various'
     click_button 'add_skills'
     click_link 'Add'

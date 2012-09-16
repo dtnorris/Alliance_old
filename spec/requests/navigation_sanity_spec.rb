@@ -17,7 +17,7 @@ describe "basic navigation" do
     click_link 'Bob'
     click_link 'View'
     click_link 'edit_button'
-    click_link 'Back'
+    click_link 'chapter_characters'
     page.should have_content 'Bob Barbarian Fighter 1 Alliance Admin'
   end
 
@@ -68,42 +68,42 @@ describe "basic navigation" do
     page.should have_content("Alliance Admin")
   end
 
-  it 'should present proper back button on character page' do 
-    visit '/users/1'
-    click_link 'Bob'
-    click_link 'Back'
-    page.should have_content('Alliance Admin')
-    click_link 'Bob'
-    click_link 'View'
-    click_link 'Back'
-    page.should have_content('Alliance Admin')
-    click_link 'Bob'
-    click_link 'XP Track'
-    click_link 'Back'
-    page.should have_content('Alliance Admin')
-    click_link 'Bob'
-    click_link 'Back'
-    page.should have_content('Alliance Admin')
-  end
+  # it 'should present proper back button on character page' do 
+  #   visit '/users/1'
+  #   click_link 'Bob'
+  #   click_link 'Back'
+  #   page.should have_content('Alliance Admin')
+  #   click_link 'Bob'
+  #   click_link 'View'
+  #   click_link 'Back'
+  #   page.should have_content('Alliance Admin')
+  #   click_link 'Bob'
+  #   click_link 'XP Track'
+  #   click_link 'Back'
+  #   page.should have_content('Alliance Admin')
+  #   click_link 'Bob'
+  #   click_link 'Back'
+  #   page.should have_content('Alliance Admin')
+  # end
 
-  it 'should present proper back button on character page from chapter' do
-    visit '/chapters/2'
-    click_link 'chapter_characters'
-    click_link 'Bob'
-    click_link 'View'
-    click_link 'Back'
-    page.should have_content('T_Chapter_1')
-    click_link 'Bob'
-    click_link 'Edit'
-    click_link 'Back'
-    page.should have_content('T_Chapter_1')
-    click_link 'Bob'
-    click_link 'XP Track'
-    click_link 'Back'
-    page.should have_content('T_Chapter_1')
-    click_link 'Bob'
-    click_link 'Back'
-    page.should have_content('T_Chapter_1')
-  end
+  # it 'should present proper back button on character page from chapter' do
+  #   visit '/chapters/2'
+  #   click_link 'chapter_characters'
+  #   click_link 'Bob'
+  #   click_link 'View'
+  #   click_link 'Back'
+  #   page.should have_content('T_Chapter_1')
+  #   click_link 'Bob'
+  #   click_link 'Edit'
+  #   click_link 'Back'
+  #   page.should have_content('T_Chapter_1')
+  #   click_link 'Bob'
+  #   click_link 'XP Track'
+  #   click_link 'Back'
+  #   page.should have_content('T_Chapter_1')
+  #   click_link 'Bob'
+  #   click_link 'Back'
+  #   page.should have_content('T_Chapter_1')
+  # end
 
 end

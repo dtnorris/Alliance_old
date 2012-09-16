@@ -34,8 +34,8 @@ describe "chapter navigation" do
     click_link 'View Attendees'
     page.should have_content 'Alliance Admin NPC Bob 1 false Apply Event'
 
-    click_link 'Back'
-    click_link 'T_Chapter_1'
+    #click_link 'Back'
+    click_link 'T_Chapter_1 - Home'
     click_link 'Apply - No'
     page.should have_content 'Monthly Blanket applied'
     click_link 'View Attendees'
