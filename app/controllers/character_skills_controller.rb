@@ -80,7 +80,7 @@ class CharacterSkillsController < ApplicationController
     @character.save
 
     respond_to do |format|
-      format.html { redirect_to edit_character_path(@character), notice: 'Skill Removed' }
+      format.html { redirect_to edit_chapter_character_path(@character.chapter, @character), notice: 'Skill Removed' }
       format.json { head :no_content }
     end
   end

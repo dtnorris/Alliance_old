@@ -14,12 +14,12 @@
         = render 'layouts/navbar' if current_user
         - flash.each do |name, msg|
           -if name == :notice
-            .alert.alert-success.navbar-fixed-top
+            .alert.alert-success
               .close{"data-dismiss" => "alert"}
                 ='x'
               = msg
           -else
-            .alert.alert-error.navbar-fixed-top
+            .alert.alert-error
               .close{"data-dismiss" => "alert"}
                 ='x'
               = msg

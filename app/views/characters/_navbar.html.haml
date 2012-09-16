@@ -1,3 +1,9 @@
+- if @user
+  - path = user_character_path(@user, @character)
+- elsif @chapter
+  - path = chapter_character_path(@chapter, @character)
+- else
+  - path = @character
 .navbar
   .navbar-inner
     .container
@@ -5,7 +11,7 @@
         .icon-bar
         .icon-bar
         .icon-bar
-      .brand= @character.name
+      .brand= link_to @character.name, path, id: 'brand'
       .nav-collapse.3
         .nav
           -if @user
