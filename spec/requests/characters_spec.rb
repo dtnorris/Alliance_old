@@ -29,13 +29,13 @@ describe "character creation and modification" do
   it 'should have the correct links after creating new character' do
     click_link 'XP Track'
     page.should have_content('Start Build: Final Build: Build Gained: Start XP: Final XP: Reason Added:')
-    click_link 'Back'
+    click_link 'chapter_characters'
     page.should have_content('Name Race Class Level Player')
     page.should have_content('Bob Human Fighter 1 Alliance Admin')
   end
 
   it "should be able to edit character race and class" do
-    click_link "Edit"
+    click_link "character_edit"
     fill_in "Character Name:", with: "Eldarion"
     select("Dark Elf", :from => "Race:")
     select("Adept", :from => "Character Class:")
@@ -79,7 +79,7 @@ describe "character creation and modification" do
   end
 
   it "should properly re-calculate spent build" do
-    click_link "Edit"
+    click_link "character_edit"
     select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     within(:xpath, "//tr[.//*[contains(text(), 'Read And Write')]]") do
@@ -92,7 +92,7 @@ describe "character creation and modification" do
   end
 
   it "should calculate build exactly" do
-    click_link "Edit"
+    click_link "character_edit"
     select "Read And Write", from: 'Choose Skill: Various'
     click_button "add_skills"
     select "Herbal Lore", from: 'Choose Skill: Various'

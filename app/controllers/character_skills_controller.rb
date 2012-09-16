@@ -42,7 +42,6 @@ class CharacterSkillsController < ApplicationController
     respond_to do |format|
       if !purchase_ret
         flash[:error] = 'Pre-requisites are not met to purchase this skill'
-        format.html { redirect_to edit_character_path(@character) }
       elsif !purchase_ret.legal_spent_build
         if @character_skill.amount
           @character_skill.amount -= 1
@@ -60,10 +59,10 @@ class CharacterSkillsController < ApplicationController
         end
         @character_skill.save
         flash[:error] = 'You do not have the necessary build for this update'
-        format.html { redirect_to edit_character_path(@character) }
       else
-        format.html { redirect_to edit_character_path(@character), notice: 'Character was successfully updated' }
+        flash[:notice] = 'Character was successfully updated.'
       end
+      format.html { redirect_to edit_chapter_character_path(@character.chapter, @character) }
     end
   end
 

@@ -1,22 +1,13 @@
 - if @user
-  %h1= "Attend #{@event.chapter.name} event on #{@event.date.to_s} with:"
-  %ul.nav.nav-tabs
-    %li= link_to 'Back', chapter_user_events_path(@event.chapter.id,@user.id), class: "btn"
+  = render 'users/navbar'
+  %h2= "Attend #{@event.chapter.name} event on #{@event.date.to_s} with:"
 
   = render 'attendees/form'
 
 - else
-  %h1 Event Details
-
-  - if @event_type.name == 'Goblin Blanket'
-    - path = chapter_path(@event.chapter.id)
-  - else
-    - path = chapter_events_path(@event.chapter.id)
-  %ul.nav.nav-tabs
-    -if @chapter
-      %li= link_to 'Back', path, class: "btn"
-    -else
-      %li= link_to 'Back', events_path, class: "btn"
+  -if @chapter
+    = render 'chapters/navbar'
+  %h2 Event Details
 
   .span3
     %table.table

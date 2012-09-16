@@ -17,35 +17,35 @@ describe "Deaths" do
   end
 
   it 'should be able to navigate back to chapter character page' do 
-    click_link 'Edit'
+    click_link 'character_edit'
     click_link 'Death Track'
-    click_link 'Back'
-    click_link 'Back'
+    click_link 'character_edit'
+    click_link 'character_edit'
     page.should have_content 'T_Chapter_1'
   end
 
   it 'adding a death does not mess up routing' do 
-    click_link 'Edit'
+    click_link 'character_edit'
     click_button 'add_death'
-    click_link 'Back'
+    click_link 'character_edit'
     page.should have_content 'T_Chapter_1'
 
     click_link 'Characters'
     click_link 'Bob'
     click_button 'add_death'
-    click_link 'Back'
+    click_link 'character_edit'
     page.should have_content 'T_Chapter_1'
   end
 
   it "should have an add death form" do
-    click_link "Edit"
+    click_link "character_edit"
     find_button('Add Death').should be_true
     find_button('Buyback Death').should be_true
     find_button('Add Regen/CSS Death').should be_true
   end
 
   it "should be able to add all regular deaths" do
-    click_link "Edit"
+    click_link "character_edit"
     click_button 'add_death'
     page.should have_content('Death was successfully created')
     click_link "View"
@@ -53,7 +53,7 @@ describe "Deaths" do
   end
 
   it 'should be able to add Buyback deaths' do
-    click_link "Edit"
+    click_link "character_edit"
     click_button 'buyback_death'
     page.should have_content('Death buyback was successfully created')
     click_link "View"
@@ -61,7 +61,7 @@ describe "Deaths" do
   end
 
   it 'should be able to add Regen_CSS deaths' do
-    click_link "Edit"
+    click_link "character_edit"
     click_button 'add_regen_css_death'
     page.should have_content('Regen/CSS Death was successfully created')
     click_link "View"
@@ -69,7 +69,7 @@ describe "Deaths" do
   end
 
   it 'should be able to visit death tracking page' do
-    click_link "Edit"
+    click_link "character_edit"
     click_button "Add Death"
     click_button 'Buyback Death'
     click_button 'Add Regen/CSS Death'
@@ -85,12 +85,12 @@ describe "Deaths" do
   end
 
   it 'should be able to delete a death' do 
-    click_link 'Edit'
+    click_link 'character_edit'
     click_button 'Add Death'
     click_link 'Death Track'
     click_link 'X'
-    page.should_not have_content 'T_Chapter_1'
-    page.should_not have_content 'X'
+    #page.should_not have_content 'T_Chapter_1'
+    page.should_not have_content 'T_Chapter_1 20.*X'
   end
 
 end

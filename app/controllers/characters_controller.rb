@@ -89,13 +89,14 @@ class CharactersController < ApplicationController
   # PUT /characters/1
   # PUT /characters/1.json
   def update
+    @chapter = @character.chapter
     respond_to do |format|
       if @character.update_attributes(params[:character])
-        format.html { redirect_to edit_character_path(@character), notice: 'Character was successfully updated' }
+        format.html { redirect_to edit_chapter_character_path(@chapter, @character), notice: 'Character was successfully updated' }
         format.json { head :no_content }
       else
         flash[:error] = 'Error updating character.'
-        format.html { redirect_to edit_character_path(@character) }
+        format.html { redirect_to edit_chapter_character_path(@character.chapter, @character) }
         format.json { render json: @character.errors, status: :unprocessable_entity }
       end
     end

@@ -1,6 +1,5 @@
-%h1 Editing member
-%ul.nav.nav-tabs
-    %li= link_to "Back", chapter_path(@member.chapter.id, tab: 'list'), class: "btn"
-
 - @chapter = @member.chapter
+= render 'chapters/navbar'
+%h2 Editing member
+
 = render 'form'

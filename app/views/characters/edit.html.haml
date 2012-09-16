@@ -1,3 +1,9 @@
+- if @chapter
+  = render 'chapters/navbar'
+- elsif @user
+  = render 'users/navbar'
+- else
+  = render 'admins/navbar'
 = render 'navbar'
         
 .span5

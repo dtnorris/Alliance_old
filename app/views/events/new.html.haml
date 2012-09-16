@@ -1,5 +1,4 @@
-%h1= 'New event for: ' + @chapter.name
-%ul.nav.nav-tabs
-  %li= link_to 'Back', chapter_events_path(@chapter.id), class: "btn"
+= render 'chapters/navbar'
+%h2= 'New event for: ' + @chapter.name
 
 = render 'form'

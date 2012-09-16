@@ -1,7 +1,5 @@
-%h1 Add Member Page
-
-%ul.nav.nav-tabs
-  %li= link_to 'Back', @chapter, class: "btn"
+= render 'chapters/navbar'
+%h2 Add Member Page
 
 .form-horizontal
   = simple_form_for(@user) do |f|

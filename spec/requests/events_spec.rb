@@ -9,14 +9,14 @@ describe "events navigation" do
     visit "/chapters"
   end
 
-  it 'back buttons goes back to chapter show page from blanket event' do 
-    click_link 'T_Chapter_1'
-    click_link 'New'
-    click_button 'Create Event'
-    click_link 'View Attendees'
-    click_link 'Back'
-    page.should have_content 'Monthly Blankets'
-  end
+  # it 'back buttons goes back to chapter show page from blanket event' do 
+  #   click_link 'T_Chapter_1'
+  #   click_link 'New'
+  #   click_button 'Create Event'
+  #   click_link 'View Attendees'
+  #   click_link 'T_Chapter_1 - Home'
+  #   page.should have_content 'Monthly Blankets'
+  # end
 
   it "should be able to create an event" do
     click_link 'T_Chapter_1'
@@ -74,7 +74,7 @@ describe "events navigation" do
     select("Alliance Admin", :from => "Select a Member:")
     select("Bob", :from => "Character")
     click_button "Add Attendee"
-    click_link "Back"
+    click_link "chapter_events"
 
     click_link "Apply Event"
     page.should have_content("Event was successfully applied")

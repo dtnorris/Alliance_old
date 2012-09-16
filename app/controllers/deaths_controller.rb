@@ -51,10 +51,11 @@ class DeathsController < ApplicationController
   # DELETE /deaths/1.json
   def destroy
     @character = Character.find(@death.character_id)
+    @chapter = @character.chapter
     @death.destroy
 
     respond_to do |format|
-      format.html { redirect_to character_deaths_path(@character.id), notice: 'Death removed' }
+      format.html { redirect_to chapter_character_deaths_path(@chapter, @character.id), notice: 'Death removed' }
       format.json { head :no_content }
     end
   end

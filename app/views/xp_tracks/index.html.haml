@@ -1,5 +1,9 @@
-/%h1 Experience Point Tracking for: #{@character.name}
-
+- if @chapter
+  = render 'chapters/navbar'
+- elsif @user
+  = render 'users/navbar'
+- else
+  = render 'admins/navbar'
 = render 'characters/navbar'
 
 /%table.table.xp-table
