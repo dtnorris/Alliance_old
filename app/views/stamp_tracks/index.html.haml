@@ -1,9 +1,9 @@
 - if @chapter
   = render 'chapters/navbar'
-  %h2= "Stamp Tracking for #{@chapter.name}"
+  %h2= "#{@chapter.name} Stamp Tracking for #{@user.name}"
 - else
   = render 'users/navbar'
-  %h2= "Stamp Tracking for #{Chapter.find(@chapter_id).name}"
+  %h2= "#{Chapter.find(@chapter_id).name} Stamp Tracking for #{@user.name}"
 
 - if @chapter
   = render 'form'
