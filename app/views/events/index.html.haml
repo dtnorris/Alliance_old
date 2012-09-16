@@ -1,9 +1,12 @@
 -if @chapter
-  %ul.nav.nav-tabs
-    -if @user
-      %li= link_to 'Back', @user, class: "btn"
-    -else
-      = render 'chapters/navbar'
+  -if @user
+    = render 'users/navbar'
+    %p
+      %b= "#{@chapter.name} notes on you:"
+    %p
+      = Member.find_by_user_id_and_chapter_id(@user.id, @chapter.id).notes
+  -else
+    = render 'chapters/navbar'
 
 -else
   %h1 All Alliance Events

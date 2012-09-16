@@ -105,12 +105,12 @@ ActiveRecord::Schema.define(:version => 20120915191635) do
     t.integer  "chapter_id"
     t.integer  "user_id"
     t.integer  "goblin_stamps"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.integer  "character_id",  :default => 0
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+    t.integer  "character_id"
     t.boolean  "blanket_list"
     t.boolean  "member",        :default => false
-    t.string   "notes"
+    t.string   "notes",         :default => "Click here to set member notes"
   end
 
   create_table "races", :force => true do |t|
