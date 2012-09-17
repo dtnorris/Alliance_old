@@ -21,7 +21,7 @@ describe "basic navigation" do
     click_link 'chapter_players'
     click_link 'Alliance Admin'
     click_link 'Goblins:'
-    page.should have_content 'Stamp Tracking for T_Chapter_1'
+    page.should have_content 'T_Chapter_1 Stamp Tracking for Alliance Admin'
   end
 
   it 'should have a show action chapters can get to' do 
