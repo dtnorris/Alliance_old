@@ -26,3 +26,4 @@ coverage
 ~*.*
 *.tmproj
 *.swp
+zeus.json
