@@ -1,9 +1,0 @@
-= simple_form_for(@stamp_track) do |f|
-  = f.error_notification
-
-  .form-inputs
-    = f.input :amount_to_change
-    = f.input :reason
-    = f.button :submit, "Add/Remove Goblin Stamps"
-    = f.hidden_field :user_id, value: @user.id
-    = f.hidden_field :chapter_id, value: @chapter.id

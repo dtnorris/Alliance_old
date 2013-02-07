@@ -1,7 +1,0 @@
-.field
-  = f.attribute_fields do |a|
-    = a.attribute_select
-  = f.predicate_select :only => [:cont]
-  = f.value_fields do |v|
-    = v.text_field :value
-  = link_to "Remove", '#', class: ["remove_fields",'btn']
